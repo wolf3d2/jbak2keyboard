@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  >
+
+<ScrollView
+    android:id="@+id/cmbtn__scroll"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:padding="2dp" >
+
+<LinearLayout
+  android:id="@+id/com_menu_buttons"
+  android:layout_width="wrap_content"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+	android:layout_alignParentTop="true"
+	android:layout_alignParentRight="true"
+>
+
+<Button
+    android:id="@+id/close"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/keyboard"
+    android:text="@string/mm_close" />
+  
+<Button
+    android:id="@+id/but_lang_and_layout"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/translation"
+    android:text="@string/set_languages" />
+
+<Button
+    android:id="@+id/but_new_template"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/tpl_add"
+    android:text="@string/tpl_new_template" />
+
+<Button
+    android:id="@+id/but_new_template_folder"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/folder_add"
+    android:text="@string/tpl_new_folder"
+    />
+
+<Button
+    android:id="@+id/trans_lang"
+    style="@style/img_button"
+    android:drawableTop="@drawable/translation"
+    android:text="@string/mm_translate_interfase" />
+
+<Button
+    android:id="@+id/clear"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/tpl_delete"
+    android:text="@string/clear" />
+
+<Button
+	android:id="@+id/del"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/tpl_delete"
+    android:text="@string/delete" />
+
+<Button
+    style="@style/img_button"
+    android:drawableTop="@drawable/tpl_home"
+    android:background="@android:drawable/btn_dropdown"
+    android:id="@+id/home"
+    android:clickable="true"
+    android:text="@string/mm_home"
+    />
+
+<Button
+    android:id="@+id/help"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_default"
+    android:clickable="true"
+    android:drawableTop="@drawable/help"
+    android:text="@string/help" />
+
+<TextView
+    android:id="@+id/tire"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="false"
+    android:gravity="center_horizontal"
+    android:text="---"
+    android:textColor="#000" 
+    />
+
+<Button
+    android:id="@+id/clipboard_del_record"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_default"
+    android:drawableTop="@drawable/bullet_black"
+    android:text="@string/mm_delrec" 
+    />
+
+<Button
+    android:id="@+id/clipboard_enter_end"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_default"
+    android:drawableTop="@drawable/bullet_black"
+    android:text="@string/mm_enter_end" 
+    />
+
+<Button
+    android:id="@+id/fiks_tpl"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:drawable/btn_default"
+    android:clickable="true"
+	android:textColor="#000"
+    android:text="zamok"
+    android:textSize="8dp" />
+
+<Button
+    android:id="@+id/clipboard_sync"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_default"
+    android:drawableTop="@drawable/bullet_black"
+    android:text="@string/mm_synchronize" 
+    />
+
+<Button
+    android:id="@+id/fiks_clip"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:drawable/btn_default"
+    android:clickable="true"
+	android:textColor="#000"
+    android:text="zamok"
+    android:textSize="8dp" 
+    />
+
+</LinearLayout>
+</ScrollView>
+
+<TextView
+    android:id="@+id/menuname"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_toLeftOf="@id/cmbtn__scroll"
+    android:clickable="false"
+    android:text="@string/mm"
+    android:textColor="#000"
+    android:textSize="10sp"
+    android:visibility="visible" 
+    />
+
+<ListView
+    android:id="@+id/com_menu_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/menuname"
+    android:layout_toLeftOf="@id/cmbtn__scroll"
+    android:divider="#00ffffff"
+    android:dividerHeight="0px"
+    android:orientation="vertical" />
+
+</RelativeLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/popup2main"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  >
+  
+<ScrollView
+    android:id="@+id/pc2_sv_oficial"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true"
+    >
+
+<LinearLayout
+  android:id="@+id/buttons_official"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  >
+
+<TextView
+    android:id="@+id/pc2close"
+    style="@style/full_popup_kbd_off_button"
+    android:text="╳" 
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+<TextView
+    android:id="@+id/pc2setting"
+    style="@style/full_popup_kbd_off_button"
+    android:text="۞" 
+    />
+
+<!-- <ImageView -->
+<!--     android:id="@+id/pc2im_back" -->
+<!--     style="@style/full_popup_kbd_off_button" -->
+<!--     android:scaleType="center" -->
+<!--     android:src="@drawable/sym_keyboard_delete" -->
+<!--     android:gravity="center" -->
+<!--     android:visibility="gone" -->
+<!--     /> -->
+
+<TextView
+    android:id="@+id/pc2back"
+    style="@style/full_popup_kbd_off_button"
+    android:text="забой" 
+    />
+
+<TextView
+    android:id="@+id/pc2block"
+    style="@style/full_popup_kbd_off_button"
+    android:text="z" 
+    />
+
+</LinearLayout>
+</ScrollView>
+
+<TextView
+    android:id="@+id/pc2_info"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:text="@string/pc2_info"
+    android:textColor="#FFF"
+    android:textSize="10sp"
+    />
+
+<HorizontalScrollView
+    android:id="@+id/pc2_hsv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf="@+id/pc2_sv_oficial"
+    android:layout_below="@+id/pc2_info"
+    android:padding="2dp" 
+    >
+
+<ScrollView
+    android:id="@+id/pc2_scroll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="2dp" 
+    >
+
+<LinearLayout
+  android:id="@+id/pc2_llrow"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  >
+</LinearLayout>
+</ScrollView> 
+</HorizontalScrollView>
+</RelativeLayout>

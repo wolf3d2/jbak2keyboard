@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/accolmainact"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  >
+
+<LinearLayout
+    android:id="@+id/llad_acolact"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+    android:orientation="vertical" >
+    
+<!-- <com.google.android.gms.ads.AdView -->
+<!--     android:id="@+id/AdView_acolact" -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_alignParentBottom="true" -->
+<!--     android:layout_centerHorizontal="true" -->
+<!--     ads:adSize="BANNER" -->
+<!--     ads:adUnitId="@string/banner_ad_unit_id" -->
+<!--     /> -->
+
+</LinearLayout>
+<TextView
+    android:id="@+id/accolact_title"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:text="@string/ac_color_type_layout_title"
+    />
+
+
+<Spinner
+        android:id="@+id/accolact_spinner_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+		android:layout_below="@+id/accolact_title"
+        />
+
+<ScrollView
+    android:id="@+id/accolact_scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="7dp" 
+    android:layout_alignParentRight="true"
+  	android:layout_below="@+id/accolact_spinner_type"
+  	android:layout_above="@+id/llad_acolact"
+    >
+
+<LinearLayout
+  android:id="@+id/accolact_ll"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:layout_alignParentTop="true"
+  android:layout_alignParentRight="true"
+  android:layout_above="@+id/llad_acolact"
+  >
+
+</LinearLayout>
+</ScrollView> 
+</RelativeLayout>

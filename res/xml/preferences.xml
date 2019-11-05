@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 0 - Хелпер -->
+    <Preference android:key="helper" />
+
+        <!-- активность задания цветов для кнопок автодополнения -->
+<!--         <Preference -->
+<!--             android:key="ac_key_color" -->
+<!--             android:summary="@string/ac_color_desc" -->
+<!--             android:title="@string/ac_color_" /> -->
+
+
+    <!-- <PreferenceScreen -->
+    <!-- android:title="@string/calc_setting" -->
+    <!-- > -->
+
+
+    <!-- Коррекция окна автодополнения -->
+    <!-- <PreferenceCategory android:title="@string/calc_corr_ind" > -->
+
+
+    <!-- <Preference -->
+    <!-- android:key="calc_corr_ind" -->
+    <!-- android:summary="@string/calc_corr_ind_desc" -->
+    <!-- android:title="@string/calc_corr_ind" -->
+    <!-- /> -->
+    <!-- уже не используется -->
+    <!-- <EditTextPreference -->
+    <!-- android:defaultValue="25" -->
+    <!-- android:key="calc_corr_ind" -->
+    <!-- android:inputType="number" -->
+    <!-- android:title="@string/calc_corr_ind" -->
+    <!-- android:summary="@string/calc_corr_ind_desc" -->
+    <!-- /> -->
+    <!-- </PreferenceCategory> -->
+    <!-- </PreferenceScreen> -->
+
+
+    <!-- MAIN_ITEM мастер быстрых настроек -->
+    <Preference
+        android:key="quick_setting"
+        android:title="@string/qs_title" />
+    
+<!-- MAIN_ITEM отзыв на сайте -->
+    <Preference
+        android:key="review_application"
+        android:summary="@string/review_desc"
+        android:title="@string/review" />
+    
+<!--     оценка в маркете -->
+<!--     <Preference -->
+<!--         android:key="rate_application" -->
+<!--         android:summary="@string/rate_about" -->
+<!--         android:title="@string/rate_title" /> -->
+    <Preference
+        android:key="annotation"
+        android:summary="@string/ann_desc"
+        android:title="@string/ann" />
+
+    <!-- MAIN ITEM Обновления -->
+    <PreferenceScreen
+        android:summary="@string/upd_screen_desc"
+        android:title="@string/upd_screen" >
+        
+        <Preference
+            android:key="check_upd_app"
+            android:summary="@string/upd_check_desc"
+            android:title="@string/upd_check" 
+            />
+
+        <Preference
+            android:key="sistem_setting_unknown_source"
+            android:summary="@string/upd_unknown_source_desc_"
+            android:title="@string/upd_unknown_source" />
+        
+        <Preference
+            android:key="go_on_site"
+            android:summary="@string/upd_go_site_desc"
+            android:title="@string/upd_go_site" />
+        
+    </PreferenceScreen>
+
+    <!-- MAIN ITEM Словари -->
+    <PreferenceScreen
+        android:summary="@string/dict_desc"
+        android:title="@string/dict" >
+        <Preference
+            android:key="dict_app"
+            android:summary="@string/dict_load_desc"
+            android:title="@string/dict_load" />
+
+        <EditTextPreference
+            android:defaultValue=""
+            android:digits="0123456789qwertyuiopasdfrghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+            android:key="empty_dict"
+            android:summary="@string/dict_empty_dict_desc"
+            android:title="@string/dict_empty_dict" />
+
+        <Preference
+            android:defaultValue="40"
+            android:inputType="number"
+            android:key="ac_list_value"
+            android:summary="@string/ac_list_value_desc"
+            android:title="@string/ac_list_value" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="ac_abbreviated_dict"
+            android:summary="@string/ac_abbrev_word_desc"
+            android:title="@string/ac_abbrev_word" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="ac_student_dict"
+            android:summary="@string/student_dict_desc"
+            android:title="@string/student_dict" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="ac_student_ext_dict"
+            android:summary="@string/student_ext_dict_desc"
+            android:title="@string/student_ext_dict" />
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM Внешний вид -->
+
+    <PreferenceScreen
+        android:summary="@string/set_key_appearance_desc"
+        android:title="@string/set_key_appearance" >
+
+        <!-- встроенные скины -->
+        <Preference
+            android:key="set_skins"
+            android:summary="@string/set_key_skins_desc"
+            android:title="@string/set_key_skins" />
+
+        <!-- конструктор скинов -->
+        <Preference
+            android:key="skin_constructor"
+            android:summary="@string/sc_name_desc"
+            android:title="@string/sc_name" />
+
+        <!-- скины от пользователей -->
+        <Preference
+            android:key="jbak2skin_app"
+            android:summary="@string/jbak2skin_desc"
+            android:title="@string/jbak2skin" />
+
+        <!-- фон клавиатуры -->
+        <Preference
+            android:key="kbd_background_pict"
+            android:summary="@string/set_kbd_background_desc"
+            android:title="@string/set_kbd_background" />
+
+        <!-- прозрачность клавиатуры -->
+        <Preference
+            android:defaultValue="10"
+            android:key="kbd_background_alpha"
+            android:summary="@string/set_kbd_background_alpha_desc"
+            android:title="@string/set_kbd_background_alpha" />
+
+        <!-- Шрифты -->
+
+        <PreferenceScreen
+            android:summary="@string/set_key_fonts_desc"
+            android:title="@string/set_key_fonts" >
+            <Preference
+                android:key="set_key_main_font"
+                android:summary="@string/set_key_font_first_desc"
+                android:title="@string/set_key_font_first" />
+            <Preference
+                android:key="set_key_second_font"
+                android:summary="@string/set_key_font_second_desc"
+                android:title="@string/set_key_font_second" />
+            <Preference
+                android:key="set_key_label_font"
+                android:summary="@string/set_key_font_label_desc"
+                android:title="@string/set_key_font_label" />
+            <Preference
+                android:key="ac_font"
+                android:summary="@string/set_ac_font_desc"
+                android:title="@string/set_ac_font" />
+        </PreferenceScreen>
+
+        <!-- 7 - полноэкранный редактор -->
+
+        <PreferenceScreen
+            android:summary="@string/set_key_landscape_input_desc"
+            android:title="@string/set_key_landscape_input" >
+
+            <!-- Тип редактора в портрете -->
+
+            <ListPreference
+                android:defaultValue="0"
+                android:entries="@array/array_input_type"
+                android:entryValues="@array/integer_vals"
+                android:key="portrait_type"
+                android:summary="@string/set_key_portrait_input_type_desc"
+                android:title="@string/set_key_portrait_input_type" />
+
+            <!-- Тип редактора в ландшафте -->
+            <ListPreference
+                android:defaultValue="0"
+                android:entries="@array/array_input_type"
+                android:entryValues="@array/integer_vals"
+                android:key="landscape_type"
+                android:summary="@string/set_key_landscape_input_type_desc"
+                android:title="@string/set_key_landscape_input_type" />
+            <!-- Настройка внешнего вида редактора -->
+
+            <Preference
+                android:key="fs_editor_set"
+                android:summary="@string/set_key_landscape_input_settings_desc"
+                android:title="@string/set_key_landscape_input_settings" />
+        </PreferenceScreen>
+
+        <!-- Размеры текста кнопок меню -->
+        <PreferenceCategory android:title="@string/mm_setting" >
+            <EditTextPreference
+                android:defaultValue="15"
+                android:inputType="number"
+                android:key="mm_textsize_btn"
+                android:summary="@string/mm_btn_size_desc"
+                android:title="@string/mm_btn_size" />
+            <EditTextPreference
+                android:defaultValue="8"
+                android:inputType="number"
+                android:key="mm_textsize_btn_off"
+                android:summary="@string/mm_btnoff_size_desc"
+                android:title="@string/mm_btnoff_size" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM настройка клавиш -->
+    <PreferenceScreen
+        android:summary="@string/pref_keys_desc"
+        android:title="@string/pref_keys" >
+        <Preference
+            android:key="pref_port_key_height"
+            android:summary="@string/set_key_height_portrait_desc"
+            android:title="@string/set_key_height_portrait" />
+        <Preference
+            android:key="pref_land_key_height"
+            android:summary="@string/set_key_height_landscape_desc"
+            android:title="@string/set_key_height_landscape" />
+        <Preference
+            android:key="pref_calib_portrait"
+            android:summary="@string/calibr_desc"
+            android:title="@string/calibr_portrait" />
+        <Preference
+            android:key="pref_calib_landscape"
+            android:summary="@string/calibr_desc"
+            android:title="@string/calibr_landscape" />
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM - языки -->
+    <Preference
+        android:key="pref_languages"
+        android:summary="@string/set_languages_desc"
+        android:title="@string/set_languages" />
+
+    <!-- MAIN_ITEM раскладки от пользователей -->
+    <Preference
+        android:key="jbak2layout_app"
+        android:summary="@string/jbak2layout_desc"
+        android:title="@string/jbak2layout" />
+
+    <!-- MAIN_ITEM Автодополнение -->
+    <PreferenceScreen
+        android:summary="@string/set_key_ac_desc"
+        android:title="@string/set_key_ac" >
+
+        <!-- Автодополнение -->
+
+        <!-- старая загрузка словарей (уже не пашет) -->
+        <!-- оставил для проверки как работает скачивание и распаковка зипов -->
+        <!-- <Preference -->
+        <!-- android:key="ac_load_vocab" -->
+        <!-- android:summary="@string/set_key_ac_load_vocab_desc" -->
+        <!-- android:title="@string/set_key_ac_load_vocab" /> -->
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/ac_place"
+            android:entryValues="@array/integer_vals"
+            android:key="ac_place"
+            android:summary="@string/set_key_ac_place_desc"
+            android:title="@string/set_key_ac_place" />
+
+        <!-- метод отрисовки автодопа как SUB_PANEL -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_ac_sub_panel"
+            android:summary="@string/set_key_ac_place_sub_panel_desc"
+            android:title="@string/set_key_ac_place_sub_panel" />
+
+        <EditTextPreference
+            android:defaultValue="$[-500,Menu] ! @ ? ; : , ."
+            android:key="ac_defkey"
+            android:summary="@string/set_ac_defkey_desc"
+            android:title="@string/set_ac_defkey" />
+
+        <Preference
+            android:key="pref_ac_height"
+            android:summary="@string/set_key_ac_height_desc"
+            android:title="@string/set_key_ac_height" />
+
+            <Preference
+                android:key="ac_font"
+                android:summary="@string/set_ac_font_desc"
+                android:title="@string/set_ac_font" />
+        
+        <!-- индикаторы -->
+        <PreferenceCategory android:title="@string/indicators" >
+
+            <!-- счётчик нажатых символов и код нажатой клавиши -->
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="counter"
+                android:summary="@string/set_counter_desc"
+                android:title="@string/set_counter" />
+
+            <!-- код нажатого символа -->
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="keycode"
+                android:summary="@string/set_keycode_desc"
+                android:title="@string/set_keycode" />
+        </PreferenceCategory>
+        
+        <!-- прочее в автодополнении -->
+        <PreferenceCategory android:title="@string/about" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="ac_list_dropdown"
+            android:summary="@string/ac_listview_alfavit_desc"
+            android:title="@string/ac_listview_alfavit" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="ac_space"
+            android:summary="@string/set_ac_space_desc"
+            android:title="@string/set_ac_space" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="ac_place_arrow_down"
+            android:summary="@string/ac_place_arrow_down_desc"
+            android:title="@string/ac_place_arrow_down" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="ac_replace_separator_symbol"
+            android:summary="@string/ac_place_separator_symb_desc"
+            android:title="@string/ac_place_separator_symb" />
+
+        <!-- активность задания цветов для кнопок автодополнения -->
+        <Preference
+            android:key="ac_key_color"
+            android:summary="@string/ac_color_desc"
+            android:title="@string/ac_color_" />
+        </PreferenceCategory>
+        </PreferenceScreen>
+
+    <!-- MAIN_ITEM Автоввод -->
+
+    <PreferenceScreen
+        android:summary="@string/set_key_other_desc"
+        android:title="@string/set_key_other" >
+
+        <!-- Поведение стрелок влево/вправо -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="set_arrow_key"
+            android:summary="@string/arrow_key_desc"
+            android:title="@string/arrow_key" />
+        <CheckBoxPreference
+            android:defaultValue="0"
+            android:key="ac_autocorrect"
+            android:summary="@string/set_key_ac_autocorrect_desc"
+            android:title="@string/set_key_ac_autocorrect" />
+        <!-- Смена регистра -->
+        <PreferenceCategory android:title="@string/set_key_register" >
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="up_sentence"
+                android:summary="@string/set_key_auto_case_desc"
+                android:title="@string/set_key_auto_case" />
+
+            <PreferenceScreen
+                android:summary="@string/set_key_auto_case_rules_desc"
+                android:title="@string/set_key_auto_case_rules" >
+                <PreferenceCategory android:title="@string/set_key_register" >
+                    <CheckBoxPreference
+                        android:defaultValue="true"
+                        android:key="up_empty"
+                        android:summary="@string/set_key_empty_uppercase_desc"
+                        android:title="@string/set_key_empty_uppercase" />
+                    <CheckBoxPreference
+                        android:defaultValue="true"
+                        android:key="up_after_symbols"
+                        android:summary="@string/set_key_sentence_upper_desc"
+                        android:title="@string/set_key_sentence_upper" />
+
+                    <EditTextPreference
+                        android:defaultValue=".!?"
+                        android:key="sentence_ends"
+                        android:summary="@string/set_key_sentence_ends_desc"
+                        android:title="@string/set_key_sentence_ends" />
+
+                    <CheckBoxPreference
+                        android:defaultValue="false"
+                        android:key="space_after_sentence"
+                        android:summary="@string/set_key_sentence_space_end_desc"
+                        android:title="@string/set_key_sentence_space_end" />
+                </PreferenceCategory>
+            </PreferenceScreen>
+        </PreferenceCategory>
+        <!-- Автоподстановка пробелов -->
+        <PreferenceCategory android:title="@string/set_key_spaces" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="space_sentence"
+                android:summary="@string/set_key_space_sentence_end_desc"
+                android:title="@string/set_key_space_sentence_end" />
+
+            <EditTextPreference
+                android:defaultValue=".,!?"
+                android:key="space_symbols"
+                android:summary="@string/set_key_space_symbols_desc"
+                android:title="@string/set_key_space_symbols" />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="add_space_before_sentence"
+                android:summary="@string/set_key_space_sentence_before_desc"
+                android:title="@string/set_key_space_sentence_before" />
+
+            <EditTextPreference
+                android:defaultValue="—№"
+                android:key="add_space_before_symbols"
+                android:summary="@string/set_key_add_space_before_symbols_desc"
+                android:title="@string/set_key_space_symbols" />
+        </PreferenceCategory>
+
+        <!-- Удаление пробелов -->
+        <PreferenceCategory android:title="@string/set_key_del_spase_category" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="del_space"
+                android:summary="@string/set_key_del_space_desc"
+                android:title="@string/set_key_del_space" />
+
+            <EditTextPreference
+                android:defaultValue=".,!?;:"
+                android:key="del_space_symbols"
+                android:summary="@string/set_key_del_space_symbols_desc"
+                android:title="@string/set_key_del_space_symbols" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM Маленькая клавиатура -->
+    <PreferenceScreen
+        android:summary="@string/pref_mini_kbd_screen_desc"
+        android:title="@string/pref_mini_kbd_screen" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="mini_kbd_its"
+            android:summary="@string/pref_mini_kbd_its_desc"
+            android:title="@string/pref_mini_kbd_its" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_minikbd_btn_size"
+            android:entryValues="@array/integer_vals"
+            android:key="minikbd_btn_size"
+            android:summary="@string/pref_mini_kbd_btnsize_desc"
+            android:title="@string/pref_mini_kbd_btnsize" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_minikbd_btn_text_size"
+            android:entryValues="@array/integer_vals"
+            android:key="minikbd_btn_text_size"
+            android:summary="@string/pref_mini_kbd_textbtnsize_desc"
+            android:title="@string/pref_mini_kbd_textbtnsize" />
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM настройки главного меню -->
+    <Preference
+        android:key="mainmenu_setting"
+        android:summary="@string/mainmenu_setting_desc"
+        android:title="@string/mainmenu_setting" />
+
+    <!-- MAIN_ITEM показ нажатых клавиш, экран -->
+    <PreferenceScreen
+        android:summary="@string/pop_scr_desc"
+        android:title="@string/set_ch_keys_preview" >
+
+        <!-- где показывать нажатые клавиши -->
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pv_place"
+            android:entryValues="@array/integer_vals"
+            android:key="key_preview"
+            android:summary="@string/set_ch_keys_preview_desc"
+            android:title="@string/pop_scr" />
+
+        <!-- размер окошка нажатых клавиш -->
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/popupwndsize"
+            android:entryValues="@array/integer_vals"
+            android:key="popup_win_size"
+            android:summary="@string/preview_size_win_desc"
+            android:title="@string/preview_size_win" />
+
+        <!-- Цвет текста окна -->
+        <Preference
+            android:key="pop_txt_color"
+            android:summary="@string/pop_scr_col_desc"
+            android:title="@string/pop_scr_txt" />
+
+        <!-- Цвет фона окна -->
+        <Preference
+            android:key="pop_back_color"
+            android:summary="@string/pop_scr_col_desc"
+            android:title="@string/pop_scr_fon" />
+    </PreferenceScreen>
+
+    <!-- калькулятор, экран -->
+    <!-- MAIN_ITEM - вибрация и звук -->
+
+    <PreferenceScreen
+        android:summary="@string/set_key_voice_desc"
+        android:title="@string/set_key_voice" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sound"
+            android:summary="@string/set_key_sounds_desc"
+            android:title="@string/set_key_sounds" />
+
+        <ListPreference
+            android:defaultValue="5"
+            android:entries="@array/integer_vals"
+            android:entryValues="@array/integer_vals"
+            android:key="sound_volume"
+            android:summary="@string/set_key_sounds_volume_desc"
+            android:title="@string/set_key_sounds_volume" />
+
+        <Preference
+            android:key="set_sound"
+            android:title="@string/ssact_title" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/vibro_short_type"
+            android:entryValues="@array/integer_vals"
+            android:key="vibro_short"
+            android:summary="@string/set_key_short_vibro_desc"
+            android:title="@string/set_key_short_vibro" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="vl"
+            android:summary="@string/set_key_long_vibro_desc"
+            android:title="@string/set_key_long_vibro" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="vibro_repeat"
+            android:summary="@string/set_key_repeat_vibro_desc"
+            android:title="@string/set_key_repeat_vibro" />
+
+        <Preference
+            android:key="vibro_durations"
+            android:summary="@string/set_key_vibro_durations_desc"
+            android:title="@string/set_key_vibro_durations" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="vibro_silent"
+            android:summary="@string/set_key_vibro_in_silent_desc"
+            android:title="@string/set_key_vibro_in_silent" />
+    </PreferenceScreen>
+    <!-- MAIN_ITEM Жесты -->
+
+    <PreferenceScreen
+        android:summary="@string/set_key_gestures_desc"
+        android:title="@string/set_key_gestures" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="use_gestures"
+            android:summary="@string/set_key_use_gestures_desc"
+            android:title="@string/set_key_use_gestures" />
+
+        <Preference
+            android:key="gesture_create"
+            android:title="@string/gesture_create" />
+
+        <EditTextPreference
+            android:key="g_str_additional1"
+            android:summary="@string/gesture_popupchar_str1_desc"
+            android:title="@string/gesture_popupchar_str1" />
+
+        <Preference
+            android:key="save_pop2_str"
+            android:summary="@string/pop2s_save_desc"
+            android:title="@string/pop2s_save" />
+        <Preference
+            android:key="load_pop2_str"
+            android:summary="@string/pop2s_load_desc"
+            android:title="@string/pop2s_load" />
+
+        <EditTextPreference
+            android:defaultValue="100"
+            android:inputType="number"
+            android:key="g_length"
+            android:summary="@string/set_key_gesture_length_desc"
+            android:title="@string/set_key_gesture_length" />
+        <EditTextPreference
+            android:defaultValue="150"
+            android:inputType="number"
+            android:key="g_velocity"
+            android:summary="@string/set_key_gesture_vel_desc"
+            android:title="@string/set_key_gesture_vel" />
+
+        <ListPreference
+            android:key="g_left"
+            android:title="@string/set_key_gesture_left" />
+        <ListPreference
+            android:key="g_right"
+            android:title="@string/set_key_gesture_right" />
+        <ListPreference
+            android:key="g_up"
+            android:title="@string/set_key_gesture_up" />
+        <ListPreference
+            android:key="g_down"
+            android:title="@string/set_key_gesture_down" />
+        <ListPreference
+            android:key="g_space_left"
+            android:title="@string/set_key_gesture_space_left" />
+        <ListPreference
+            android:key="g_space_right"
+            android:title="@string/set_key_gesture_space_right" />
+        <ListPreference
+            android:key="g_space_up"
+            android:title="@string/gesture_space_up" />
+        <ListPreference
+            android:key="g_space_down"
+            android:summary="@string/gesture_space_down_desc"
+            android:title="@string/gesture_space_down" />
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM прочие настройки -->
+    <PreferenceScreen
+        android:summary="@string/set_key_misc_desc"
+        android:title="@string/set_key_misc" >
+
+        <!-- Поведение контекстный enter -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enter_state"
+            android:summary="@string/set_enter_state_desc"
+            android:title="@string/set_enter_state" />
+        
+<!-- 	изображение на ентере -->
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_enter_pict"
+            android:entryValues="@array/integer_vals"
+            android:key="enter_pict"
+            android:title="@string/enter_pict" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_shift_vars"
+            android:entryValues="@array/integer_vals"
+            android:key="shift_state"
+            android:title="@string/set_key_shift" />
+
+        <PreferenceCategory android:title="@string/mm_multiclipboard" >
+            <Preference
+                android:defaultValue="20"
+                android:inputType="numberDecimal"
+                android:key="clipboard_size"
+                android:summary="@string/set_key_clipbrd_size_desc"
+                android:title="@string/set_key_clipbrd_size" />
+
+            <!-- Показывать размер каждой записи в мультибуфере -->
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="show_size_record_clipboard"
+                android:summary="@string/set_key_show_clipbrd_record_size_desc"
+                android:title="@string/set_key_show_clipbrd_record_size" />
+
+            <Preference
+                android:key="clipbrd_sync"
+                android:summary="@string/cs_pref_desc"
+                android:title="@string/mm_synchronize" />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="@string/about" >
+
+            <!-- Показывать путь к текущей папке в шаблонах -->
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="set_tpl_path"
+                android:summary="@string/set_key_tpl_path_desc"
+                android:title="@string/set_key_tpl_path" />
+
+            <!-- Вызывать клавиатуру через шторку -->
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="show_kbd_notif"
+                android:summary="@string/set_show_kbd_notif_desc"
+                android:title="@string/set_show_kbd_notif" />
+
+            <Preference
+                android:key="intervals"
+                android:summary="@string/set_key_intervals_desc"
+                android:title="@string/set_key_intervals" />
+
+            <ListPreference
+                android:defaultValue="0"
+                android:entries="@array/vk_use"
+                android:entryValues="@array/integer_vals"
+                android:key="use_volume_keys"
+                android:summary="@string/set_key_use_volumeKeys_desc"
+                android:title="@string/set_key_use_volumeKeys" />
+
+            <!-- Поведение стрелок влево/вправо -->
+            <!-- <CheckBoxPreference -->
+            <!-- android:defaultValue="false" -->
+            <!-- android:key="set_arrow_key" -->
+            <!-- android:summary="@string/arrow_key_desc" -->
+            <!-- android:title="@string/arrow_key" /> -->
+
+
+            <!-- сообщение о копировании -->
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="copy_toast"
+                android:summary="@string/set_copy_msg_desc"
+                android:title="@string/set_copy_msg" />
+
+            <!-- Задержка после записи par.ini -->
+            <!-- <ListPreference -->
+            <!-- android:defaultValue="0" -->
+            <!-- android:entries="@array/delay_par_ini" -->
+            <!-- android:entryValues="@array/integer_vals" -->
+            <!-- android:key="par_delay" -->
+            <!-- android:summary="@string/set_key_par_delay_desc" -->
+            <!-- android:title="@string/set_key_par_delay" /> -->
+
+
+            <!-- Задержка перед вводом символа -->
+            <!-- <ListPreference -->
+            <!-- android:defaultValue="1" -->
+            <!-- android:entries="@array/delay_symb" -->
+            <!-- android:entryValues="@array/integer_vals" -->
+            <!-- android:key="delay_symb" -->
+            <!-- android:summary="@string/set_key_symb_delay_desc" -->
+            <!-- android:title="@string/set_key_symb_delay" /> -->
+
+            <Preference
+                android:key="default_setting"
+                android:title="@string/default_pref" />
+            <Preference
+                android:key="save"
+                android:summary="@string/set_key_save_pref_desc"
+                android:title="@string/set_key_save_pref" />
+            <Preference
+                android:key="load"
+                android:summary="@string/set_key_load_pref_desc"
+                android:title="@string/set_key_load_pref" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- MAIN_ITEM о программе (прочее) -->
+    <Preference
+        android:key="about_app"
+        android:summary="@string/about_desc"
+        android:title="@string/about" 
+        />
+
+</PreferenceScreen>

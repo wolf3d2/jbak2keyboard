@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Title for Latin keyboard  -->
+    <string name="ime_name">Jbak2 Keyboard </string>
+    <string name="ime_settings">Settings</string>
+    <string name="pref_keys">Key settings</string>
+	<string name="pref_keys_desc">Keyboard height, horizontal offset and vertical correction of keys</string>    
+    <string name="msg_begin">Do not show this again</string>   
+	<string name="kbd_warning">First turn on and activate the keyboard!\n(the first paragraph of Settings)</string>
+	<string name="jbak2layout">Custom layouts and languages</string>
+	<string name="jbak2layout_desc">This is an independent application that contains different languages and layouts. There you can also find the instruction (on Russian) for creating your own layout and language.</string>
+	<string name="jbak2skin">Custom skins</string>
+	<string name="jbak2skin_desc">This is an independent application that contains  different skins. There you can also find the instructions for creating your own skin.</string>
+	<string name="other_app">(Ad) Other applications </string>
+	<string name="reboot">Loaded. Device reboot required</string>
+	<string name="default_pref">Default settings</string>
+	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
+
+<!-- Title for update preferences -->
+	<string name="upd_screen">Updates</string>
+	<string name="upd_screen_desc">Check for app updates and more</string>
+	<string name="upd_check">Check for updates</string>
+	<string name="upd_check_desc"></string>
+	<string name="upd_check_desc_yes">A new version of the app is available</string>
+	<string name="upd_check_desc_no">No updates are available</string>
+	<string name="upd_checking">Checking...</string>
+	<string name="upd_checking_before_dlg">Clicking OK will start a background check for updates.\n\nIt takes some time to check.\n\nMake sure Wi-Fi or mobile data is turned on!</string>
+	<string name="upd_last_check">Last checked:</string>
+	<string name="upd_go_site">Go to the website</string>
+	<string name="upd_go_site_desc">Open the program website</string>
+	<string name="upd_unknown_source">Unknown sources</string>
+	<string name="upd_unknown_source_desc_">Before installing a new version of the program, do not forget to allow installation of apps from unknown sources</string>
+
+<!-- отзыв -->
+	<string name="review">Leave a review</string>
+	<string name="review_desc">Please write a review on the program website so that other people can make an initial opinion about the program.</string>
+
+<!-- Title for new version check site-->
+	<string name="chk_new_version">A new version of the program has been released\nDownload the keyboard update from the program website.</string>
+	<string name="chk_old_version">Your version of the keyboard is outdated!\nWould you like to check out a new version on the program website?</string>
+		
+<!-- Title for new version-->
+	<string name="nv_upload">This dialog box will be displayed after the second call of the keyboard, after each update. It will pop up 2 times on some devices.\nUnfortunately, it cannot be done differently\n\nAfter each update, the keyboard needs to be unloaded from memory, otherwise its behavior will be unpredictable.</string>
+
+<!-- Title for permission-->
+	<string name="perm_expl1">The keyboard app does not contain any extraneous functionality, nothing is collected or stolen!
+\n\nThis is a standard system message. For more information, see \"How to use the keyboard\"
+\n\nBE SURE to read \"How to use the keyboard\", there you can find answer to almost all your questions 
+\n\nSince the app is no longer published on Google Play, I had to add Internet access to the keyboard.
+\n\nIt is provided solely for your convenience: check periodically for a new version of the program on the website.
+\n\nNo information is transmitting. Data is only receiving.
+\n\nPreviously, Google Play had kept track of this, therefore, the program did not require permission to access to the Internet. 
+\n\nAs before, the app has remained completely free.
+\n\nFor a proper work, the keyboard app requires some permissions. WITHOUT ANY OF THEM, THE KEYBOARD WILL NOT WORK:
+\n\n- Read/Write Permissions to Internal Storage: for the work of user dictionary, templates, custom layouts, skins and other stuff used in the keyboard).
+\n\n- Pop-up permissions: permit drawing over other apps (for the work of Autocomplete (word prediction), keystroke display and some other dialog boxes).</string>
+<!--<string name="perm_expl1">There are no extraneous activities in the keyboard application, nothing is collected or stolen!\nThis is a standard system warning. For more details, see \“How to use the keyboard\” \n\nBE SURE to read How to use the keyboard, there are answers to almost all of your questions while using the keyboard.\n\nFor a proper work, the application requires some permissions,  WITHOUT ANY OF THEM, THE KEYBOARD WILL NOT WORK:\n\n- access to read and write to Internal Storage (for the work of custom dictionary, templates, external layouts, skins and other stuff used in the keyboard).\n\n- special access \“Display over other apps\” (for the work of Autocomplete (word prediction), keystroke display and some dialog boxes).</string> -->
+	<string name="perm_expl2">For the work of Autocomplete (word prediction), keystroke display and some other windows (dialog boxes, keystroke display, etc), the program requires the \“Display over other apps\” permission.</string>
+	<string name="perm_expl3">In case you, for some reason, have been denied permissions, and their request no longer appears, then, permissions can be granted through the system settings of the Jbak2 keyboard application: App info - Display over other apps</string>	
+	<string name="perm_not_all_perm">Not all required permissions have been allowed</string>
+
+<!-- Title for file explorer-->
+    <string name="fi_title">File explorer</string>
+    <string name="fi_filter">Filter</string>
+    <string name="fi_filt1">Current filter:</string>
+    <string name="fi_filt2">Long press on the Filter button: turn the filter on/off </string>
+    <string name="fi_root">Root folder</string>
+    <string name="fi_folder_last">Last folder</string>
+    <string name="fi_folder_dowload">Downloads</string>
+    <string name="fi_folder_pict">Pictures and videos</string>
+    <string name="fi_folder_emulated">emulated</string>
+    <string name="fi_not_open">Cannot open</string>
+    <string name="fi_done">Done</string>
+    	
+	<string name="set_kbd_background">Keyboard background</string>
+	<string name="set_kbd_background_desc">Set image as a background. The keyboard app will use more memory</string>
+	<string name="set_kbd_background_error">Out of memory!\nCannot use this image as keyboard background</string>
+	<string name="set_kbd_background_alpha">Keyboard transparency</string>
+	<string name="set_kbd_background_alpha_desc">0: fully transparent, 10: transparency of skin. It only makes sense if you use a background image</string>
+	<string name="cancel_kbd_background">Background of skin</string>
+	
+<!-- Title for show keyboard notification-->
+	<string name="set_show_kbd_notif">Enable from the notification panel</string>
+	<string name="set_show_kbd_notif_desc">Enable the keyboard via the notification panel. Sometimes it is necessary</string>
+	<string name="set_show_kbd_notif_title">Show the jbak2 keyboard</string>
+	<string name="set_show_kbd_notif_body">You can disable this notification going to Other settings</string>
+	
+<!-- Title for small keyboard-->
+    <string name="pref_mini_kbd_screen">Small keyboard (still in beta)</string>
+    <string name="pref_mini_kbd_screen_desc">Still in beta. These settings apply only to the first version of the small keyboard (i.e. when the popupCharacter tag is not v2).</string>
+    <string name="pref_mini_kbd_its">Its own small keyboard</string>
+    <string name="pref_mini_kbd_its_desc">If checked, its own small keyboard is used, otherwise the default one will be used</string>
+    <string name="pref_mini_kbd_btnsize">Key size</string>
+    <string name="pref_mini_kbd_btnsize_desc">Key size in the small keyboard</string>
+    <string-array name="array_minikbd_btn_size">
+        <item>Default</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Like keyboard keys</item>
+        <item>Large</item>
+    </string-array>
+    <string name="pref_mini_kbd_textbtnsize">Character size on keys</string>
+    <string name="pref_mini_kbd_textbtnsize_desc">Character size on keys of the small keyboard</string>
+    <string-array name="array_minikbd_btn_text_size">
+        <item>Default</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    
+<!-- Title for syncronize multiclipboard activity -->
+    <string name="cs_pref_desc">Background sync of multi-clipboard entries, after a specified time interval.</string>
+    <string name="cs_ann">It is used to automatically save a specified number of first entries from the multi-clipboard into the \"save.txt\" file, in the Jbak2Keyboard/save_clipboard folder on SD card, periodically, after a specified time interval.\n\nIf:\n- the save_clipboard folder does not exists, it will be created.\n- this service is enabled, the program will require more memory.\n- the first entry in the multi-clipboard has the same date as the date of the last save, the recording will not start.\n\nIt is not required to use.</string>
+    <string name="cs_time">Time interval in minutes (to record clipboard data):\n(the higher the frequency of recording, the higher the load on the processor, and the slower the program works)\nBy default: 24 hours</string>
+    <string name="cs_cb1">Show the Sync button in the multi-clipboard?</string>
+    <string name="cs_cb2">Suppress sync message</string>
+    <string name="cs_cb3">New file</string>
+    <string name="cs_cb3_desc">Overwrite the file or create a new file with creation date.</string>
+    <string name="cs_size">What is the maximum size of entries (in kilobytes) to be saved into file?\n(to reduce freezes on low-power devices)</string>
+    <string name="cs_cnt_rec">Number of entries to be saved.\nIf the value is greater than a set number of entries in the multi-clipboard, the entire multi-clipboard will be saved.</string>
+    <string name="cs_start">Start</string>
+    <string name="cs_stop">Stop</string>
+    <string name="cs_start_msg">It will run when you first open the keyboard</string>
+    <string name="cs_sync_msg">Multi-clipboard sync is complete</string>
+    <string name="cs_error_write">Error!\nCannot write to file</string>
+    
+<!-- Title for crash and feedbak -->
+    <string name="crash_question">Previous program execution ended with an error.\n\nWould you like a send report to the developer?</string>
+    <string name="crash_desc">Please, do not delete the information below. It will help fix the error faster.\n</string>
+    <string name="mail_developer">Message to the developer</string>
+    
+	<string name="pref_one_start_text">(scrolling text is on)\n\nRead \"How to use the keyboard\"? (On low-power devices, it can take more time to display the text)\n\nThis keyboard is professional, completely customizable and differs from most other keyboards.\nFor this reason, it does not have predictive text input and Swype function.\nInitially, the keyboard is set up according to the principle \"turn on and use\".\nBefore you change advanced settings, read this text, it contains answers to almost all your questions.</string>
+	<string name="transparency">Transparency:</string>
+
+<!-- Title for quick setting activity -->
+	<string name="qs_title">Quick settings wizard</string>
+	<string name="qs_ann">This professional keyboard is fully customizable and differs from most other keyboards.\nThis is a keyboard constructor with huge possibilities.\nFor this reason, the keyboard does not have predictive input and and Swype function.\n\nThe warning about a possible theft of passwords is a standard system message. For more information, see \"How to use the keyboard\".\n\nIf you have a device with a MIUI ROM, by default the autocomplete box (where you can see word suggestion) and the keypress pop-up feature will be turned off. To turn them on, read How to use the keyboard.</string>
+	<string name="qs_ann_perm">Information about permissions</string>
+	<string name="qs_xiaomi">The Xiaomi manufacture has been detected: by default, some windows will not work on your device (Autocomplete, keystroke display, some confirmation messages before actions, etc), be sure to read “How to use the keyboard”</string>
+	<string name="qs_btn1">Enable the jbak2 keyboard</string>
+    <string name="qs_btn2">Activate the jbak2 keyboard</string>
+    <string name="qs_sel_lang">Select application language</string>
+    <string name="qs_sel_lang_def">Default</string>
+    <string name="qs_btn3">Select languages and layouts</string>
+    <string name="qs_btn3_help">Mark the languages you want.\nThen, in front of each language you can find the \"Select layout\" button. Click on it.\nIt will open a screen to select layouts. Scroll layouts using right and left arrows.\nAfter selecting the one you like, do not forget to click the \ "Save \" button.\nRepeat the same operation for each selected language.</string>
+    <string name="qs_btn3_1">Keyboard height</string>
+    <string name="qs_btn4">Select keyboard skin (theme)</string>
+    <string name="qs_btn4_help">Select skin.\nAfter selecting, press the \"Save\" button.</string>
+    <string name="qs_btn5_help">To enable the Autocomplete box, you need to install the dictionaries for the selected languages.\n\nDownload a dictionary installer application?</string>
+    <string name="qs_end_msg"> For a more detailed configuration, read \"How to use the keyboard\", there are answers to almost all your questions .\n\nOpen?\n\n(can take a long time to open on low-power devices)</string>	
+    <string name="qs_restart_app">Restart the application to apply the changes</string>
+    
+<!-- Title for set sound activity -->
+    <string name="ssact_title">Key typing sounds</string>
+    <string name="ssact_key_symb">Character keys</string>
+    <string name="ssact_key_left">Left arrow</string>
+    <string name="ssact_key_right">Right arrow</string>
+    <string name="ssact_key_up">Up arrow</string>
+    <string name="ssact_key_down">Down arrow</string>
+    <string name="ssact_key_space">Space</string>
+    <string name="ssact_key_enter">Enter</string>
+    <string name="ssact_key_backspace">Backspace</string>
+    <string name="ssact_key_delete">Delete</string>
+    <string name="ssact_key_shift">Shift</string>
+    
+<!-- Комбинированные символы -->
+    <string name="ss_name">Inserting special characters</string>
+    <string name="ss_comb">Combining character</string>
+    <string name="ss_comb_underscore">Underline character</string>
+    <string name="ss_comb_strikethrough">Strikethrough</string>
+    <string name="ss_comb_overline">Overline</string>
+    <string name="ss_comb_emphasis">Stress</string>
+    
+<!-- Title for edit user vocab -->
+    <string name="euv_actname">Edit user dictionary</string>
+    <string name="euv_lang_text">Language</string>
+    <string name="euv_all_word_text">Total words:</string>
+    <string name="euv_freq">Frequency</string>
+    <string name="euv_read">Reading...</string>
+    <string name="euv_save">Saving</string>   
+    <string name="euv_help">(the scrolling text feature is available)\n\nYou can edit a word or change its frequency by clicking on this word or its frequency accordingly.\nPress Enter to finish editing.\nLong press on a word will delete it from the dictionary, and the word itself will be colored with red.\n\nThe higher is the word frequency, the closer is a word to the top of list, if the list of AutoComplete is given by frequency.\nFrequency range of words from 0 to 10000000.\nThe word frequency above 500000 indicates that the word was not in the main dictionaries, and it has been added by the user, and it needs to be shown at the top of the list (that is why it has such a large number).\nIf the frequency of a word is set to 0, its frequency will not increase, and it will not appear in the word list (words from the main dictionary have a minimal frequency set to 1, that is why they will be always displayed).</string>
+    <string name="euv_cb1">Always open this language</string>
+    
+<!-- Title for skin constructor  -->
+    <string name="sc_actname">Skin constructor</string>
+    <string name="sc_name">Skin constructor</string>
+    <string name="sc_name_desc">Custom skin creating</string>
+    <string name="sc_help">If a parameter value is incorrect, the input field will turn red</string>
+    <string name="sc_inf_port">ℹTap the color wheel to pick a color. Tap on the color code to copy a value to the clipboard</string>
+    <string name="sc_inf_land">ℹTap the color rectangle to pick a color. Tap on the color code to copy a value to the clipboard</string>
+    <string name="sc_create">Create</string>
+    <string name="sc_upd">Refresh</string>
+    <string name="sc_create_edit">Create and Edit</string>
+    <string name="sc_create_new">New</string>
+    <string name="sc_skin_name">Name skin:</string>
+    <string name="sc_skin_change">Change name</string>
+    <string name="sc_notskin">First, download the skin</string>
+
+    <string name="sc_cat1">Key background</string>
+    <string name="sc_cat2">Text on keys</string>
+    <string name="sc_cat3">Keyboard key stroke</string>
+    <string name="sc_cat4">Keyboard background</string>
+    <string name="sc_cat5">Special key values (Shift, Backspace, etc.).</string>
+    <string name="sc_cat6">General</string>
+
+    <string name="sc_msg1">Gradient start color for key background</string>
+    <string name="sc_msg2">Gradient final color</string>
+    <string name="sc_msg3">Gradient type. 0 - linear, 1 - radial</string>
+    <string name="sc_msg4">Gradient start color for key background in a pressed state</string>
+    <string name="sc_msg5">Gradient final color for key background in a pressed state</string>
+    <string name="sc_msg6">Text color (labels on keys)</string>
+    <string name="sc_msg7">Bold font (1) or not (0). If it is not set, the regular font will be used</string>
+    <string name="sc_msg8">Additional character color</string>
+    <string name="sc_msg9">Text color in a pressed state</string>
+    <string name="sc_msg10">Character color in a pressed state</string>
+    <string name="sc_msg11">Indent size of key background (in pixels) from the full key rectangle</string>
+    <string name="sc_msg12">Gradient start color for key stroke</string>
+    <string name="sc_msg13">Gradient final color for key stroke</string>
+    <string name="sc_msg14">Gradient start color for key stroke in a pressed state</string>
+    <string name="sc_msg15">Gradient final color for key stroke in a pressed state</string>
+    <string name="sc_msg16">Gradient start color for keyboard background</string>
+    <string name="sc_msg17">Gradient final color for keyboard background</string>
+    <string name="sc_msg18">Gradient type. 0 - linear, 1 - radial</string>
+    <string name="sc_msg19">Text color on key</string>
+    <string name="sc_msg20">Additional character color</string>
+    <string name="sc_msg21">Text color in a pressed state</string>
+	<string name="sc_msg22">Additional character color in a pressed state</string>
+    <string name="sc_msg23">Gradient start color for key background</string>
+    <string name="sc_msg24">Gradient final color for key background</string>
+    <string name="sc_msg25">Gradient start color for key stroke</string>
+	<string name="sc_msg26">Gradient final color for key stroke</string>
+    <string name="sc_msg27">Gradient start color for key background in a pressed state</string>
+    <string name="sc_msg28">Gradient final color for key background in a pressed state</string>
+    <string name="sc_msg29">Gradient type. 0 - linear, 1 - radial</string>
+	<string name="sc_msg30">Corner radius of key rectangle on the X axis, if it is not set - 9</string>
+    <string name="sc_msg31">Corner radius of key rectangle on the Y axis, if it is not set - 9</string>
+    <string name="sc_msg32">Gradient type of keys in a pressed state. 0 - linear, 1 - radial</string>
+    
+<!-- сохранение строки дополнительных символов -->
+	<string name="pop2s_save">Save the string</string>
+	<string name="pop2s_save_desc">Save the string with additional characters to a separate file</string>
+	<string name="pop2s_load">Load the string</string>
+	<string name="pop2s_load_desc">Load the string with additional symbols from a single file</string>
+	<string name="pop2s_str_not_empty">String is not empty.\nLoad?</string>
+	<string name="pop2s_file_not_empty">File is not empty.\nRewrite?</string>
+					
+<!-- цвета кнопок для accoloract -->
+	<string name="ac_color_type_layout_title">Color type of Autocomplete:</string>
+	<string name="ac_color_type0">Custom colors</string>
+	<string name="ac_color_type1">Same colors as keyboard keys</string>
+	
+	<string name="ac_color_mainback">Background color of Autocomplete</string>
+	<string name="ac_color_title">All keys color in Autocomplete</string>
+	<string name="ac_color_">Colors in Autocomplete</string>
+	<string name="ac_color_desc">Set colors of keys in Autocomplete</string>
+	<string name="ac_color_back">Key color</string>
+	<string name="ac_color_text">Text color</string>
+	<string name="ac_color_addvocab">Add word</string>
+	<string name="ac_color_forcibly">Forced dictionary</string>
+	<string name="ac_color_keycode">Keypress code</string>
+	<string name="ac_color_word">Words</string>
+	<string name="ac_color_arrowdown">Down arrow</string>
+	<string name="ac_color_calcmenu">Calculator menu</string>
+	<string name="ac_color_calcind">Calculator display</string>
+								
+<!-- активность popup2act -->
+	<string name="pc2act_title">Pop-up settings for small keyboard</string>
+	<string name="pc2act_color_desc">Color is specified in hexadecimal format - #aarrggbb, or 0xaarrggbb, (the case of characters is inconsiderable) where:\naa - transparency (00 - fully transparent, ff - fully opaque)\nrr - red\ngg - green\nbb - blue.</string>
+	<string name="pc2act_wind_color_back">Pop-up background color:\n(by default#cc000000)</string>
+	<string name="pc2act_btn_off_color_txt">Text color of additional keys:\n(by default #fffffffe)</string>
+	<string name="pc2act_btn_off_color_back">Background color of additional keys:\n(by default #ff444444)</string>
+	<string name="pc2act_btn_color_txt">Text color of keys:\n(by default #ff000000)</string>
+	<string name="pc2act_btn_color_back">Background color of keys:\n (by default #fffffffe)</string>
+	<string name="pc2act_str_add">String from settings for Additional gesture</string>
+	<string name="pc2act_btn_size">Key size\n(by default 20)</string>
+	<string name="pc2act_btn_off_size">Size of service keys\n(by default 20)</string>
+	<string name="pc2act_winfix">Pop-up fixation</string>
+	<string name="pc2act_winfix_desc">If checked, after pressing a key, the small keyboard pop-up will stay open\n\n</string>
+	<string name="pc2act_lr">For left-handed use</string>
+			
+<!-- окно popupcharacter2 -->
+	<string name="pc2_info">ℹ If there are a lot of keys, the scroll box will be available</string>
+
+	<string name="ac_place_arrow_down">Down Arrow from the Autocomplete box</string>
+	<string name="ac_place_arrow_down_desc">If checked, \"Down Arrow\" is not showing in Autocomplete. It is possible to use a gesture instead of it</string>
+	<string name="ac_place_separator_symb">Pressing on the character separator</string>
+	<string name="ac_place_separator_symb_desc">If checked, when you click on the separator character (.,?! ,etc) in Autocomplete, the word where the cursor is located will be not replaced, and this character will be inserted at the cursor position</string>
+	<string name="ac_list_value">Number of words</string>
+	<string name="ac_list_value_desc">Number of words in the drop-down list. The higher value is chosen, the slower will be the process</string>
+	<string name="ac_del_word">Delete the word?</string>
+	<string name="ac_del_word_notdict">Action cannot be executed.\nWord does not exist in a custom dictionary</string>
+	<string name="ac_del_word_ok">Deleted</string>
+	<string name="ac_listview_alfavit">Drop-down list in alphabetical order</string>
+	<string name="ac_listview_alfavit_desc">If checked, words in the drop-down list will be sorted in alphabetical order, otherwise, by frequency of use</string>
+	<string name="ac_abbrev_word">Abbreviations</string>
+	<string name="ac_abbrev_word_desc">Reduce suggested words after the first 4 letters to increase the number of suggestions in the Autocomplete box </string>
+	
+<!-- создание своего жеста -->
+	<string name="gesture_create">Create your own gesture</string>
+	<string name="gesture_create_all">Created gestures:</string>
+	<string name="gesture_create_add">Add</string>
+	<string name="gesture_save">Save</string>
+	<string name="gesture_tv1">It is convenient to enter the key code by turning on Key code display (in Appearance) in Autocomplete. It is necessary press the key for which you create a gesture and ,then, click the button of the pressed code.\nIf one key corresponds to many characters, will be taken the first one.\n\nCode 32 (space) has been reserved!\n\nAfter you specify all the parameters, click the Save button</string>
+	<string name="gesture_tv2">Key code: </string>
+	<string name="gc_type">Gesture direction\n(the gesture will work only if the layout has at least one key in the direction to the gesture after the selected key):</string>
+	<string name="gc_left">To the left from the key</string>
+	<string name="gc_right">To the right from the key</string>
+	<string name="gc_up">Up from the key</string>
+	<string name="gc_down">Down from the key</string>
+	<string name="gc_action">Action:</string>
+		
+<!-- новые жесты -->
+	<string name="gesture_select_all">Select all</string>
+	<string name="gesture_select">Selection mode switcher(the Select button must be present on the keyboard layout)</string>
+	<string name="gesture_space_quantity">The number of spaces depends of the gesture length</string>
+	<string name="gesture_d_vr">Voice input</string>
+	<string name="gesture_to_start">To the beginning of the text</string>
+	<string name="gesture_to_end">To the end of the text</string>
+	<string name="gesture_begin">To the beginning of the paragraph</string>
+	<string name="gesture_end">To the end of the paragraph</string>
+	<string name="gesture_homestr">To the home string</string>
+	<string name="gesture_endstr">To the end string</string>
+		<string name="gesture_mainmenu">Open the main menu</string>
+	<string name="gesture_del">Delete</string>
+	<string name="gesture_delword">Delete the word before the cursor</string>
+	<string name="gesture_space_up">Up from spacebar</string>
+	<string name="gesture_space_down">Down from spacebar</string>
+	<string name="gesture_space_down_desc">It is required to have at least one key below the spacebar</string>
+	<string name="gesture_popupchar1">Special characters</string>
+	<string name="gesture_popupchar_str1">Special character pop-up</string>
+	<string name="gesture_popupchar_str1_desc">To open the special character pop-up using the \"Special characters\" gesture, it is necessary to list them here</string>
+	<string name="gesture_cand_list">Word list of Autocomplete</string>
+	<string name="gesture_cut">Cut</string>
+	<string name="gesture_copy">Copy</string>
+	<string name="gesture_paste">Paste</string>
+	<string name="gesture_search_copy">Search for copied text in your browser</string>
+	<string name="gesture_search_sel">Search for selected text in your browser</string>
+	<string name="gesture_trans_sel">Translate selected text</string>
+	<string name="gesture_trans_copy">Translate copied text</string>
+	<string name="gesture_upcase">Character in uppercase</string>
+	<string name="gesture_lowercase">Character in lowercase</string>
+	<string name="gesture_long_text">Enter long press symbol</string>
+	<string name="share">Share</string>
+	<string name="gesture_select_share">Share selected text</string>
+	<string name="gesture_copy_share">Share copied text</string>
+	<string name="send_share_create_list">Making a list of appropriate applications</string>
+
+	<string name="gesture_selector_edittext">Switch between the TextEdit and qwerty keyboard</string>
+  	<string name="gesture_selector_calc">Switch between the calculator and qwerty keyboard</string>
+   	<string name="gesture_selector_smile">Switch between the emoji and qwerty keyboard</string>
+    <string name="gesture_selector_num">Switch between the numeric and qwerty keyboard</string>
+			
+<!-- запуск приложений -->
+	<string name="runapp_favorite"><b>Favorites</b>\npress on text: launch the application</string>
+	<string name="runapp_all"><b>All</b>\nshort keypress: launch the application,\nlong keypress: add to Favorites</string>
+	<string name="runapp_rescaning">Rescan</string>
+	<string name="runapp_save_favorite">Save Favorites</string>
+	<string name="runapp_favorite_cnt">Apps in favorite: </string>
+	<string name="runapp_error_start">Can not start</string>
+							
+<!-- настройки главного меню -->
+	<string name="mainmenu_setting">Main menu display</string>
+		<string name="mainmenu_setting_desc">Select items to show on the main menu</string>
+	<string name="mainmenu_toast">Long press on the menu item button: delete</string>
+	<string name="mainmenu_cb1">Delete without asking</string>
+			
+<!-- калькулятор -->
+	<string name="calc_menu_list">Program listing</string>
+	<string name="calc_menu_history">Calculation log</string>
+	<string name="calc_menu">Menu</string>
+<!-- 	<string name="calc_setting">Calculator settings</string> -->
+<!-- 	<string name="calc_corr_ind">Display screen correction</string> -->
+<!-- 	<string name="calc_corr_ind_desc">Display screen height above the keyboard (it works only if the Autocomplete  box is off)</string> -->
+	<string name="calc_prog_empp">Program memory is empty. Nothing to output</string>
+	<string name="calc_save">Save</string>
+	<string name="calc_load">Download</string>
+	<string name="calc_save_prg">Save program</string>
+	<string name="calc_load_prg">Download program</string>
+	<string name="calc_load_prg_msg">Memory of the calculator is not empty.\nRewrite?</string>
+			
+<!-- поведение стрелок влево/вправо -->
+	<string name="arrow_key">Arrow key behavior to the right/to the left</string>
+	<string name="arrow_key_desc">If it is on, when you reach the end of the text, the cursor will be moved to the beginning of the text and vice versa</string>
+	
+<!-- Strings for popupKeyboard -->
+	<string name="pop_scr">Where to display the keypress pop-up</string>
+	<string name="pop_scr_desc">Keyboard pop-up settings</string>
+	<string name="pop_scr_fon">Window background color</string>
+	<string name="pop_scr_txt">Pop-up text color</string>
+	<string name="pop_scr_col_desc">All colors are set to 0: black, 255: white</string>
+	<string name="pop_scr_fon_r">Red</string>
+	<string name="pop_scr_fon_g">Green</string>
+	<string name="pop_scr_fon_b">Blue</string>
+			
+<!-- Strings for popupKeyboard -->
+	<string name="popk_scr_cat">Pop-up keyboards</string>
+	<string name="popk_scr">(DOES NOT WORK) Pop-up keyboard string</string>
+	<string name="popk_scr_desc">Words listing for pop-up keyboards (if they are available in the selected layout)</string>
+	<string name="popk_s1">String 1</string>
+	<string name="popk_s1_desc">Format: #[Hi, Joe]#[mailto:]\nwill display 2 buttons (and it will input the text after pressing them) - Hi, Joe and mailto:</string>
+	<string name="popk_s_desc_other">Format see above</string>
+	<string name="popk_s2">String 2</string>
+	<string name="popk_s3">String 3</string>
+	<string name="popk_s4">String 4</string>
+	<string name="popk_s5">String 5</string>
+		
+    <string name="hotkey">Select hotkey folder</string>
+    <string name="hotkey_cancel">Cancel hotkey folder selection</string>
+
+	<string name="set_key_par_delay">Delay after recording par.ini (in ms)</string>
+    <string name="set_key_par_delay_desc">For example, if the \"Rate this app\" request is appearing too frequently, just increase the delay time</string>
+
+    <string name="set_key_symb_delay">Delay before character input (in ms)</string>
+    <string name="set_key_symb_delay_desc">If some characters can not be pressed (or do not work properly), increase the value</string>
+
+<!-- активность help -->
+    <string name="help">Help</string>
+
+<!-- оценка приложения -->
+    <string name="rate_title">Application rating</string>
+    <string name="rate_about">Please, rate this app.</string>
+<string name="rate_query">Please, rate the app once by clicking the Rate button </string>
+    <string name="rate_toast">Please, rate the application by selecting the \“Rate the app\” setting item</string>
+    <string name="rate_btn">Rate</string>
+
+<!-- Как пользоваться клавиатурой -->
+    <string name="ann">How to use the keyboard</string>
+    <string name="ann_desc">Check configurations and 99% of your questions will disappear</string>
+    <string name="ann_last_edit">Version of the current translation from</string>
+    <string name="ann_info">\n(it can take a long time to open on low-power devices)</string>
+    <string name="ann_btn_big">Increase</string>
+    <string name="ann_btn_small">Decrease</string>
+    
+<!-- Словари -->
+	<string name="dict">Dictionaries</string>
+	<string name="dict_desc">Download of dictionaries (without them Autocomplete will not suggest words) and their configurations</string> 
+	<string name="dict_load_desc">Autocomplete WILL NOT WORK without downloaded dictionaries</string>
+	<string name="dict_load">Dictionary download</string>
+	<string name="dict_empty_dict">Create empty dictionary</string>
+	<string name="dict_empty_dict_desc">Two-letter language code to make Autocomplete work. Words will be added to the custom dictionary</string>	
+	<string name="student_dict">Learning dictionary</string>
+	<string name="student_dict_desc">By choosing a word from Autocomplete, you will increase its frequency of use by one count. Over time, the most common words will be always displayed on the screen.</string>
+	<string name="student_ext_dict">Advanced training</string>
+	<string name="student_ext_dict_desc">Dictionary training will be faster, but with a higher CPU load. It only works together with the previous configuration.</string>
+	
+		<!-- Labels on soft keys -->
+    <string name="label_go_key">Go</string>
+    <string name="label_next_key">Next</string>
+    <string name="label_send_key">Send</string>
+
+	<string name="set_market1">Rate this app, please</string>
+
+	<string name="set_enter_state">Enter key</string>
+	<string name="set_enter_state_desc">Change the icon on the Enter key depending on the context?</string>
+	<string name="set_ac_defkey">Words by default</string>
+    <string name="set_ac_defkey_desc">Words in Autocomplete by default. Separator: space. If one key corresponds to many characters, will be entered the first one.</string>
+	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
+    <string name="set_ac_space">Insert space</string>
+    <string name="set_ac_space_desc">Insert space after a word selected from Autocomplete</string>
+
+	<string name="indicators">Indicators</string>
+    <string name="set_counter">Text length</string>
+    <string name="set_counter_desc">Text length in the CURRENT input field\nTurn on Autocomplete to display.</string>
+    <string name="set_keycode">Key pressed code</string>
+    <string name="set_keycode_desc">Turn on Autocomplete to display.\nMore details on\"How to use the keyboard\".</string>
+    <string name="set_longtap_keycode_help">Short press on the menu item will enter the specified value indicated on it, long press will copy the number to the clipboard\n\n---\n\n</string>
+    
+    <string name="set_key_height">Key height</string>
+    <string name="set_kbd_horiz">Keyboard horizontal offset</string>
+    <string name="set_ch_keys_preview">Display key preview</string>
+    <string name="set_ch_keys_preview_desc">Turn it off, if you do not want to see keypress pop-up previews</string>
+    <string name="set_keyboard_height">Keyboard height</string>
+    <string name="set_key_height_portrait">Height and offset in portrait mode</string>
+    <string name="set_key_height_portrait_desc">Change the keyboard height and offset in portrait mode</string>
+    <string name="set_key_height_portrait_toast">Rotate the screen to portrait mode</string>
+    <string name="set_key_height_landscape">Height and offset in landscape mode</string>
+    <string name="set_key_height_landscape_desc">Change the keyboard height and offset in landscape mode</string>
+    <string name="set_key_height_landscape_toast">Rotate the screen to landscape mode</string>
+    <string name="set_key_ac_height">Autocomplete height</string>
+    <string name="set_key_ac_height_desc">Proper operation depends on the font size in Autocomplete (font settings in Appearance)</string>
+    
+    <string name="set_languages">Languages and layouts</string>
+    <string name="set_languages_desc">Select layouts and languages for switching (You can change the default layout)</string>
+    <string name="set_key_voice">Vibration and sound</string>
+    <string name="set_key_voice_desc">Vibration and sound settings </string>
+    <string name="set_key_short_vibro">Vibration on keypress</string>
+    <string name="set_key_short_vibro_desc">Vibration on short keypress</string>
+    <string name="set_key_long_vibro">Vibration on long keypress</string>
+    <string name="set_key_long_vibro_desc">If enabled, the screen will vibrate on long keypress</string>
+    <string name="set_key_repeat_vibro">Vibrate on repeat</string>
+    <string name="set_key_repeat_vibro_desc">If enabled, the screen will vibrate on repeated keypresses (for example, when you are holding down the backspace key)</string>
+    <string name="set_key_repeat_vibro_duration">Repeat interval</string>
+    <string name="set_key_short_vibro_duration">Short press interval</string>
+    <string name="set_key_long_vibro_duration">Long press interval</string>
+    <string name="set_key_vibro_durations">Vibration intervals</string>
+    <string name="set_key_vibro_durations_desc">Set vibration intervals (in milliseconds)</string>
+    <string name="set_key_vibro_in_silent">Vibration in silent mode</string>
+	<string name="set_key_vibro_in_silent_desc">If enabled, the keys will vibrate when the device is set to silent mode</string>
+    <string name="set_key_sounds">Sounds</string>
+    <string name="set_key_sounds_desc">Play system sounds on each keypress</string>
+    <string name="set_key_sounds_volume">Sound volume</string>
+    <string name="set_key_sounds_volume_desc">Volume of all sounds (works only on some devices, on others it remains by default)</string>
+
+    <string name="calibr_portrait">Vertical correction in portrait mode</string>
+    <string name="calibr_landscape">Vertical correction in landscape mode</string>
+    <string name="calibr_desc">Key vertical correction to improve keypresses</string>
+    <string name="calibr_input">Input the text:</string>
+    <string name="calibr_test">the five boxing wizards jump quickly</string>
+    <string name="calibr_toggle_auto">Auto</string>
+    <string name="calibr_toggle_manual">Manual</string>
+    <string name="calibr_save">Your vertical correction is: %1$d.\n System value is: %2$d\n\n Do you want to save?</string>
+    <string name="calibr_label">Vertical correction:</string>
+    <string name="calibr_test_hint">Input test</string>
+
+    <string name="set_ac_font">Autocomplete font</string>
+    <string name="set_ac_font_desc">Font of the Autocomplete bar</string>
+
+    <string name="set_key_other">Autoinput</string>
+    <string name="set_key_other_desc">Some settings for the automatic input</string>
+    <string name="set_key_register">Switch to uppercase</string>
+    <string name="set_key_spaces">Adding a space</string>
+    <string name="set_key_empty_uppercase">In empty fields</string>
+	<string name="set_key_empty_uppercase_desc">If enabled, upper case will be activated in empty text fields</string>
+    <string name="set_key_auto_case">Automatic case changing</string>
+	<string name="set_key_auto_case_desc">Automatically change to upper case</string>
+    <string name="set_key_auto_case_rules">Rules for automatic toggling between upper and lower cases</string>
+    <string name="set_key_auto_case_rules_desc">Rules for the uppercase text transition</string>
+
+	<string name="set_key_del_spase_category">Deleting a space</string>
+	<string name="set_key_del_space">Delete a space before characters </string>
+	<string name="set_key_del_space_desc">If enabled, all spaces (if they are) will be deleted after the characters listed in the following configuration</string>
+    <string name="set_key_del_space_symbols">Characters to delete spaces</string>
+    <string name="set_key_del_space_symbols_desc">If enabled, all spaces will be deleted before the following characters. Click to edit</string>
+
+    <string name="set_key_sentence_upper">After entering characters</string>
+    <string name="set_key_sentence_upper_desc">Automatic uppercase after characters. See the next setting</string>
+    <string name="set_key_sentence_ends">Characters to switch between cases</string>
+    <string name="set_key_sentence_ends_desc">Uppercase will be activated after entering the following character. Click to edit</string>
+    <string name="set_key_sentence_space_end">Only after spaces</string>
+    <string name="set_key_sentence_space_end_desc">Switch to uppercase after a space and after one of the characters from the previous setting</string>
+
+    <string name="set_key_space_sentence_end">After entering characters</string>
+    <string name="set_key_space_sentence_end_desc">Automatic space adding after the following characters. See the next setting</string>
+    <string name="set_key_space_symbols">Characters to add a space</string>
+    <string name="set_key_space_symbols_desc">Space will be added after entering the following characters. Click to edit</string>
+	<string name="set_key_add_space_before_symbols_desc">Before entering one of these characters, a space will be inserted. Click to edit.</string>
+	<string name="set_key_space_sentence_before">Before entering characters</string>
+	<string name="set_key_space_sentence_before_desc">Enables space adding before entering some of these characters listed in the following configuration</string>
+    <string name="set_key_landscape_input">Fullscreen mode</string>
+    <string name="set_key_landscape_input_desc">Input settings in fullscreen mode</string>
+    <string name="set_key_portrait_input_type">In portrait mode</string>
+    <string name="set_key_portrait_input_type_desc">Select fullscreen editor in portrait mode</string>
+    <string name="set_key_landscape_input_type">Landscape mode</string>
+    <string name="set_key_landscape_input_type_desc">Select fullscreen editor in landscape mode</string>
+    <string name="full_display_input_toast">Fullscreen mode does not always work (depends on the application where the input has made)</string>
+    <string name="set_key_landscape_input_settings">Edit settings</string>
+    <string name="set_key_landscape_input_settings_desc">Font settings of input fields in fullscreen mode</string>
+	<string name="set_select_layout">Select layout</string>
+    <string name="set_input_keyboard">Select another keyboard</string>
+    <string name="set_key_skins">Skins</string>
+    <string name="set_key_skins_desc">Various skins for keyboard</string>
+    <string name="set_key_fonts">Fonts</string>
+    <string name="set_key_fonts_desc">Font settings for keyboard keys</string>
+    <string name="set_key_font_first">Primary font</string>
+    <string name="set_key_font_first_desc">Font for main letters</string>
+    <string name="set_key_font_second">Symbol font</string>
+    <string name="set_key_font_second_desc">Font for additional symbols</string>
+    <string name="set_key_font_label">Font for other</string>
+    <string name="set_key_font_label_desc">Font for text labels (language,Select,Copy and other keys)</string>
+    <string name="set_key_misc">Other settings</string>
+    <string name="set_key_misc_desc">Some other settings </string>
+    <string name="set_key_shift">Shift key</string>
+    <string name="set_key_appearance">Appearance</string>
+    <string name="set_key_appearance_desc">Keyboard appearance and fullscreen editor settings (skin selection, additional tools, font installation, character size etc.)</string>
+    <string name="set_key_clipbrd_size">Clipboard size</string>
+    <string name="set_key_clipbrd_size_desc">Maximum number of items in the multi-clipboard</string>
+    <string name="set_key_show_clipbrd_record_size">Показывать размер записи</string>
+    <string name="set_key_show_clipbrd_record_size_desc">Показывать размер каждой записи в мультибуфере</string>
+    <string name="set_key_intervals">Key delays</string>
+    <string name="set_key_intervals_desc">Delays for long-press and repeats</string>
+	<string name="set_key_tpl_path">Path in Templates</string>
+	<string name="set_key_tpl_path_desc">If checked, the path to the current folder will be displayed in the menu of Templates and other menus</string>
+    <string name="set_key_save_pref">Save settings</string>
+    <string name="set_key_save_pref_desc">Into file:</string>
+    <string name="set_key_load_pref">Load settings</string>
+    <string name="set_key_load_pref_desc">From file:</string>
+
+    <string name="set_key_ac">Autocomplete</string>
+    <string name="set_key_ac_desc">Settings for words in Autocomplete</string>
+	<string name="set_key_ac_place_sub_panel">Rendering method of Autocomplete</string>
+    <string name="set_key_ac_place_sub_panel_desc">Experimental feature. Correct functioning is not guaranteed!\nIf checked, the autocomplete box will not be displayed on top of all windows.</string>
+    <string name="set_key_ac_place">Autocomplete box</string>
+    <string name="set_key_ac_place_desc">Where to display the Autocomplete box?</string>
+    <string name="set_key_ac_place_0">Disable</string>
+    <string name="set_key_ac_place_1">On top of the keyboard</string>
+    <string name="set_key_ac_place_2">In system status-bar</string>
+     <string name="set_key_ac_place_3">At the bottom of the keyboard</string>
+    
+    <string name="set_key_ac_autocorrect">Autocorrect</string>
+    <string name="set_key_ac_autocorrect_desc">Apply current suggestion after adding a space or after an other punctuation mark input</string>
+
+    <string name="set_key_gestures">Gestures</string>
+    <string name="set_key_gestures_desc">Gesture settings</string>
+
+    <string name="set_key_use_gestures">Use gestures</string>
+    <string name="set_key_use_gestures_desc">Enable/disable all gestures</string>
+    <string name="set_key_gesture_left">To the left</string>
+    <string name="set_key_gesture_right">To the right</string>
+    <string name="set_key_gesture_up">Up</string>
+    <string name="set_key_gesture_down">Down</string>
+    <string name="set_key_gesture_space_left">to the left from spacebar</string>
+    <string name="set_key_gesture_space_right">to the right from spacebar</string>
+    <string name="set_key_gesture_length">Gesture length</string>
+    <string name="set_key_gesture_length_desc">Range 1-1000. By default 100</string>
+    <string name="set_key_gesture_vel">Gesture speed</string>
+    <string name="set_key_gesture_vel_desc">Range 1-1000. By default 150</string>
+    
+    <string name="set_key_use_volumeKeys">Volume keys</string>
+    <string name="set_key_use_volumeKeys_desc">Move cursor with volume keys</string>
+    <string name="vk_use_1">+ to the left, - to the right</string>
+    <string name="vk_use_2">- to the left, + to the right</string>
+
+    <string name="preview_show_0">Not show</string>
+	<string name="preview_show_1">Show under keys</string>
+	<string name="preview_show_2">Show on center</string>
+
+	<string name="preview_size_win">Preview pop-up size</string>
+	<string name="preview_size_win_desc">Keypress pop-up size</string>
+	<string name="preview_size_0">Very small</string>
+	<string name="preview_size_1">Small</string>
+	<string name="preview_size_2">Normal</string>
+	<string name="preview_size_3">Large</string>
+	<string name="preview_size_4">Very large</string>
+					
+	<string name="interval_long_press">Long press delay (in ms)</string>
+    <string name="interval_first_repeat">First repeat delay (in ms)</string>
+    <string name="interval_next_repeat">Next repeat delay (in ms)</string>
+    <string name="interval_min_repeat">Delay between keystrokes (in ms)</string>
+    <string name="intervals_keys_title_def_value">Default values:</string>
+    
+    <string-array name="array_shift_vars">
+        <item>3 modes (normal,shift,capslock)</item>
+        <item>2 modes (normal,shift)</item>
+        <item>2 modes (normal,capslock)</item>
+        <item>2 modes (normal,shift (double click = capslock mode))</item>
+    </string-array>
+    <string name="enter_pict">Picture on Enter key</string>
+    <string-array name="array_enter_pict">
+        <item>Old Enter+smile</item>
+        <item>Old Enter+emoji</item>
+        <item>Curved transparent Enter+emoji</item>
+        <item>Curved transparent Enter+smile</item>
+		<item>Curved solid Enter+emoji</item>
+		<item>Curved solid Enter+smile</item>
+    </string-array>
+    <string name="kbdact_back">Current window background</string>
+    <string name="kbdact_toast1">Long press on the buttons to the right/left to open the list</string>
+    <string name="kbdact_error_open">Not fully ready yet. Try later</string>
+    <string-array name="vibro_short_type">
+        <item>No vibration</item>
+        <item>On key release</item>
+        <item>On key press</item>
+    </string-array>
+
+    <string-array name="screen_type_vars">
+        <item>Portrait and landscape modes</item>
+        <item>Only in portrait mode</item>
+        <item>Only in landscape mode</item>
+    </string-array>
+
+    <string name="es_title">Fullscreen editor settings</string>
+    <string name="es_sample">Sample</string>
+    <string name="es_sample_text">First line\nSecond line\nThird line</string>
+    <string name="es_font">Font</string>
+    <string name="es_font_size">Font size</string>
+    <string name="es_font_bold">Bold</string>
+    <string name="es_font_italic">Italic</string>
+    <string name="es_def_font">Default font size</string>
+    <string-array name="array_fonts">
+        <item>Default</item>
+        <item>Droid serif</item>
+        <item>Monospace</item>
+        </string-array>
+
+    <string-array name="array_input_type" tools:ignore="MissingTranslation">
+        <item>By default</item>
+        <item>Fullscreen always on</item>
+        <item>Not fullscreen always on</item>
+    </string-array>
+
+    <string name="mm_setting">Menu</string>
+    <string name="mm">Main menu</string>
+    <string name="mm_path">Current path:</string>
+    <string name="mm_delrec">Delete entry after pasting</string>
+    <string name="mm_enter_end">Enter after pasting</string>
+   	<string name="mm_synchronize">Sync</string>
+   	<string name="mm_info">ℹ If there are a lot of  keys, menu scrolling will be available.\n(the keys from the right side will be scrollable too).\n\nA long press on the menu item (in the right places) opens the item editor.\n\nIt is possible to perform various file operations with templates and calculator programs, using a file manager. Each template (calculator program) is a regular file where the template name is a file name\nThe path to the template folder or calculator program displays at the top of the menu screen.</string>
+    <string name="mm_btn_size">Text size buttons</string>
+	<string name="mm_btn_size_desc">Set size of text keys (By default 15)</string>
+	<string name="mm_btnoff_size">Text size of service keys</string>
+	<string name="mm_btnoff_size_desc">Set text size of service keys (By default 8)</string>
+    <string name="mm_templates">Templates</string>
+    <string name="mm_multiclipboard">Clipboard</string>
+    <string name="mm_settings">Jbak2 keyboard settings</string>
+    <string name="mm_close">Close</string>
+    <string name="mm_home">Home</string>
+    <string name="mm_reload_skin">Reload skin</string>
+	<string name="mm_reload_skin_desk">\n(It will be shown, when the external skin is on use)</string>
+    <string name="mm_method_sym">(No longer used)\nNumber input method:</string>
+    <string name="mm_compil">Compile kbd</string>
+    <string name="mm_decompil">Decompile kbd</string>
+	<string name="mm_runapp">Application launch</string>
+	<string name="mm_ac_hide0">Display the Autocomplete box\n(only works if the Autocomplete box is enabled)</string>
+	<string name="mm_ac_hide1">Autocomplete: Hide</string>
+	<string name="mm_ac_hide2">Autocomplete: Show</string>
+	<string name="mm_translate_interfase">Translator interface language</string>
+	<string name="mm_translate_interfase_browser">Two letter code (ru, en, etc) of the translator interface language in a browser</string>
+	<string name="mm_notation">Notation</string>
+	<string name="mm_copy_notation">Copied number in different number systems</string>
+	<string name="mm_stop_dict0">Dictionary temporary disabling (only the default string is displaying)</string>
+	<string name="mm_stop_dict1">Dictionary: on</string>
+	<string name="mm_stop_dict2">Dictionary: off</string>
+	
+<!-- notation number  -->
+	<string name="notation_name">What is the base notation of the number</string>
+	<string name="notation_not_number">Clipboard text must be specified as a number, and the number must be an integer, positive and less than 10 characters (decimal)</string>
+			
+	<string name="search">Search</string>
+	<string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+	<string name="later">Later</string>
+    <string name="empty">Empty</string>
+	<string name="unload">Unload</string>
+	<string name="create">Created</string>
+	<string name="save">Save</string>
+	<string name="decompil_skin">Decompile skin</string>
+	<string name="delete">Delete</string>
+    <string name="delete_q">Delete?</string>
+    <string name="def">Default</string>
+    <string name="skin_not_found">Error.\nSkin not found.\nLoad default skin</string>
+    <string name="clear">Clear</string>
+    <string name="clear_question">Clear?</string>
+    <string name="honeycomb">Not supported for your version of Android</string>
+    <string name="not_work">Does not work yet</string>
+    <string name="by_def">By default</string>
+    <string name="out_of_memory">Out of memory!</string>
+    
+    <string name="sel_del">Delete selectively</string>
+    <string name="rewrite_question">File already exists.\nDo you want to replace it?</string>
+    <string name="settings_saved">Settings have been saved!</string>
+    <string name="add">Added</string>
+    <string name="data_changed">Data has been changed.\nDo you want to save changes?</string>
+    <string name="selection">Selection</string>
+	<string name="are_you_sure">Are you sure?</string>
+    
+    <string name="tpl_empty">Nothing to delete</string>
+    <string name="tpl_new_template">Add</string>
+    <string name="tpl_new_folder">New\nfolder</string>
+    <string name="tpl_folder_name">Type folder name</string>
+    <string name="tpl_name">Name</string>
+    <string name="tpl_text">Text</string>
+    <string name="tpl_text_calc_hint">Description</string>
+    <string name="tpl_editor">Template editor</string>
+    <string name="tpl_save">Save</string>
+    <string name="tpl_spec_options">Special options</string>
+    <string name="tpl_fields_empty">All fields must to be filled out!</string>
+    <string name="tpl_delete">Do you want to delete \"%s\"?</string>
+    <string name="tpl_unicode_app">Program with Unicode characters (Unicode Pad)</string>
+    <string name="tpl_full_edit">Редактировать в полноэкранном редакторе</string>
+    <string name="tpl_cb_inv">Invert buttons</string>
+	<string name="tpl_cb_right">Align to the right</string>
+    <string name="tpl_seltopos_toast">Large text. Cannot process</string>
+    <string name="tpl_help_spec">Help with special instructions</string>
+    <string name="fm_btn_plus_title">Template selection for the $program special instruction</string>
+    
+	
+    <string name="tpl_translate_menuname">Translator</string>
+    <string name="tpl_translate">Translator entry</string>
+    <string name="tpl_translate_in">Source language (ru, en, es, etc)</string>
+    <string name="tpl_translate_out">Target language (ru, en, es, etc)</string>
+    
+    <string name="clipboard_empty">Clipboard is empty</string>
+    <string name="clipboard_clear">Do you want to clear the clipboard ?</string>
+    
+<!-- List for menu with special template instructions -->
+    <string-array name="tpl_spec_instructions">
+        <item><b>$select</b> - instruction will be replaced by the text of the current selection</item>
+        <item><b>$selword</b> - if nothing is selected, the instruction will be replaced by the word that is above the cursor, otherwise, it will be replaced by the selected text</item>
+        <item><b>$selline</b> - if nothing is selected, the instruction will be replaced by the current paragraph, otherwise, it will be replaced by the selected text</item>
+        <item><b>$$</b> - it will be replaced by the $ sign</item>
+        <item><b>$datetime</b> - the current date and time will be inserted. If the cursor is located at the word, it will be replaced</item>
+        <item><b>$sellowercase</b> - converts all letters to lowercase in the selection </item>
+        <item><b>$selupcase</b> - converts all letters to uppercase in the selection</item>
+        <item><b>$selinsertword</b> - inserts selected character or word between symbols in the selection</item>
+        <item><b>$selDeleteWord</b> - removes a specified character or word in the selection</item>
+        <item><b>$seltranslit</b> - transliterates Russian language characters into Latin characters in the selection</item>
+		<item><b>$selVerseMode</b> - verse mode: each first character of the string in the selection will be capitalized</item>
+        <item><b>$selAsInTheSentences</b> - letter case in the selection like in the sentences</item>
+        <item><b>$paste</b> - pastes the current value from the clipboard</item>
+        <item><b>$selReplaсe</b> - search and replace in selected text</item>
+        <item><b>$selToPos</b> - selection to the specified position according to set parameters</item>
+        <item><b>$program</b> - execution of template sequence</item>
+        <item><b>$codes</b> - executes sequentially specified codes</item>
+        </string-array>
+
+<!-- список символов разделения для специнструкции $insertsymbol -->
+  <string name="insertsymbol_title">Symbol or word</string>
+    <string-array name="tpl_insertsymbol">
+        <item><b>[ ]</b> - space</item>
+        <item><b>[-]</b> - dash</item>
+        <item><b>[_]</b> - underlining</item>
+        <item><b>[]</b> - your value (you can write a phrase in parentheses)</item>
+        </string-array>
+    <string name="insertsymbol_toast">This special instruction will probably not work everywhere or will not work properly, all depends on the application where the input is made</string>
+    
+<!-- список форматов для специнструкции $datetime -->
+  <string name="datetime_format_title">Date and time format</string>
+    <string-array name="datetime_format">
+        <item><b>[]</b> -  your own format (all formats are described in \"How to use the keyboard\")</item>
+        <item><b>[yyyy.MM.dd HH:mm:ss]</b> - date and time (2016.12.31 14:56:35)</item>
+        <item><b>[dd.MM.yyyy HH:mm:ss]</b> - date and time (31.12.2016 14:56:35)</item>
+        <item><b>[dd.MM.yyyy]</b> - date (31.12.2016)</item>
+        <item><b>[MM.dd.yyyy]</b> - date (12.31.2016)</item>
+        <item><b>[yyyy.MM.dd]</b> - date (2016.12.31)</item>
+        <item><b>[HH:mm]</b> - time without seconds</item>
+        <item><b>[HH:mm:ss]</b> - time with seconds</item>
+        </string-array>
+    
+    <string name="helper_1">Keyboard disabled!</string>
+    <string name="helper_1_desc">Click on this message and select </string>
+    <string name="helper_2">Keyboard not active!</string>
+
+
+<!-- Update strings -->
+	<string name="upd_new_vocab">New dictionary</string>
+	<string name="upd_vocab_version_update">Update to version </string>
+<!-- 	<string name="upd_check">Checking for updates...</string> -->
+	<string name="upd_download">Download...</string>
+	<string name="upd_unzip">Unzip...</string>
+	<string name="upd_index">Indexation...</string>
+	<string name="upd_no_updates">No updates are available</string>
+	<string name="upd_get_error">An error occurred while checking for updates</string>
+
+<!-- Strings for about dialog -->
+	<string name="about">Other</string>
+	<string name="about_desc">Other apps, color code, character code, list of changes, version, etc.</string>
+	<string name="about_app">Application:</string>
+	<string name="about_version">Version: </string>
+	<string name="about_author">Developer:</string>
+
+<!-- переводить только то, что есть на русском и именно так, как указано здесь -->
+<!-- для каждой локали своя строка! -->
+	<string name="about_web">(Read till the end)\n\nSite app: http://jbak2.ucoz.net\nThe jbak2 discussion topic: http://4pda.ru/forum/index.php?showtopic=638021\nmy nickname: wolf3d2\n\nMade on the jbak keyboard version 0.97.7\n</string>
+
+	<string name="about_author_desc">Michail Wyazenkin (MWcorp, 4pda - wolf3d2)\n Previous developer (until 0.97.7)\nJuriy Bakunin</string>
+	<string name="about_other">Other:</string>
+	<string name="about_other_desc">The application will be fully translated in a couple of months.\nTranslations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
+    <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
+	<string name="diary">List of changes</string>
+	<string name="copy_buf_info">Copy your device information to the clipboard</string>
+
+	
+	<string name="type_lang_all">Other languages</string>
+	<string name="type_lang_unknown">Unknown languages</string>
+	<string name="type_lang_main">Main languages</string>
+	<string name="type_lang_symbol2">Called from the main character layout, by pressing the Shift key, if there is one.</string>
+	<string name="type_lang_virtual">Auxiliary layouts. Cannot be disabled, but you can choose a layout (if any).</string>
+	
+<!-- Names for various keyboards -->
+	<string name="kbd_name_qwerty">Qwerty keyboard</string>
+    <string name="kbd_name_mwcorp">MWcorp\'s keyboard</string>
+ 	<string name="smiles_MWcorp">Emoji MWcorp</string>
+    <string name="smiles_MaxQwertyKeys">Emoji from MaxQwertyKeys for Android 4.4 and above</string>    
+ 	<string name="kbd_name_qwerty_hyastan64">Haystan64\'s keyboard</string>
+    <string name="kbd_name_qwerty_rusrespect">from RusRespect</string>    
+    <string name="kbd_name_qwerty_eliz69">from eliz69</string>    
+    <string name="kbd_name_round">Keyboard for round face watches</string>    
+    <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 from MWcorp</string>
+    <string name="kbd_t9_mwcorp">T9 from MWcorp\n(It is required the Shift mode 3 to be activated (Settings-Other Settings-Shift))</string>
+  	<string name="kbd_name_wide">Wide keys</string>
+	<string name="kbd_name_qwerty_tablet">Qwerty for tablets</string>
+	<string name="kbd_name_sym_edit">Characters and editing</string>
+	<string name="kbd_name_5_rows">5 rows</string>
+	<string name="kbd_name_2_sides">Bilateral</string>
+	<string name="kbd_calc">Calculator</string>
+	<string name="kbd_calc_saent">Scientific calculator</string>
+	<string name="kbd_calc_prog">Programmable calculator</string>
+	<string name="kbd_landscape_mwcorp">Keyboard from MWcorp v100 in landscape mode\n(with all keys)</string>
+	<string name="kbd_name_dvorak">Dvorak from Vladimyr</string>
+	
+ <!-- Names for keyboards designs -->
+	<string name="kbd_design_standard">Standard</string>
+	<string name="kbd_design_iphone">Pseudo iPhone</string>
+	<string name="kbd_design_ukraine">Зроблено в Україні</string>
+	<string name="kbd_design_ukraine_old">Old Зроблено в Україні</string>
+		<string name="kbd_design_chokolate">Chocolate</string>
+	<string name="kbd_design_red">Red and blue</string>
+	<string name="kbd_design_htc">Pseudo HTC</string>
+	<string name="kbd_design_pink">Pink</string>
+	<string name="kbd_design_dark">Dark</string>
+	<string name="kbd_design_solid">Solid</string>
+	
+<!-- Names for designs of assets -->
+	<string name="design_eliz1">Cream by elizz69</string>    
+	<string name="design_eliz2">Apple by elizz69</string>    
+	<string name="design_eliz3">Brown by elizz69</string>    
+	<string name="design_eliz4">Gold by elizz69</string>    
+	<string name="design_eliz5">Violet by elizz69</string>    
+	<string name="design_eliz6">Drop by elizz69</string>    
+	<string name="design_eliz7">Cherry by elizz69</string>    
+	<string name="design_eliz8">Grey_2 by elizz69</string>    
+	<string name="design_eliz9">MD_blue by elizz69</string>    
+	<string name="design_eliz10">Black robo by elizz69</string>    
+		<string name="design_schenee">Chocolate by Schnee-Leopard</string>    
+	<string name="design_thepop3250_1">Light</string>    
+	<string name="design_thepop3250_2">Blue</string>    
+	<string name="design_thepop3250_3">Neon</string>    
+	<string name="design_rusrespect1">Notebook</string>    
+	<string name="design_keylifes1">Black and white by keyslifes</string>    
+	<string name="design_newportstyle">NewPortStyle by jenibek</string>    
+	<string name="design_glamor">Glamor by jenibek</string>    
+	<string name="design_nad1">Blue_and_gray by Надежда Ф</string>    
+	<string name="design_nad2">Brown_pink_yellow by Надежда Ф</string>    
+	<string name="design_BOGDANPRIME1">Gray_Soft_Keys_by_BOGDANPRIME</string>    
+							
+<!-- Names for languages -->
+ 	<string name="lang_symbol">Character keyboard</string>
+ 	<string name="lang_symbol_shift">Special character keyboard</string>
+ 	<string name="lang_edittext">TextEdit keyboard</string>
+ 	<string name="lang_edittext2">TextEdit keyboard MWcorp</string>   
+ 	<string name="lang_edittext3">TextEdit keyboard for large screens</string>   
+ 	<string name="lang_smiles">Emoji keyboard</string>
+ 	<string name="lang_numbers">Numeric keyboard</string>
+ 	<string name="lang_calc">Calculator</string>
+ 	<string name="lang_symbol_selector">Switch between characters and qwerty keyboards</string>   
+ 	
+ <!-- Names for gestures commands -->
+ 	<string name="cmd_lang_change">Language switching</string>
+ 	<string name="cmd_lang_change_next">Language switching on a loop, without Menu</string>   
+ 	<string name="cmd_lang_change_prev">Language switching in reverse order, without Menu</string>   
+ 	<string name="cmd_lang_change_two_lang">Language switching. Recent languages</string>   
+ 	<string name="cmd_left">Cursor to the left</string>
+ 	<string name="cmd_right">Cursor to the right</string>
+ 	<string name="cmd_up">Cursor up</string>
+ 	<string name="cmd_down">Cursor down</string>
+ 	<string name="cmd_none">Do nothing</string>
+ 	<string name="cmd_close">Close the keyboard</string>
+ 	<string name="cmd_space">Space</string>
+ 	<string name="cmd_bs">Backspace</string>   
+ 	<string name="cmd_enter">Enter</string>   
+ 		<string name="cmd_shift">Shift</string>   
+
+ 	<!-- функции копирования -->
+ 	<string name="menu_copy_title">Copy functions</string>
+ 	<string name="menu_copy_all">Copy all</string>
+ 	<string name="menu_copy_paragraph">Copy paragraph</string>
+ 	<string name="menu_copy_line">Copy string (does not work correctly everywhere)</string>
+ 	<string name="menu_copy_sentence">Copy sentence</string>
+	<string name="menu_copy_word">Copy word</string>
+ 	<string name="menu_copy">Copied</string>
+
+ 	<!-- функции выделения -->
+ 	<string name="menu_sel_title">Selection functions</string>
+ 	<string name="menu_sel_paragraph">Select paragraph</string>
+ 	<string name="menu_sel_sentence">Select sentence</string>
+ 	<string name="menu_sel_line">Select line</string>
+ 	<string name="menu_sel_line_up">Выделить до начала строки</string>
+ 	<string name="menu_sel_line_down">Выделить до конца строки</string>
+ 	<string name="menu_sel_word">Select word</string>
+ 		
+	<string name="set_copy_msg">Notification about copying</string>
+ 	<string name="set_copy_msg_desc">If checked, when you copy, the notification about copying will be displayed</string>
+ 		
+ 	<string name="menu_sel_layout">Language layout quick change</string>
+ 	<string name="menu_select_lang_title">Language selection</string>
+ 	<string name="menu_sel_skin">Quick skin change</string>
+ 	<string name="menu_select_skin_title">Skin change</string>
+ 		
+    <string name="error_lang_layout_found1">Cannot find layouts for this language:</string>
+    <string name="error_lang_layout_found2">Turn it off in the Settings</string>
+   		
+</resources>

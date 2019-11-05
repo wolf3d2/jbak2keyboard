@@ -1,0 +1,216 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+        package="com.jbak2.JbakKeyboard"
+        
+        android:versionName="2.34"
+        android:versionCode="271"
+        >
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.VIBRATE"/>
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+<uses-sdk 
+    android:minSdkVersion="14" 
+    android:targetSdkVersion="26"
+     />
+      <application 
+		  android:allowBackup="true"
+          android:label="@string/ime_name" 
+          android:icon="@drawable/icon"
+          android:theme="@style/AppTheme" 
+		  android:name="App" 
+		  android:enabled="true"
+          >
+<!--        This meta-data tag is required to use Google Play Services. -->
+<!--         <meta-data  -->
+<!--             android:name="com.google.android.gms.version"  -->
+<!--             android:value="@integer/google_play_services_version" -->
+<!--             /> -->
+<!-- ============================================================================== -->
+<!-- ============================================================================== -->
+        <service android:name="ServiceJbKbd"
+                android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im" android:resource="@xml/method" />
+     </service>
+<!-- ============================================================================== -->
+        <service android:name="com.jbak2.words.WordsService">
+        </service>
+        
+<!-- ============================================================================== -->
+<!-- ============================================================================== -->
+<!--     <receiver -->
+<!-- 		android:name=".ShowKeyboardReceiver" -->
+<!--     	android:enabled="true" -->
+<!--     	android:exported="true"> -->
+<!--     	<intent-filter> -->
+<!--         	<action android:name="com.jbak2.JbakKeyboard.SHOW_KEYBOARD" /> -->
+<!--     	</intent-filter> -->
+<!-- 	</receiver> -->
+<!-- ============================================================================== -->
+<!-- ============================================================================== -->
+        <activity android:name="JbKbdPreference" 
+        		android:label="@string/ime_name"
+        	    android:configChanges="orientation|locale">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+	        <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/plain" />
+    </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:mimeType="text/*"/>
+            </intent-filter>
+    </activity> 
+
+<!-- ============================================================================== -->
+<!--             <activity android:name="UpdVocabActivity" -->
+<!--         		  android:label="@string/set_key_ac_load_vocab" -->
+<!--         	/> -->
+<!-- ============================================================================== -->
+        <activity android:name="SetKbdActivity"
+        		  android:configChanges="orientation|locale"
+        	>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity> 
+<!-- ============================================================================== -->
+            <activity android:name="TplEditorActivity" 
+        			android:launchMode="singleTop" 
+        			android:label="@string/tpl_editor"
+        			android:finishOnTaskLaunch="true"
+        			android:excludeFromRecents="true"
+        			android:configChanges="keyboardHidden|orientation|locale"
+        			>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+<!-- ============================================================================== -->
+            <activity android:name="Popup2act" 
+        			android:launchMode="singleTop" 
+        			android:label="@string/pc2act_title"
+        			android:finishOnTaskLaunch="true"
+        			android:excludeFromRecents="true"
+        			android:configChanges="keyboardHidden|orientation|locale"
+        			>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+<!-- ============================================================================== -->
+            <activity android:name="AcColorAct" 
+        			android:launchMode="singleTop" 
+        			android:label="@string/ac_color_title"
+        			android:finishOnTaskLaunch="true"
+        			android:excludeFromRecents="true"
+        			android:configChanges="keyboardHidden|orientation|locale"
+					android:windowSoftInputMode="stateHidden"
+        			>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+<!-- ============================================================================== -->
+		<activity android:name="LangSetActivity" 
+					android:label="@string/set_languages"
+					android:configChanges="orientation|locale"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="AboutActivity" 
+					android:label="@string/about"
+					android:configChanges="orientation|locale"
+					/>
+<!-- ============================================================================== -->
+				<activity android:name="EditUserVocab" 
+					android:label="@string/euv_actname"
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="stateHidden"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="Help" 
+					android:label="@string/help"
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="stateHidden"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="SetSound" 
+					android:label="@string/ssact_title"
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="stateHidden"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="MainmenuAct" 
+					android:label="@string/mainmenu_setting"
+					android:configChanges="orientation|locale"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="Runapp" 
+					android:label="@string/mm_runapp"
+					android:configChanges="orientation|locale"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="ClipbrdSyncAct" 
+					android:label="@string/mm_synchronize"
+					android:configChanges="orientation|locale"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="Gesture_create" 
+					android:label="@string/gesture_create"
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="adjustPan" 
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="Quick_setting_act" 
+					android:label="@string/qs_title"
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="stateHidden"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="ShowTextAct" 
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="stateHidden"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="SkinConstructorAct" 
+					android:label="@string/sc_name"
+					android:configChanges="orientation|locale"
+					android:windowSoftInputMode="adjustResize"
+					/>
+<!-- ============================================================================== -->
+		<activity android:name="EditSetActivity" 
+					android:label="@string/es_title"
+					android:configChanges="orientation|locale"
+					/>
+    <service android:name="com.google.android.voiceime.ServiceHelper" />
+    <activity
+        android:name="com.google.android.voiceime.ActivityHelper"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        android:excludeFromRecents="true"
+        android:windowSoftInputMode="stateAlwaysHidden"
+        android:finishOnTaskLaunch="true"
+        android:configChanges="keyboardHidden|orientation"/>
+    				
+<!-- ============================================================================== -->
+	<!-- google admob -->
+<!-- 	       Include the AdActivity configChanges and theme. -->
+<!--         <activity  -->
+<!--             android:name="com.google.android.gms.ads.AdActivity" -->
+<!--             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" -->
+<!--             android:theme="@android:style/Theme.Translucent"  -->
+<!--             /> -->
+				
+    	</application>
+
+</manifest>

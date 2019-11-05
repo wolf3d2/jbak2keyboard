@@ -1,0 +1,13 @@
+KeyBackStartColor=0xFFd0e3f0
+KeyBackEndColor=0xFFd0e3f0
+KeyBackGradientType=0
+KeyTextColor=0xFF221e9b
+KeyTextBold=0
+KeyGapSize=7
+KeyboardBackgroundStartColor=0xFF8ab9d9
+KeyboardBackgroundGradientType=0
+SpecKeyTextColor = 0xFFffffff
+SpecKeyBackStartColor = 0xFF125ef4
+SpecKeyBackEndColor = 0xFF125ef4
+ KeyBackCornerX=36
+ KeyBackCornerY=36

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:layout_marginLeft="5px"
+    >
+
+<TextView
+    android:id="@+id/ei_title"
+    style="@style/label_white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/set_key_intervals" 
+    />
+<!--     android:layout_gravity="center_horizontal" -->
+
+<Button
+    android:id="@+id/ei_btn_def"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:text="@string/def"
+    android:visibility="gone" />
+
+<TextView android:id="@+id/interval1" 
+    style="@style/label_white" 
+    android:text="@string/interval_long_press"/>
+
+<com.jbak2.ctrl.IntEditor
+    android:id="@+id/long_press"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+<TextView android:id="@+id/interval2" style="@style/label_white" android:text="@string/interval_first_repeat"/>
+<com.jbak2.ctrl.IntEditor
+    android:id="@+id/first_repeat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
+<TextView android:id="@+id/interval3" style="@style/label_white" android:text="@string/interval_next_repeat"/>
+<com.jbak2.ctrl.IntEditor
+    android:id="@+id/next_repeat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
+
+<!-- дополнительный параметр -->
+<TextView
+    android:id="@+id/interval4"
+    style="@style/label_white"
+    android:text="@string/interval_min_repeat"
+    android:visibility="gone" />
+
+<com.jbak2.ctrl.IntEditor
+    android:id="@+id/min_press"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone" />
+
+</LinearLayout>
+</ScrollView>

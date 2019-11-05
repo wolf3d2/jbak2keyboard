@@ -1,0 +1,36 @@
+//Skin name: Chocolate v2.0
+//Skin author: Schnee-Leopard (http://4pda.ru)
+KeyBackStartColor=0xffa06542
+KeyBackEndColor=0xff542613
+KeyBackPressedGradientType=0
+KeyBackPressedStartColor=0xff6d391c
+KeyBackPressedEndColor=0xff200600
+KeyBackGradientType=0
+KeyTextColor=0xffebc380
+KeyTextBold=1
+KeySymbolColor=0xffebc380
+KeyTextPressedColor=0xfff9d48d
+KeySymbolPressedColor=0xfff9d48d
+KeyStrokeStartColor=0xffeaae88
+KeyStrokeEndColor=0xffaa6e48
+KeyPressedStrokeStartColor=0xff9a5e38
+KeyPressedStrokeEndColor=0xff8a4e28
+KeyboardBackgroundStartColor=0xff401801
+KeyboardBackgroundEndColor=0xff401801
+KeyboardBackgroundGradientType=0
+SpecKeyTextColor=0xfff9d48d
+SpecKeySymbolColor=0xfff9d48d
+SpecKeyTextPressedColor=0xffebc380
+SpecKeySymbolPressedColor=0xffebc380
+SpecKeyBackStartColor=0xff6d391c
+SpecKeyBackEndColor=0xff200600
+SpecKeyStrokeStartColor=0xff9a5e38
+SpecKeyStrokeEndColor=0xff8a4e28
+SpecKeyBackPressedStartColor=0xffa06542
+SpecKeyBackPressedEndColor=0xff542613
+SpecKeyBackPressedGradientType=0
+SpecKeyPressedStrokeStartColor=0xffeaae88
+SpecKeyPressedStrokeEndColor=0xffaa6e48
+KeyGapSize=5
+KeyBackCornerX=9
+KeyBackCornerY=9

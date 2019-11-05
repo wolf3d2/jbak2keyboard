@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditUserVocab" >
+
+<LinearLayout
+    android:id="@+id/llad_euv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical" >
+    
+</LinearLayout>
+	
+<Button
+    android:id="@+id/euv_help"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true"
+    android:onClick="onClickXml"
+    android:text="  ?  "
+    />
+    
+<Button
+    android:id="@+id/euv_search"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf="@+id/euv_help"
+    android:onClick="onClickXml"
+    android:text="@string/search" />
+    
+<CheckBox
+    android:id="@+id/euv_cb1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:onClick="onClickXml"
+    android:layout_toLeftOf="@+id/euv_search"
+    android:text="@string/euv_cb1"
+    />
+
+<LinearLayout
+    android:id="@+id/lltop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/euv_help"
+    android:orientation="horizontal" >
+    
+<TextView
+    android:id="@+id/euv_txtlang"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="2dp"
+    android:textSize="15sp" />
+
+<Button
+    android:id="@+id/euv_sellang"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:onClick="onClickXml"
+    android:text="@string/selection"
+    />
+    
+<TextView
+    android:id="@+id/euv_allword"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="2dp"
+    android:text="@string/euv_all_word_text"
+    android:textSize="15sp" />
+
+</LinearLayout>
+
+<CheckBox
+    android:id="@+id/euv_cb2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@id/lltop"
+    android:onClick="onClickXml"
+    android:text="@string/mainmenu_cb1"
+    />
+
+<RelativeLayout
+    android:id="@+id/euv_rlcap"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/euv_cb2" >
+    
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:text="@string/euv_freq"
+    android:textSize="12sp" 
+    />
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="2dp"
+    android:text="@string/ac_color_word"
+    android:textSize="12sp" 
+    />
+</RelativeLayout>
+
+<ListView
+    android:id="@+id/euv_list"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/euv_rlcap"
+    android:layout_above="@id/llad_euv"
+    android:divider="#00ffffff"
+    android:dividerHeight="0px"
+    android:orientation="vertical" />
+
+<!-- <ScrollView -->
+<!--    android:id="@+id/euv_scroll" -->
+<!--    android:layout_width="fill_parent" -->
+<!--    android:layout_height="wrap_content" -->
+<!--    android:layout_below="@id/euv_rlcap" -->
+<!--    android:layout_above="@id/llad_euv" -->
+<!--    > -->
+    
+<!-- <LinearLayout -->
+<!--     android:id="@+id/euv_ll" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:orientation="vertical"  -->
+<!--     > -->
+    
+<!-- </LinearLayout> -->
+<!--  </ScrollView> -->
+
+</RelativeLayout>

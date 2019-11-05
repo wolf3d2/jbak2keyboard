@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<HorizontalScrollView
+  android:id="@+id/fe_hsv"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_alignParentRight="true"
+  android:layout_alignParentTop="true"
+  >
+
+<LinearLayout
+    android:id="@+id/fe_buttons"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:orientation="horizontal" >
+
+<Button
+    android:id="@+id/fe_filter"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_default"
+    android:drawableTop="@drawable/bullet_black"
+    android:text="@string/fi_filter" />
+
+<Button
+    android:id="@+id/fe_home"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/tpl_home"
+    android:text="@string/mm_home" />
+
+<Button
+    android:id="@+id/fe_close"
+    style="@style/img_button"
+    android:background="@android:drawable/btn_dropdown"
+    android:drawableTop="@drawable/keyboard"
+    android:text="@string/mm_close" />
+
+</LinearLayout>
+</HorizontalScrollView>
+
+<HorizontalScrollView
+  android:id="@+id/fe_hsv_nav"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+  android:layout_below="@+id/fe_hsv"
+  >
+
+<LinearLayout
+    android:id="@+id/fe_llnav"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:orientation="horizontal" >
+
+<Button
+    android:id="@+id/fe_up"
+    style="@style/small_button"
+    android:text=" ∆∆ " 
+    />
+
+<Button
+    android:id="@+id/fe_down"
+    style="@style/small_button"
+    android:text=" ∇∇ " 
+    />
+
+
+</LinearLayout>
+</HorizontalScrollView>
+
+<!-- <TextView -->
+<!--     android:id="@+id/fe_warning" -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_alignParentLeft="true" -->
+<!--     android:layout_below="@+id/fe_hsv" -->
+<!--     android:clickable="false" -->
+<!--     android:text="@string/fi_warning_text" -->
+
+<TextView
+    android:id="@+id/fe_lastpath"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/fe_hsv_nav"
+    android:clickable="false"
+    android:text="Текущий путь"
+    android:textColor="#fff" />
+
+<ListView
+    android:id="@+id/fe_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_above="@+id/fe_tv_bottom_empty"
+    android:layout_below="@+id/fe_lastpath"
+    android:divider="#ffffffff"
+    android:dividerHeight="1dp" />
+    
+<TextView
+    android:id="@+id/fe_tv_bottom_empty"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:clickable="false"
+    android:minLines="2" />
+
+</RelativeLayout>

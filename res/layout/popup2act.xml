@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pc2act"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+<TextView
+    android:id="@+id/pc2act_str_add"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_str_add"
+    android:textSize="15sp" />
+
+<EditText
+    android:id="@+id/pc2act_et_addsymb"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:minLines="3"
+	android:maxLines="3"  
+	android:gravity="top"  
+    android:clickable="true"
+    android:ems="10"
+    android:inputType="textMultiLine"
+	android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbars="vertical"
+	>
+    </EditText>
+
+<ScrollView
+    android:id="@+id/pc2act_scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="7dp" >
+
+<LinearLayout
+    android:id="@+id/pc2act_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical" >
+
+<Button
+	android:id="@+id/pc2act_unicode_app"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="@string/tpl_unicode_app" 
+     />
+
+<CheckBox
+    android:id="@+id/pc2act_cb1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_winfix"
+    />
+
+<TextView
+    android:id="@+id/pc2act_cb1_desc"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_winfix_desc"
+    android:textSize="15sp" 
+    />
+
+<CheckBox
+    android:id="@+id/pc2act_cb2"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_lr"
+    />
+
+<TextView
+    android:id="@+id/pc2act_btn_size"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_btn_size"
+    android:textSize="15sp" />
+
+<EditText
+    android:id="@+id/pc2act_et_btn_size"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:minLines="1"
+	android:maxLines="1"  
+	android:gravity="top"  
+    android:inputType="number"
+    android:clickable="true"
+    android:ems="10"
+	>
+    </EditText>
+
+<TextView
+    android:id="@+id/pc2act_btnoff_size"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_btn_off_size"
+    android:textSize="15sp" />
+
+<EditText
+    android:id="@+id/pc2act_et_btnoff_size"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:minLines="1"
+	android:maxLines="1"  
+	android:gravity="top"  
+    android:clickable="true"
+    android:inputType="number"
+    android:ems="10"
+	>
+    </EditText>
+
+<TextView
+    android:id="@+id/pc2act_info"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pc2act_color_desc"
+    android:textColor="#ff00ff00"
+    android:textSize="15sp" 
+    />
+
+<LinearLayout
+    android:id="@+id/pc2act_ll_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+<!-- <TextView -->
+<!--     android:id="@+id/pc2act_wincolbg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="@string/pc2act_wind_color_back" -->
+<!--     android:textSize="15sp" /> -->
+
+</LinearLayout>
+
+<!-- <TextView -->
+<!--     android:id="@+id/pc2act_wincollbg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="@string/pc2act_wind_color_back" -->
+<!--     android:textSize="15sp" /> -->
+
+<!-- <EditText -->
+<!--     android:id="@+id/pc2act_winbg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:clickable="true" -->
+<!--     android:ems="10" -->
+<!--     android:inputType="numberSigned" -->
+<!--     android:digits="0123456789#xabcdef" -->
+<!--     android:maxLines="1" -->
+<!--     android:minLines="1"  -->
+<!--     > -->
+<!--     </EditText> -->
+
+<!-- <TextView -->
+<!--     android:id="@+id/pc2act_btn_bg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="@string/pc2act_btn_color_back" -->
+<!--     android:textSize="15sp" /> -->
+
+<!-- <EditText -->
+<!--     android:id="@+id/pc2act_et_btn_bg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!-- 	android:minLines="1" -->
+<!-- 	android:maxLines="1"   -->
+<!--     android:inputType="numberSigned" -->
+<!--     android:digits="0123456789#xabcdef" -->
+<!--     android:clickable="true" -->
+<!--     android:ems="10" -->
+<!-- 	> -->
+<!--     </EditText> -->
+
+<!-- <TextView -->
+<!--     android:id="@+id/pc2act_btn_txt_col" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="@string/pc2act_btn_color_txt" -->
+<!--     android:textSize="15sp" /> -->
+
+<!-- <EditText -->
+<!--     android:id="@+id/pc2act_et_btn_tc" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!-- 	android:minLines="1" -->
+<!-- 	android:maxLines="1"   -->
+<!--     android:clickable="true" -->
+<!--     android:inputType="numberSigned" -->
+<!--     android:digits="0123456789#xabcdef" -->
+<!--     android:ems="10" -->
+<!-- 	> -->
+<!--     </EditText> -->
+
+<!-- <TextView -->
+<!--     android:id="@+id/pc2act_btnoff_bg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="@string/pc2act_btn_off_color_back" -->
+<!--     android:textSize="15sp" /> -->
+
+<!-- <EditText -->
+<!--     android:id="@+id/pc2act_et_btnoff_bg" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!-- 	android:minLines="1" -->
+<!-- 	android:maxLines="1"   -->
+<!--     android:clickable="true" -->
+<!--     android:inputType="numberSigned" -->
+<!--     android:digits="0123456789#xabcdef" -->
+<!--     android:ems="10" -->
+<!-- 	> -->
+<!--     </EditText> -->
+
+<!-- <TextView -->
+<!--     android:id="@+id/pc2act_btn_off_txt_col" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:text="@string/pc2act_btn_off_color_txt" -->
+<!--     android:textSize="15sp" /> -->
+
+<!-- <EditText -->
+<!--     android:id="@+id/pc2act_et_btnoff_tc" -->
+<!--     android:layout_width="fill_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!-- 	android:minLines="1" -->
+<!-- 	android:maxLines="1"   -->
+<!--     android:clickable="true" -->
+<!--     android:inputType="numberSigned" -->
+<!--     android:digits="0123456789#xabcdef" -->
+<!--     android:ems="10" -->
+<!-- 	> -->
+<!--     </EditText> -->
+
+</LinearLayout>
+</ScrollView> 
+</LinearLayout>

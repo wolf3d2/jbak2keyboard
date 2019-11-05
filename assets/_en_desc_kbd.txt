@@ -1,0 +1,599 @@
+Last edited: 17.10.2019
+This text is available in the item of Settings "How to use the keyboard"
+
+Visit the program site:
+(Visite el sitio web del programa):
+
+https://jbak2.ucoz.net
+
+Comments and suggestions are welcome. E-MAIL: mwsoft@tut.by
+
+Preface
+
+This keyboard, basically, is a constructor that contains a large number of settings, allowing anyone to customize the keyboard behaviour, getting the most convenient option for use which meets all the user's needs.
+
+If you are not satisfied with the built-in layouts or skins (themes), you can create them yourself or you can modify existing ones. 
+
+By default, everything is set up according to Plug and Play principle. 
+
+Some, of course, will say, “Why so many settings? It can be much easier!” However, there is one nuance. After spending once a bit of time on customization,  you will get the most convenient keyboard with any conceivable functionality, which is limited only by your imagination.
+
+The principal exception is only the Swype function and predictive text input (T9), they only interfer with the keyboard, therefore these functions are not available and will never be.
+
+Developper's note:
+
+The developer suffered a severe stroke (see the conclusion) because of diabetes, so:
+1. I became very distracted after the stroke. The program is already extremely complicated, and very often I do one thing, but it stops working in a completely different place. I can not take everything into account. :(
+For this reason, if the program starts to work improperly, I ask you to not only lower the application rating on Google Play, describe the problem.
+The sooner I learn about a problem, the faster I can fix it.
+
+2. Before asking your question, first, look here for the answer. There is a 99.99% probability you will find it here.
+
+3. If you still did not find the answer, and  you asked me a question, please, do not be offended, if my answer is rude and inadequate. This is the consequence of the stroke. I just do not notice how I act. I hope that in the distant and bright future I will be released, I will turn again into a warm and cuddly person :)
+
+4. I am not illiterate! All my spelling mistakes are also consequences. I do not notice them or I forget how a word or an expression should be written (serious memory problems). It also makes me furious :(
+
+The developer also reads all the comments on Google Play.
+
+WARNING.
+THE APPLICATION IS DISTRIBUTED ON "AS IS" BASIS, AND FOR THIS REASON, THE DEVELOPER DOES NOT ACCEPT COMPLAINTS AND BUG REPORTS RELATED TO THE KEYBOARD WORK IN OPERA MINI, UC WEB AND ANY YANDEX APPLICATIONS WITHOUT EXPLANING THE REASON.
+
+TABLE OF CONTENTS:
+1)INSTALLATION INSTRUCTIONS AND INITIAL CONFIGURATION
+
+STRING OF CHARACTERS AND WORDS IN AUTOCOMPLETE BY DEFAULT
+
+2)FREQUENTLY ASKED QUESTIONS AND POSSIBLE PROBLEMS
+Frequent questions
+? Swype function and predictive text input
+? Autocomplete string above all windows.
+? ОТКЛЮЧИТЬ ОКНО АВТОДОПОЛНЕНИЯ
+? AUTOCOMPLETE BOX OR KEYPRESS POPUP NOT TURNING ON AUTOMATICALLY (firmware MIUI)
+? ABOUT SMILEYS AND EMOJIS
+? Button ->D in Autocomplete
+
+Other
+? Will the keyboard steal passwords?
+? User dictionary editing
+? Number input
+? Keyboard does not work or disappears in some applications
+? Jbak2 keyboard resets to the stock keyboard after reboot
+? Selective deletion of the clipboard contents
+? Paid version
+? VOICE INPUT.
+
+3)KEYBOARD CONTROLS AND OTHER SETTINGS
+Main menu
+Clipboard
+Templates
+SHIFT key
+Other Settings 
+Input method
+Copying
+CALCULATOR. PROGRAMMABLE CALCULATOR
+Text size in the current entry field (red box in Autocomplete)
+Keypress code (red box in Autocomplete)
+Special instructions in templates
+HOW TO CHANGE LAYOUT OR SKIN
+(one of the layouts is Тext on 9 key (for Russian and English languages))
+How to edit the built-in layout
+Main menu
+Shortcuts
+"Additional characters" gesture string and popupCharacters tag
+Macros
+Abbreviations used in the keyboard
+Date format for special instructions $datetime
+4)CUSTOM LAYOUT AND SKIN EDITING AND CREATING
+HOW TO CHANGE LAYOUT OR SKIN
+How to edit the built-in layout
+Custom language creating (not presented in the program)
+Skin constructor
+
+5) WORK PLAN
+
+6) DEVELOPERS
+
+7)CONCLUSION
+
+--------------------------------------------
+1)INSTALLATION INSTRUCTIONS (standard on all keyboards)
+After installing the keyboard, you need to follow the next steps:
+The first settings item to display will be \"Keyboard disabled!\". Press, put a checkmark in front of the jbak2 keyboard, and you will see a standard warning about a possible theft of passwords. Press ОK. Press the system Back button.
+You get back again to the program Settings. You can see that the warning message has changed to \"Keyboard not active\". Click and select the \"jbak2 keyboard\" input method. 
+You can do the same following the next steps:
+a) Go to SYSTEM Settings > Language and keyboard, turn \"Jbak2 Keyboard\" on.
+Click ОК on the confirmation pop-up about the risk of password theft. In the same place, set \"Jbak2 Keyboard\" as a default input method
+or
+b) Call the keyboard context menu in any input field, press Input method > Jbak2 Keyboard.
+
+OBSERVATION
+This keyboard can not be transferred to the SD card, otherwise it will behave unpredictably! For example, the keyboard will only be active until you reboot.
+
+INITIAL CONFIGURATION (you can always change)
+It is not obligatory! 
+The keyboard is initially configured as comfortably as possible for the most of android devices.
+
+- SELECT LANGUAGES AND LAYOUTS. Go to Settings > Languages and layouts. Select the language that you need to use (for example, Russian, English and Tatar).
+On the right side of each language you can find the \"Select Layout\" button. If you do not find this button, there is only one layout for this language.
+Press the button, Layout pop-up will be displayed.
+Use the right and left arrow buttons to scroll the list of layouts for this language. Select the one you like. Click the Save button .
+It is better (but not required) to set different layouts separately for portrait and landscape modes: select a layout for portrait mode and press the button where it says \"Portrait and landscape modes\"/\"portrait mode\"/\"landscape modes\". Select the mode in which this layout will be displayed.
+Similarly, select a layout for the other mode.
+Press Save, finally.
+
+Scroll down the list of layouts and in the same order select layouts for:
+Character keyboard
+Special character keyboard
+Emoji keyboard
+Numeric keyboard
+Calculator
+
+If you do not like the built-in layouts, you can download the "jbak2layout" application (Settings > Custom layouts) and add layouts from there. There you can also find the Emoji layout.
+Or create your own layout (see below in the Unit №4 Custom layout and skin creating).
+
+- KEY SIZE ADJUSTMENT. Go to Settings > Key settings> Key height/portrait mode and Key height/landscape mode.
+There are buttons at the top of the window: decrease (press \"-\") or increase (press \"+\") the height until the size you want. You will immediately notice how the keyboard height is changing.
+If it is necessary, in the same window, you can do key vertical correction for more accurate typing.
+
+- FONT ADJUSTMENT
+Settings > Appearance > Font. Here, there are separate font settings for letters, additional characters and autocomplete box.
+Decrease (-) or increase (+) the size. You can select italic or bold fonts, change the outline.
+
+- THEME (SKIN) SELECTION. Go to Settings > Appearance > Skins.
+Scrolling and installation order is similar to that of Layouts.
+Additional themes (skins) can be installed by downloading the jbak2skin application(Settings > Appearance > Custom skins).
+You can also create your own theme Settings> Appearance> Skin constructor.
+
+AUTOINPUT/AUTOCOMPLETE ADJUSTMENT. INPUT WITH THE DICTIONARY.
+a) Download the necessary dictionaries going to the keyboard settings.
+The old dictionary download is located: Settings > Autoinput > Old download.
+New download is already located in Settings.
+AUTOCOMPLETE WILL WORK ONLY WITH PREVIOUSLY INSTALLED DICTIONARIES FOR EACH LANGUAGE! 
+b) Choose where to display the autocomplete box (Settings > Autoinput >  Autocomplete box)
+c) In the same place you can modify the Autocorrect feature, configure case change, inserting/deleting spaces etc.
+d) Turn on the windows (Settings > Appearance):
+Window of the keypress code (green box in Autocomplete).
+It shows the keypress code. It is useful for creating your own layout .
+When you click on it, the key code will be inserted into the current cursor position, if the cursor is in a word, the word will be replaced.
+and
+Window of the text length in the input field (green box in Autocomplete)
+
+If the "Learning dictionary" option is enabled, when you click on a word in the Autocomplete box, its frequency of use will be increased by one count. 
+That way, over time, (it is different on each device, but certainly not a couple of months) the most common words will appear first.
+
+OBSERVATION
+This function slows down the keyboard! 
+For this reason, it is better to not turn on this feature on low-power devices.
+
+STRING OF CHARACTERS AND WORDS IN AUTOCOMPLETE BY DEFAULT
+Also you can set your own string of characters and words in Autocomplete: Settings-Autoinput-Words by default.
+In addition to characters and words, a special word format is supported, allowing a word to be changed to a button: $ [<code>, <displayed word>]. The displayed word must not contain spaces.  For example, $ [- 500, Menu]  will display a button, by clicking on it the main menu screen will be opened.
+tarting from version 2.31.06, the default autocomplete string has been changed. 
+To go to a new line, you need to clear the line in Settings.
+
+2)FREQUENTLY ASKED QUESTIONS AND POSSIBLE PROBLEMS.
+
+? Undo and Redo command of the most recent data entry. 
+These commands can work differently, incorrectly or not work at all. The keyboard has nothing to do with it. All depends on input fields where the input is made.
+
+? Swype function and predictive text input.
+This keyboard does not support gesture typing (Swype) and will never have it!
+Maybe in some distant future, the Jbak2 keyboard will support predictive input.
+
+? AUTOCOMPLETE STRING ABOVE ALL WINDOWS.
+My knowledge is not enough to fix this bug. This bug is from the original version of the program. As far as I can tell, the first developer wrote all correctly, but it was a long time ago. Maybe something changed during this time.
+Obviously, it will be improved over time.
+While I have made it possible to hide/display the autocomplete box using the Main menu item.
+You must first enable this menu item in Settings. (It will be shown only when the autocomplete box is displayed "above the keyboard") 
+
+The main condition for the correct positioning of the Autocomplete box is that the navigation bar and the status bar stay always on the screen (not hiden).
+
+? ОТКЛЮЧИТЬ ОКНО АВТОДОПОЛНЕНИЯ
+Настройки-автодополнение-окно автодополнения-не показывать
+
+? AUTOCOMPLETE BOX OR KEYPRESS POPUP NOT TURNING ON AUTOMATICALLY (firmware MIUI)
+Usually, this behavior is common on MIUI ROMs.
+Alternatively, try to check (allow) Pop-up permissions (permit drawing over other app) in two places:
+1) in the properties of the application itself
+2) Settings-Permissions-Permissions- Enable "Popup Notifications"
+
+? BUTTON ->D IN AUTOCOMPLETE
+Sometimes this button ->D appears in autocomplete. What for?
+It appears only in the search input field. For example, in Google Play search, search string on google.com etc.
+What does it mean?
+When you enter a query, these strings usually return similar queries.
+And if, for example, the keyboard is in fullscreen mode, these similar queries will be not visible.
+And how to be? These similar queries are simply issued in the autocomplete string instead of words from the dictionary.
+But in some cases it is more convenient to see the words issued from the dictionary.
+That is the purpose of this button.
+When you click on it, you activate a forced word output from the dictionary.
+
+? ABOUT SMILEYS AND EMOJIS.
+The keyboard supports utf-8 characters (smileys and emojis) (long press on the Enter button launches the Emoji layout) .
+The text smiley layout is on by default. These smileys will work everywhere.
+There is also an emoji layout, but these emojis will not be displayed everywhere, the keyboard does not matter here. It depends of the program (or device, android version, specific place in the program, etc.) where these emojis will be inserted.
+For this reason it is extremely small and included in the keyboard just for reference.
+
+You can change theme in the Settings: Languages and layouts, Emoji keyboard, Select button (on the right side). Use the right and left arrows buttons to scroll the list of layouts and press the Save button to finish.
+You can also find emoji layouts in the jbak2layout application (layouts).
+
+Smileys are regular text sequences like :), :( which a site or an external program converts into a graphical representation.
+Graphic smileys or emojis work on sites in different ways and not everywhere. They have been relatively recently included in utf-8 , and many websites simply do not understand them.
+
+Actually the keyboard occupies only 1.72 MB storage 
+The jbak2keyboard occupies 14 MB RAM (on my phone). It is all because of the pictures. The size of ALL these pictures in the program is only 18411 bytes. Adding emoji pictures extremely increases application size and required memory.
+So, in any case, I am not going to include emojis in the program , otherwise it will highly increase the program size, and it is extremely critical for some users.
+
+? WILL THE KEYBOARD STEAL PASSWORDS?
+The keyboard will not steal passwords. I guarantee you!
+The warning about a possible theft of passwords can scare an unprepared user. The point is that any keyboard has access to all texts entered using it, including codes and passwords. Accordingly, there is a potential risk of data theft using a third-party keyboard, and Android frankly warns about it.
+Jbak2 keyboard does not remember entered texts. It stores clipboard content for the multi-buffer feature, as well as user templates.
+The fact is that the keyboard has Internet access, this is necessary to display advertisements. So, while downloading advertisements, the program sends confirmation that the package has been received. Besides, the program does not send ANY data.
+
+? User dictionary editing.
+The jbak2 keyboard has its own user dictionary which has no relation with the system dictionary.
+It can also be edited. A long press on the \'+\' button in Autocomplete starts editing the dictionary.
+For details click on the question mark button(?) on this screen.
+
+? NUMBER INPUT
+(!!!It is no longer used!!!, but it still exists in the program . I just still do not know how to make another thing more beautiful, and the number input has a direct relation with it)
+
+In some programs (for example, in Hangouts, or when entering a phone number in Contacts on some devices) it was impossible to enter numbers when typing a message. I changed the type of number input, then, the number input stopped to work on some devices.
+For the moment I got out from this situation in the following way: I added the \"Number input method\" item in the Main menu. By default it is equal to 1. If you need to input numbers (for example, in the same Hangouts), call the Menu and click on "Number input method", it will be equal to 2. To get back to the Menu, click on this menu item once again.
+
+? KEYBOARD DOES NOT WORK OR DISAPPEARS IN SOME APPLICATIONS
+Fullscreen mode will help you. It works everywhere.
+I have not yet been able to discover the reason.
+To switch to fullscreen mode go to: Settings - Appearance- Fullscreen.
+
+? JBAK2 KEYBOARD RESETS TO THE STOCK KEYBOARD AFTER REBOOT
+The reason most likely to be:
+It is a bad idea to install deeply integrated applications on the SD card. Desktop widgets don not work in this case. So, the keyboard will also not work there. 
+When the input tools are initializing at boot time, the system tries to access the keyboard application, and the SD card has not yet been initialized, and the input method resets back to the default one.
+
+? SELECTIVE DELETION OF THE CLIPBOARD CONTENTS
+If you want to delete just some entries from the clipboard:
+1. Open the clipboard.
+2. Long press on the entry will launch the entry editor, where you will find the Delete button.
+3. After closing the entry editor, the clipboard will be automatically opened and immediately scrolled to the position from where it was launched.
+If the scrolling does not occur, help the system: scroll down the entry 1-2 times, and then everything should work automatically.
+Unfortunately, I have not yet been able to solve this issue because of lack of experience and knowledge.
+
+Keep in mind that the lower the processor power and the older version of Android, as well as the more entries in the clipboard, the slower this functionality will work or not work at all.
+If there is any inconvenience with this way of working, let me know by email. If there are many complaints, I will change it.
+
+? PAID VERSION.
+I am often asked to make a paid version without advertisements. Unfortunately, I can not do it yet (see the conclusion), but it is in my plans.
+
+? VOICE INPUT.
+For voice input on older versions of android, you need to give permission.
+
+The keyboard itself has nothing to do with the voice dialing. It just uses the voice engine installed on your device.
+
+Therefore, the permission is given in the program in which the engine itself is located. Usually, on most devices, this is the Google app.
+
+3) KEYBOARD CONTROLS AND OTHER SETTINGS
+
+On each letter key there is an additional character which is entering by holding this key. 
+
+Holding the \"123\opt\" key, we call the MAIN MENU containing Clipboard, Templates, Settings, etc. Keep in mind that the menu is SCROLLABLE, not all menu items are visible on the screen.
+You can configure the displaying of menu items. Go to Settings > Main menu display)
+ 
+The clipboard stores the last 20 (or it can be more. Go to Settings to set the size) copied texts with the possibility to insert them into the input fields.
+
+A long press on an entry in Templates, Clipboard and Calculator menu launches the entry editor.
+There you can edit an entry, save changes or delete it.
+
+Templates are user-definable, they can contain any text to be inserted into the input fields and some special instructions(for example, inserting current date and(or) time, selected text converting to upper or lowercase, content organization using tags on forums etc.).
+You can also create Folders in Templates.
+
+A special keyboard for text operations will be displayed by holding down the SHIFT key (big arrow key) which is making it easy to select, copy, paste text. 
+This keyboard has ARROW keys to move the cursor, HOME and END keys that allowing you to jump quickly to the beginning and to the end of the paragraph. There is also a Select button that allows you to enable or disable the selection mode when using arrows. 
+
+Holding the Enter key will display the Emoji layout.
+
+YOU CAN ALSO CUSTOMIZE:
+Gestures
+Vibro and Sound
+Buttons text size
+Font for fullscreen editor
+Keypress pop-up parameters
+Haptic feedback for short and long press and vibro intervals in in milliseconds
+Shift key behavior (for example, you can disable CapsLock mode)
+Case changing and inserting spaces when you type
+Thanks to the support of third-party keyboards and skins, you can also arrange the keys the way you want or change the keyboard design beyond recognition.
+
+INPUT METHOD
+If you need to  switch quickly to another keyboard, In the Main Menu there is a separate item for this purpose. Also, a separate code is available (see jbak2layout for details).
+
+COPYING
+If nothing is selected, by pressing the Copy button, the keyboard will suggest you to select \"Copy all\", 
+\"Copy word\", \"Copy paragraph\". (If such copying is possible).
+
+CALCULATOR. PROGRAMMABLE CALCULATOR
+General
+The keyboard has built-in three kinds of calculator: simple, scientific and programmable.
+
+The autocomplete box will be used as a calculator display.
+If it is disabled, it will be forcibly enabled to use the calculator.
+When you exit the calculator layout, it turns off again.
+
+When you click on the calculator display, its value will be displayed at the current cursor position.  If the cursor is in a word, the word will be replaced by the value from the calculator.
+
+How to enter:
+2+3+4= (=9) (in case of normal input)
+2[B(Up arrow)]3+4+ (=9) (in case of this method)
+
+Such unusual input method was made specially, it is called \"reverse Polish notation\". 
+In the 90s there was a whole line of programmable calculators (thanks to them, I (and not only me) owe them my profession as a programmer) with this input method (мк61, мк52, мк54, bz34). It was possible create programs on them. There was a whole column in the \"Техника-Молодежи\" (Youth technology) and other magazines, where different GAME (and not only) programs were described.
+In some calculations the number of keystrokes is decreasing, therefore, for compatibility with the PMC (programmable micro-calculator )series  this input method was selected.
+Notice that it will be impossible to add the common input method with the \"=\" button (it will be necessary to completely rewrite the calculator program).
+
+PROGRAMMABLE CALCULATOR.
+This calculator allows you to execute various programs. It is an incomplete similarity of the MK61 calculator (produced in 90s) . To learn about the programming principles, read about the MK61 calculator, here it will be tedious and long...  You can find a quick guide for programming on the built-in calculator in the jbak2layout application/
+The number of program steps was increased to 999, unlike the PMC. When the step 999 is reached, the step counter will be set to 0.
+Two modes: АВТ (automatic) and ПРГ (programming)
+Number of memory registers: 100
+Due to keyboard limitations, I did not figure out how to display them, therefore, those who will create their own calculator I recommend to define their concordance with the keys using the help tag!
+
+Programmable calculator commands:
+Work with registers
+In АВТ mode it is on the button ПХ+key which the register is assigned to. For example, the register 24 is assigned to the БП button. Then, to enter the current value from the calculator display, you need to press ПХ and then the БП button.
+To get a value of the register 24, you need to press the ИПХ button, and then the БП button.
+In ПРГ mode it works a little differently: after clicking on the ПХ(ИПХ) button, it requires a NUMBER of register (two digits). For the registers with the value less than 10, it is necessary to indicate these values in the program: 06 (the 6th register), 00 (the zero register)
+
+БП Unconditional branching (UB)
+In АВТ mode, to go to the indicated step, you need to press the БП button and 3 digits of the step number (for example, БП034: the counter will be set to the step 34).
+In ПРГ  mode press the БП button, and then indicate 3 digits of the step where it is necessary to go (БП034).
+
+Memory clean
+When you press the clr button, all the steps of the calculator program will be deleted. All the values in memory registers will remain unchanged.
+
+The в/о key sets the current step counter to the beginning of the program.
+The с/п key(start/stop of the program) runs the program form the current step. If it is found in the program, it stops execution and goes into АВТ mode.  If you click on it again, the program will continue to run from the step that follows the с/п command, that stopped program execution.
+
+Text size in the current entry field (red box in Autocomplete).
+
+To display you need to enable the autocomplete box (no matter where: above the keyboard or in the system status bar).
+Displaying is on by default. You can turn it off, go to Settings-Other settings. 
+
+Keypress code (green box in Autocomplete).
+
+It shows the keypress code. It is useful for creating your own layout.
+Go to Settings to disable its displaying.
+When you click on it, the key code will be inserted into the current cursor position. If the cursor is in a word, it will be replaced. 
+
+SPECIAL INSTRUCTIONS IN TEMPLATES.
+Special instructions are available in the template creator screen.
+I will describe their function using the example of $select (the rest, I think, you will understand yourself. The main thing here is the principle)
+So, we write:
+
+Hello, John!
+
+Next, we create a new template using special instructions.
+[b]$select[/b] (when you click on the Special Instructions item, its name will be inserted into the current cursor position in the template creator screen.)
+Give the name \"Greeting\" to the template and save. 
+Then, in the text, select \"Hello, John!\" and apply the created template.
+As a result, we will get this text:
+
+[b]Hello, John![/b]
+
+This tag (used on 4pda.ru) serves to make a selected text bold. Such a tag system is used on many popular sites.
+
+Main menu
+
+Long press on the key, where it says \"opt\", launches the main menu of the program.
+From there you will have access to templates, clipboard, program settings etc.
+Keep in mind that the menu is scrollable, not all menu items are visible on the screen.
+Display of menu items can be configured in Settings!
+
+Shortcuts
+Shortcuts serve to fast entry of templates. For example, when I write in different programming languages, I can write much faster using templates.
+But in different programming languages, the same constructions are written in different ways, for example:
+Pascal:
+if a>b then c:=c+d
+it is the same in php:
+if (a>b) c+=d
+I have separate template folders for Pascal and for PHP. 
+It turns out that when you write a program, you constantly have to go to Templates, search for a required folder and, then, for a required template in this folder, and only then insert it. It takes a lot of time. 
+But if you could assign a certain template to a certain character, and even for different languages,so that different templates were prescribed by clicking on the same characters. 
+That is already done.
+Characters are assigned to templates located in a separate folder. 
+
+To assign templates to characters, you need to select this exact folder:
+Call the main menu (long press on the key \"123 / opt\").
+Call Templates. 
+Find the right folder and make a long keypress on it. 
+Folder edit screen will be open. 
+There you can find the \"Select shortcut folder\" button. 
+After clicking on it, when the list of templates is displayed, the \"(sel)\" label will be applied to the folder. 
+(To cancel a selection,you need to start the Folder Edit screen again and press the \"Cancel shortcut folder selection\" button. 
+That is all, now all the templates written in a specific format will be assigned to the keys . 
+The number of shortcut templates should be no more than 100. 
+
+And here is the thing:
+I select the \"Pascal\" folder and have certain templates assigned to certain characters. 
+Then, I select the "php" folder, and I immediately have ready templates for php language. 
+It is fast and easy. 
+Only templates with a specific name format can be assigned to the keys. 
+If the template name does NOT begin with "# [", this template will be considered simple and will not be assigned to the keys. 
+Template NAME format:
+#[дf]Greeting John
+Template text:
+Hello, John!
+
+Characters inside the brackets are characters of the keys which the \"Hello, John!\" text will be assigned to. 
+
+How it works:
+Press the \"Hot\" key on the Russian layout (done only in the "Pseudo T9" layout), and then the key with the "д" character. 
+It will be displayed: \"Hello, John!\". 
+The same is for the English layout: \"Hot\"+\"f\". 
+
+"ADDITIONAL CHARACTERS" GESTURE STRING AND POPUPCHARACTERS TAG.
+
+The "Additional Characters" gesture string as well as the popupCharacter tag supports two formats:
+If the "abcd" format string is entered, a small keyboard with four buttons (a, b, c, d) will be displayed.
+If the string begins with \"v2\", for example, "v2 Bob Pete a", there will be three buttons in the small keyboard: "Bob", "Pete" and "a".
+The screen for the second format supports scrolling.
+A LITTLE TRICK:
+If the rightmost button partially go beyond the screen, you can adjust it by inserting extra spaces between characters (words) - "Bob Pete     Alice", the "Alice" button will be moved to the beginning of the next string.
+
+Besides, for a small keyboard v2, there is a possibility to specify any executable code (or a character: then, instead of a character, specify its code)  from the ones available in the keyboard.
+
+To that end, a created button is set in a special format (WITHOUT SPACES!), for example, 
+$[-502,Templates]: clicking on it will open templates; 
+$[32,Space]: clicking on it will enter a space.
+
+MACROS.
+The keyboard supports 2 macros. 
+Briefly about what the macro is and why there are two of them, for example:
+We have a long text (about 3 MB). In the Russian text we need to replace all the "е" letters with the "ё" letter.
+(this example is for MS word (PC version), but the principle is exactly the same).
+Bottom line: macro2: ctrl+f, The "replace" tab, е with ё, enter
+Macro1: macro2, macro2, macro2, macro2, macro2.
+As a result, when starting to execute the macro1, five "e" letters will be replaced at once. It reduces an enormous amount of time in large texts.
+To learn about the designation of the macro button, see below.
+
+ABBREVIATIONS USED IN THE KEYBOARD.
+The program is available all over the world, and the Portuguese will not understand what means \"Коп\" (copy). 
+But \"Copy\" he will understand (English is an international language, unlike Russian. For me, personally, it is very sad :( )
+As it is impossible to insert a whole word or phrases on the one button, the following abbreviations are used:
+cut - cut selection
+cop,copy - copy
+pas,paste - paste
+clip,clp,clipboard, CBuf - clipboard
+tpl (template) - templates
+opt (options) - main menu
+Home - to the beginning of the string
+End - to the end of the string
+HomePar (home paragraph) - to the beginning of the paragraph
+EndPar (end paragraph) - to the end of the paragraph
+to start, to end - to the beginning/to the end of the entire text
+recM1(2) - recording of the macro 1 or 2
+runM1(2) - running of the macro 1 or 2
+clrM1(2) - cleaning the macro 1 and 2
+
+DATE FORMAT FOR SPECIAL INSTRUCTIONS $datetime:
+G - era ( AD and BC in English)
+y - year (4-digit number)
+yy - year (the last two digits)
+yyyy - year (4-digit number)
+M -  month as a number without leading zeros
+MM - month number (with leading zeros if the month number is < 10)
+MMM -  four-letter abbreviation for the months in Russian and three-letter abbreviation in English (Feb)
+MMMM - full name of the month (in English: February)
+w - week of year without leading zeros
+ww - week of year with leading zeros
+W - week of month without leading zeros
+WW - week of month with a leading zero (if it is required)
+D - day of year
+d - day of month without leading zeros
+dd - day of month with leading zeros
+F - day of week in month without leading zeros
+FF - day of week in month with leading zeros
+E - day of week (abbreviation)
+EEEE - day of week (in full) (Tuesday)
+a - AM/PM indicator
+H - hours in 24-hours format without leading zeros
+HH - hours in 24-hours format with a leading zero
+k - number of hours in 24-hours format
+K - number of hours in 12-hours format
+h - hours in 12-hours format without leading zeros
+hh - hours in 12-hours format with a leading zero
+m - minutes without leading zeros
+mm - minutes with a leading zero
+s - seconds without leading zeros
+ss - seconds with a leading zero
+S - milliseconds
+z - time zone
+Z - time zone in RFC 822 format
+ - escape character for text Date='
+ - quotation mark o'clock
+
+4) CUSTOM LAYOUT AND SKIN EDITING AND CREATING. 
+
+HOW TO CHANGE LAYOUT OR SKIN.
+Layout change:
+Settings-Languages and layouts
+The list of available languages and layouts will appear.
+In front of the each language you can find the \"Select layout\" button. If there is only one layout, this button will be missing.
+Press the button, and the the layout screen will be opened.
+Scroll layouts using right and left arrows. After selecting the one you like, click the \"Save\" button.
+You can also set different layouts for portrait and landscape modes. Click the \"Portrait and landscape modes\"(then, do not forget to save changes).
+Repeat the same operation for each required language!
+
+Skin change:
+Settings-Appearance-Skins.
+Scrolling and installation order is the same as above.
+
+
+How to edit the built-in layout
+
+1. Decompile the built-in layout files (Main menu—Decompile, but first, do not forget to enable this item display in Settings)
+2. The mnt\sdcard\JbakKeyboard\keyboards\res folder will be created. It will contain all the built-in layouts in the form of XML files.
+For more detailed information about how different layouts are labelled, read in jbak2layout.
+3. Find and copy the required file to the mnt\sdcard\JbakK2eyboard\keyboards folder.
+4. Apply changes to the XML file.
+5. Activate it in Settings—Languages and layouts.
+In front of each language (character, numeric keyboard, calculator etc.) you will find the \"Select layout\" button, if there is more than one layout. (If there is only one layout, the button will not be displayed, the layout is ready to be used). 
+
+Warning!
+Do not forget to correctly specify the layout file name, if you change it!
+
+Click on it. 
+The layout selection screen will appear. Use the right and left arrow buttons to scroll the list of layouts.
+Click the \"Save\" button on the required layout.
+
+That is all, the layout is ready for use.
+Further, with any changes, you just need switch languages (for example, if you redacted the Russian layout: ru—en—ru).
+
+If you find an error in some layout, it is not necessary to write me (or in Google play) about it.
+I AM NOT A LANGUAGE EXPERT, and I do not know if the correction will be right for everyone or will concern only you, that is the reason that I will not fix anything.
+You can modify it yourself:
+1. Decompile built-in layouts (Main menu — Decompile, do not forget to enable this item display in Settings)
+2. Find the required layout and modify it using a text editor. The only condition is that the layout must be in UTF-8 encoding. The Jota+ text editor for Android supports UTF-8 encoded text files, and on PC it is more convenient to use the Notepad++ text editor. 
+For more detailed information on all the available tags and commands, see the jbak2layout application.
+3. Copy the modified file to the mnt/sdcard/jba2kkeyboard/keyboards folder
+4. Select this layout in Settings for the REQUIRED LANGUAGE (Settings-Languages and layouts).
+
+As standard, there are layouts for different languages. If the required language is not in the program, you can create it yourself.
+This is a keyboard constructor.
+
+
+CUSTOM LANGUAGE CREATING (NOT PRESENTED IN THE PROGRAM).
+You can create your own layout for any language, for portrait and landscape mode in almost 5 minutes, by editing a simple text file (using any text editor), using UTF-8 characters).
+The instruction for custom language creating is in the jbak2layout application.
+
+IF THIS LANGUAGE IS NOT IN THE LIST, IT WILL APPEAR AUTOMATICALLY, having located the layout.
+
+ALSO YOU CAN CREATE YOUR OWN SKIN.
+All the necessary information about how to do it is in the jbak2skin application. This application contains additional layouts and custom skins.
+Your layout or skin can also be included in these programs. Install them. There, it says what you need to do to your layout or skin appears in the application data.
+
+SKIN CONSTRUCTOR
+When you create a new skin, all the fields will be filled with the values of a separate skin that is not in the skin list. The same happens while loading an existing external skin for editing. First, all the fields will be filled with the values of this missing skin, and then with the skin that is loading.
+That has been done to all the keyboard keys continue to display the characters assigned to them.
+
+After pressing the \"Refresh"\ button, all the fields with errors will be highlighted red, and the default values will be written into the skin file instead of them.
+
+5)WORK PLAN.
+The program has a link to the topic on 4pda.ru, and there is a link to the work plan (there is also a link to see what has already been done) in its header . There I take notes what remains to be done.
+The order of the task performance does not depend on its position. This project is my first experience, I did not encounter Java, C, C++ and other programming languages before (there was no need to do that), that is why I carry out that task from the work plan which I can manage with my constantly growing experience...
+
+6) DEVELOPERS:
+Program developer: Michail Wyazenkin.
+Creator and first developer: Juriy Bakunin.
+Translation into:
+Ukrainian: Denis Manzhos (4pda.ru - zdrweb), Stealth3001 (4pda.ru)
+English, Spanish: Luiza Valeeva (Luiza_Va on 4pda.ru)
+Application icon: myha781 on 4pda.ru, (he wants to keep his name secret) :)
+Also, dozens of active users have been participated in this project, whose bug reports, tips, custom layouts helped to improve the keyboard.
+
+7) CONCLUSION.
+In November 2013 I suffered a severe stroke (due to diabetes, which I had no control in the past), I still can not walk (September 2019). I am a handicapped person of the first category.
+And, since after the stroke my coordination became very bad, the question arose about the keyboard on my mobile phone. I was not satisfied with the default keyboard, it had very small buttons, and I often did not hit them. I have tried a bunch of others. It was not what I wanted.
+I found by chance and installed the jbak1 keyboard, and immediately fell in love with it. 
+But the keyboard was flawed, there were a lot of bugs in it. Then, I accidentally found out that the project was abandoned since February 2013 (this is for those who think that I am so bad and "used the source code" (yes, yes, they were already)) and decided to improve the keyboard.
+Later (in three years!), the developer of the Jbak keyboard got back into the keyboard project, but the jbak2 keyboard was already strongly developed, and its functionality was very different, it also differed by design and features from the original keyboard. 
+Actually, both keyboards just have a similar name.
+

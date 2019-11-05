@@ -1,0 +1,174 @@
+Descripción de las instrucciones especiales
+
+Con la ayuda de instrucciones especiales, las posibilidades de las plantillas se amplían notablemente.
+
+Aquí solo se describen algunas instrucciones especiales, no está claro cómo aplicarlas sin su descripción.
+
+$select 
+
+$selword 
+
+$selline 
+
+ayudan a organizar el procesamiento del texto seleccionado, por ejemplo, a encerrar el texto seleccionado entre comillas ("$select") 
+
+
+
+$selReplaсe 
+
+El formato de la instrucción especial selReplace: 
+
+1ra cadena: siempre $selReplace 
+
+2da cadena: comienza con @SEARCH, y después de eso , justo después de dos puntos, sigue la cadena de búsqueda. Final de la cadena: enter(avance de línea).
+
+3ra cadena: comienza con @REPLACE, y justo después de dos puntos, sigue la cadena de reemplazo
+
+
+
+Para eliminar un elemento encontrado, debe especificar @REPLACE:@[DEL] 
+
+Este modo ha sido específicamente creado para evitar la eliminación accidental de un elemento encontrado, si el formato de esta instrucción especial es incorrecto
+
+Ejemplos: 
+
+- buscamos "Hola" y reemplazamos en la selección por "Hello":
+
+$selReplace 
+
+@SEARCH:Hola 
+
+@REPLACE:Hello 
+
+
+
+- reemplazamos todas los avances de línea (enter) con subrayado: 
+
+$selReplace 
+
+@SEARCH:(presionamos Enter 2 veces) 
+
+@REPLACE:_ 
+
+
+
+- reemplazamos todos los subrayados con un carácter de avance de línea 
+
+$selReplace 
+
+@SEARCH:_ 
+
+@REPLACE:(presionamos Enter 1 vez) 
+
+
+
+$selToPos 
+
+Esta instrucción solo puede ser la única en la plantilla. 
+
+Utilice la instrucción especial $program para organizar otras acciones con el texto seleccionado. 
+
+¡El texto fuente no debe tener más de 100000 caracteres en cualquier dirección desde el cursor (un total de 200000 caracteres, si el cursor está exactamente en el medio del texto)!
+En diferentes dispositivos, este valor puede variar en cualquier dirección. Esta es una limitación de Android. 
+
+
+
+formato de instrucción:
+
+selToPos[0,0,0,.] 
+
+(todos los parámetros están separados por comas, excepto el cuarto (se permite una coma)). 
+
+
+
+donde: 
+
+1er parámetro: número, posición de donde comenzar la selección.
+
+Si es mayor o igual a 0, seleccione desde el principio del texto, desde la posición especificada. 
+
+(NO SE HA HECHO AÚN) Si el número es negativo, entonces, consideramos la posición de selección después de la posición actual del cursor. 
+
+2do parámetro: número, cómo buscar. 
+
+Si es mayor o igual a 0, buscamos el valor más pequeño de la primera aparición de los caracteres enumerados en el cuarto parámetro. 
+
+Si es menor que 0, buscamos la cadena completa especificada en el 4to parámetro.
+
+3er parámetro: número, desde dónde buscar, desde el principio o el final del texto (número positivo o negativo).
+
+4to parámetro: cadena de caracteres, hasta dónde seleccionar. 
+
+
+
+Ejemplos: 
+
+selToPos[0,0,0,.] : seleccionamos el texto desde el principio y hasta el primer punto desde el principio. 
+
+selToPos[0,0,-1,.] : lo mismo, pero seleccionamos hasta el primer punto desde el final del texto. 
+
+selToPos[10,0,0,.] : seleccionamos el texto desde la décima posición desde el principio hasta el primer punto desde el principio.
+
+selToPos[0,0,0,.!?] - seleccionamos el texto desde el principio hasta el momento en que aparecen uno de los siguientes caracteres .!? 
+
+selToPos[0,-1,0,Hola] - seleccionamos el texto desde el principio hasta la palabra Hola.
+
+
+
+$program 
+
+Puede haber solo una instrucción especial en la plantilla y la primera línea. 
+
+Para seleccionar enlaces a las plantillas, use el botón "+"
+
+
+
+Ejemplo:
+
+Seleccionar una frase y reemplazarla por un texto del búfer:  
+
+$program 
+
+@TPL:SpecInstructions/seltopos .!? 
+
+@TPL:SpecInstructions/paste 
+
+donde: 
+
+Primero, agregamos dos plantillas a la carpeta SpecInstructions (la carpeta se indica solo como un ejemplo, la suya puede ser diferente o puede estar completamente ausente):
+
+seltopos con el contenido: 
+
+selToPos[0,0,0,.!?] 
+
+y la plantilla Paste que contiene una instrucción especial para pegar el texto copiado del búfer
+
+$paste 
+
+Y al final, creamos nuestra plantilla con $program. 
+
+
+
+$codes 
+
+Ejecución secuencial de códigos listados entre corchetes, separados por comas. 
+
+Solo puede haber una instrucción especial en la plantilla y la primera línea. 
+
+
+
+Formato: 
+
+$codes[<code>+<code>+...+n,<code>,<code>,...,n] 
+
+donde: 
+
+<code> - cualquier código utilizado en el teclado o el keycode de carácter (códigos en el rango -5000 - -7000), o cualquier número positivo mayor que 0, entonces se ingresará el carácter correspondiente a este número en la codificación utf8. 
+
+
+
+Además, puede especificar las combinaciones de teclas, por ejemplo, Ctrl + A (seleccionar todo), luego los códigos deben especificarse a través de "+". 
+
+El número de teclas en combinación es ilimitado. 
+
+

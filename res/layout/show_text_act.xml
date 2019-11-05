@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    >
+<LinearLayout
+    android:id="@+id/llad_desc"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical" >
+    
+<!-- <com.google.android.gms.ads.AdView -->
+<!--     android:id="@+id/AdView_desc" -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_alignParentBottom="true" -->
+<!--     android:layout_centerHorizontal="true" -->
+<!--     ads:adSize="BANNER" -->
+<!--     ads:adUnitId="@string/banner_ad_unit_id" -->
+<!--     /> -->
+
+</LinearLayout>
+
+<RelativeLayout
+    android:id="@+id/desc_rlsearch_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/desc_hscroll"
+    android:background="#000"
+    android:paddingBottom="5dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="5dp" >
+
+<TextView
+    android:id="@+id/desc_search_result"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:paddingLeft="10dp"
+    android:layout_marginTop="2dp"
+    android:text="[0/0]"
+    android:textColor="#fff"
+    android:textSize="8sp" 
+    />
+
+<EditText
+    android:id="@+id/desc_search_edit"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/desc_search_result"
+    android:layout_marginLeft="2dp"
+    android:layout_toLeftOf="@+id/desc_search_up"
+    android:background="@drawable/edittext_back_focus_style"
+    android:clickable="true"
+    android:ems="10"
+    android:gravity="left"
+    android:imeOptions="actionSearch"
+    android:singleLine="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:textSize="20dp" 
+    >
+</EditText>
+    
+<Button
+    android:id="@+id/desc_search_up"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:layout_below="@+id/desc_search_result"
+    android:layout_toLeftOf="@+id/desc_search_down"
+    android:layout_marginLeft="2dp"
+    android:background="#aaa"
+    android:clickable="true"
+    android:onClick="onClick"
+    android:text="⇧"
+    android:textColor="#000"
+    android:textSize="16dp" 
+    />
+
+<Button
+    android:id="@+id/desc_search_down"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:layout_below="@+id/desc_search_result"
+    android:layout_marginLeft="5dp"
+    android:layout_toLeftOf="@+id/desc_search_close"
+    android:background="#aaa"
+    android:clickable="true"
+    android:onClick="onClick"
+    android:text="⇩"
+    android:textColor="#000"
+    android:textSize="16dp" />
+
+<Button
+    android:id="@+id/desc_search_close"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/desc_search_result"
+    android:layout_marginLeft="20dp"
+    android:background="@drawable/close"
+    android:clickable="true"
+    android:onClick="onClick" 
+    />
+
+</RelativeLayout>
+
+<HorizontalScrollView
+    android:id="@+id/desc_hscroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/llad_desc"
+    android:background="#808080" 
+    >
+
+<LinearLayout
+    android:id="@+id/desc_llcontrol"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:orientation="horizontal" >
+<!--     android:layout_gravity="right" -->
+    
+<Button
+    android:id="@+id/desc_btn_sellang"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:text="@string/euv_lang_text" />
+
+<Button 
+    android:id="@+id/desc_btn_search"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+	android:text="@string/search"
+		/> 
+
+<Button
+    android:id="@+id/desc_btn_start"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:text="toStart" 
+    />
+
+<Button
+    android:id="@+id/desc_btn_end"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:layout_weight ="1" 
+    android:text="toEnd" 
+    />
+
+<Button
+    android:id="@+id/desc_btn_pgdn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:text="PgDn" 
+    />
+
+<Button
+    android:id="@+id/desc_btn_pgup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:text="PgUp" 
+    />
+
+<Button
+    android:id="@+id/desc_btn_size"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:text="@string/ann_btn_big" 
+    />
+
+<Button
+    android:id="@+id/desc_btn_left_right"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="50dp"
+    android:onClick="onClick"
+    android:text="right_left" 
+    />
+
+</LinearLayout>
+</HorizontalScrollView>
+
+<ProgressBar
+    android:id="@+id/desc_load_progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:background="#fff"
+    android:progress="100" 
+    />
+
+<ScrollView
+    android:id="@+id/desc_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/desc_rlsearch_panel"
+    android:layout_below="@id/desc_load_progress"
+    >
+    
+    <EditText
+        android:id="@+id/desc_et1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/desc_rlsearch_panel"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:linksClickable="false"
+        android:minLines="50"
+	    android:gravity="left|top"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical" >
+
+        <requestFocus />
+    </EditText>
+        
+</ScrollView>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<LinearLayout
+    android:id="@+id/llad_pref"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical" >
+    
+<!-- <com.google.android.gms.ads.AdView -->
+<!--     android:id="@+id/AdView_pref" -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_alignParentBottom="true" -->
+<!--     android:layout_centerHorizontal="true" -->
+<!--     ads:adSize="BANNER" -->
+<!--     ads:adUnitId="@string/banner_ad_unit_id" -->
+<!--     /> -->
+
+</LinearLayout>
+
+<include layout="@layout/two_line_item"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+       	android:id="@+id/top_item"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/llad_pref"
+        android:visibility="gone"
+        />
+
+<ListView
+    android:id="@android:id/list"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_above="@id/llad_pref"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/text_about" />
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+KeyBackStartColor=0xFF000000
+KeyBackEndColor=0xFF000000
+KeyBackGradientType=0
+KeyTextColor= #ff19dbf6
+KeyTextBold=0
+KeyGapSize=5
+KeyStrokeStartColor= #ff19dbf6
+KeyStrokeEndColor=  #ff19dbf6
+KeyboardBackgroundStartColor=#FF171717
+KeyboardBackgroundGradientType=1
+SpecKeyTextColor = #ff19dbf6
+SpecKeyBackStartColor = #ff000000
+SpecKeyBackEndColor = #ff000000
+SpecKeyStrokeStartColor = #ff19dbf6
+SpecKeyStrokeEndColor=0xff494948
+ KeyBackCornerX=30
+ KeyBackCornerY=30

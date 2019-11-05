@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/pk_mini_static"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  >
+  
+<ImageView
+    android:id="@+id/pk_mini_close"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:src="@drawable/close"
+    android:textSize="15sp" />
+
+<ScrollView
+    android:id="@+id/pk_mini__scroll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf ="@+id/pk_mini_close"
+    >
+
+<LinearLayout
+    android:id="@+id/pk_mini_llleft"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+</LinearLayout>
+</ScrollView> 
+</RelativeLayout>

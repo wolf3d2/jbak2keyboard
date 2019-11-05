@@ -1,0 +1,167 @@
+Description of special instructions 
+
+Templates possibilities are greatly expending using special instructions. 
+
+Only some special instructions are described here, it is not clear how to apply them without their description. 
+
+
+$select 
+
+$selword 
+
+$selline 
+
+help to organize the processing of selected text, for example, to enclose selected text in quotes ("$select")
+
+
+
+$selReplaсe 
+
+The selReplace special instruction format : 
+
+1st string: always $selReplace 
+
+2nd string: starts with @SEARCH, and it follows, right after a colon, by a search string. The end of string: enter(line feed). 
+
+3rd string: starts with @REPLACE, and it follows, right after a colon, by a replacement string 
+
+
+To delete a found item, you need to specify @REPLACE:@[DEL] 
+
+This mode is specifically made to prevent accidental deletion of a found item in case the format of this special instruction is incorrect
+
+
+Examples: 
+
+- we look for "Hola" and replace in selection for "Hello": 
+
+$selReplace 
+
+@SEARCH:Hola 
+
+@REPLACE:Hello 
+
+
+- replace all line feeds (enter) with underscore: 
+
+$selReplace 
+
+@SEARCH:(press Enter 2 times) 
+
+@REPLACE:_ 
+
+
+
+-replace all underscores with a line feed character 
+
+$selReplace 
+
+@SEARCH:_ 
+
+@REPLACE:(press Enter once) 
+
+
+
+$selToPos 
+
+This instruction can be the unique one in the template. 
+
+Use the $program special instruction to organize other actions with selected text. 
+
+The source text must be no more than 100000 characters, in any direction from the cursor (a total of 200000 characters, if the cursor is exactly in the middle of the text)! 
+On different devices, this value can vary in any direction. This is an Android limitation. 
+
+Instruction format: 
+
+selToPos[0,0,0,.] 
+
+(all parameters are separated by commas, except the fourth (a comma is allowed in it)). 
+
+where: 
+
+1st parameter: number, position where to start selection. 
+
+If it is greater than or equal to 0, then select from the beginning of the text, from the specified position.
+
+(NOT DONE YET) If the number is negative, then we consider the position of selection after the current cursor position.
+
+2nd parameter: number, how to search. 
+
+If it is greater than or equal to 0, then we look up to the smallest value of the first occurrence of the characters listed in the 4th parameter.
+
+If it is less than 0, then we look for the entire string specified in the 4th parameter. 
+
+3rd parameter: number, from where to look for, from the beginning or end of the text (positive or negative number).
+
+4th parameter: character string, until where to select. 
+
+
+
+Examples: 
+
+selToPos[0,0,0,.] : select text from the very beginning to the first point from the beginning.
+
+selToPos[0,0,-1,.] : same thing, but select to the first point from the end of the text 
+
+selToPos[10,0,0,.] : select text from the tenth position from the beginning and to the first point from the beginning. 
+
+selToPos[0,0,0,.!?] : select text from the very beginning until the moment when one of the these characters is encountered .!?
+
+selToPos[0,-1,0,Hola] : select text from the very beginning to the word Hola.
+
+
+
+$program 
+
+There can be only one special instruction in the template and the first string. 
+
+To select links to templates, use the "+" button 
+
+Example: 
+
+Select a sentence and replace it with a text from the clipboard:
+
+$program 
+
+@TPL:SpecInstructions/seltopos .!? 
+
+@TPL:SpecInstructions/paste 
+
+where: 
+
+first, add two templates to the SpecInstructions folder (the specified folder is just an example, yours may be different or may not be at all): 
+
+seltopos with the content: 
+
+selToPos[0,0,0,.!?] 
+
+and the Paste template containing the special instruction to paste a copied text from the clipboard 
+
+$paste 
+
+And in the end, create our template with $program. 
+
+
+
+$codes 
+
+Sequential code execution listed in square brackets, separated by commas.
+
+There can be only one special instruction in the template and the first string.
+
+
+Format: 
+
+$codes[<code>+<code>+...+n,<code>,<code>,...,n] 
+
+where: 
+
+<code> - any code used in the keyboard or a character key code (in the range of -5000 - -7000) or any positive number greater than 0, then the character corresponding to this number in utf8-encoding will be entered.
+
+
+
+Also, you can specify key combinations, for example, Ctrl + A (select all), then the codes must be specified through "+".
+
+The number of keys in combination is unlimited.
+ 
+
