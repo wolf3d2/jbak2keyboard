@@ -179,6 +179,13 @@ public class CurInput {
 		}
 		return false;
 	}
+//	/** возвращаем выделенный текст или "" */
+//	public String getSelectedText()
+//	{
+//		if (isInited()&&sel!=null&&sel.length() > 0)
+//			return sel;
+//		return st.STR_NULL;
+//	}
 	/** выделение части строки от курсора
 	 * @param bhome - если true - выделяем до начала строки, иначе до конца
 	 * */

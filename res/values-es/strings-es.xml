@@ -91,6 +91,8 @@
     <string name="pref_mini_kbd_its_desc">Si está marcado, se usa su propio teclado pequeño, de lo contrario se usará el predeterminado</string>
     <string name="pref_mini_kbd_btnsize">Tamaño de las teclas</string>
     <string name="pref_mini_kbd_btnsize_desc">Tamaño de las teclas en el teclado pequeño</string>
+    <string name="pref_mini_kbd_example">Посмотреть пример</string>
+    <string name="pref_mini_kbd_example_desc">Вызовите в клавиатуре маленькую клавиатуру</string>
     <string-array name="array_minikbd_btn_size">
         <item>Por defecto</item>
         <item>Pequeño</item>
@@ -244,9 +246,10 @@
 	<string name="pop2s_file_not_empty">Archivo no está vacío.\n¿Reescribir?</string>
 					
 <!-- цвета кнопок для accoloract -->
-	<string name="ac_color_type_layout_title">Tipo de colores de Autocompletado:</string>
+	<string name="ac_color_type_layout_title">Tipo de color del Autocompletado:\n(sólo la opción \"Colores de usuario\" funciona completamente, el resto si es posible)</string>
 	<string name="ac_color_type0">Colores personalizados</string>
-	<string name="ac_color_type1">Colores como de las teclas del teclado</string>
+	<string name="ac_color_type1">Цвета начального градиента</string>
+	<string name="ac_color_type2">Цвета конечного градиента</string>
 	
 	<string name="ac_color_mainback">Color del fondo del Autocompletado</string>
 	<string name="ac_color_title">Color de todas las teclas en Autocompletado</string>
@@ -286,6 +289,7 @@
 	<string name="pc2act_btn_color_txt">Color del texto de las teclas:\n(por defecto #ff000000)</string>
 	<string name="pc2act_btn_color_back">Color del fondo de las teclas:\n (por defecto #fffffffe)</string>
 	<string name="pc2act_str_add">Cadena de ajustes para el Gesto adicional</string>
+	<string name="pc2act_str_help1">В строке ниже дублируется строка из настроек для жеста Дополнительные символы.</string>
 	<string name="pc2act_btn_size">Tamaño de las teclas\n(por defecto 20)</string>
 	<string name="pc2act_btn_off_size">Tamaño de las teclas adicionales\n(por defecto 20)</string>
 	<string name="pc2act_winfix">Fijación de la ventana</string>
@@ -329,7 +333,10 @@
 	<string name="gesture_popupchar1">Símbolos adicionales</string>
 	<string name="gesture_popupchar_str1">Ventana emergente de símbolos adicionales</string>
 	<string name="gesture_popupchar_str1_desc">Para abrir la ventana de símbolos adicionales al usar el gesto “Símbolos adicionales”, se necesita enumerarlos aquí</string>
-	<string name="gesture_cand_list">Lista de palabras del Autocompletado</string>
+	<string name="gesture_popupchar_str1_help1">Здесь задаётся строка для жеста Дополнительные символы.
+\n\nРазделитель - пробел.
+\n\nВ этой строке можно задать ваши слова и символы для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
+		<string name="gesture_cand_list">Lista de palabras del Autocompletado</string>
 	<string name="gesture_cut">Cortar</string>
 	<string name="gesture_copy">Copiar</string>
 	<string name="gesture_paste">Pegar</string>
@@ -440,7 +447,23 @@
 	<string name="set_enter_state_desc">Cambiar el ícono en la tecla Enter dependiendo del contexto?</string>
     <string name="set_ac_defkey">Palabras por defecto</string>
     <string name="set_ac_defkey_desc">Palabras por defecto en el panel de Autocompletado. Separador: espacio. Si una tecla corresponde a varios caracteres, se introducirá el primero.</string>
-	<string name="set_ac_new_defkey">Cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
+	<string name="set_ac_defkey_help1">Это строка текста по умолчанию.
+\n\nОна выводится в окне автодополнения, когда поле ввода пустое или введён один из знаков не символ и не цифра. \nНапример точка, запятая, двоеточие и т.д.
+\n\nРазделитель - пробел.
+\n\nВ этой строке можно задать ваши самые используемые слова для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
+    <string name="set_ac_defkey_help_buttons">\n\nКнопки +B и +T служат для удобства ввода специальных форматов, которые реализуют создание кнопок:
+\n\n+B - вставляет в позицию курсора специальный формат $[0,t]
+\nгде:
+\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
+\n0 - любой код из доступных в клавиатуре. Может быть как служебный (отрицательные значения), так и код символа (тогда он введётся в поле ввода).
+\nt - текст отображаемый на кнопке
+\n\n+T - вставляет в позицию курсора специальный формат $[название_шаблона,t]
+\nгде:
+\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
+\nназвание_шаблона - полное имя шаблона, который будет выполнен.
+\nИмя шаблона не должно содержать запятых.
+\nt - текст отображаемый на кнопке</string>
+    <string name="set_ac_new_defkey">Cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
     <string name="set_market1">Evalúa la aplicación</string>
     <string name="set_ac_space">Inserción del espacio</string>
     <string name="set_ac_space_desc">Hacer espacio después de ingresar la palabra del Autocompletado</string>
@@ -753,7 +776,7 @@
 	<string name="tpl_cb_right">Alinear a la derecha</string>
     <string name="tpl_seltopos_toast">Texto largo. No se puede procesar</string>
     <string name="tpl_help_spec">Ayuda con instrucciones especiales</string>
-    <string name="fm_btn_plus_title"> Selección de plantilla para la instrucción especial $ program</string>
+    <string name="fm_btn_plus_title"> Selección de plantilla</string>
     
     <string name="tpl_translate_menuname">Traductor</string>
     <string name="tpl_translate">Registro del traductor</string>
@@ -832,7 +855,7 @@
 
 <!-- переводить только то, что есть на русском и именно так, как указано здесь -->
 <!-- для каждой локали своя строка! -->
-	<string name="about_web">Sitio del programa: http://jbak2.ucoz.net\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
+	<string name="about_web">Sitio del programa: http://jbak2.ucoz.net\n\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \n\nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
     
     <string name="about_keycode_button">Código del símbolo (útil para crear su propio tema) \n(la aplicación UnicodePad)</string>
 	<string name="diary">Lista de cambios</string>

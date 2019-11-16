@@ -26,15 +26,14 @@
 	    android:visibility="gone"
 		/>
 
-<Button android:id="@+id/sc_help"
-	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-	    android:layout_alignParentTop="true"
-    	android:layout_toLeftOf="@+id/sc_upd"
-		android:text="help"
-	    android:onClick="onClick"
-	    android:visibility="gone"
-		/>
+<Button
+    android:id="@+id/sc_help"
+    style="@style/label_help"
+    android:layout_alignParentTop="true"
+    android:layout_toLeftOf="@+id/sc_upd"
+    android:gravity="center"
+    android:onClick="onClick"
+    android:visibility="gone" />
 
 <TextView
     android:id="@+id/sc_skinname"

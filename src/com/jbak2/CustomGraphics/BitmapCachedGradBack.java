@@ -10,6 +10,10 @@ import android.graphics.drawable.shapes.RectShape;
 
 public class BitmapCachedGradBack extends GradBack
 {
+	/** стартовый цвет для чтения из нужных мест, для добавления в массив цветов*/
+	public static int cols = 0;
+	/** конечный цвет для чтения из нужных мест, для добавления в массив цветов*/
+	public static int cole = 0;
     int m_cacheSize = 20;
     static Vector<Vector<BmpCacheEntry>> caches = new Vector<Vector<BmpCacheEntry>>();
     Vector<BmpCacheEntry> m_cache = new Vector<BitmapCachedGradBack.BmpCacheEntry>();
@@ -26,6 +30,15 @@ public class BitmapCachedGradBack extends GradBack
     public BitmapCachedGradBack(int startColor, int endColor)
     {
         super(startColor, endColor);
+    	
+    }
+    public BitmapCachedGradBack(boolean saveColor, int startColor, int endColor)
+    {
+        super(startColor, endColor);
+    	if (saveColor) {
+            cols = startColor;
+        	cole = endColor;
+    	}
     	
     }
     @Override

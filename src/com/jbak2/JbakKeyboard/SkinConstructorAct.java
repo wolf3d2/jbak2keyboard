@@ -355,7 +355,8 @@ public class SkinConstructorAct extends Activity
         	String out = this.getString(R.string.sc_help)
         		+st.STR_LF+st.STR_LF
         		+ this.getString(R.string.pc2act_color_desc);
-        	st.help(out);
+        	Dlg.helpDialog(inst, out);
+        	//st.help(out);
         }
     }
     public void setNameSkin(String name) 

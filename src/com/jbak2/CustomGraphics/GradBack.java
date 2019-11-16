@@ -2,6 +2,9 @@ package com.jbak2.CustomGraphics;
 
 import java.util.Vector;
 
+import com.jbak2.JbakKeyboard.IKeyboard.KbdDesign;
+import com.jbak2.JbakKeyboard.st.IntEntry;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;

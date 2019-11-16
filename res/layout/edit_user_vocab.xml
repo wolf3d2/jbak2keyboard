@@ -18,13 +18,12 @@
 	
 <Button
     android:id="@+id/euv_help"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
+    style="@style/label_help"
     android:layout_alignParentRight="true"
-    android:onClick="onClickXml"
-    android:text="  ?  "
-    />
+    android:layout_alignParentTop="true"
+    android:foregroundGravity="center"
+    android:gravity="center"
+    android:onClick="onClickXml" />
     
 <Button
     android:id="@+id/euv_search"

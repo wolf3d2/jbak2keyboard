@@ -1,5 +1,7 @@
 package com.jbak2.JbakKeyboard;
 
+import java.io.File;
+
 import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
 import android.annotation.SuppressLint;
 import android.app.Service;
@@ -95,6 +97,7 @@ public class PopupKeyboard
         View v = ServiceJbKbd.inst.getLayoutInflater().inflate(R.layout.popup_kbd_mini_static, null);
         llmain = ((RelativeLayout) v.findViewById(R.id.pk_mini_static));
         llmain.setBackgroundResource(android.R.drawable.dialog_frame);
+        
         llleft = (LinearLayout)v.findViewById(R.id.pk_mini_llleft);
 
         ImageView close = (ImageView) v.findViewById(R.id.pk_mini_close);
@@ -146,6 +149,8 @@ public class PopupKeyboard
     	LinearLayout ll = new LinearLayout(inst);
         ll.setOrientation(LinearLayout.HORIZONTAL);
     	int llw = 0;
+    	
+// ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
 		for (int i=0;i<key.popupCharacters.length();i++){
 			// TextView
 //			Button btn = new Button(inst);
@@ -214,6 +219,9 @@ public class PopupKeyboard
             ll.addView(btn);
     	}
     	if (ll.getChildCount()>0)
+    		ll.measure(0, 0);
+    		int ww = ll.getMeasuredWidth();
+    		ll.setMinimumWidth(ww+MARGIN+MARGIN+MARGIN);
     		llleft.addView(ll);
 //    	llmain.addView(llleft);
     	
@@ -463,7 +471,9 @@ public class PopupKeyboard
     	if (st.ar_asg.size()>0)
     		st.ar_asg.clear();
     	popupstr = popupstr.substring(3, popupstr.length()).trim();
-    	String[] txt = popupstr.split(st.STR_SPACE);
+//    	String[] txt = popupstr.split(st.STR_SPACE);
+    	
+    	String[] txt = ArrayFuncAddSymbolsGest.getSplitArrayElements(popupstr);
     	View v = null;
     	if (!st.pc2_lr)
     		v = ServiceJbKbd.inst.getLayoutInflater().inflate(R.layout.popup_kbd_full_right, null);
@@ -612,6 +622,8 @@ public class PopupKeyboard
         int ll_btn_width = lp.width-MARGIN-MARGIN-wid;
 
         int id =1;
+        
+// ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
         for (int i=0;i<txt.length;i++) {
         	if (txt[i].trim().length() == 0){
         		TextView tv = new TextView(inst);
@@ -650,14 +662,22 @@ public class PopupKeyboard
     			if (!pc2_block) 
     				close();
 				if (el!=null){
+					if (el.tpl_name!=null) {
+				   		File ff = new File(el.tpl_name);
+				   		if (ff.exists()&&ff.isFile()) {
+			        		new Templates(1,0).processTemplate(st.readFileString(ff));
+			        		Templates.destroy();
+				   		}
+					} else
+						if (ServiceJbKbd.inst!=null)
+							ServiceJbKbd.inst.processKey(el.code);
 					if (ServiceJbKbd.inst!=null)
 						ServiceJbKbd.inst.processKey(el.code);
     			} 
 				else if (txt.length()== 1) {
 					if (ServiceJbKbd.inst!=null)
 						ServiceJbKbd.inst.processKey(txt.charAt(0));
-				}
-				else
+				} else
     				new Templates(1,0).processTemplate(txt);
         		}
     		});
@@ -689,6 +709,8 @@ public class PopupKeyboard
             int llcnt = ll.getMeasuredWidth();
             if (llcnt+tv.getMeasuredWidth()+MARGIN>ll_btn_width){
         		llrow.addView(ll, llrowpar);
+        		int ww = llrow.getWidth();
+        		llrow.setMinimumWidth(ww+100);
                 ll = new LinearLayout(inst);
                 ll.setOrientation(LinearLayout.HORIZONTAL);
         	}

@@ -95,6 +95,8 @@
     <string name="pref_mini_kbd_its_desc">Если отмечено, то используется своя маленькая клавиатура, иначе - системная</string>
     <string name="pref_mini_kbd_btnsize">Размер кнопок</string>
     <string name="pref_mini_kbd_btnsize_desc">Размер кнопок в маленькой клавиатуре</string>
+    <string name="pref_mini_kbd_example">Посмотреть пример</string>
+    <string name="pref_mini_kbd_example_desc">Вызовите в клавиатуре маленькую клавиатуру</string>
     <string-array name="array_minikbd_btn_size">
         <item>Системный</item>
         <item>Маленький</item>
@@ -247,10 +249,11 @@
 	<string name="pop2s_file_not_empty">Файл не пустой.\nПереписать?</string>
 					
 <!-- цвета кнопок для accoloract -->
-	<string name="ac_color_type_layout_title">Тип цветов автодополнения:</string>
+	<string name="ac_color_type_layout_title">Тип цветов автодополнения:\n(полностью работает только вариант \"Свои цвета\", остальные - если возможно)</string>
 	<string name="ac_color_type0">Свои цвета</string>
-	<string name="ac_color_type1">Цвета как у клавиш клавиатуры</string>
-	
+	<string name="ac_color_type1">Цвета начального градиента</string>
+	<string name="ac_color_type2">Цвета конечного градиента</string>
+		
 	<string name="ac_color_mainback">Цвет фона автодополнения</string>
 	<string name="ac_color_title">Цвета всех кнопок в автодополнении</string>
 	<string name="ac_color_">Цвета в автодополнении</string>
@@ -274,6 +277,7 @@
 	<string name="pc2act_btn_color_txt">Цвет текста кнопок:\n(по умолчанию #ff000000)</string>
 	<string name="pc2act_btn_color_back">Цвет фона кнопок:\n (по умолчанию #fffffffe)</string>
 	<string name="pc2act_str_add">Строка из настроек для Дополнительного жеста</string>
+	<string name="pc2act_str_help1">В строке ниже дублируется строка из настроек для жеста Дополнительные символы.</string>
 	<string name="pc2act_btn_size">Размер кнопок\n(по умолчанию 20)</string>
 	<string name="pc2act_btn_off_size">Размер служебных кнопок\n(по умолчанию 20)</string>
 	<string name="pc2act_winfix">Фиксация окна</string>
@@ -332,6 +336,9 @@
 	<string name="gesture_popupchar1">Дополнительные символы</string>
 	<string name="gesture_popupchar_str1">Строка доп. символов</string>
 	<string name="gesture_popupchar_str1_desc">Чтобы открывалось окно дополнительных символов для жеста "Дополнительные символы, нужно их перечислить здесь</string>
+	<string name="gesture_popupchar_str1_help1">Здесь задаётся строка для жеста Дополнительные символы.
+\n\nРазделитель - пробел.
+\n\nВ этой строке можно задать ваши слова и символы для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
 	<string name="gesture_cand_list">Список слов из автодополнения</string>
 	<string name="gesture_cut">Вырезать</string>
 	<string name="gesture_copy">Копировать</string>
@@ -444,7 +451,23 @@
 	<string name="set_enter_state_desc">Менять ли изображение на Enter в зависимости от контекста?</string>
 	<string name="set_ac_defkey">Слова по умолчанию</string>
     <string name="set_ac_defkey_desc">Слова автодополнения по умолчанию. Разделитель - пробел. Если букв на клавише несколько - вводится первый.</string>
-	<string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
+	<string name="set_ac_defkey_help1">Это строка текста по умолчанию.
+\n\nОна выводится в окне автодополнения, когда поле ввода пустое или введён один из знаков не символ и не цифра. \nНапример точка, запятая, двоеточие и т.д.
+\n\nРазделитель - пробел.
+\n\nВ этой строке можно задать ваши самые используемые слова для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
+    <string name="set_ac_defkey_help_buttons">\n\nКнопки +B и +T служат для удобства ввода специальных форматов, которые реализуют создание кнопок:
+\n\n+B - вставляет в позицию курсора специальный формат $[0,t]
+\nгде:
+\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
+\n0 - любой код из доступных в клавиатуре. Может быть как служебный (отрицательные значения), так и код символа (тогда он введётся в поле ввода).
+\nt - текст отображаемый на кнопке
+\n\n+T - вставляет в позицию курсора специальный формат $[название_шаблона,t]
+\nгде:
+\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
+\nназвание_шаблона - полное имя шаблона, который будет выполнен.
+\nИмя шаблона не должно содержать запятых.
+\nt - текст отображаемый на кнопке</string>
+    <string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
     <string name="set_ac_space">Вставка пробела</string>
     <string name="set_ac_space_desc">Вставлять пробел после ввода слова из автодополнения</string>
 
@@ -756,7 +779,7 @@
     <string name="tpl_cb_right">Прижать вправо</string>
     <string name="tpl_seltopos_toast">Большой текст. Не могу обработать</string>
     <string name="tpl_help_spec">Помощь по специнструкциям</string>
-    <string name="fm_btn_plus_title">Выбор шаблона для специнструкции $program</string>
+    <string name="fm_btn_plus_title">Выбор шаблона</string>
     
     
     <string name="tpl_translate_menuname">Переводчик</string>
@@ -835,7 +858,7 @@
 	<string name="about_other_desc">Переводы:\nИспанский: Луиза Валеева (4pda.ru: Luiza_Va)\nАнглийский: Луиза Валеева\nУкраинский: Денис Манжос (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nАвтор иконки приложения - myha781 (4pda.ru)\n Просто помощь - elizz69, yergnoor</string>
 
 <!-- В других локалях этот текст не переводить! Какой там тест есть, тот и переводить -->
-	<string name="about_web">(Пролистайте до конца)\n\nСайт программы: http://jbak2.ucoz.net\nТема обсуждения: http://4pda.ru/forum/index.php?showtopic=638021\nГруппа на одноклассниках:\nhttps://ok.ru/jbak2keyboard\n\nДелается на основе jbak keyboard версии 0.97.7</string>
+	<string name="about_web">(Пролистайте до конца)\n\nСайт программы: http://jbak2.ucoz.net\n\nТема обсуждения: http://4pda.ru/forum/index.php?showtopic=638021\n\nГруппа на одноклассниках:\nhttps://ok.ru/jbak2keyboard\n\nДелается на основе jbak keyboard версии 0.97.7</string>
 
 	<string name="about_keycode_button">Код символа, удобно при создании своей раскладки или для жеста Дополнительные символы\n(приложение UnicodePad)</string>
 	<string name="diary">История версий</string>

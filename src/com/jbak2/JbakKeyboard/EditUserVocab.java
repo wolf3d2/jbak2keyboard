@@ -239,7 +239,8 @@ public class EditUserVocab extends Activity
             });
             return;
         case R.id.euv_help:
-        	st.help(R.string.euv_help);
+        	Dlg.helpDialog(inst, inst.getString(R.string.euv_help));
+        	//st.help(R.string.euv_help);
         	return;
         }
     }

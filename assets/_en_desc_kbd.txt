@@ -1,4 +1,4 @@
-Last edited: 17.10.2019
+Last edited: 16.11.2019
 This text is available in the item of Settings "How to use the keyboard"
 
 Visit the program site:
@@ -47,7 +47,7 @@ STRING OF CHARACTERS AND WORDS IN AUTOCOMPLETE BY DEFAULT
 Frequent questions
 ? Swype function and predictive text input
 ? Autocomplete string above all windows.
-? ОТКЛЮЧИТЬ ОКНО АВТОДОПОЛНЕНИЯ
+? DISABLE THE AUTOCOMPLETE BOX
 ? AUTOCOMPLETE BOX OR KEYPRESS POPUP NOT TURNING ON AUTOMATICALLY (firmware MIUI)
 ? ABOUT SMILEYS AND EMOJIS
 ? Button ->D in Autocomplete
@@ -165,7 +165,7 @@ OBSERVATION
 This function slows down the keyboard! 
 For this reason, it is better to not turn on this feature on low-power devices.
 
-STRING OF CHARACTERS AND WORDS IN AUTOCOMPLETE BY DEFAULT
+!!!STRING OF CHARACTERS AND WORDS IN AUTOCOMPLETE BY DEFAULT
 Also you can set your own string of characters and words in Autocomplete: Settings-Autoinput-Words by default.
 In addition to characters and words, a special word format is supported, allowing a word to be changed to a button: $ [<code>, <displayed word>]. The displayed word must not contain spaces.  For example, $ [- 500, Menu]  will display a button, by clicking on it the main menu screen will be opened.
 tarting from version 2.31.06, the default autocomplete string has been changed. 
@@ -184,12 +184,14 @@ Maybe in some distant future, the Jbak2 keyboard will support predictive input.
 My knowledge is not enough to fix this bug. This bug is from the original version of the program. As far as I can tell, the first developer wrote all correctly, but it was a long time ago. Maybe something changed during this time.
 Obviously, it will be improved over time.
 While I have made it possible to hide/display the autocomplete box using the Main menu item.
-You must first enable this menu item in Settings. (It will be shown only when the autocomplete box is displayed "above the keyboard") 
+You must first enable this menu item in Settings. (It will be displayed only if the Autocomplete box is enabled).
+In addition to the menu item, you can use the "Display the Autocomplete box" gesture. 
+ 
 
 The main condition for the correct positioning of the Autocomplete box is that the navigation bar and the status bar stay always on the screen (not hiden).
 
-? ОТКЛЮЧИТЬ ОКНО АВТОДОПОЛНЕНИЯ
-Настройки-автодополнение-окно автодополнения-не показывать
+? DISABLE THE AUTOCOMPLETE BOX
+Settings-Autocomplete-Autocomplete box-Disable
 
 ? AUTOCOMPLETE BOX OR KEYPRESS POPUP NOT TURNING ON AUTOMATICALLY (firmware MIUI)
 Usually, this behavior is common on MIUI ROMs.
@@ -429,7 +431,7 @@ Press the \"Hot\" key on the Russian layout (done only in the "Pseudo T9" layout
 It will be displayed: \"Hello, John!\". 
 The same is for the English layout: \"Hot\"+\"f\". 
 
-"ADDITIONAL CHARACTERS" GESTURE STRING AND POPUPCHARACTERS TAG.
+!!!"ADDITIONAL CHARACTERS" GESTURE STRING AND POPUPCHARACTERS TAG.
 
 The "Additional Characters" gesture string as well as the popupCharacter tag supports two formats:
 If the "abcd" format string is entered, a small keyboard with four buttons (a, b, c, d) will be displayed.

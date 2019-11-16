@@ -5,20 +5,36 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    >
+		
+<TextView
+    android:id="@+id/pc2act_help"
+    style="@style/label_help"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    />
+
 <TextView
     android:id="@+id/pc2act_str_add"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
     android:text="@string/pc2act_str_add"
     android:textSize="15sp" />
+
+</RelativeLayout>
 
 <EditText
     android:id="@+id/pc2act_et_addsymb"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-	android:minLines="3"
-	android:maxLines="3"  
-	android:gravity="top"  
+    android:lines="6"
+    android:gravity="left|top"
     android:clickable="true"
     android:ems="10"
     android:inputType="textMultiLine"
@@ -26,6 +42,39 @@
     android:scrollbars="vertical"
 	>
     </EditText>
+
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    >
+		
+<Button
+	android:id="@+id/pc2act_unicode_app"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_toLeftOf="@+id/pc2act_plus_btn_button"
+	android:text="@string/tpl_unicode_app" 
+     />
+
+<Button
+    android:id="@+id/pc2act_plus_tpl_button"
+	style="@style/round_button_blue"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="10dp"
+    android:text="+T"
+    />
+
+<Button
+    android:id="@+id/pc2act_plus_btn_button"
+    style="@style/round_button_blue"
+    android:layout_toLeftOf="@id/pc2act_plus_tpl_button"
+    android:layout_marginRight="10dp"
+    android:text="+B"
+    />
+
+</RelativeLayout>
 
 <ScrollView
     android:id="@+id/pc2act_scroll"
@@ -40,13 +89,6 @@
     android:layout_alignParentRight="true"
     android:layout_alignParentTop="true"
     android:orientation="vertical" >
-
-<Button
-	android:id="@+id/pc2act_unicode_app"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:text="@string/tpl_unicode_app" 
-     />
 
 <CheckBox
     android:id="@+id/pc2act_cb1"

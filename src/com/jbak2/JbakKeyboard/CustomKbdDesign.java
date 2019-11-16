@@ -106,23 +106,23 @@ public class CustomKbdDesign
         int cornerY = getIntValue(IntEntry.KeyBackCornerY, GradBack.DEFAULT_CORNER_Y);
         if(startColor!=st.DEF_COLOR)
         {
-            ret.setKeysBackground(new BitmapCachedGradBack(startColor, endColor)
+            ret.setKeysBackground(new BitmapCachedGradBack(true, startColor, endColor)
                                        .setGradType(gradType)
                                        .setGap(gap)
                                        .setCorners(cornerX, cornerY)
                                        .setGradType(getIntValue(IntEntry.KeyBackPressedGradientType, GradBack.GRADIENT_TYPE_LINEAR))
-                                        );
+                                        ).setCopyItemColorsDesign();
         }
         startColor = getIntValue(IntEntry.KeyboardBackgroundStartColor, st.DEF_COLOR);
         endColor = getIntValue(IntEntry.KeyboardBackgroundEndColor, st.DEF_COLOR);
         gradType = getIntValue(IntEntry.KeyboardBackgroundGradientType, GradBack.GRADIENT_TYPE_LINEAR);
         if(startColor!=st.DEF_COLOR)
         {
-            ret.setKbdBackground(new BitmapCachedGradBack(startColor, endColor)
+            ret.setKbdBackground(new BitmapCachedGradBack(true, startColor, endColor)
                                        .setGradType(gradType)
                                        .setGap(0)
                                        .setCorners(0, 0)
-                                       );
+                                       ).setCopyItemColorsDesign();
         }
         startColor = getIntValue(IntEntry.KeyStrokeStartColor, st.DEF_COLOR);
         endColor = getIntValue(IntEntry.KeyStrokeEndColor, st.DEF_COLOR);
@@ -156,14 +156,17 @@ public class CustomKbdDesign
         }
         
         ret.textColor = getIntValue(IntEntry.KeyTextColor, st.DEF_COLOR);
+        ret.addItemColor(IntEntry.KeyTextColor, ret.textColor);
+        ret.setCopyItemColorsDesign();
         if(getIntValue(IntEntry.KeyTextBold, 0)==1)
             ret.flags|=st.DF_BOLD;
         startColor = getIntValue(IntEntry.SpecKeyBackStartColor, st.DEF_COLOR);
         endColor = getIntValue(IntEntry.SpecKeyBackEndColor, st.DEF_COLOR);
+        // создаём дизайн для спецкнопок
         if(startColor!=st.DEF_COLOR)
         {
             int textColor = getIntValue(IntEntry.SpecKeyTextColor, st.DEF_COLOR);
-            GradBack gb = new BitmapCachedGradBack(startColor, endColor)
+            GradBack gb = new BitmapCachedGradBack(true, startColor, endColor)
                 .setGradType(ret.m_kbdBackground.m_gradType)
                 // смещение спецклавиш (было просто gap)
                 .setGap(gap);

@@ -38,6 +38,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -247,13 +248,23 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		switch (type)
 		{
 		case 1:
-			if (ver.compareToIgnoreCase(vini) == 0)
+			boolean err = false;
+			long time = 0;
+			long verini = 0;
+			try {
+				verini = Long.parseLong(vini);
+				time = Long.parseLong(ver);
+			} catch (NumberFormatException e) {
+				err = true;
+			}
+			if (!err&&time>verini)
+				ver = con.getString(R.string.upd_check_desc_no);
+			else if (ver.compareToIgnoreCase(vini) == 0)
 				ver = con.getString(R.string.upd_check_desc_no);
 			else
 				ver = con.getString(R.string.upd_check_desc_yes);
 			vini = ini.getParamValue(ini.LAST_CHECK_TIME);
 			if (vini!=null) {
-				long time = 0;
 				try {
 					time = Long.parseLong(vini);
 				} catch (NumberFormatException e) {
@@ -798,6 +809,16 @@ public void checkStartIntent()
         else if("clipboard_size".equals(k))
         {
         	showClipboardSize();
+            return true;
+        }
+        else if("ac_defkey".equals(k))
+        {
+        	showACDefaultWord();
+            return true;
+        }
+        else if("g_str_additional1".equals(k))
+        {
+        	showAdditionalString();
             return true;
         }
         else if("ac_list_value".equals(k))
@@ -1752,6 +1773,179 @@ public void checkStartIntent()
             }
         });
         Dlg.customDialog(this, v, getString(R.string.ok), getString(R.string.cancel), null, obs);
+    }
+    /** слова в автодополнении по умолчанию */
+    void showACDefaultWord()
+    {
+        final SharedPreferences p = st.pref(this);
+        final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+        final EditText et = (EditText)v.findViewById(R.id.eadw_edit);
+        View.OnClickListener clickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch (v.getId())
+                {
+                case R.id.eadw_help:
+                	String txt = inst.getString(R.string.set_ac_defkey_help1);
+                	txt += inst.getString(R.string.set_ac_defkey_help_buttons);
+    				Dlg.helpDialog(inst, txt);
+                    return;
+                case R.id.eadw_plus_btn_button:
+                	String text = st.STR_PREFIX+"0,t] ";
+                	st.setInsertTextToCursorPosition(et, text);
+                	int pos = et.getSelectionStart()-4;
+                	if (pos < 0)
+                		pos = 0;
+                	et.setSelection(pos);
+                    return;
+                case R.id.eadw_plus_tpl_button:
+                	final String foldroot = st.getSettingsPath()+Templates.FOLDER_TEMPLATES;
+                	File rd = new File(foldroot);
+                    new DlgFileExplorer(inst, 
+                    		inst.getString(R.string.fm_btn_plus_title),
+                    		null,
+                    		DlgFileExplorer.TYPE_ALL,
+                    		rd,
+                    		null,
+                    		DlgFileExplorer.SELECT_FILE) {
+                        @Override
+                        public void onSelected(File file)
+                        {
+                        	String text = st.STR_PREFIX+file.getAbsolutePath()+","
+                        			+file.getName()+"] ";
+                        	st.setInsertTextToCursorPosition(et, text);
+                        	int pos = et.getSelectionStart()-2;
+                        	if (pos < 0)
+                        		pos = 0;
+                        	et.setSelection(pos);
+                        	st.showkbd();
+                        }
+                    }
+                    .show();
+                    return;
+                }
+            }
+        };
+        TextView tv = (TextView)v.findViewById(R.id.eadw_help);
+        tv.setOnClickListener(clickListener);
+        Button b = (Button)v.findViewById(R.id.eadw_plus_btn_button);
+        b.setOnClickListener(clickListener);
+        b = (Button)v.findViewById(R.id.eadw_plus_tpl_button);
+        b.setOnClickListener(clickListener);
+        
+        String str = p.getString(st.PREF_AC_DEFKEY, st.AC_DEF_WORD);
+        et.setText(str);
+        st.showkbd(et);
+        
+        st.UniObserver obs = new st.UniObserver()
+        {
+            @Override
+            public int OnObserver(Object param1, Object param2)
+            {
+                if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+                {
+                    Editor e = p.edit();
+                	String text = et.getText().toString();
+                    e.putString(st.PREF_AC_DEFKEY, text);
+                    e.commit();
+                    if(OwnKeyboardHandler.inst!=null)
+                        OwnKeyboardHandler.inst.loadFromSettings();
+                }
+                return 0;
+            }
+        };
+
+        Dlg.customDialog(this, v, getString(R.string.ok), getString(R.string.cancel), null, obs);
+
+    }
+    
+    /** строка для жеста Дополнительные символы */
+    void showAdditionalString()
+    {
+        final SharedPreferences p = st.pref(this);
+        final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+        final EditText et = (EditText)v.findViewById(R.id.eadw_edit);
+        View.OnClickListener clickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch (v.getId())
+                {
+                case R.id.eadw_help:
+                	String txt = inst.getString(R.string.gesture_popupchar_str1_help1); 
+                	txt += inst.getString(R.string.set_ac_defkey_help_buttons);
+    				Dlg.helpDialog(inst, txt);
+                    return;
+                case R.id.eadw_plus_btn_button:
+                	String text = st.STR_PREFIX+"0,t] ";
+                	st.setInsertTextToCursorPosition(et, text);
+                	int pos = et.getSelectionStart()-4;
+                	if (pos < 0)
+                		pos = 0;
+                	et.setSelection(pos);
+                    return;
+                case R.id.eadw_plus_tpl_button:
+                	final String foldroot = st.getSettingsPath()+Templates.FOLDER_TEMPLATES;
+                	File rd = new File(foldroot);
+                    new DlgFileExplorer(inst, 
+                    		inst.getString(R.string.fm_btn_plus_title),
+                    		null,
+                    		DlgFileExplorer.TYPE_ALL,
+                    		rd,
+                    		null,
+                    		DlgFileExplorer.SELECT_FILE) {
+                        @Override
+                        public void onSelected(File file)
+                        {
+                        	String text = st.STR_PREFIX+file.getAbsolutePath()+","
+                        			+file.getName()+"] ";
+                        	st.setInsertTextToCursorPosition(et, text);
+                        	int pos = et.getSelectionStart()-2;
+                        	if (pos < 0)
+                        		pos = 0;
+                        	et.setSelection(pos);
+                        	st.showkbd();
+                        }
+                    }
+                    .show();
+                    return;
+                }
+            }
+        };
+        TextView tv = (TextView)v.findViewById(R.id.eadw_help);
+        tv.setOnClickListener(clickListener);
+        Button b = (Button)v.findViewById(R.id.eadw_plus_btn_button);
+        b.setOnClickListener(clickListener);
+        b = (Button)v.findViewById(R.id.eadw_plus_tpl_button);
+        b.setOnClickListener(clickListener);
+        
+        String str = p.getString(st.PREF_AC_DEFKEY, st.AC_DEF_WORD);
+        et.setText(str);
+        st.showkbd(et);
+        
+        st.UniObserver obs = new st.UniObserver()
+        {
+            @Override
+            public int OnObserver(Object param1, Object param2)
+            {
+                if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+                {
+                    Editor e = p.edit();
+                	String text = et.getText().toString();
+                    e.putString(st.SET_STR_GESTURE_DOPSYMB, text);
+                    e.commit();
+                    if(OwnKeyboardHandler.inst!=null)
+                        OwnKeyboardHandler.inst.loadFromSettings();
+                }
+                return 0;
+            }
+        };
+
+        Dlg.customDialog(this, v, getString(R.string.ok), getString(R.string.cancel), null, obs);
+
     }
     void showVibroDuration()
     {

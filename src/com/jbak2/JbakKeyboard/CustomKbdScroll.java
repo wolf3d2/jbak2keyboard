@@ -321,7 +321,6 @@ public class CustomKbdScroll
                 	return;
                 case R.id.help:
                		st.help += st.c().getString(R.string.mm_info);
-                   // st.runAct(Help.class,st.c());
                     close_menu=false;
                 	return;
                 case R.id.home:

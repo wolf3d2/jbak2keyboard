@@ -61,6 +61,7 @@ import com.jbak2.receiver.ClipbrdSyncService;
 import com.jbak2.web.SearchGoogle;
 import com.jbak2.web.SiteKbd;
 import com.jbak2.words.WordsService;
+import com.jbak2.words.IWords.WordEntry;
 import com.jbak2.words.UserWords.WordArray;
 
 /** Основной статический класс футкций и переменных */
@@ -121,7 +122,7 @@ public class st extends IKeyboard implements IKbdSettings
     // 4 - высота клавиатуры */
 	public static int[] qs_ar = new int[] {0,0,0,0,0};
 	
-	// key sound effect
+	/** key sound effect */
 	public static int[] kse = new int[]
 	{
 		AudioManager.FX_KEY_CLICK, // all key
@@ -474,26 +475,79 @@ public class st extends IKeyboard implements IKbdSettings
              "SpecKeyPressedStrokeStartColor",
              "SpecKeyPressedStrokeEndColor",
        };
- 	// массив для хранения специального формата для клавиш 
- 	// из жеста Дополнительных символов
+ 	/** массив для хранения специального формата для клавиш <br>
+ 	 * преобразующих надписи в кнопки в полноэкранной маленькой клавиатуре <br>
+ 	 * и автодополнении*/
 	public static ArrayList<ArrayFuncAddSymbolsGest> ar_asg = new ArrayList<ArrayFuncAddSymbolsGest>();
- 	// массив для хранения специального формата для клавиш 
- 	// из жеста Дополнительных символов
+ 	/** класс для хранения специального формата для клавиш <br>
+ 	 * преобразующих надписи в кнопки в полноэкранной маленькой клавиатуре <br>
+ 	 * и автодополнении*/
  	public static class ArrayFuncAddSymbolsGest
     {
  	    public int id = 0;
  	    public int code = 0;
+ 	    public String tpl_name = null;
  	    public String visibleText = st.STR_NULL;
  	    
- 	    public ArrayFuncAddSymbolsGest(int  _id,int _code,String _visibleText)
+// 	    public ArrayFuncAddSymbolsGest(int  _id,int _code,String _visibleText)
+//        {
+// 	    	id = _id;
+// 	    	code = _code;
+// 	    	name_tpl = null;
+// 	    	visibleText = _visibleText;
+//        }
+ 	    public ArrayFuncAddSymbolsGest(int  _id,int _code,String _tpl_name, String _visibleText)
         {
  	    	id = _id;
  	    	code = _code;
+ 	    	tpl_name = _tpl_name;
  	    	visibleText = _visibleText;
         }
  	    public ArrayFuncAddSymbolsGest()
         {
         }
+ 	    
+ 	    /** анализирует и разбивает на элементы массива строку in <br>
+ 	     * в нужном формате  */
+ 	    public static String[] getSplitArrayElements(String text)
+ 	    {
+ 	    	String in = text;
+ 	    	if (in == null)
+ 	    		return null;
+ 	    	if (in.length() < 1)
+ 	    		return null;
+ 	    	Vector<String> ar = new Vector<String>();
+ 	    	int ind = 0;
+ 	    	String temp = null;
+ 	    	in = in.trim();
+ 	    	while (in.length()>0) {
+ 	 	    	in = in.trim()+st.STR_NULL;
+ 	    		if (in.startsWith(st.STR_PREFIX)) {
+ 	    			ind = in.indexOf("]");
+ 	    			temp = in.substring(0, ind+1);
+ 	    			in = in.substring(ind+1);
+ 	    			ar.add(temp);
+ 	    		}
+ 	    		else {
+ 	    			ind = in.indexOf(st.STR_SPACE);
+ 	    			if (ind == -1) {
+ 	    				in = in.trim();
+ 	 	    			ar.add(in);
+ 	 	    			in = st.STR_NULL;
+ 	    			} else {
+ 	 	    			temp = in.substring(0,ind);
+ 	 	    			ar.add(temp);
+ 	 	    			in = in.substring(ind+1);
+ 	    			}
+ 	    		}
+ 	    	}
+ 	    	
+ 	    	String[] out = new String[ar.size()];
+ 	    	for (int i=0;i<ar.size();i++) {
+ 	    		out[i] = ar.get(i);
+ 	    	}
+ 	    	return out;
+ 	    }
     }
  	
  // класс для значений тегов дизайна
@@ -601,6 +655,7 @@ public class st extends IKeyboard implements IKbdSettings
     	}
     	return null;
     }
+    static boolean flsetElementSpecFormatAddSymbol = false;
     /** устанавливает в массив ar новое значение для функциональных клавиш */
     public static void setElementSpecFormatAddSymbol(ArrayList<ArrayFuncAddSymbolsGest> ar, String txt, int id)
     {
@@ -608,20 +663,31 @@ public class st extends IKeyboard implements IKbdSettings
     		return;
     	txt = txt.substring(2, txt.length()-1);
     	String[] art = txt.split(st.STR_COMMA);
-    	int i = 0;
+    	String tpl = null;
+    	flsetElementSpecFormatAddSymbol = false;
+    	int code = 0;
 		try {
-			i =Integer.parseInt(art[0]);
-		} catch (NumberFormatException e){}
+			code =Integer.parseInt(art[0]);
+		} catch (NumberFormatException e){
+			flsetElementSpecFormatAddSymbol = true;
+		}
+    	if (flsetElementSpecFormatAddSymbol)
+    		tpl = art[0];
 		ArrayFuncAddSymbolsGest tmp = st.getElementSpecFormatSymbol(ar, id);
 		if (tmp==null)
 			tmp = new ArrayFuncAddSymbolsGest();
 		if (art==null||art.length<2){
 			tmp.code = 0;
 			tmp.id = id;
+			tmp.tpl_name = null;
 			tmp.visibleText = st.STR_ERROR;
 		} else {
-			tmp.code = i;
+			tmp.code = code;
 			tmp.id = id;
+			if (tpl != null)
+				tmp.tpl_name = art[0];
+			else
+				tmp.code = code;
 			tmp.visibleText = art[1];
 		}
 		ar.add(tmp);
@@ -703,6 +769,7 @@ public class st extends IKeyboard implements IKbdSettings
         }
         return arKbd[0];
     }
+    public static boolean tempEnglishQwerty = false;
     /** Временно устанавливает английскую клавиатуру без запоминания языка */    
     public static void setTempEnglishQwerty()
     {
@@ -935,7 +1002,6 @@ public class st extends IKeyboard implements IKbdSettings
         }
         return loadKeyboard(arKbd[0]);
     }
-    public static boolean tempEnglishQwerty = false;
     public static String getCurLang()
     {
         return pref().getString(PREF_KEY_LAST_LANG, defKbd().lang.name);
@@ -1138,7 +1204,7 @@ public class st extends IKeyboard implements IKbdSettings
         		com_menu.showNotationNumber();
         		return true;
         	case CMD_INSERT_SPEC_SYMBOL: // ввод спецсимволов
-        		com_menu.showInsertSpecSymbol();
+        		com_menu.showFuncSpecSymbolInsert();
         		return true;
         	case st.CMD_EDIT_USER_VOCAB:
                 st.runAct(EditUserVocab.class,c);
@@ -1311,7 +1377,6 @@ public class st extends IKeyboard implements IKbdSettings
                 		ShowTextAct.FLAG_TEXT_IN_HELP_VARIABLE
                 		|ShowTextAct.FLAG_HIDE_BTN_LANG
                 		);
-                //st.runAct(Help.class,c);
             break;
             // запуск внешнего приложения
             case CMD_RUN_APP:
@@ -1891,8 +1956,8 @@ public class st extends IKeyboard implements IKbdSettings
         	}
             return i1;    	        
        	}
-// проверяем правильность ввода 16-тиричного формата
-//xaarrggbb или #aarrggbb
+/** проверяем правильность ввода 16-тиричного формата <br>
+ * 0xaarrggbb или #aarrggbb */
         public static boolean checkHexValue(String val, int radix)
         {
         	String val1 = st.STR_NULL;
@@ -2807,7 +2872,7 @@ public class st extends IKeyboard implements IKbdSettings
     		out = st.lang_desckbd;
     	return out;
     }
-	/** возвращает текст из файла в папке ASSETS, filename */    
+	/** возвращает текст из файла filename в папке ASSETS */    
     public static String readAssetsTextFilename(Context c,String filename)
     {
     	String out = null;
@@ -2843,7 +2908,19 @@ public class st extends IKeyboard implements IKbdSettings
 
 		// st.toast("сохранено");
 	}
-    /** Возвращает строку из файла f или null, если произошла ошибка<br>
+	
+    /** Возвращает текст из файла с именем filename или null, если произошла ошибка<br>
+    *@return Содержимое файла или null
+     */
+//    static String readFileString(String filename)
+//    {
+//   	 try{
+//   		File ff = new File(filename);
+//   		 return st.readFileString(ff);
+//   	 } catch(Throwable e){}
+//   	 return null;
+//   }
+    /** Возвращает текст из файла f или null, если произошла ошибка<br>
     *@param f Файл для чтения, текст должен быть в кодировке UTF-8
     *@return Содержимое файла или null
      */
@@ -2863,24 +2940,24 @@ public class st extends IKeyboard implements IKbdSettings
     	 } catch(Throwable e){}
     	 return null;
     }
-    /** читаем содержимое файла из assets
-    * @param fname - полное имя файла с путём в asset */
-    static String getReadAssetFileString(Context con, String fname)
-    {
-        byte[] buffer = null;
-        InputStream is;
-        try {
-            is = con.getAssets().open(fname);
-            int size = is.available();
-            buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-        } catch (IOException e) {
-            return null;
-        }
-        String str_data = new String(buffer);
-        return str_data;
-    }
+//    /** читаем содержимое файла из assets
+//    * @param fname - полное имя файла с путём в asset */
+//    static String getReadAssetFileString(Context con, String fname)
+//    {
+//        byte[] buffer = null;
+//        InputStream is;
+//        try {
+//            is = con.getAssets().open(fname);
+//            int size = is.available();
+//            buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//        } catch (IOException e) {
+//            return null;
+//        }
+//        String str_data = new String(buffer);
+//        return str_data;
+//    }
     /** запуск активности Языки и раскладки */
     static boolean startSetLangActivity(Context c)
     {
@@ -2891,7 +2968,7 @@ public class st extends IKeyboard implements IKbdSettings
         return true;
 
     }
-    /** чекаем обновление
+    /** проверяем обновление
      * @param bcheck - true - принудительное обновление
      */
     static void checkUpdate(Context cont, IniFile ini, boolean bcheck) {
@@ -2933,8 +3010,65 @@ public class st extends IKeyboard implements IKbdSettings
 		dt.setTime(time);
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		format = sdf.format(dt);
-    	
     	return format;
     }
+    public static void readACColor(SharedPreferences p)
+    {
+		st.ac_col_main_back = st.str2hex(p.getString(st.AC_COL_MAIN_BG,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_MAIN_BG).toLowerCase()), 16);
+		//m_candView.m_ll.setBackgroundColor(st.ac_col_main_back);
+//		if (m_candView != null)
+//			m_candView.setACBackground();
+		st.ac_col_keycode_back = st.str2hex(p.getString(st.AC_COL_KEYCODE_BG,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_KEYCODE_BG)), 16);
+		st.ac_col_keycode_text = st.str2hex(p.getString(st.AC_COL_KEYCODE_T,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_KEYCODE_T)), 16);
 
+		st.ac_col_counter_back = st.str2hex(p.getString(st.AC_COL_COUNTER_BG,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_COUNTER_BG)), 16);
+		st.ac_col_counter_text = st.str2hex(p.getString(st.AC_COL_COUNTER_T,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_COUNTER_T)), 16);
+
+		st.ac_col_forcibly_back = st.str2hex(p.getString(st.AC_COL_FORCIBLY_BG,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_FORCIBLY_BG)), 16);
+		st.ac_col_forcibly_text = st.str2hex(p.getString(st.AC_COL_FORCIBLY_T,
+				String.format(st.STR_16FORMAT, st.AC_COLDEF_FORCIBLY_T)), 16);
+
+		st.ac_col_addvocab_back = st.str2hex(
+				p.getString(st.AC_COL_ADD_BG, String.format(st.STR_16FORMAT, st.AC_COLDEF_ADD_BG)), 16);
+		st.ac_col_addvocab_text = st.str2hex(
+				p.getString(st.AC_COL_ADD_T, String.format(st.STR_16FORMAT, st.AC_COLDEF_ADD_T)), 16);
+
+		st.ac_col_word_back = st.str2hex(
+				p.getString(st.AC_COL_WORD_BG, String.format(st.STR_16FORMAT, st.AC_COLDEF_WORD_BG)),
+				16);
+		st.ac_col_word_text = st.str2hex(
+				p.getString(st.AC_COL_WORD_T, String.format(st.STR_16FORMAT, st.AC_COLDEF_WORD_T)), 16);
+
+		st.ac_col_arrow_down_back = st.str2hex(p.getString(st.AC_COL_ARROWDOWN_BG,
+				String.format("#%08X", st.AC_COLDEF_ARROWDOWN_BG).toLowerCase()), 16);
+		st.ac_col_arrow_down_text = st.str2hex(p.getString(st.AC_COL_ARROWDOWN_T,
+				String.format("#%08X", st.AC_COLDEF_ARROWDOWN_T).toLowerCase()), 16);
+
+		st.ac_col_calcmenu_back = st.str2hex(p.getString(st.AC_COL_CALCMENU_BG,
+				String.format("#%08X", st.AC_COLDEF_CALCMENU_BG).toLowerCase()), 16);
+		st.ac_col_calcmenu_text = st.str2hex(p.getString(st.AC_COL_CALCMENU_T,
+				String.format("#%08X", st.AC_COLDEF_CALCMENU_T).toLowerCase()), 16);
+
+		st.ac_col_calcind_back = st.str2hex(p.getString(st.AC_COL_CALCIND_BG,
+				String.format("#%08X", st.AC_COLDEF_CALCIND_BG).toLowerCase()), 16);
+		st.ac_col_calcind_text = st.str2hex(p.getString(st.AC_COL_CALCIND_T,
+				String.format("#%08X", st.AC_COLDEF_CALCIND_T).toLowerCase()), 16);
+    }
+    /** вставляет текст в позицию курсора. <br>
+     * Выделение заменяется */
+    public static EditText setInsertTextToCursorPosition(EditText et, String text) {
+    	int start = Math.max(et.getSelectionStart(), 0);
+    	int end = Math.max(et.getSelectionEnd(), 0);
+    	et.getText().replace(Math.min(start, end), Math.max(start, end),
+    	        text, 0, text.length());
+		return et;
+    }
+   
+    
 }

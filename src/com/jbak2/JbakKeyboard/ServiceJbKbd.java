@@ -62,9 +62,11 @@ import android.widget.TextView;
 import com.google.android.voiceime.VoiceRecognitionTrigger;
 import com.jbak2.JbakKeyboard.com_menu;
 import com.jbak2.JbakKeyboard.st;
+import com.jbak2.JbakKeyboard.st.IntEntry;
 import com.jbak2.CustomGraphics.BitmapCachedGradBack;
 import com.jbak2.Dialog.DlgPopupWnd;
 import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
+import com.jbak2.JbakKeyboard.IKeyboard.KbdDesign;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.JbKbd.Replacement;
@@ -160,7 +162,7 @@ public class ServiceJbKbd extends InputMethodService
 
 	// задержка после записи par.ini
 	// static int m_par_delay = 10;
-	// слова по умолчанию в автодополнении
+	/** слова по умолчанию в автодополнении */
 	String m_ac_defkey;
 	boolean m_ac_space = true;
 	AudioManager m_audio;
@@ -2609,74 +2611,14 @@ public class ServiceJbKbd extends InputMethodService
 			m_ac_space = true;
 		else
 			m_ac_space = false;
-
+		
+		// задаём цвета автодополлнения
 		st.ac_col_type_layout = sharedPreferences.getInt(st.AC_COL_TYPE_LAYOUT, 0);
-		st.ac_col_main_back = st.str2hex(sharedPreferences.getString(st.AC_COL_MAIN_BG,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_MAIN_BG).toLowerCase()), 16);
-		// m_candView.m_ll.setBackgroundColor(st.ac_col_main_back);
-		if (m_candView != null)
-			m_candView.setACBackground();
-		// if (JbKbdView.inst!=null)
-		// m_candView.m_ll.setBackground(JbKbdView.inst.getBackground());
-		st.ac_col_keycode_back = st.str2hex(sharedPreferences.getString(st.AC_COL_KEYCODE_BG,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_KEYCODE_BG)), 16);
-		st.ac_col_keycode_text = st.str2hex(sharedPreferences.getString(st.AC_COL_KEYCODE_T,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_KEYCODE_T)), 16);
-		m_candView.keyColor(m_candView.m_keycode, 2);
-
-		st.ac_col_counter_back = st.str2hex(sharedPreferences.getString(st.AC_COL_COUNTER_BG,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_COUNTER_BG)), 16);
-		st.ac_col_counter_text = st.str2hex(sharedPreferences.getString(st.AC_COL_COUNTER_T,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_COUNTER_T)), 16);
-		m_candView.keyColor(m_candView.m_counter, 1);
-
-		st.ac_col_forcibly_back = st.str2hex(sharedPreferences.getString(st.AC_COL_FORCIBLY_BG,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_FORCIBLY_BG)), 16);
-		st.ac_col_forcibly_text = st.str2hex(sharedPreferences.getString(st.AC_COL_FORCIBLY_T,
-				String.format(st.STR_16FORMAT, st.AC_COLDEF_FORCIBLY_T)), 16);
-		m_candView.keyColor(m_candView.m_forcibly, 5);
-
-		st.ac_col_addvocab_back = st.str2hex(
-				sharedPreferences.getString(st.AC_COL_ADD_BG, String.format(st.STR_16FORMAT, st.AC_COLDEF_ADD_BG)), 16);
-		st.ac_col_addvocab_text = st.str2hex(
-				sharedPreferences.getString(st.AC_COL_ADD_T, String.format(st.STR_16FORMAT, st.AC_COLDEF_ADD_T)), 16);
-		m_candView.keyColor(m_candView.m_addVocab, 7);
-
-		st.ac_col_word_back = st.str2hex(
-				sharedPreferences.getString(st.AC_COL_WORD_BG, String.format(st.STR_16FORMAT, st.AC_COLDEF_WORD_BG)),
-				16);
-		st.ac_col_word_text = st.str2hex(
-				sharedPreferences.getString(st.AC_COL_WORD_T, String.format(st.STR_16FORMAT, st.AC_COLDEF_WORD_T)), 16);
-		if (m_candView.m_ll != null) {
-			TextView tv = null;
-			for (int i = 0; i < m_candView.m_ll.getChildCount(); i++) {
-				tv = (TextView) m_candView.m_ll.getChildAt(i);
-				if (tv != null) {
-					tv.setBackgroundColor(st.ac_col_word_back);
-					tv.setTextColor(st.ac_col_word_text);
-				}
-			}
-		}
+		setACPrefColors(sharedPreferences, st.ac_col_type_layout, null);
+		
 		st.lang_desckbd = sharedPreferences.getString(st.PREF_KEY_DESC_LANG_KBD, st.STR_3TIRE);
 		st.lang_help_specinstruction = sharedPreferences.getString(st.PREF_KEY_LANG_HELP_SPECINSTRUCTION, st.STR_3TIRE);
 
-		st.ac_col_arrow_down_back = st.str2hex(sharedPreferences.getString(st.AC_COL_ARROWDOWN_BG,
-				String.format("#%08X", st.AC_COLDEF_ARROWDOWN_BG).toLowerCase()), 16);
-		st.ac_col_arrow_down_text = st.str2hex(sharedPreferences.getString(st.AC_COL_ARROWDOWN_T,
-				String.format("#%08X", st.AC_COLDEF_ARROWDOWN_T).toLowerCase()), 16);
-		m_candView.keyColor(m_candView.m_rightView, 8);
-
-		st.ac_col_calcmenu_back = st.str2hex(sharedPreferences.getString(st.AC_COL_CALCMENU_BG,
-				String.format("#%08X", st.AC_COLDEF_CALCMENU_BG).toLowerCase()), 16);
-		st.ac_col_calcmenu_text = st.str2hex(sharedPreferences.getString(st.AC_COL_CALCMENU_T,
-				String.format("#%08X", st.AC_COLDEF_CALCMENU_T).toLowerCase()), 16);
-		m_candView.keyColor(m_candView.m_calcmenu, 4);
-
-		st.ac_col_calcind_back = st.str2hex(sharedPreferences.getString(st.AC_COL_CALCIND_BG,
-				String.format("#%08X", st.AC_COLDEF_CALCIND_BG).toLowerCase()), 16);
-		st.ac_col_calcind_text = st.str2hex(sharedPreferences.getString(st.AC_COL_CALCIND_T,
-				String.format("#%08X", st.AC_COLDEF_CALCIND_T).toLowerCase()), 16);
-		m_candView.keyColor(m_candView.m_calcind, 3);
 
 		st.fl_copy_toast = sharedPreferences.getBoolean(st.PREF_COPY_TOAST, false);
 		m_arrow_key = sharedPreferences.getBoolean(st.SET_ARROW_KEY, false);
@@ -2924,7 +2866,121 @@ public class ServiceJbKbd extends InputMethodService
 		checkAvtocorrectAndAddSpace();
 		fl_read_pref = true;
 	}
+	/** предварительное задание цветов в автодополнении */
+	public void setACPrefColors(SharedPreferences p, int typeAcLayout, KbdDesign kd) 
+	{
+		/** цвет фона для служебных кнопок */
+		int spcol = 0;
+		int ecol = 0;
+        String path = null;
+        /** дизайн спецклавиш */
+        KbdDesign kds = null;
+		switch (typeAcLayout)
+		{
+		case 2: // конечный градиент
+	        if (kd==null) {
+		        path = p.getString(st.PREF_KEY_KBD_SKIN_PATH, st.STR_NULL+st.KBD_DESIGN_STANDARD);
+		        kd = st.getSkinByPath(path);
+		        if (kd==null) {
+		        	setACPrefColors(p,0, kd);
+		        	return;
+		        }
+	        }
+	        
+	        kds = kd.m_kbdFuncKeys;
+	        if (kds==null) {
+	        	kds=kd;
+	        	spcol = kd.getItemColor(IntEntry.KeyboardBackgroundEndColor);
+	        } else
+				spcol = kds.getItemColorSpec(IntEntry.KeyBackEndColor);
 
+			st.ac_col_main_back = kd.getItemColor(IntEntry.KeyboardBackgroundEndColor);
+
+			st.ac_col_keycode_back = spcol;
+			st.ac_col_keycode_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_counter_back = spcol;
+			st.ac_col_counter_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_forcibly_back = spcol;
+			st.ac_col_forcibly_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_addvocab_back = spcol;
+			st.ac_col_addvocab_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_arrow_down_back = spcol;
+			st.ac_col_arrow_down_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_calcmenu_back = spcol;
+			st.ac_col_calcmenu_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_calcind_back = spcol;
+			st.ac_col_calcind_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+
+			st.ac_col_word_back = kd.getItemColorSpec(IntEntry.KeyBackEndColor);
+			st.ac_col_word_text = kd.getItemColorSpec(IntEntry.KeyTextColor);
+			break;
+		case 1: // начальный градиент
+	        if (kd==null) {
+		        path = p.getString(st.PREF_KEY_KBD_SKIN_PATH, st.STR_NULL+st.KBD_DESIGN_STANDARD);
+		        kd = st.getSkinByPath(path);
+		        if (kd==null) {
+		        	setACPrefColors(p,0, kd);
+		        	return;
+		        }
+	        }
+	        
+	        kds = kd.m_kbdFuncKeys;
+	        if (kds==null) {
+	        	kds=kd;
+	        	spcol = kd.getItemColor(IntEntry.KeyboardBackgroundStartColor);
+	        } else
+				spcol = kds.getItemColorSpec(IntEntry.KeyBackStartColor);
+
+			st.ac_col_main_back = kd.getItemColor(IntEntry.KeyboardBackgroundStartColor);
+
+			st.ac_col_keycode_back = spcol;
+			st.ac_col_keycode_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_counter_back = spcol;
+			st.ac_col_counter_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_forcibly_back = spcol;
+			st.ac_col_forcibly_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_addvocab_back = spcol;
+			st.ac_col_addvocab_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_arrow_down_back = spcol;
+			st.ac_col_arrow_down_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_calcmenu_back = spcol;
+			st.ac_col_calcmenu_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+			
+			st.ac_col_calcind_back = spcol;
+			st.ac_col_calcind_text = kds.getItemColorSpec(IntEntry.KeyTextColor);
+
+			st.ac_col_word_back = kd.getItemColorSpec(IntEntry.KeyBackStartColor);
+			st.ac_col_word_text = kd.getItemColorSpec(IntEntry.KeyTextColor);
+
+			break;
+		default: // свои цвета
+			st.readACColor(p);
+			break;
+		}
+//		if (m_candView.m_ll != null) {
+//			TextView tv = null;
+//			for (int i = 0; i < m_candView.m_ll.getChildCount(); i++) {
+//				tv = (TextView) m_candView.m_ll.getChildAt(i);
+//				if (tv != null) {
+//					tv.setBackgroundColor(st.ac_col_word_back);
+//					tv.setTextColor(st.ac_col_word_text);
+//				}
+//			}
+//		}
+		if (m_candView!=null)
+			m_candView.setACColors();
+	}
 	// если включены оба параметра,
 	// то выдача предупреждения что будет работать неверно
 	public void checkAvtocorrectAndAddSpace() {
@@ -3442,8 +3498,10 @@ public class ServiceJbKbd extends InputMethodService
 					}
 				}
 				if (b) {
-					st.sleep(100);
-					keyDownUp(KeyEvent.KEYCODE_DEL);
+					JbKbdView.processLongKey = false;
+					processKey(Keyboard.KEYCODE_DELETE);
+//					st.sleep(100);
+//					keyDownUp(KeyEvent.KEYCODE_DEL);
 					st.fl_delsymb = true;
 				}
 			}

@@ -24,6 +24,24 @@
         <item name="android:paddingLeft">5sp</item>
     </style>
 
+    <style name="label_title" parent="label_set">
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="label_help" parent="label_set">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/help</item>
+        <item name="android:paddingLeft">5sp</item>
+        <item name="android:paddingRight">5sp</item>
+        <item name="android:layout_marginLeft">5sp</item>
+        <item name="android:layout_marginRight">5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:text">" ? "</item>
+        </style>
+
     <style name="label_delim" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -70,6 +88,22 @@
         <item name="android:paddingRight">5dp</item>
         <item name="android:minWidth">40dp</item>
         <item name="android:minHeight">30dp</item>
+        </style>
+
+    <style name="round_button_blue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/round_button_blue</item>
+        <item name="android:minWidth">50dp</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">25dp</item>
+        </style>
+
+    <style name="round_button_cyan" parent="round_button_blue">
+        <item name="android:background">@drawable/round_button_cyan</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">25dp</item>
         </style>
 
     <style name="hw">

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" 
+	    >
+		
+	<TextView
+	    android:id="@+id/eadw_title"
+	    style="@style/label_title"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:layout_toLeftOf="@+id/eadw_help"
+	    android:text="@string/set_ac_defkey" 
+	    />
+    
+	<TextView
+	    android:id="@+id/eadw_help"
+	    style="@style/label_help"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    />
+    
+	<EditText
+	    android:id="@+id/eadw_edit"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="left|top"
+	    android:layout_below="@+id/eadw_title"
+	    android:inputType="textMultiLine"
+	    android:lines="6"
+	    > 
+        <requestFocus />
+	    </EditText>
+
+	<Button
+        android:id="@+id/eadw_plus_tpl_button"
+	    style="@style/round_button_blue"
+        android:layout_below="@id/eadw_edit"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="+T"
+        />
+
+	<Button
+        android:id="@+id/eadw_plus_btn_button"
+	    style="@style/round_button_blue"
+        android:layout_below="@id/eadw_edit"
+        android:layout_toLeftOf="@id/eadw_plus_tpl_button"
+        android:layout_marginRight="10dp"
+        android:text="+B"
+        />
+
+	</RelativeLayout>
+</ScrollView>

@@ -4,7 +4,7 @@
     <!-- 0 - Хелпер -->
     <Preference android:key="helper" />
 
-        <!-- активность задания цветов для кнопок автодополнения -->
+    <!-- активность задания цветов для кнопок автодополнения -->
 <!--         <Preference -->
 <!--             android:key="ac_key_color" -->
 <!--             android:summary="@string/ac_color_desc" -->
@@ -293,8 +293,7 @@
             android:summary="@string/set_key_ac_place_sub_panel_desc"
             android:title="@string/set_key_ac_place_sub_panel" />
 
-        <EditTextPreference
-            android:defaultValue="$[-500,Menu] ! @ ? ; : , ."
+        <Preference
             android:key="ac_defkey"
             android:summary="@string/set_ac_defkey_desc"
             android:title="@string/set_ac_defkey" />
@@ -329,6 +328,12 @@
         
         <!-- прочее в автодополнении -->
         <PreferenceCategory android:title="@string/about" >
+        <!-- активность задания цветов для кнопок автодополнения -->
+        <Preference
+            android:key="ac_key_color"
+            android:summary="@string/ac_color_desc"
+            android:title="@string/ac_color_" />
+            
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ac_list_dropdown"
@@ -351,11 +356,6 @@
             android:summary="@string/ac_place_separator_symb_desc"
             android:title="@string/ac_place_separator_symb" />
 
-        <!-- активность задания цветов для кнопок автодополнения -->
-        <Preference
-            android:key="ac_key_color"
-            android:summary="@string/ac_color_desc"
-            android:title="@string/ac_color_" />
         </PreferenceCategory>
         </PreferenceScreen>
 
@@ -473,6 +473,7 @@
             android:key="minikbd_btn_size"
             android:summary="@string/pref_mini_kbd_btnsize_desc"
             android:title="@string/pref_mini_kbd_btnsize" />
+
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/array_minikbd_btn_text_size"
@@ -480,7 +481,13 @@
             android:key="minikbd_btn_text_size"
             android:summary="@string/pref_mini_kbd_textbtnsize_desc"
             android:title="@string/pref_mini_kbd_textbtnsize" />
-    </PreferenceScreen>
+
+        <EditTextPreference
+            android:key="mini_kbd_example"
+            android:summary="@string/pref_mini_kbd_example_desc"
+            android:title="@string/pref_mini_kbd_example" />
+
+        </PreferenceScreen>
 
     <!-- MAIN_ITEM настройки главного меню -->
     <Preference
@@ -593,10 +600,15 @@
             android:key="gesture_create"
             android:title="@string/gesture_create" />
 
-        <EditTextPreference
+        <Preference
             android:key="g_str_additional1"
             android:summary="@string/gesture_popupchar_str1_desc"
             android:title="@string/gesture_popupchar_str1" />
+<!--         старый ввод -->
+<!--         <EditTextPreference -->
+<!--             android:key="g_str_additional1" -->
+<!--             android:summary="@string/gesture_popupchar_str1_desc" -->
+<!--             android:title="@string/gesture_popupchar_str1" /> -->
 
         <Preference
             android:key="save_pop2_str"

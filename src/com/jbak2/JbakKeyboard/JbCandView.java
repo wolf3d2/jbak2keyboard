@@ -1,5 +1,6 @@
 package com.jbak2.JbakKeyboard;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -13,6 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Binder;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -209,7 +211,7 @@ public class JbCandView extends RelativeLayout
     int m_height;
     WindowManager wm;
     LinearLayout m_ll;
-    /** подложка для задания цвета, чтобы меня его на лету */
+    /** подложка для задания цвета, чтобы менял его на лету */
     LinearLayout m_temp_ll_for_color;
     
     @SuppressLint("NewApi")
@@ -222,7 +224,7 @@ public class JbCandView extends RelativeLayout
     		ServiceJbKbd.inst.onCreate();
     	display_width = st.getDisplayWidth(m_c);
     	m_ll = (LinearLayout)findViewById(R.id.completions);
-   		m_defkey=ServiceJbKbd.inst.m_ac_defkey.split(st.STR_SPACE);
+   		m_defkey = ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey);
    		m_keycode = ((TextView)findViewById(R.id.cand_keycode)); 
     	m_counter = ((TextView)findViewById(R.id.cand_counter));
     	m_forcibly = ((TextView)findViewById(R.id.cand_forcibly));
@@ -264,6 +266,47 @@ public class JbCandView extends RelativeLayout
         	}
         }
         setTexts(null);
+    }
+    public void setACColors()
+    {
+		if (m_addVocab!=null) {
+			m_addVocab.setBackgroundColor(st.ac_col_addvocab_back);
+			m_addVocab.setTextColor(st.ac_col_addvocab_text);
+		}
+		if (m_rightView!=null) {
+			m_rightView.setBackgroundColor(st.ac_col_addvocab_back);
+			m_rightView.setTextColor(st.ac_col_addvocab_text);
+		}
+		if (m_counter!=null) {
+			m_counter.setBackgroundColor(st.ac_col_counter_back);
+			m_counter.setTextColor(st.ac_col_counter_text);
+		}
+		if (m_keycode!=null) {
+			m_keycode.setBackgroundColor(st.ac_col_keycode_back);
+			m_keycode.setTextColor(st.ac_col_keycode_text);
+		}
+		if (m_forcibly!=null) {
+			m_forcibly.setBackgroundColor(st.ac_col_forcibly_back);
+			m_forcibly.setTextColor(st.ac_col_forcibly_text);
+		}
+		if (m_calcind!=null) {
+			m_calcind.setBackgroundColor(st.ac_col_calcind_back);
+			m_calcind.setTextColor(st.ac_col_calcind_text);
+		}
+		if (m_calcmenu!=null) {
+			m_calcmenu.setBackgroundColor(st.ac_col_calcmenu_back);
+			m_calcmenu.setTextColor(st.ac_col_calcmenu_text);
+		}
+		TextView tv = null;
+		if (m_ll!=null&&m_ll.getChildCount()>0) {
+			for (int i = 0; i < m_ll.getChildCount(); i++) {
+				tv = (TextView) m_ll.getChildAt(i);
+				if (tv != null) {
+					tv.setBackgroundColor(st.ac_col_word_back);
+					tv.setTextColor(st.ac_col_word_text);
+				}
+			}
+		}
     }
 // установка цвета фона окна автодопа
 	public void setACBackground()
@@ -371,11 +414,11 @@ public class JbCandView extends RelativeLayout
         }
         if(m_popupWnd!=null)
         {
-            hideFullView();
+        	popupHideACView();
         }
         else
         {
-            showFullView();
+        	popupShowACView();
         }
     }
 
@@ -422,7 +465,7 @@ public class JbCandView extends RelativeLayout
         {
             if(m_addVocab!=null)
                 m_addVocab.setVisibility(View.GONE);
-            setTexts(ServiceJbKbd.inst.m_ac_defkey.split(st.STR_SPACE), null);
+            setTexts(ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey), null);
             return;
         }
         WordEntry wd;
@@ -460,10 +503,10 @@ public class JbCandView extends RelativeLayout
     }
     public void setTexts(String words[],CompletionInfo[]completions)
     {
-        hideFullView();
+    	popupHideACView();
         if (ServiceJbKbd.inst.m_ac_defkey == null)
        		ServiceJbKbd.inst.onCreate();
-        m_defkey=ServiceJbKbd.inst.m_ac_defkey.split(st.STR_SPACE);
+        m_defkey=ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey);
     	  if (st.fl_temp_stop_dict) {
     		  m_texts = m_defkey;
     		  if (m_addVocab != null)
@@ -688,8 +731,15 @@ public class JbCandView extends RelativeLayout
             	if (id>-1){
 					ArrayFuncAddSymbolsGest el = st.getElementSpecFormatSymbol(arFuncKey, id);
 					if (el!=null){
-						if (ServiceJbKbd.inst!=null)
-							ServiceJbKbd.inst.processKey(el.code);
+						if (el.tpl_name!=null) {
+					   		File ff = new File(el.tpl_name);
+					   		if (ff.exists()&&ff.isFile()) {
+				        		new Templates(1,0).processTemplate(st.readFileString(ff));
+				        		Templates.destroy();
+					   		}
+						} else
+							if (ServiceJbKbd.inst!=null)
+								ServiceJbKbd.inst.processKey(el.code);
         			}
 					return;
             	}
@@ -757,7 +807,7 @@ public class JbCandView extends RelativeLayout
     };
 
     PopupWindow m_popupWnd = null;
-    void hideFullView()
+    void popupHideACView()
     {
     	if (ar_mtext!=null&&ar_mtext.length>0){
     		
@@ -772,7 +822,7 @@ public class JbCandView extends RelativeLayout
         }
     }
     @SuppressLint("NewApi")
-	void showFullView()
+	void popupShowACView()
     {
     	if (st.fl_ac_list_view==false)
     		return;
@@ -804,7 +854,7 @@ public class JbCandView extends RelativeLayout
         else
         	width = getWidth();
         global_width = width;
-        addFullViewPart(ll, width, 0);
+        addFullViewPopupPart(ll, width, 0);
         int yoff = 0-st.kv().getHeight();
         int h = st.kv().getHeight();
         switch (m_place)
@@ -857,7 +907,7 @@ public class JbCandView extends RelativeLayout
 //                	if (st.ac_popup_panel)
 //                		return false;
                 	if(m_rightView.dispatchTouchEvent(event)){
-                        hideFullView();
+                		popupHideACView();
                 		st.fl_ac_list_view = false;
                         return false;
                 	}
@@ -873,7 +923,7 @@ public class JbCandView extends RelativeLayout
                         bHide = true;
                 }
                 if(bHide)
-                    hideFullView();
+                	popupHideACView();
                 return bHide;
             }
         });
@@ -889,7 +939,7 @@ public class JbCandView extends RelativeLayout
 //        ServiceJbKbd.inst.setInputView(v);
 //        m_bShownFull = true;
     }
-    void addFullViewPart(LinearLayout parent,int width,int pos)
+    void addFullViewPopupPart(LinearLayout parent,int width,int pos)
     {
         LinearLayout ll = new LinearLayout(getContext());
         ll.setOnLongClickListener(m_LongClickListenerLayout);
@@ -910,7 +960,7 @@ public class JbCandView extends RelativeLayout
             w+=tv.getMeasuredWidth()+RIGHT_MARGIN_LIST_BUTTON;
             if(w>width)
             {
-                addFullViewPart(parent, width, pos);
+            	addFullViewPopupPart(parent, width, pos);
                 return;
             }
             if(m_completions!=null&&m_completions.length>pos)
@@ -926,7 +976,7 @@ public class JbCandView extends RelativeLayout
     
     public void remove()
     {
-        hideFullView();
+    	popupHideACView();
         try{
         	if (st.kv()!=null) {
                 CustomKeyboard kbd = (CustomKeyboard)st.kv().getCurKeyboard();
@@ -955,7 +1005,7 @@ public class JbCandView extends RelativeLayout
 // юзается    
     public void hide()
     {
-        hideFullView();
+    	popupHideACView();
         try{
             m_place = AC_PLACE_NONE;
             wm.removeView(this);
@@ -2440,32 +2490,42 @@ if(st.calc_fl_ind == true)
     public void setDefaultWords(String defword)
     {
     	defword+=st.STR_SPACE;
-    	String w=st.STR_NULL;
-    	int cnt=0;
-    	for (int i = 0; i < defword.length(); i++) {
-            if(defword.charAt(i)==' ')
-            	cnt++;
-    	}
-    	m_texts= new String[cnt];
-    	int cnt1=0;
-    	for (int i = 0; i < defword.length(); i++) {
-    		char c= defword.charAt(i);
-            switch (c)
-            {
-                case ' ': {
-                	m_texts[cnt1]=w;
-                	cnt1++;
-                	w=st.STR_NULL;
-                ;break;
-                }
-                default:
-                    w += c;
-                break;
-            }
-    	}
-    	if (w.length() > 0)
-    		m_texts[cnt1+1]=w;
+    	m_texts = ArrayFuncAddSymbolsGest.getSplitArrayElements(defword);
     	m_defkey=m_texts;
+//    	final String defword1 = defword;
+//    	new Thread(new Runnable() {
+//			public void run() {
+//		    	m_texts = ArrayFuncAddSymbolsGest.getSplitArrayElements(defword1);
+//				
+//			}
+//		}).start();
+//
+//    	String w=st.STR_NULL;
+//    	int cnt=0;
+//    	for (int i = 0; i < defword.length(); i++) {
+//            if(defword.charAt(i)==' ')
+//            	cnt++;
+//    	}
+//    	m_texts= new String[cnt];
+//    	int cnt1=0;
+//    	for (int i = 0; i < defword.length(); i++) {
+//    		char c= defword.charAt(i);
+//            switch (c)
+//            {
+//                case ' ': {
+//                	m_texts[cnt1]=w;
+//                	cnt1++;
+//                	w=st.STR_NULL;
+//                ;break;
+//                }
+//                default:
+//                    w += c;
+//                break;
+//            }
+//    	}
+//    	if (w.length() > 0)
+//    		m_texts[cnt1+1]=w;
+//    	m_defkey=m_texts;
     }
 // установки цветов кнопок и текста в них в автодополнении НЕ ИЗ 0.97    
     public TextView keyColor(TextView tv, int btn_type)

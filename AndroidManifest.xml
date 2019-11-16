@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.jbak2.JbakKeyboard"
         
-        android:versionName="2.34"
-        android:versionCode="271"
+        android:versionName="2.34.01"
+        android:versionCode="272"
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>
@@ -135,12 +135,6 @@
 <!-- ============================================================================== -->
 				<activity android:name="EditUserVocab" 
 					android:label="@string/euv_actname"
-					android:configChanges="orientation|locale"
-					android:windowSoftInputMode="stateHidden"
-					/>
-<!-- ============================================================================== -->
-		<activity android:name="Help" 
-					android:label="@string/help"
 					android:configChanges="orientation|locale"
 					android:windowSoftInputMode="stateHidden"
 					/>

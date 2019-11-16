@@ -111,19 +111,13 @@
 	android:text="@string/tpl_full_edit" 
      />
 
-<Button
+	<Button
         android:id="@+id/tpl_plus_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+	    style="@style/round_button_blue"
         android:layout_alignParentRight="true"
         android:layout_below="@id/tpl_full_edit"
         android:layout_marginRight="10dp"
-        android:background="@drawable/round_button_blue"
-        android:minHeight="50dp"
-        android:minWidth="50dp"
 	    android:visibility="gone"
-        android:textColor="#fff"
-        android:textSize="25dp" 
         android:text="+"
         />
 

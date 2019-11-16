@@ -72,7 +72,8 @@
         </string-array>
     <string-array name="ac_color_type">
         <item>@string/ac_color_type0</item>
-<!--         <item>@string/ac_color_type1</item> -->
+        <item>@string/ac_color_type1</item>
+        <item>@string/ac_color_type2</item>
         </string-array>
     
 </resources>

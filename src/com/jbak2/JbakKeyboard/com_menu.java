@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputConnection;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -373,7 +374,6 @@ public class com_menu
                     		|ShowTextAct.FLAG_HIDE_BTN_LANG
                     		);
 
-                    //st.runAct(Help.class,st.c());
                     close_menu=false;
                 	return;
                 case R.id.home:
@@ -794,11 +794,11 @@ public class com_menu
     		menu.add(R.string.menu_sel_paragraph, R.string.menu_sel_paragraph);
     	menu.add(R.string.menu_sel_sentence, R.string.menu_sel_sentence);
     	menu.add(R.string.menu_sel_line, R.string.menu_sel_line);
-    	menu.add(R.string.menu_sel_line_up, R.string.menu_sel_line_up);
-    	menu.add(R.string.menu_sel_line_down, R.string.menu_sel_line_down);
     	String word = ci.getTextWord(); 
     	if(!TextUtils.isEmpty(word))
     		menu.add(R.string.menu_sel_word, R.string.menu_sel_word);
+    	menu.add(R.string.menu_sel_line_up, R.string.menu_sel_line_up);
+    	menu.add(R.string.menu_sel_line_down, R.string.menu_sel_line_down);
     	menu.show(new st.UniObserver() {
     		
     		@Override
@@ -992,7 +992,7 @@ public class com_menu
     }
 
     /** вводим спец символы в поле ввода */
-    public static void showInsertSpecSymbol()
+    public static void showFuncSpecSymbolInsert()
     {
     	if (ServiceJbKbd.inst == null)
     		return;
@@ -1060,8 +1060,21 @@ public class com_menu
 //                }
                 int rez = ar.get(pos).code;
         		if (ServiceJbKbd.inst!=null){
-            		ServiceJbKbd.inst.onKey(rez, new int[]{});
-            		ServiceJbKbd.inst.processCaseAndCandidates();
+        			try {
+            			InputConnection ic = ServiceJbKbd.inst.getCurrentInputConnection();
+            			String buf = ic.getSelectedText(0).toString();
+            			if (buf!=null&&buf.length()>0) {
+            				String str = st.STR_NULL;
+            				for (int i=0;i<buf.length();i++) {
+            					str += st.STR_NULL+buf.charAt(i)+ (char) rez;
+            				}
+            				ServiceJbKbd.inst.onText(str);
+            			} else
+            				ServiceJbKbd.inst.onKey(rez, new int[]{});
+                		ServiceJbKbd.inst.processCaseAndCandidates();
+						
+					} catch (Throwable e) {
+					}
         		}
 
 				com_menu.close();

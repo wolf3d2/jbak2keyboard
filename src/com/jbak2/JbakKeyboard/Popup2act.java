@@ -20,6 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.File;
+
+import com.jbak2.Dialog.Dlg;
+import com.jbak2.Dialog.DlgFileExplorer;
 import com.jbak2.Dialog.DlgPopupWnd;
 import com.jbak2.JbakKeyboard.st;
 
@@ -93,9 +97,18 @@ public class Popup2act extends Activity
         cb1.setChecked(st.win_fix);
         cb1.setOnClickListener(m_ClickListener);
         
+        TextView tv = (TextView)findViewById(R.id.pc2act_help);
+        tv.setOnClickListener(m_ClickListener);
+        
         cb2 = (CheckBox)findViewById(R.id.pc2act_cb2);
         cb2.setChecked(st.pc2_lr);
         cb2.setOnClickListener(m_ClickListener);
+        // задаём круглым кнопкам листенер
+        btn_unicode_app = (Button)findViewById(R.id.pc2act_plus_btn_button);
+        btn_unicode_app.setOnClickListener(m_ClickListener);
+        btn_unicode_app = (Button)findViewById(R.id.pc2act_plus_tpl_button);
+        btn_unicode_app.setOnClickListener(m_ClickListener);
+
         btn_unicode_app = (Button)findViewById(R.id.pc2act_unicode_app);
         btn_unicode_app.setOnClickListener(m_ClickListener);
         str_add = (EditText)findViewById(R.id.pc2act_et_addsymb);
@@ -211,6 +224,44 @@ public class Popup2act extends Activity
         {
             switch (v.getId())
             {
+            case R.id.pc2act_help:
+            	String txt = inst.getString(R.string.pc2act_str_help1); 
+            	txt += inst.getString(R.string.set_ac_defkey_help_buttons);
+				Dlg.helpDialog(inst, txt);
+            	return;
+            case R.id.pc2act_plus_btn_button:
+            	String text = st.STR_PREFIX+"0,t] ";
+            	st.setInsertTextToCursorPosition(str_add, text);
+            	int pos = str_add.getSelectionStart()-4;
+            	if (pos < 0)
+            		pos = 0;
+            	str_add.setSelection(pos);
+                return;
+            case R.id.pc2act_plus_tpl_button:
+            	final String foldroot = st.getSettingsPath()+Templates.FOLDER_TEMPLATES;
+            	File rd = new File(foldroot);
+                new DlgFileExplorer(inst, 
+                		inst.getString(R.string.fm_btn_plus_title),
+                		null,
+                		DlgFileExplorer.TYPE_ALL,
+                		rd,
+                		null,
+                		DlgFileExplorer.SELECT_FILE) {
+                    @Override
+                    public void onSelected(File file)
+                    {
+                    	String text = st.STR_PREFIX+file.getAbsolutePath()+","
+                    			+file.getName()+"] ";
+                    	st.setInsertTextToCursorPosition(str_add, text);
+                    	int pos = str_add.getSelectionStart()-2;
+                    	if (pos < 0)
+                    		pos = 0;
+                    	str_add.setSelection(pos);
+                    	st.showkbd();
+                    }
+                }
+                .show();
+                return;
             case R.id.pc2act_cb1:
             case R.id.pc2act_cb2:
             	fl_changed = true;

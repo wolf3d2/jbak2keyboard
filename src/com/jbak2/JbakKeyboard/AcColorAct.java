@@ -166,6 +166,7 @@ public class AcColorAct extends Activity
                     }
                 });
         		dpw.show(0);
+        		st.showkbd();
                 //gd.showAlert();
     			
     		}
@@ -194,38 +195,44 @@ public class AcColorAct extends Activity
     };
     public void save()
     {
+        SharedPreferences p = st.pref(inst);
+        Editor e = p.edit();
     	switch (st.ac_col_type_layout)
     	{
-    		default: // свои цвета и оно же 0 значение
-    	    	if (et!=null&&et.length==AR_COUNT_INDEX) {
-    	            SharedPreferences p = st.pref(inst);
-    	            Editor e = p.edit();
-    	            checkSave(e,st.AC_COL_MAIN_BG,ColId.MainBackColor,st.AC_COLDEF_MAIN_BG);
-    	            checkSave(e,st.AC_COL_KEYCODE_BG,ColId.KeyCodeBackColor,st.AC_COLDEF_KEYCODE_BG);
-    	            checkSave(e,st.AC_COL_KEYCODE_T,ColId.KeyCodeTextColor,st.AC_COLDEF_KEYCODE_T);
-    	            checkSave(e,st.AC_COL_COUNTER_BG,ColId.CounterBackColor,st.AC_COLDEF_COUNTER_BG);
-    	            checkSave(e,st.AC_COL_COUNTER_T,ColId.CounterTextColor,st.AC_COLDEF_COUNTER_T);
-    	            checkSave(e,st.AC_COL_FORCIBLY_BG,ColId.ForciblyBackColor,st.AC_COLDEF_FORCIBLY_BG);
-    	            checkSave(e,st.AC_COL_FORCIBLY_T,ColId.ForciblyTextColor,st.AC_COLDEF_FORCIBLY_T);
-    	            checkSave(e,st.AC_COL_ADD_BG,ColId.AddVocabBackColor,st.AC_COLDEF_ADD_BG);
-    	            checkSave(e,st.AC_COL_ADD_T,ColId.AddVocabTextColor,st.AC_COLDEF_ADD_T);
-    	            checkSave(e,st.AC_COL_WORD_BG,ColId.WordBackColor,st.AC_COLDEF_WORD_BG);
-    	            checkSave(e,st.AC_COL_WORD_T,ColId.WordTextColor,st.AC_COLDEF_WORD_T);
-    	            checkSave(e,st.AC_COL_ARROWDOWN_BG,ColId.ArrowDownBackColor,st.AC_COLDEF_ARROWDOWN_BG);
-    	            checkSave(e,st.AC_COL_ARROWDOWN_T,ColId.ArrowDownTextColor,st.AC_COLDEF_ARROWDOWN_T);
-    	            checkSave(e,st.AC_COL_CALCMENU_BG,ColId.CalcMenuBackColor,st.AC_COLDEF_CALCMENU_BG);
-    	            checkSave(e,st.AC_COL_CALCMENU_T,ColId.CalcMenuTextColor,st.AC_COLDEF_CALCMENU_T);
-    	            checkSave(e,st.AC_COL_CALCIND_BG,ColId.CalcIndicatorBackColor,st.AC_COLDEF_CALCIND_BG);
-    	            checkSave(e,st.AC_COL_CALCIND_T,ColId.CalcIndicatorTextColor,st.AC_COLDEF_CALCIND_T);
-    	            e.commit();
-    	    	}
-    			break;
+    	case 2:
+    		e.putInt(st.AC_COL_TYPE_LAYOUT, 2);
+    		break;
+    	case 1:
+    		e.putInt(st.AC_COL_TYPE_LAYOUT, 1);
+    		break;
+		default: // свои цвета и оно же 0 значение
+	    	if (et!=null&&et.length==AR_COUNT_INDEX) {
+	    		e.putInt(st.AC_COL_TYPE_LAYOUT, 0);
+	            checkSave(e,st.AC_COL_MAIN_BG,ColId.MainBackColor,st.AC_COLDEF_MAIN_BG);
+	            checkSave(e,st.AC_COL_KEYCODE_BG,ColId.KeyCodeBackColor,st.AC_COLDEF_KEYCODE_BG);
+	            checkSave(e,st.AC_COL_KEYCODE_T,ColId.KeyCodeTextColor,st.AC_COLDEF_KEYCODE_T);
+	            checkSave(e,st.AC_COL_COUNTER_BG,ColId.CounterBackColor,st.AC_COLDEF_COUNTER_BG);
+	            checkSave(e,st.AC_COL_COUNTER_T,ColId.CounterTextColor,st.AC_COLDEF_COUNTER_T);
+	            checkSave(e,st.AC_COL_FORCIBLY_BG,ColId.ForciblyBackColor,st.AC_COLDEF_FORCIBLY_BG);
+	            checkSave(e,st.AC_COL_FORCIBLY_T,ColId.ForciblyTextColor,st.AC_COLDEF_FORCIBLY_T);
+	            checkSave(e,st.AC_COL_ADD_BG,ColId.AddVocabBackColor,st.AC_COLDEF_ADD_BG);
+	            checkSave(e,st.AC_COL_ADD_T,ColId.AddVocabTextColor,st.AC_COLDEF_ADD_T);
+	            checkSave(e,st.AC_COL_WORD_BG,ColId.WordBackColor,st.AC_COLDEF_WORD_BG);
+	            checkSave(e,st.AC_COL_WORD_T,ColId.WordTextColor,st.AC_COLDEF_WORD_T);
+	            checkSave(e,st.AC_COL_ARROWDOWN_BG,ColId.ArrowDownBackColor,st.AC_COLDEF_ARROWDOWN_BG);
+	            checkSave(e,st.AC_COL_ARROWDOWN_T,ColId.ArrowDownTextColor,st.AC_COLDEF_ARROWDOWN_T);
+	            checkSave(e,st.AC_COL_CALCMENU_BG,ColId.CalcMenuBackColor,st.AC_COLDEF_CALCMENU_BG);
+	            checkSave(e,st.AC_COL_CALCMENU_T,ColId.CalcMenuTextColor,st.AC_COLDEF_CALCMENU_T);
+	            checkSave(e,st.AC_COL_CALCIND_BG,ColId.CalcIndicatorBackColor,st.AC_COLDEF_CALCIND_BG);
+	            checkSave(e,st.AC_COL_CALCIND_T,ColId.CalcIndicatorTextColor,st.AC_COLDEF_CALCIND_T);
+	    	}
+			break;
     	}
-
+		e.commit();
     }
     String mcol = null;
     int icol = 0;
-    public void checkSave(Editor e, String key, int index, int defcolor)
+    public void checkSave(Editor e, String prefkey, int index, int defcolor)
     {
     	mcol = et[index].getEditableText().toString().trim();
        	icol = st.str2hex(mcol, 16);
@@ -233,13 +240,14 @@ public class AcColorAct extends Activity
 			mcol = String.format(st.STR_16FORMAT,defcolor);
 			et[index].setText(mcol);
        	}
-        e.putString(key, mcol);
+        e.putString(prefkey, mcol);
     }
     AdapterView.OnItemSelectedListener m_itemSelection = new AdapterView.OnItemSelectedListener()
     {
     	public void onItemSelected(AdapterView<?> parent,
     			View itemSelected, int selectedItemPosition, long selectedId) 
     	{
+    		st.ac_col_type_layout = selectedItemPosition;
     		st.pref(inst).edit().putInt(st.AC_COL_TYPE_LAYOUT, selectedItemPosition).commit();
     		setShowLayout(selectedItemPosition);
     	}
@@ -251,7 +259,10 @@ public class AcColorAct extends Activity
     	ll_user.setVisibility(View.GONE);
     	switch (type)
     	{
+    	case 2:
     	case 1:
+    		fl_changed = true;
+    		//ll_user.setVerticalScrollbarPosition(0);
     		break;
     	default:
     		ll_user.setVisibility(View.VISIBLE);
@@ -289,6 +300,8 @@ public class AcColorAct extends Activity
     	if (ll_user.getChildCount()>0)
     		ll_user.removeAllViews();
     	getUserLayoutDefaultElements();
+        SharedPreferences p = st.pref(inst);
+        st.readACColor(p);
     	ll_user.addView(getTitleLineUserLayout(R.string.ac_color_mainback,true));
     	createUserLineLayout(ColId.MainBackColor, 0, st.ac_col_main_back, st.AC_COLDEF_MAIN_BG);
 
