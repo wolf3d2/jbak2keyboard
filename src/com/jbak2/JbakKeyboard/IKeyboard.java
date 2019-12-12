@@ -1,6 +1,7 @@
 package com.jbak2.JbakKeyboard;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Vector;
 
@@ -12,6 +13,7 @@ import android.os.Environment;
 import com.jbak2.CustomGraphics.BitmapCachedGradBack;
 import com.jbak2.CustomGraphics.GradBack;
 import com.jbak2.JbakKeyboard.IKeyboard.KbdDesign;
+import com.jbak2.JbakKeyboard.IKeyboard.Lang;
 import com.jbak2.JbakKeyboard.st.IntEntry;
 
 public class IKeyboard {
@@ -34,6 +36,8 @@ public class IKeyboard {
 	public static final String LANG_HIDE_LAYOUT = "hide";
 	public static final String LANG_QWERTY = "qwerty";
 	// --------------------------------------------------------------------------
+	/** язык не определён (пустой язык) */
+	public static final int LANG_EMPTY = 10000	;
 	public static final int LANG_EN = 0;
 	public static final int LANG_RU = 1;
 	public static final int LANG_UK = 2;
@@ -118,6 +122,37 @@ public class IKeyboard {
 
 	public static String getSettingsPath() {
 		return Environment.getExternalStorageDirectory().getAbsolutePath() + "/jbak2Keyboard/";
+	}
+	/** возвращает короткий путь из fullpath, с вырезанным путём от корня 
+	 * @param typefolder - тип, что ещё вырезать  (одна из констант Templates.INT_FOLDER_*)?: <br>?: <br>
+	 * 0 - ничего <br>
+	 * 1 - "templates/" <br>
+	 * 2 - "calc/" */
+	public static String getSettingsPathShort(String fullpath, int typefolder) 
+	{
+    	if (fullpath.startsWith(st.getSettingsPath())) {
+    		fullpath = fullpath.substring((st.getSettingsPath()).length());
+    		if (typefolder == Templates.INT_FOLDER_TEMPLATES)
+        		fullpath = fullpath.substring((Templates.FOLDER_TEMPLATES+st.STR_SLASH).length());
+    		else if (typefolder == Templates.INT_FOLDER_CALC)
+        		fullpath = fullpath.substring((Templates.FOLDER_CALC+st.STR_SLASH).length());
+    	}
+		return fullpath;
+	}
+	/** добавляет в path путь от корня 
+	 * @param typefolder - тип, что ещё добавлять (одна из констант Templates.INT_FOLDER_*)?: <br>
+	 * 0 - ничего <br>
+	 * 1 - "templates/" <br>
+	 * 2 - "calc/" */
+	public static String getSettingsPathFull(String path, int typefolder) 
+	{
+		String add = st.getSettingsPath();
+		if (typefolder == Templates.INT_FOLDER_TEMPLATES)
+			add += Templates.FOLDER_TEMPLATES+st.STR_SLASH;
+		else if (typefolder == Templates.INT_FOLDER_CALC)
+			add += Templates.FOLDER_CALC+st.STR_SLASH;
+		path = add+path;
+		return path;
 	}
 
 	public static Keybrd[] arKbd = {
@@ -455,7 +490,7 @@ public class IKeyboard {
 		public int lang;
 		/** Тип языка - виртуальный, основной, неизвестный и тд*/
 		public int type;
-		/** Символьный код языка ("ru" - для русского, "en" - для английского) */
+		/** Символьный код языка ("ru" - для русского, "en" - для английского и тд) */
 		public String name;
 		/** Строка с названием языка из ресурсов */
 		public int strId;
@@ -467,6 +502,8 @@ public class IKeyboard {
 		void setTypeLang(int typeLang) {
 			type = typeLang;
 		}
+		/** Возвращает "человеческое" название языка lang,
+		 *  с заглавной первой буквой */
 		static String getLangDisplayName(String lang) {
 			try {
 				String ln = new Locale(lang).getDisplayName();
@@ -508,6 +545,55 @@ public class IKeyboard {
 			return lang == LANG_SYM || lang == LANG_SMIL || lang == LANG_SYM1 || lang == LANG_EDIT || lang == LANG_NUM
 					|| lang == LANG_CALC;
 		}
+	    /** возвращает сортированным массивом String список всех доступных в Locale языков 
+	     * @param type - возвращаемый формат: <br>
+	     * 0 - "ru - Русский" <br>
+	     * 1 - "Русский" <br>
+	     * 2 - "Русский - ru" <br>
+	     * 3 - "ru" */
+	    public static String[] getAlLocalelLang(int type) {
+	    	String[] locales = Locale.getISOLanguages();
+	    	Vector<String> o1 = new Vector<String>();
+	    	Lang ln = null;
+	    	String shortn = null;
+	    	String dispn = null;
+	    	for (int i=0; i<locales.length;i++) {
+		    	try {
+			    	ln = new Lang(IKeyboard.LANG_EMPTY, locales[i]);
+			    	shortn = ln.name;
+			    	if (shortn==null||shortn.length()<2||shortn.length()>2)
+			    		continue;
+			    	dispn = ln.getLangDisplayName(shortn);
+			    	if (dispn==null||dispn.length()< 3)
+			    		continue;
+			        switch (type)
+			        {
+			        case 0:
+			        	o1.add(shortn.toLowerCase() + " - "+ dispn);
+			        	break;
+			        case 1:
+			        	o1.add(dispn);
+			        	break;
+			        case 2:
+			        	o1.add(dispn + " - "+ shortn.toLowerCase());
+			        	break;
+			        case 3:
+			        	o1.add(shortn.toLowerCase());
+			        	break;
+			        }
+					
+				} catch (Throwable e) {
+				}
+		    }
+	    	String[] out = new String[o1.size()];
+	    	for (int i=0;i<o1.size();i++)
+	    	{
+	    		out[i] = o1.get(i).toString();
+	    	}
+	        Arrays.sort(out);
+			return out;
+	    }
+		
 	}
 
 	// *****************************************************************

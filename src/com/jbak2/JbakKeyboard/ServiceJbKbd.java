@@ -1070,6 +1070,9 @@ public class ServiceJbKbd extends InputMethodService
 			} 
 			else if (GlobDialog.fl_back_key)
 				return true;
+			else if (GlobDialog.inst != null&&GlobDialog.gbshowEdit) {
+				return true;
+			}
 			else if (GlobDialog.inst != null) {
 				GlobDialog.inst.finish();
 				return true;
@@ -1197,7 +1200,7 @@ public class ServiceJbKbd extends InputMethodService
 		}
 		if (hot) {
 			if (Templates.inst == null) {
-				new Templates(1, 0);
+				new Templates(1, 0,null);
 				Templates.inst.processTemplate(txt);
 				Templates.inst = null;
 			} else
@@ -2539,24 +2542,6 @@ public class ServiceJbKbd extends InputMethodService
 		if (key == null || st.PREF_KEY_AC_AUTOCORRECT.equals(key)) {
 			m_acAutocorrect = sharedPreferences.getBoolean(st.PREF_KEY_AC_AUTOCORRECT, false);
 		}
-		// создаём пустой словарь
-		if (st.PREF_EMPTY_DICT.equals(key)) {
-			String str = sharedPreferences.getString(st.PREF_EMPTY_DICT, st.STR_NULL);
-			str = str.toLowerCase().trim();
-			if (str != null && (str.length() == 2 || str.length() == 3)) {
-				boolean fl = true;
-				char cc = 0;
-				for (int i = 0; i < str.length(); i++) {
-					if (cc < 48 && cc > 57 && cc < 97 && cc > 122) {
-						fl = false;
-					}
-				}
-				if (fl) {
-					final String path = st.getSettingsPath() + WordsService.DEF_PATH + str + "_v0.dic";
-					saveEmptyDictionary(path);
-				}
-			}
-		}
 		if (st.PREF_KEY_EDIT_SETTINGS.equals(key)) {
 			m_es.load(st.PREF_KEY_EDIT_SETTINGS);
 			if (m_extraText != null) {
@@ -2988,20 +2973,6 @@ public class ServiceJbKbd extends InputMethodService
 			return;
 		if (m_acAutocorrect && st.has(m_state, STATE_SENTENCE_SPACE))
 			st.help(R.string.msg_avtocorrect_and_addspace);
-	}
-
-	public static void saveEmptyDictionary(String path) {
-		FileWriter wr;
-		try {
-			wr = new FileWriter(path, false);
-			wr.write(st.STR_NULL);
-			// wr.write("~ 1\n");
-			wr.flush();
-			wr.close();
-			st.toast(R.string.create);
-		} catch (IOException e) {
-		}
-
 	}
 
 	ExtractEditText m_extraText = null;

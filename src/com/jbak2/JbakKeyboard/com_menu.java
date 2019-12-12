@@ -381,7 +381,7 @@ public class com_menu
                 	if (Templates.inst!=null) {
                 		int r = Templates.inst.rejim;
                 		int t = Templates.inst.type;
-                    	new Templates(r,t).makeCommonMenu();
+                    	new Templates(r,t,null).makeCommonMenu();
                 	}
                 	return;
                 case R.id.fiks_tpl:

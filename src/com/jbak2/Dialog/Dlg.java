@@ -148,8 +148,8 @@ public class Dlg
             dlg.show();
             return dlg;
         }
-        public static AlertDialog yesNoCancelDialog(Context c,String query, int id_text_yes, 
-        		int id_text_no, int id_text_cancel, UniObserver callback)
+        public static AlertDialog yesNoCancelDialog(Context c,String query, 
+        		int id_text_yes, int id_text_no, int id_text_cancel, UniObserver callback)
         {
             if (ServiceJbKbd.inst!=null&&ServiceJbKbd.inst.isInputViewShown())
             	ServiceJbKbd.inst.acGone();
@@ -163,7 +163,8 @@ public class Dlg
             dlg.show();
             return dlg;
         }
-        public static AlertDialog yesNoDialog(Context c,String query, int id_text_yes, int id_text_no, UniObserver callback)
+        public static AlertDialog yesNoDialog(Context c,String query, 
+        		int id_text_yes, int id_text_no, UniObserver callback)
         {
             if (ServiceJbKbd.inst!=null&&ServiceJbKbd.inst.isInputViewShown())
             	ServiceJbKbd.inst.acGone();

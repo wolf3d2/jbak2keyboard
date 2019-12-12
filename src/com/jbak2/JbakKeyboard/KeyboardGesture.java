@@ -83,10 +83,10 @@ public class KeyboardGesture extends GestureDetector
         public static final int DOWN    = 3;
         LatinKey downKey;
         int dir;
-        public GestureInfo(LatinKey k,int dir)
+        public GestureInfo(LatinKey k,int direction)
         {
             downKey = k;
-            this.dir = dir;
+            this.dir = direction;
         }
         
     }

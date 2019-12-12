@@ -23,7 +23,6 @@ public interface IKbdSettings
 	// словаря
 	public static final String PREF_EUV_LANG_DEF= "euv_lang_def";
 
-	public static final String PREF_EMPTY_DICT= "empty_dict";
 	// вызов клавиатуры через шторку
 	public static final String PREF_SHOW_KBD_NOTIF = "show_kbd_notif";
 	// маленькая клавиатура 

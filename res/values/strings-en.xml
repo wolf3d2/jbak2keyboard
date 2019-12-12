@@ -38,7 +38,8 @@
 <!-- Title for new version check site-->
 	<string name="chk_new_version">A new version of the program has been released\nDownload the keyboard update from the program website.</string>
 	<string name="chk_old_version">Your version of the keyboard is outdated!\nWould you like to check out a new version on the program website?</string>
-		
+	<string name="chk_wrong_version">Your keyboard version is incorrect.\nPlease update to the latest version!</string>
+			
 <!-- Title for new version-->
 	<string name="nv_upload">This dialog box will be displayed after the second call of the keyboard, after each update. It will pop up 2 times on some devices.\nUnfortunately, it cannot be done differently\n\nAfter each update, the keyboard needs to be unloaded from memory, otherwise its behavior will be unpredictable.</string>
 
@@ -182,6 +183,7 @@
     <string name="euv_save">Saving</string>   
     <string name="euv_help">(the scrolling text feature is available)\n\nYou can edit a word or change its frequency by clicking on this word or its frequency accordingly.\nPress Enter to finish editing.\nLong press on a word will delete it from the dictionary, and the word itself will be colored with red.\n\nThe higher is the word frequency, the closer is a word to the top of list, if the list of AutoComplete is given by frequency.\nFrequency range of words from 0 to 10000000.\nThe word frequency above 500000 indicates that the word was not in the main dictionaries, and it has been added by the user, and it needs to be shown at the top of the list (that is why it has such a large number).\nIf the frequency of a word is set to 0, its frequency will not increase, and it will not appear in the word list (words from the main dictionary have a minimal frequency set to 1, that is why they will be always displayed).</string>
     <string name="euv_cb1">Always open this language</string>
+    <string name="euv_del_table">Удалить язык из базы данных</string>
     
 <!-- Title for skin constructor  -->
     <string name="sc_actname">Skin constructor</string>
@@ -275,7 +277,7 @@
 	<string name="pc2act_btn_color_txt">Text color of keys:\n(by default #ff000000)</string>
 	<string name="pc2act_btn_color_back">Background color of keys:\n (by default #fffffffe)</string>
 	<string name="pc2act_str_add">String from settings for Additional gesture</string>
-	<string name="pc2act_str_help1">В строке ниже дублируется строка из настроек для жеста Дополнительные символы.</string>
+	<string name="pc2act_str_help1">In the string below duplicates the string from the settings for the \"Additional symbols\" gesture.</string>
 	<string name="pc2act_btn_size">Key size\n(by default 20)</string>
 	<string name="pc2act_btn_off_size">Size of service keys\n(by default 20)</string>
 	<string name="pc2act_winfix">Pop-up fixation</string>
@@ -333,9 +335,9 @@
 	<string name="gesture_popupchar1">Special characters</string>
 	<string name="gesture_popupchar_str1">Special character pop-up</string>
 	<string name="gesture_popupchar_str1_desc">To open the special character pop-up using the \"Special characters\" gesture, it is necessary to list them here</string>
-	<string name="gesture_popupchar_str1_help1">Здесь задаётся строка для жеста Дополнительные символы.
-\n\nРазделитель - пробел.
-\n\nВ этой строке можно задать ваши слова и символы для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
+	<string name="gesture_popupchar_str1_help1">Here you can specify the string for the \"Additional symbols\" gesture.
+\n\nSeparator: space.
+\n\nIn this string you can set your words and characters to input, as well as create the buttons to execute program codes or templates.</string>
 		<string name="gesture_cand_list">Word list of Autocomplete</string>
 	<string name="gesture_cut">Cut</string>
 	<string name="gesture_copy">Copy</string>
@@ -445,6 +447,9 @@
 	<string name="dict_load">Dictionary download</string>
 	<string name="dict_empty_dict">Create empty dictionary</string>
 	<string name="dict_empty_dict_desc">Two-letter language code to make Autocomplete work. Words will be added to the custom dictionary</string>	
+	<string name="dict_empty_dict_help">Если для языка отсутствует словарь, а хочется чтобы подсказки слов были, можно создать пустой словарь для этого языка. Тогда слова в автодополнении показываться будут, но исключительно из тех слов, которые вы добавили сами, через кнопку + в автодополнении.
+\n\nДля этого введите две буквы кода языка, или выберите его из списка, нажав на кнопку Языки</string>
+	<string name="dict_languages">Langs</string>
 	<string name="student_dict">Learning dictionary</string>
 	<string name="student_dict_desc">By choosing a word from Autocomplete, you will increase its frequency of use by one count. Over time, the most common words will be always displayed on the screen.</string>
 	<string name="student_ext_dict">Advanced training</string>
@@ -461,22 +466,24 @@
 	<string name="set_enter_state_desc">Change the icon on the Enter key depending on the context?</string>
 	<string name="set_ac_defkey">Words by default</string>
     <string name="set_ac_defkey_desc">Words in Autocomplete by default. Separator: space. If one key corresponds to many characters, will be entered the first one.</string>
-	<string name="set_ac_defkey_help1">Это строка текста по умолчанию.
-\n\nОна выводится в окне автодополнения, когда поле ввода пустое или введён один из знаков не символ и не цифра. \nНапример точка, запятая, двоеточие и т.д.
-\n\nРазделитель - пробел.
-\n\nВ этой строке можно задать ваши самые используемые слова для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
-    <string name="set_ac_defkey_help_buttons">\n\nКнопки +B и +T служат для удобства ввода специальных форматов, которые реализуют создание кнопок:
-\n\n+B - вставляет в позицию курсора специальный формат $[0,t]
-\nгде:
-\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
-\n0 - любой код из доступных в клавиатуре. Может быть как служебный (отрицательные значения), так и код символа (тогда он введётся в поле ввода).
-\nt - текст отображаемый на кнопке
-\n\n+T - вставляет в позицию курсора специальный формат $[название_шаблона,t]
-\nгде:
-\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
-\nназвание_шаблона - полное имя шаблона, который будет выполнен.
-\nИмя шаблона не должно содержать запятых.
-\nt - текст отображаемый на кнопке</string>
+	<string name="set_ac_defkey_help1">This is the default text string.
+\n\nIt is displayed in the Autocomplete box, when the input field is empty or one of the entered character is not a symbol or a number.
+\nFor example, dot, comma, colon, etc.
+\n\nSeparator: space.
+\n\nIn this string you can set your most common words to input, as well as create buttons to execute program codes or templates.</string>
+	<string name="set_ac_defkey_help_buttons">\n\nThe + B and + T buttons are used to easily enter the special formats that implement the creation of buttons:
+\n\n+B: inserts the $[0,t] special format at the cursor position
+\nwhere:
+\n$[ : mandatory prefix which means that the special format will be applied up to the \"]\" symbol.
+\n0 : any code available on the keyboard. It can be either a service (negative values) or a character code (then, it will be entered in the input field).
+\nt : text displayed on the button
+\n\n+T : inserts the $[template name,t] special format at the cursor position
+\nwhere:
+\n$[ :mandatory prefix which means that the special format will be applied up to the \"]\" symbol.
+\ntemplate name: full name of the template that will be executed.
+\nTemplate name must not contain commas.
+\nt :text displayed on the button (by default, the template name is inserted)
+\n\nIf the template folder is specified as the template name, templates will be opened on this folder </string>
     <string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>
     <string name="set_ac_space_desc">Insert space after a word selected from Autocomplete</string>

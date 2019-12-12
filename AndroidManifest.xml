@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.jbak2.JbakKeyboard"
         
-        android:versionName="2.34.01"
-        android:versionCode="272"
+        android:versionName="2.34.02"
+        android:versionCode="274"
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>
@@ -160,7 +160,7 @@
 					android:configChanges="orientation|locale"
 					/>
 <!-- ============================================================================== -->
-		<activity android:name="Gesture_create" 
+		<activity android:name="GestureCreateAct" 
 					android:label="@string/gesture_create"
 					android:configChanges="orientation|locale"
 					android:windowSoftInputMode="adjustPan" 

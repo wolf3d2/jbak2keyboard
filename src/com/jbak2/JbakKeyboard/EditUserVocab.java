@@ -16,15 +16,19 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
+import android.text.method.DigitsKeyListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
@@ -48,7 +52,7 @@ public class EditUserVocab extends Activity
 	int PADDING_RIGHT = 3;
     Vector<String> lang = null;
     String deflang = st.STR_NULL;
-    String curlang = st.STR_NULL;
+    public String curlang = st.STR_NULL;
     public static String search_txt = st.STR_NULL;
     static String EXCLUDE_SQL_PREFIX = "android_metadata";
 	Button btn_sellang = null;
@@ -57,6 +61,8 @@ public class EditUserVocab extends Activity
 	CheckBox cb_deflang = null;
 	CheckBox cb_noquery= null;
 	boolean fl_changed = false;
+	/** флаг, что была удалена одна или больше таблица языка */
+	public static boolean fl_changed_lang = false;
 	RelativeLayout rlcap=null;
 	
 	UserWords userword = null;
@@ -73,6 +79,7 @@ public class EditUserVocab extends Activity
     	cb_noquery = (CheckBox)findViewById(R.id.euv_cb2);
     	cb_noquery.setVisibility(View.GONE);
         btn_sellang =(Button)findViewById(R.id.euv_sellang);
+        btn_sellang.setOnLongClickListener(m_clkLongListener);
         btn_search =(Button)findViewById(R.id.euv_search);
         btn_search.setVisibility(View.GONE);
         ((TextView)findViewById(R.id.euv_txtlang)).setText(getString(R.string.euv_lang_text)+st.STR_COLON);
@@ -134,7 +141,19 @@ public class EditUserVocab extends Activity
     	inst=null;
         super.onDestroy();
     }
-
+    /** нажатие на enter или на Ок в диалоге поиска <br>
+     *  здесь-же закрываем диалог */
+    public void setSearchFilter(EditText et) 
+    {
+    	  search_txt = et.getText().toString().trim().toLowerCase();
+      	  if (search_txt.isEmpty()) {
+      		  createWordLayout();
+      	  } else {
+      		  userword.getAllWord(curlang);
+      		  m_adapter.getFilter().filter(search_txt);
+      	  }
+    	Dlg.dismiss();
+    }
     public void onClickXml(View view) 
     {
     	if (GlobDialog.gbshow)
@@ -142,28 +161,40 @@ public class EditUserVocab extends Activity
         switch (view.getId())
         {
         case R.id.euv_search:
-            final GlobDialog gd = new GlobDialog(st.c());
-            gd.set(R.string.search, R.string.ok, R.string.cancel);
-            gd.setObserver(new st.UniObserver()
-              {
-                  @Override
-                  public int OnObserver(Object param1, Object param2)
-                  {
-                      if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
-                      {
-                    	  search_txt = gd.ret_edittext_text.trim().toLowerCase();
-                    	  if (search_txt.isEmpty()) {
-                    		  createWordLayout();
-                    	  } else {
-                    		  userword.getAllWord(curlang);
-                    		  m_adapter.getFilter().filter(search_txt);
-                    	  }
-                      }
-                  	//userword.stopAddWord(false);
-                      return 0;
-                  }
-              });
-           	gd.showEdit(search_txt,0);
+            final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+    		((TextView) v.findViewById(R.id.eadw_title)).setText(R.string.search);
+    		((TextView) v.findViewById(R.id.eadw_help)).setVisibility(View.GONE);;
+    		((Button) v.findViewById(R.id.eadw_plus_btn_button)).setVisibility(View.GONE);
+    		((Button) v.findViewById(R.id.eadw_plus_tpl_button)).setVisibility(View.GONE);
+            final EditText et = (EditText)v.findViewById(R.id.eadw_edit);
+            et.setSingleLine();
+            et.setText(search_txt);
+            et.setOnKeyListener(new View.OnKeyListener() {
+				
+				@Override
+				public boolean onKey(View v, int keyCode, KeyEvent event) {
+		    	    if(event.getAction() == KeyEvent.ACTION_DOWN&&keyCode == KeyEvent.KEYCODE_ENTER){
+	        	    	setSearchFilter(et);
+	        	    }
+					return false;
+				}
+			});
+            st.showkbd(et, true);
+            
+            st.UniObserver obs = new st.UniObserver()
+            {
+                @Override
+                public int OnObserver(Object param1, Object param2)
+                {
+                    if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+                    {
+	        	    	setSearchFilter(et);
+                    }
+                    return 0;
+                }
+            };
+
+            Dlg.customDialog(this, v, getString(R.string.ok), getString(R.string.cancel), null, obs);
         	return;
         case R.id.euv_cb2:
         	if (cb_noquery!=null){
@@ -179,8 +210,6 @@ public class EditUserVocab extends Activity
         	}
         	return;
         case R.id.euv_sellang:
-        	// не забыть сделать запрос на сохранение 
-        	// если спаисок не пуст и изменён
         	int pos = 0;
         	for (int p=0;p<lang.size();p++){
         		if (lang.get(p).length()<=3){
@@ -325,7 +354,7 @@ public class EditUserVocab extends Activity
 	        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 	        lp.addRule(RelativeLayout.LEFT_OF, i*FACTOR+1);
 			tv.setLayoutParams(lp);
-			tv.setOnLongClickListener(m_longClickListener);
+			tv.setOnLongClickListener(m_longClickListenerOnWord);
 			tv.setBackgroundColor(Color.DKGRAY);
 			tv.setId(i*FACTOR);
 			wa.id=i*FACTOR;
@@ -347,6 +376,96 @@ public class EditUserVocab extends Activity
 			
     	return tv;
     }
+    /** нажатие на enter или на Ок в диалоге редактирования значений <br>
+     *  здесь-же закрываем диалог */
+    public void setNewValue(TextView tv,EditText et) 
+    {
+		  setWordAndFreq(tv,et.getText().toString().trim().toLowerCase());
+    	Dlg.dismiss();
+    }
+    View.OnLongClickListener m_clkLongListener = new View.OnLongClickListener() {
+		
+		@Override
+		public boolean onLongClick(View v) {
+			switch (v.getId())
+			{
+			case R.id.euv_sellang:
+	        	int pos = 0;
+	        	for (int p=0;p<lang.size();p++){
+	        		if (lang.get(p).length()<=3){
+	        			pos++;
+	        		}
+	        	}
+	        	final String[] ars = new String[pos];
+//	        	String[] ars = new String[arskinname.size()-1];
+	        	pos = 0;
+	        	String lng_in = st.STR_NULL;
+	        	String lng_out = st.STR_NULL;
+	        	for (int i=0;i<lang.size();i++){
+	        		lng_in = lang.get(i);
+	        		lng_out = getLangName(lng_in);
+	        		if (lng_out!=null&&lng_in.length()<=3){
+	        			ars[pos]= lng_out;
+	        			pos++;
+	        		}
+	        	}
+	        	if (ars.length == 0){
+	        		st.toast(R.string.empty);
+	            	if (rlcap!=null)
+	                    rlcap.setVisibility(View.GONE);
+	            	if (cb_noquery!=null)
+	            		cb_noquery.setVisibility(View.GONE);
+	            	if (cb_deflang!=null)
+	            		cb_deflang.setVisibility(View.GONE);
+	            	if (btn_search!=null)
+	            		btn_search.setVisibility(View.GONE);
+	        		return true;
+	        	}
+	           	ArrayAdapter<String> ar = new ArrayAdapter<String>(inst, 
+	           			R.layout.tpl_instr_list,
+	                    ars
+	                    );
+	            
+	            Dlg.customMenu(inst, ar, 
+	            		ServiceJbKbd.inst.getString(R.string.euv_del_table), 
+	            		new st.UniObserver()
+	            {
+	                @Override
+	                public int OnObserver(Object param1, Object param2)
+	                {
+	                    final int pos = (((Integer)param1).intValue());
+	                    Dlg.yesNoDialog(inst, inst.getString(R.string.are_you_sure), new st.UniObserver() {
+							
+							@Override
+							public int OnObserver(Object param1, Object param2) {
+			                    if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+			                    {
+				                    String lng = ars[pos].substring(0, ars[pos].indexOf("-")).trim();
+				                    userword.deleteTable(lng);
+					        		inst.recreate();
+//				                    curlang = ars[0].substring(0, ars[0].indexOf("-")).trim();
+//				                    if (deflang.compareToIgnoreCase(curlang)!=0){
+//			                    	cb_deflang.setChecked(false);
+//				                    } else
+//				                    	cb_deflang.setChecked(true);
+//				                    btn_sellang.setText(ars[0]);
+//				                    lang.remove(lng);
+//				                    //m_adapter.notifyDataSetChanged();
+//				                    createWordLayout();
+//				                    initList();
+					        		fl_changed_lang = true;
+			                    }
+								return 0;
+							}
+						});
+	                    return 0;
+	                }
+	            });
+				return true;
+			}
+			return false;
+		}
+	};
     View.OnClickListener m_clkListener = new View.OnClickListener()
     {
         @Override
@@ -357,40 +476,86 @@ public class EditUserVocab extends Activity
         	}
         	final TextView tv = (TextView)v;
         	int id = tv.getId();
+            final String val = tv.getText().toString();
         	final boolean even = st.isEven(id);
         	if (!even)
         		id--;
-//        	TextView tv1 = (TextView) ll.findViewById(id);
-//        	if (tv1==null)
-//        		return;
-//        	int col = tv1.getCurrentTextColor();
-//        	if (col == TEXTCOLOR){
-//        		st.toast(R.string.ac_del_word_ok);
-//        		return;
-//        	}
-            final GlobDialog gd = new GlobDialog(st.c());
-            gd.set(even?R.string.ac_color_word:R.string.euv_freq, R.string.ok, R.string.cancel);
-            gd.setObserver(new st.UniObserver()
-              {
-                  @Override
-                  public int OnObserver(Object param1, Object param2)
-                  {
-                      if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
-                      {
-//                		  tv.setText(gd.ret_edittext_text.trim());
-                		  setWordAndFreq(tv,gd.ret_edittext_text.trim().toLowerCase());
-                      }
-                      return 0;
-                  }
-              });
-            if (even)
-            	gd.showEdit(tv.getText().toString().trim(),0);
-            else
-            	gd.showEdit(tv.getText().toString().trim(),1);
+            final View dv = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+    		((TextView) dv.findViewById(R.id.eadw_title)).setText(even?R.string.ac_color_word:R.string.euv_freq);
+    		((TextView) dv.findViewById(R.id.eadw_help)).setVisibility(View.GONE);
+    		((Button) dv.findViewById(R.id.eadw_plus_btn_button)).setVisibility(View.GONE);
+    		((Button) dv.findViewById(R.id.eadw_plus_tpl_button)).setVisibility(View.GONE);
+            final EditText et = (EditText)dv.findViewById(R.id.eadw_edit);
+            et.setSingleLine();
+            if (!even) {
+            	et.setKeyListener(DigitsKeyListener.getInstance(st.STR_10INPUT_DIGIT));
+        		Button btn = (Button) dv.findViewById(R.id.eadw_plus_tpl_button);
+        		btn.setVisibility(View.VISIBLE);
+        		btn.setText(" Def+val ");
+        		btn.setOnClickListener(new View.OnClickListener() {
+    				
+    				@Override
+    				public void onClick(View v) {
+    					long ll = 0;
+    					try {
+							ll = Long.parseLong(val);
+						} catch (NumberFormatException e) {
+						}
+    					et.setText(st.STR_NULL+(ll+UserWords.FREQ_USER_WORD));
+    					et.setSelection(et.getText().toString().length());
+    				}
+    			});
+            }
+            et.setText(val);
+            et.setOnKeyListener(new View.OnKeyListener() {
+				
+				@Override
+				public boolean onKey(View v, int keyCode, KeyEvent event) {
+		    	    if(event.getAction() == KeyEvent.ACTION_DOWN&&keyCode == KeyEvent.KEYCODE_ENTER){
+		    	    	setNewValue(tv,et);
+	        	    }
+					return false;
+				}
+			});
+    		st.showkbd(et, false);
+            
+            st.UniObserver obs = new st.UniObserver()
+            {
+                @Override
+                public int OnObserver(Object param1, Object param2)
+                {
+                    if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+                    {
+                    	setNewValue(tv,et);
+                    }
+                    return 0;
+                }
+            };
+
+            Dlg.customDialog(inst, dv, getString(R.string.ok), getString(R.string.cancel), null, obs);
+
+//        	final GlobDialog gd = new GlobDialog(st.c());
+//            gd.set(even?R.string.ac_color_word:R.string.euv_freq, R.string.ok, R.string.cancel);
+//            gd.setObserver(new st.UniObserver()
+//              {
+//                  @Override
+//                  public int OnObserver(Object param1, Object param2)
+//                  {
+//                      if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+//                      {
+//                		  setWordAndFreq(tv,gd.ret_edittext_text.trim().toLowerCase());
+//                      }
+//                      return 0;
+//                  }
+//              });
+//            if (even)
+//            	gd.showEdit(tv.getText().toString().trim(),0);
+//            else
+//            	gd.showEdit(tv.getText().toString().trim(),1);
 
         }
     };
-    View.OnLongClickListener m_longClickListener = new View.OnLongClickListener() 
+    View.OnLongClickListener m_longClickListenerOnWord = new View.OnLongClickListener() 
     {
         @Override
         public boolean onLongClick(View v)
@@ -463,6 +628,8 @@ public class EditUserVocab extends Activity
     		saveProgress(true);
     	} else
     		super.onBackPressed();
+    	if (fl_changed_lang)
+    		st.exitApp();
     }
     void save(String lang, WordArray wa)
     {

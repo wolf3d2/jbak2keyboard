@@ -2,6 +2,7 @@ package com.jbak2.JbakKeyboard;
 
 import java.util.ArrayList;
 
+import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.KeyboardGesture.GestureHisList;
 import com.jbak2.JbakKeyboard.st.KbdGesture;
 import com.jbak2.ctrl.GlobDialog;
@@ -23,7 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Gesture_create<ContextMenuInfo> extends Activity
+public class GestureCreateAct extends Activity
 {
 	LinearLayout llview_view;
 	LinearLayout llview_create;
@@ -38,12 +39,14 @@ public class Gesture_create<ContextMenuInfo> extends Activity
 // флаг что есть изменения	
 	boolean fl_changed = false;
 	int g_id = -1;
+	public static  GestureCreateAct inst = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.gesture_create);
+	    inst = this;
 	    createView();
         // показ рекламы
         Ads.show(this, 4);
@@ -214,7 +217,8 @@ public class Gesture_create<ContextMenuInfo> extends Activity
 				
 				@Override
 				public void onClick(View v) {
-					st.help(R.string.gesture_tv1);
+					Dlg.helpDialog(inst, inst.getString(R.string.gesture_tv1));
+					//st.help(R.string.gesture_tv1);
 				}
 			});
 		    llview_create.addView(btn);

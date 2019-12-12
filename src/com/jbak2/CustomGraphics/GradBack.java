@@ -265,14 +265,14 @@ public class GradBack extends RectShape
 //		if(m_bDrawPressedBack&&hasState(android.R.attr.state_pressed))
 //			canvas.drawRoundRect(m_rect, m_cornerX, m_cornerY, m_ptFillPressed);
 		if(m_bCheckable)
-			setDrawKeyIndicator(canvas,m_bChecked, m_rect);
+			setIndicatorDrawKey(canvas,m_bChecked, m_rect);
 	}
 /** Функция отрисовки точки на клавише с тегом isSticky, для состояний checked и checkable.
  * Вызывается только при наличии этих состояний
 *@param canvas Canvas для отрисовки 
 *@param bCheck true - помечено, false - нет 
 *@param rect Прямоугольник, на котором производится отрисовка */
-	public void setDrawKeyIndicator(Canvas canvas,boolean bCheck,RectF rect)
+	public void setIndicatorDrawKey(Canvas canvas,boolean bCheck,RectF rect)
 	{
         RectF rr = new RectF(m_rect.left+4, m_rect.top+4, m_rect.left+16, m_rect.top+16);
         canvas.drawArc(rr, 0, 360, false, bCheck?m_ptFillChecked:m_ptFillCheckable);

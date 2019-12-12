@@ -357,7 +357,7 @@ public class ShowTextAct extends Activity
 
 			}
 		});
-    	st.showkbd(et_search);
+    	st.showkbd(et_search,true);
     	if (et_search.getText().toString().length()>0){
     		search();
     	}

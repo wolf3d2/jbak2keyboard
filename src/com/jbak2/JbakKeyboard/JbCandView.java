@@ -36,6 +36,7 @@ import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.perm.Perm;
 import com.jbak2.words.TextTools;
+import com.jbak2.words.UserWords;
 import com.jbak2.words.WordsService;
 import com.jbak2.words.IWords.WordEntry;
 
@@ -632,7 +633,7 @@ public class JbCandView extends RelativeLayout
             switch (v.getId())
             {
             case R.id.cand_left:
-           		st.freq_dict = 500000;
+           		st.freq_dict = UserWords.FREQ_USER_WORD;
                 ServiceJbKbd.inst.saveUserWord(((TextView)v).getText().toString());
                 createWord(false);
                 return;
@@ -732,11 +733,20 @@ public class JbCandView extends RelativeLayout
 					ArrayFuncAddSymbolsGest el = st.getElementSpecFormatSymbol(arFuncKey, id);
 					if (el!=null){
 						if (el.tpl_name!=null) {
-					   		File ff = new File(el.tpl_name);
-					   		if (ff.exists()&&ff.isFile()) {
-				        		new Templates(1,0).processTemplate(st.readFileString(ff));
-				        		Templates.destroy();
-					   		}
+							ArrayFuncAddSymbolsGest.processTemplateClick(m_c, el);
+//							File ff = null;
+//							if (el.tpl_name.startsWith(st.STR_SLASH))
+//						   		ff = new File(el.tpl_name);
+//							else
+//					   		 	ff = new File(st.getSettingsPathFull(el.tpl_name, Templates.INT_FOLDER_TEMPLATES));
+//					   		if (ff.exists()&&ff.isFile()) {
+//				        		new Templates(1,0,null).processTemplate(st.readFileString(ff));
+//				        		Templates.destroy();
+//					   		}
+//					   		else if (ff.exists()&&ff.isDirectory()) {
+//				            	new Templates(1,0,el.tpl_name).makeCommonMenu();
+//					   		} else
+//					   			st.toast("Template not found: "+ el.tpl_name);
 						} else
 							if (ServiceJbKbd.inst!=null)
 								ServiceJbKbd.inst.processKey(el.code);

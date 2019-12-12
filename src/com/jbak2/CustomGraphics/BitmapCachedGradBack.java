@@ -103,7 +103,7 @@ public class BitmapCachedGradBack extends GradBack
         Bitmap bmp = m_bPressed?m_curEntry.bmpPress:m_curEntry.bmpNormal;
         canvas.drawBitmap(bmp,0,0,null);
         if(m_bCheckable||m_bChecked)
-        	setDrawKeyIndicator(canvas,m_bChecked, m_rect);
+        	setIndicatorDrawKey(canvas,m_bChecked, m_rect);
     };
     public BmpCacheEntry searchEntry(int width,int height)
     {

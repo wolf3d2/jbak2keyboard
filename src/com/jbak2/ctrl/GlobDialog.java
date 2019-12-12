@@ -54,6 +54,7 @@ public class GlobDialog  extends Activity
     // установить pref_act в true чтобы не было зависания
 	public static boolean fl_is_prefact = false;
 	public static boolean gbshow = false;
+	public static boolean gbshowEdit = false;
 	public static boolean fl_volume_key = false;
 	private Paint p_color	= new Paint(Paint.ANTI_ALIAS_FLAG);
 	public static String ret_edittext_text = st.STR_NULL;
@@ -317,6 +318,7 @@ public class GlobDialog  extends Activity
             butLayout.addView(makeButtonOkEdit(m_cancel,AlertDialog.BUTTON_NEUTRAL));
         }
         ll.addView(butLayout);
+        gbshowEdit = true;
         return ll;
     }
 //    public View createViewList()
@@ -543,9 +545,9 @@ public class GlobDialog  extends Activity
     {
     	m_text_gravity = gravity;
     }
-    // если gravity = -1, то указывается
-    // Gravity.CENTER_HORIZONTAL
-    // иначе то, что в gravity
+    /** если m_text_gravity = -1, то указывается <br>
+    * Gravity.CENTER_HORIZONTAL, <br>
+    * иначе то, что задано в методе setGravityText */
     public void showAlert()
     {
         WindowManager wm = (WindowManager)m_c.getSystemService(Service.WINDOW_SERVICE);
@@ -584,7 +586,7 @@ public class GlobDialog  extends Activity
         wm.addView(m_view, lp);
     }
     /** ввод осуществляется одним из трёх видов
-     * hex=
+     * @param hex =
      * 0 - text
      * 1 - decimal
      * 2 - hex */
@@ -657,6 +659,7 @@ public class GlobDialog  extends Activity
        	WindowManager wm = (WindowManager)m_c.getSystemService(Service.WINDOW_SERVICE);
        	wm.removeView(m_view);
         gbshow = false;
+        gbshowEdit = false;
 		fl_volume_key=false;
 		if (fl_is_prefact){
 			fl_is_prefact = false;
@@ -723,6 +726,13 @@ public class GlobDialog  extends Activity
 			int act = event.getAction();
     	    if(keyCode == KeyEvent.KEYCODE_BACK)  
     	    {
+    	    	if (ServiceJbKbd.inst== null)
+    	    		return true;
+    	    	boolean vis = ServiceJbKbd.inst.isInputViewShown();
+    	    	if (vis) {
+    	    		st.hidekbd();
+    	    		return true;
+    	    	}
     	    	
             	et = null;
                 st.hidekbd();

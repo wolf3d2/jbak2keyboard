@@ -112,6 +112,8 @@ public class LangSetActivity extends Activity
         	arLang.clear();
         LangInfo li = null;
         for (Lang ll:st.arLangs) {
+//        	if (ll.name.compareToIgnoreCase("uk") == 0)
+//        		st.toast(inst,"bbb");
         	li = new LangInfo();
         	li.displayName = ll.getLangDisplayName(ll.name);
         	li.langName = ll.name;

@@ -39,7 +39,7 @@ public class PopupKeyboard
 	// координаты окна
 	int wm_up_x = 0;
 	int wm_up_y = 0;
-	public static Context inst = null;
+	public static Context m_c = null;
 	// главная для полноэкранной миниклавы
 	RelativeLayout llmain=null;
 	// правая для полноэкранной миниклавы
@@ -62,7 +62,7 @@ public class PopupKeyboard
 	TextView block = null; 
 	
 	public PopupKeyboard(Context c){
-		inst = c;
+		m_c = c;
     	m_wm = (WindowManager) c.getSystemService(Service.WINDOW_SERVICE);
 	}
 	public boolean showPopupKeyboard(Key key)
@@ -146,15 +146,15 @@ public class PopupKeyboard
     	case 3:tsize = 25;break;
     	}
     	int btn_w = 0;
-    	LinearLayout ll = new LinearLayout(inst);
+    	LinearLayout ll = new LinearLayout(m_c);
         ll.setOrientation(LinearLayout.HORIZONTAL);
     	int llw = 0;
     	
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
 		for (int i=0;i<key.popupCharacters.length();i++){
 			// TextView
-//			Button btn = new Button(inst);
-			TextView btn = new TextView(inst);
+//			Button btn = new Button(m_c);
+			TextView btn = new TextView(m_c);
         	btn.setGravity(Gravity.CENTER);
         	
         	btn.setMaxLines(1);
@@ -213,7 +213,7 @@ public class PopupKeyboard
             if (len>=st.getDisplayWidth(null)){
 //            if (llw+clw+btn.getMeasuredWidth()>=st.getWidthDisplay()){
             	llleft.addView(ll);
-                ll = new LinearLayout(inst);
+                ll = new LinearLayout(m_c);
                 ll.setOrientation(LinearLayout.HORIZONTAL);
         	}
             ll.addView(btn);
@@ -352,9 +352,9 @@ public class PopupKeyboard
 //        
 //		lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 //		lp.width = 20;
-////      int dpi = inst.getResources().getDisplayMetrics().densityDpi;
-////      int ypos = inst.getResources().getDisplayMetrics().heightPixels;
-////      int xpos = inst.getResources().getDisplayMetrics().widthPixels;
+////      int dpi = m_c.getResources().getDisplayMetrics().densityDpi;
+////      int ypos = m_c.getResources().getDisplayMetrics().heightPixels;
+////      int xpos = m_c.getResources().getDisplayMetrics().widthPixels;
 ////        lp.y = ypos;
 ////        lp.x = DEFAULT_X-DEFAULT_X;
 ////        lp.height =  key.height;
@@ -385,12 +385,12 @@ public class PopupKeyboard
 //    	int cpl = close.getPaddingLeft();
 //    	int cpr = close.getPaddingRight();
 //    	int clw = close.getMeasuredWidth();
-//    	LinearLayout ll = new LinearLayout(inst);
+//    	LinearLayout ll = new LinearLayout(m_c);
 //        ll.setOrientation(LinearLayout.HORIZONTAL);
 //    	int llw = 0;
 //
 //    	for (int i=0;i<key.popupCharacters.length();i++){
-//    		Button btn = new Button(inst);
+//    		Button btn = new Button(m_c);
 //        	btn.setGravity(Gravity.CENTER);
 //        	btn.setMaxLines(1);
 //    		btn.setTextColor(Color.BLACK);
@@ -423,7 +423,7 @@ public class PopupKeyboard
 //            if (len>=st.getWidthDisplay()){
 ////            if (llw+clw+btn.getMeasuredWidth()>=st.getWidthDisplay()){
 //            	llleft.addView(ll);
-//                ll = new LinearLayout(inst);
+//                ll = new LinearLayout(m_c);
 //                ll.setOrientation(LinearLayout.HORIZONTAL);
 //        	}
 //            ll.addView(btn);
@@ -485,7 +485,7 @@ public class PopupKeyboard
         llmain = ((RelativeLayout) v.findViewById(R.id.popup2main));
         llright = ((LinearLayout) v.findViewById(R.id.buttons_official));
         final LinearLayout llrow = ((LinearLayout) v.findViewById(R.id.pc2_llrow));
-        LinearLayout ll = new LinearLayout(inst);
+        LinearLayout ll = new LinearLayout(m_c);
 		ll.setOrientation(LinearLayout.HORIZONTAL);
 		v.setBackgroundColor(st.win_bg);
 //        pop2.setBackgroundResource(android.R.drawable.dialog_frame);
@@ -514,8 +514,8 @@ public class PopupKeyboard
 		}
 		//lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
     	CustomKeyboard kbd = (CustomKeyboard)st.kv().getCurKeyboard();
-        int ypos = inst.getResources().getDisplayMetrics().heightPixels;
-        int xpos = inst.getResources().getDisplayMetrics().widthPixels;
+        int ypos = m_c.getResources().getDisplayMetrics().heightPixels;
+        int xpos = m_c.getResources().getDisplayMetrics().widthPixels;
         ypos -= kbd.getHeight();
         lp.y = ypos;
         lp.x = DEFAULT_X-DEFAULT_X;
@@ -548,6 +548,9 @@ public class PopupKeyboard
         set.setTextSize(st.btnoff_size);
     	set.setBackgroundColor(st.btnoff_bg);
     	set.setTextColor(st.btnoff_tc);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        	set.setText("⚙");
+        }
     	set.setOnClickListener(new OnClickListener() {
     	@Override
     		public void onClick(View v) 
@@ -626,7 +629,7 @@ public class PopupKeyboard
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
         for (int i=0;i<txt.length;i++) {
         	if (txt[i].trim().length() == 0){
-        		TextView tv = new TextView(inst);
+        		TextView tv = new TextView(m_c);
         		tv.setBackgroundColor(st.win_bg);
         		tv.setTextColor(st.win_bg);
         		tv.setText(st.STR_SPACE+st.STR_SPACE);
@@ -637,7 +640,7 @@ public class PopupKeyboard
             	continue;
         	}
         	
-        	TextView tv = new TextView(inst);
+        	TextView tv = new TextView(m_c);
         	tv.setTextSize(st.btn_size);
         	tv.setBackgroundColor(st.btn_bg);
         	tv.setTextColor(st.btn_tc);
@@ -646,7 +649,7 @@ public class PopupKeyboard
         	ar = st.getElementSpecFormatSymbol(st.ar_asg, id);
         	if (ar!=null){
         		tv.setText(ar.visibleText+st.STR_SPACE);
-        		Drawable img = inst.getResources().getDrawable( R.drawable.bullet_red);
+        		Drawable img = m_c.getResources().getDrawable( R.drawable.bullet_red);
         		img.setBounds( 0, 0, 15, 15 );
         		tv.setCompoundDrawables( img, null, null, null );
         		tv.setCompoundDrawablePadding(2);
@@ -663,11 +666,20 @@ public class PopupKeyboard
     				close();
 				if (el!=null){
 					if (el.tpl_name!=null) {
-				   		File ff = new File(el.tpl_name);
-				   		if (ff.exists()&&ff.isFile()) {
-			        		new Templates(1,0).processTemplate(st.readFileString(ff));
-			        		Templates.destroy();
-				   		}
+						ArrayFuncAddSymbolsGest.processTemplateClick(m_c, el);
+//						File ff = null;
+//						if (el.tpl_name.startsWith(st.STR_SLASH))
+//					   		ff = new File(el.tpl_name);
+//						else
+//				   		 	ff = new File(st.getSettingsPathFull(el.tpl_name, Templates.INT_FOLDER_TEMPLATES));
+//				   		if (ff.exists()&&ff.isFile()) {
+//			        		new Templates(1,0,null).processTemplate(st.readFileString(ff));
+//			        		Templates.destroy();
+//				   		}
+//				   		else if (ff.exists()&&ff.isDirectory()) {
+//			            	new Templates(1,0,el.tpl_name).makeCommonMenu();
+//				   		} else
+//				   			st.toast("Template not found: "+ el.tpl_name);
 					} else
 						if (ServiceJbKbd.inst!=null)
 							ServiceJbKbd.inst.processKey(el.code);
@@ -678,7 +690,7 @@ public class PopupKeyboard
 					if (ServiceJbKbd.inst!=null)
 						ServiceJbKbd.inst.processKey(txt.charAt(0));
 				} else
-    				new Templates(1,0).processTemplate(txt);
+    				new Templates(1,0,null).processTemplate(txt);
         		}
     		});
         	tv.setOnTouchListener(new View.OnTouchListener() {
@@ -711,7 +723,7 @@ public class PopupKeyboard
         		llrow.addView(ll, llrowpar);
         		int ww = llrow.getWidth();
         		llrow.setMinimumWidth(ww+100);
-                ll = new LinearLayout(inst);
+                ll = new LinearLayout(m_c);
                 ll.setOrientation(LinearLayout.HORIZONTAL);
         	}
         	ll.addView(tv, llpar);

@@ -53,6 +53,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.KeyboardGesture.GestureHisList;
+import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
 import com.jbak2.ctrl.Mainmenu;
@@ -547,6 +548,24 @@ public class st extends IKeyboard implements IKbdSettings
  	    		out[i] = ar.get(i);
  	    	}
  	    	return out;
+ 	    }
+ 	    /** выполняет шаблон, указанный в el*/    
+ 	    public static void processTemplateClick(Context c, ArrayFuncAddSymbolsGest el)
+ 	    {
+ 			File ff = null;
+ 			if (el.tpl_name.startsWith(st.STR_SLASH))
+ 		   		ff = new File(el.tpl_name);
+ 			else
+ 	   		 	ff = new File(st.getSettingsPathFull(el.tpl_name, Templates.INT_FOLDER_TEMPLATES));
+ 	   		if (ff.exists()&&ff.isFile()) {
+ 	    		new Templates(1,0,null).processTemplate(st.readFileString(ff));
+ 	    		Templates.destroy();
+ 	   		}
+ 	   		else if (ff.exists()&&ff.isDirectory()) {
+ 	        	new Templates(1,0,el.tpl_name).makeCommonMenu();
+ 	   		} else
+ 	   			st.toast(c, "Template not found: "+ el.tpl_name);
+ 	    	
  	    }
     }
  	
@@ -1297,7 +1316,7 @@ public class st extends IKeyboard implements IKbdSettings
                 Templates.inst.setEditFolder(true);
                 return runAct(TplEditorActivity.class);
             case CMD_TPL:
-            	new Templates(1,0).makeCommonMenu();
+            	new Templates(1,0,null).makeCommonMenu();
 //            	tpl.setDir(1,0);
 //            	tpl.makeCommonMenu(); 
             	return true;
@@ -1398,7 +1417,7 @@ public class st extends IKeyboard implements IKbdSettings
             break;
          // запуск калькулятора
             case CMD_CALC:
-            	new Templates(2,1);
+            	new Templates(2,1,null);
             	com_menu.close();
 //            	tpl.setDir(2,1);
                 st.setCalcKeyboard();
@@ -1450,10 +1469,10 @@ public class st extends IKeyboard implements IKbdSettings
             case CMD_CALC_HISTORY: return com_menu.showCalcHistory();
             case CMD_CALC_LIST: return com_menu.showCalcList();
             case CMD_CALC_SAVE:
-            	new Templates(2,1).makeCommonMenu();
+            	new Templates(2,1,null).makeCommonMenu();
             	return true;
             case CMD_CALC_LOAD:
-            	new Templates(2,2).makeCommonMenu();
+            	new Templates(2,2,null).makeCommonMenu();
             	return true;
             case GESTURE_ADDITIONAL_SYMBOL1:
             	popupAdditional(1);
@@ -2202,7 +2221,7 @@ public class st extends IKeyboard implements IKbdSettings
     	if (ServiceJbKbd.inst!=null)
     		ServiceJbKbd.inst.forceShow();
     }
-    public static void showkbd(final EditText et)
+    public static void showkbd(final EditText et, final boolean seltext)
     {
        (new Handler()).postDelayed(new Runnable() {
 
@@ -2212,10 +2231,14 @@ public class st extends IKeyboard implements IKbdSettings
                 et.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN , 0, 0, 0));
                 et.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP , 0, 0, 0));                       
                 if (et !=null)
-                	et.setSelection(et.getText().toString().length());
+                	if (seltext) {
+                		et.selectAll();
+                	} else {
+                		et.setSelection(et.getText().toString().length());
+                	}
             }
         }, 200);
-    }    
+    }
     public static void hidekbd()
     {
     	if (ServiceJbKbd.inst!=null)
@@ -2521,9 +2544,9 @@ public class st extends IKeyboard implements IKbdSettings
     			ClipbrdSyncService.inst.delete(ServiceJbKbd.inst);
 		st.fl_sync = false;
     }
-    // ИСПОЛЬЗУЕТСЯ В ДВУХ МЕСТАХ!
-    // если запущено на эмуляторе (значит ведётся отладка 
-    // и отчёт о падении выводить не надо)
+    /** ИСПОЛЬЗУЕТСЯ В ДВУХ МЕСТАХ! <br>
+     * Если запущено на эмуляторе (значит ведётся отладка <br> 
+     * и отчёт о падении выводить не надо) */
     public static boolean isDebugEmulator()
     {
     	// запущено на genymotion
@@ -2531,7 +2554,7 @@ public class st extends IKeyboard implements IKbdSettings
            	return true;
     	return false;
     }
-    // преобразует строку - первый сивол заглавный
+    /** преобразует строку - первый сивол заглавный */
     public static String upFirstSymbol(String in)
     {
     	if (in.length()>0)
@@ -3069,6 +3092,5 @@ public class st extends IKeyboard implements IKbdSettings
     	        text, 0, text.length());
 		return et;
     }
-   
     
 }

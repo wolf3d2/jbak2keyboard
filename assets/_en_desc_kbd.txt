@@ -1,4 +1,4 @@
-Last edited: 16.11.2019
+Last edited: 12.12.2019
 This text is available in the item of Settings "How to use the keyboard"
 
 Visit the program site:
@@ -166,10 +166,9 @@ This function slows down the keyboard!
 For this reason, it is better to not turn on this feature on low-power devices.
 
 !!!STRING OF CHARACTERS AND WORDS IN AUTOCOMPLETE BY DEFAULT
-Also you can set your own string of characters and words in Autocomplete: Settings-Autoinput-Words by default.
-In addition to characters and words, a special word format is supported, allowing a word to be changed to a button: $ [<code>, <displayed word>]. The displayed word must not contain spaces.  For example, $ [- 500, Menu]  will display a button, by clicking on it the main menu screen will be opened.
-tarting from version 2.31.06, the default autocomplete string has been changed. 
-To go to a new line, you need to clear the line in Settings.
+The default string of characters and words can be specified in Autocomplete: Settings-Autocomplete-Words by default.
+In addition to characters and words, the special label formats are supported, allowing a label to be converted into a button, that allows you to execute a keyboard command from the codes available in it or to execute a template specified in this format.
+How to do it, see: Settings-Autocomplete-Default String
 
 2)FREQUENTLY ASKED QUESTIONS AND POSSIBLE PROBLEMS.
 
@@ -440,9 +439,10 @@ The screen for the second format supports scrolling.
 A LITTLE TRICK:
 If the rightmost button partially go beyond the screen, you can adjust it by inserting extra spaces between characters (words) - "Bob Pete     Alice", the "Alice" button will be moved to the beginning of the next string.
 
-Besides, for a small keyboard v2, there is a possibility to specify any executable code (or a character: then, instead of a character, specify its code)  from the ones available in the keyboard.
+In addition, for the small keyboard v2, it is possible to specify any executable code (or symbol) then, indicate its code instead of the symbol) from the available in the keyboard, and also attach any available template to a button. 
+For more details, see: Settings-Autocomplete-Words by default
 
-To that end, a created button is set in a special format (WITHOUT SPACES!), for example, 
+For example, 
 $[-502,Templates]: clicking on it will open templates; 
 $[32,Space]: clicking on it will enter a space.
 

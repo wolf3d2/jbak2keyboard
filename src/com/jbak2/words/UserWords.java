@@ -24,6 +24,8 @@ public class UserWords {
 	public static String m_word = st.STR_NULL;
 	/** лимит частоты слова, если больше, то устанавливается это */
 	public static int WORD_FREQ_LIMIT = 10000000;
+	/** значение частоты по умолчанию для слов добавленных пользователем */
+	public static int FREQ_USER_WORD = 500000;
 	public static long fr = 0;
 	public static String delword = st.STR_NULL;
 	public static final String C_WORD = "word";
@@ -209,6 +211,17 @@ public class UserWords {
 		return false;
 	}
 
+	public boolean deleteTable(String name) {
+		try {
+			String sql = String.format("DROP TABLE IF EXISTS %s", name);
+			m_db.execSQL(sql); 
+			m_tables.remove(name);
+			return true;
+		} catch (Throwable e) {
+		}
+		return false;
+	}
+
 	boolean addWord(String word) {
 		if (isTableOpen())
 			return addWord(word, m_curTable);
@@ -259,6 +272,8 @@ public class UserWords {
 				return true;
 			}
 		}
+		if (!isTableExist(lang))
+			addTable(lang);
 		long ri = m_db.insert(lang, null, cv);
 		if (ri < 0) {
 			ri = m_db.update(lang, cv, C_WORD + "=?", new String[] { m_word });

@@ -90,12 +90,18 @@
             android:summary="@string/dict_load_desc"
             android:title="@string/dict_load" />
 
-        <EditTextPreference
-            android:defaultValue=""
-            android:digits="0123456789qwertyuiopasdfrghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+        <Preference
             android:key="empty_dict"
             android:summary="@string/dict_empty_dict_desc"
             android:title="@string/dict_empty_dict" />
+
+        
+<!--         <EditTextPreference -->
+<!--             android:defaultValue="" -->
+<!--             android:digits="0123456789qwertyuiopasdfrghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM" -->
+<!--             android:key="empty_dict" -->
+<!--             android:summary="@string/dict_empty_dict_desc" -->
+<!--             android:title="@string/dict_empty_dict" /> -->
 
         <Preference
             android:defaultValue="40"

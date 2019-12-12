@@ -33,7 +33,7 @@
     android:id="@+id/pc2act_et_addsymb"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:lines="6"
+    android:lines="3"
     android:gravity="left|top"
     android:clickable="true"
     android:ems="10"

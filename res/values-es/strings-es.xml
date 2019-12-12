@@ -37,7 +37,8 @@
 <!-- Title for new version check site-->
 	<string name="chk_new_version">Se ha lanzado una nueva versión del programa\nActualice el teclado desde la página web del programa.</string>
 	<string name="chk_old_version">Su versión del teclado está desactualizada!\nLe gustaría revisar la nueva versión del teclado en la página web del programa?</string>
-		
+	<string name="chk_wrong_version">Su versión del teclado es incorrecta.\n¡Por favor, actualice a la última versión!</string>
+			
 <!-- Title for new version-->
 	<string name="nv_upload">Esta ventana de diálogo se visualizará después de la segunda llamada del teclado, después de cada actualización. En algunos dispositivos se mostrará 2 veces\nDesafortunadamente, no puede hacerse de manera diferente.\n\nDespués de cada actualización, el teclado debe ser detenido de los servicios en ejecución, de lo contrario su comportamiento será impredecible.</string>
 
@@ -181,6 +182,7 @@
     <string name="euv_save">Guardando...</string>
     <string name="euv_help">(el desplazamiento del texto está activado)\n\nSe puede editar palabras y sus frecuencias haciendo clic en la palabra deseada y en su frecuencia, respectivamente.\nPresione la tecla Enter para terminar la edición.\nAl tocar una palabra con pulsación larga, la eliminará del diccionario, y la palabra por sí mismo tomará el color rojo.\n\nCuanto mayor sea la frecuencia de la palabra, más cerca estará la palabra a la parte superior de la lista (si la lista de Autocompletado está dada por la frecuencia).\nEl rango de frecuencia de las palabras es desde 0 hasta 10000000.\nLa frecuencia de la palabra encima de 500000 indica que la palabra no estaba en los diccionarios principales, y ha sido añadida por el usuario, y debe ser mostrada en la parte superior de la lista (por lo tanto ella tiene un número tan grande).\nSi la palabra se establece en 0, la frecuencia no aumentará, y esa palabra no aparecerá en la lista (las palabras del diccionario principal tienen una frecuencia mínima establecida en 1, lo que les permite estar siempre visualizadas) .</string>
     <string name="euv_cb1">Siempre abrir este idioma</string>
+    <string name="euv_del_table">Удалить язык из базы данных</string>
     
 <!-- Title for skin constructor  -->
     <string name="sc_actname">Constructor de temas</string>
@@ -289,7 +291,7 @@
 	<string name="pc2act_btn_color_txt">Color del texto de las teclas:\n(por defecto #ff000000)</string>
 	<string name="pc2act_btn_color_back">Color del fondo de las teclas:\n (por defecto #fffffffe)</string>
 	<string name="pc2act_str_add">Cadena de ajustes para el Gesto adicional</string>
-	<string name="pc2act_str_help1">В строке ниже дублируется строка из настроек для жеста Дополнительные символы.</string>
+	<string name="pc2act_str_help1">En la cadena de abajo se duplica la cadena de los ajustes para el gesto "Símbolos adicionales".</string>
 	<string name="pc2act_btn_size">Tamaño de las teclas\n(por defecto 20)</string>
 	<string name="pc2act_btn_off_size">Tamaño de las teclas adicionales\n(por defecto 20)</string>
 	<string name="pc2act_winfix">Fijación de la ventana</string>
@@ -333,9 +335,9 @@
 	<string name="gesture_popupchar1">Símbolos adicionales</string>
 	<string name="gesture_popupchar_str1">Ventana emergente de símbolos adicionales</string>
 	<string name="gesture_popupchar_str1_desc">Para abrir la ventana de símbolos adicionales al usar el gesto “Símbolos adicionales”, se necesita enumerarlos aquí</string>
-	<string name="gesture_popupchar_str1_help1">Здесь задаётся строка для жеста Дополнительные символы.
-\n\nРазделитель - пробел.
-\n\nВ этой строке можно задать ваши слова и символы для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
+	<string name="gesture_popupchar_str1_help1">Aquí se puede especificar la cadena para el gesto de "Símbolos adicionales".
+\n\nSeparador: espacio.
+\n\nEn esta cadena se puede configurar sus palabras y caracteres para introducir, así como crear botones para ejecutar códigos de programa o para ejecutar plantillas</string>
 		<string name="gesture_cand_list">Lista de palabras del Autocompletado</string>
 	<string name="gesture_cut">Cortar</string>
 	<string name="gesture_copy">Copiar</string>
@@ -433,6 +435,9 @@
 	<string name="dict_load_desc">Autocompletado no funciona sin diccionarios descargados para idiomas determinados</string>
 	<string name="dict_empty_dict">Crear un diccionario vacío</string>
 	<string name="dict_empty_dict_desc">Dos letras del código de idioma  para que el Autocompletado funcione. Las palabras se agregan al diccionario de usuario</string> 
+	<string name="dict_empty_dict_help">Если для языка отсутствует словарь, а хочется чтобы подсказки слов были, можно создать пустой словарь для этого языка. Тогда слова в автодополнении показываться будут, но исключительно из тех слов, которые вы добавили сами, через кнопку + в автодополнении.
+\n\nДля этого введите две буквы кода языка, или выберите его из списка, нажав на кнопку Языки</string>
+	<string name="dict_languages">Idiomas</string>
 	<string name="student_dict">Diccionario de aprendizaje</string>
 	<string name="student_dict_desc">Después de elegir una palabra del Autocompletado, su frecuencia de uso aumenta a uno. Con el tiempo las palabras más comunes se mostrarán siempre en la pantalla.</string>
 	<string name="student_ext_dict">Aprendizaje avanzado</string>
@@ -447,26 +452,24 @@
 	<string name="set_enter_state_desc">Cambiar el ícono en la tecla Enter dependiendo del contexto?</string>
     <string name="set_ac_defkey">Palabras por defecto</string>
     <string name="set_ac_defkey_desc">Palabras por defecto en el panel de Autocompletado. Separador: espacio. Si una tecla corresponde a varios caracteres, se introducirá el primero.</string>
-	<string name="set_ac_defkey_help1">Это строка текста по умолчанию.
-\n\nОна выводится в окне автодополнения, когда поле ввода пустое или введён один из знаков не символ и не цифра. \nНапример точка, запятая, двоеточие и т.д.
-\n\nРазделитель - пробел.
-\n\nВ этой строке можно задать ваши самые используемые слова для ввода, а также создать кнопки для выполнения кодов программы или выполнения шаблонов.</string>
-    <string name="set_ac_defkey_help_buttons">\n\nКнопки +B и +T служат для удобства ввода специальных форматов, которые реализуют создание кнопок:
-\n\n+B - вставляет в позицию курсора специальный формат $[0,t]
-\nгде:
-\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
-\n0 - любой код из доступных в клавиатуре. Может быть как служебный (отрицательные значения), так и код символа (тогда он введётся в поле ввода).
-\nt - текст отображаемый на кнопке
-\n\n+T - вставляет в позицию курсора специальный формат $[название_шаблона,t]
-\nгде:
-\n$[ - обязательный префикс, который означает, что далее следует специальный формат до символа ].
-\nназвание_шаблона - полное имя шаблона, который будет выполнен.
-\nИмя шаблона не должно содержать запятых.
-\nt - текст отображаемый на кнопке</string>
-    <string name="set_ac_new_defkey">Cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
-    <string name="set_market1">Evalúa la aplicación</string>
-    <string name="set_ac_space">Inserción del espacio</string>
-    <string name="set_ac_space_desc">Hacer espacio después de ingresar la palabra del Autocompletado</string>
+	<string name="set_ac_defkey_help1">Esta es la cadena de texto predeterminada.
+\n\nSe muestra en la ventana de Autocompletado, cuando el campo de entrada está vacío o uno de los caracteres ingresados no es un símbolo o un número.
+\nPor ejemplo, un punto, una coma, dos puntos, etc.
+\n\nSeparador: espacio.
+\n\nEn esta cadena se puede configurar las palabras más comunes para introducir, así como crear botones para ejecutar códigos de programa o plantillas.</string>
+    <string name="set_ac_defkey_help_buttons">\n\nLos botones + B y + T se utilizan para introducir fácilmente los formatos especiales que implementan la creación de los botones:
+\n\n+B : inserta el formato especial $[0,t] en la posición del cursor
+\ndonde:
+\n$[ :prefijo obligatorio, lo que significa que se aplicará el formato especial hasta el símbolo \"]\".
+\n0 : cualquier código disponible en el teclado. Puede ser un código de servicio (valores negativos) o un código de carácter (entonces, se introducirá en el campo de entrada).
+\nt : texto mostrado en el botón
+\n\n+T : inserta el formato especial $[nombre de la plantilla,t] en la posición del cursor 
+\ndonde:
+\n$[ : prefijo obligatorio, lo que significa que se aplicará el formato especial hasta el símbolo \"]\". 
+\nnombre de la plantilla: nombre completo de la plantilla que se ejecutará
+\nNombre de la plantilla no debe contener comas.
+\nt : texto mostrado en el botón (por defecto, se inserta el nombre de la plantilla)
+\n\nSi se especifica la carpeta de plantillas como nombre de plantilla, las plantillas se abrirán en esta carpeta</string>
 
 <string name="indicators">Indicadores</string>
     <string name="set_counter">Longitud del texto</string>

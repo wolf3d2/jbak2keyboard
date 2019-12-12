@@ -34,9 +34,11 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ import android.widget.Toast;
 import com.jbak2.CustomGraphics.draw;
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.Dialog.DlgFileExplorer;
+import com.jbak2.JbakKeyboard.IKeyboard.Lang;
 import com.jbak2.JbakKeyboard.UpdVocabActivity;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
@@ -52,6 +55,9 @@ import com.jbak2.ctrl.IntEditor;
 import com.jbak2.perm.Perm;
 import com.jbak2.web.Mail;
 import com.jbak2.web.SiteKbd;
+import com.jbak2.words.UserWords;
+import com.jbak2.words.Words;
+import com.jbak2.words.WordsService;
 
 @SuppressLint("NewApi")
 public class JbKbdPreference extends PreferenceActivity implements OnSharedPreferenceChangeListener
@@ -708,6 +714,11 @@ public void checkStartIntent()
 //        	showCalcHeightCorrInd();
 //            return true;
 //        }
+        else if("empty_dict".equals(k))
+        {
+        	showEmptyDict();
+            return true;
+        }
         else if("sistem_setting_unknown_source".equals(k))
         {
         	
@@ -1125,7 +1136,7 @@ public void checkStartIntent()
         else if("gesture_create".equals(k))
         {
             vocabTest();
-            st.runAct(Gesture_create.class,c);
+            st.runAct(GestureCreateAct.class,c);
             return true;
         }
         else if("ac_key_color".equals(k))
@@ -1722,6 +1733,145 @@ public void checkStartIntent()
         });
         Dlg.customDialog(this, v, getString(R.string.ok), getString(R.string.cancel), null, obs);
     }
+	/** строка имени файла для создания пустого словаря. Сделано для удобства */
+	String empty_dict = st.STR_NULL;
+    /** создаём пустой словарь */
+    void showEmptyDict()
+    {
+        final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+		((TextView) v.findViewById(R.id.eadw_title)).setText(R.string.dict_empty_dict);
+		((Button) v.findViewById(R.id.eadw_plus_btn_button)).setVisibility(View.GONE);
+        final EditText et = (EditText)v.findViewById(R.id.eadw_edit);
+        et.setSingleLine();
+        View.OnClickListener clickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch (v.getId())
+                {
+                case R.id.eadw_help:
+                	String txt = inst.getString(R.string.dict_empty_dict_help); 
+    				Dlg.helpDialog(inst, txt);
+                    return;
+                case R.id.eadw_plus_tpl_button:
+    				final String[] langs = Lang.getAlLocalelLang(2);
+    		    	ServiceJbKbd.inst.forceHide();
+    		        int rlist = R.layout.tpl_instr_list;
+    		        final ArrayAdapter<String> ar = new ArrayAdapter<String>(inst, 
+    		                                                    rlist,
+    		                                                    langs
+    		                                                    );
+    		        Dlg.customMenu(inst, ar, inst.getString(R.string.dict_languages), new st.UniObserver()
+    		        {
+    		            @Override
+    		            public int OnObserver(Object param1, Object param2)
+    		            {
+    		            	try {
+    			                int pos = ((Integer)param1).intValue();
+    			                String lng = langs[pos];
+    			                int pp = lng.indexOf("-");
+    			                if (pp> -1) {
+    			                	String[] str = lng.split("-");
+    			                	lng = str[str.length-1].trim().toLowerCase();
+    			                	et.setText(lng);
+    			                }
+    							
+    						} catch (Throwable e) {
+    						}
+    		            	// показываем клавиатуру
+    		            	ServiceJbKbd.inst.forceShow();
+    		                return 0;
+    		            }
+    		        });
+    			}
+                return;
+            }
+        };
+        TextView tv = (TextView)v.findViewById(R.id.eadw_help);
+        tv.setOnClickListener(clickListener);
+        Button b = (Button)v.findViewById(R.id.eadw_plus_btn_button);
+        b.setOnClickListener(clickListener);
+        b = (Button)v.findViewById(R.id.eadw_plus_tpl_button);
+		b.setText(R.string.dict_languages);
+        b.setOnClickListener(clickListener);
+
+        
+        //String str = p.getString(st.PREF_EMPTY_DICT, st.STR_NULL);
+        et.setText(empty_dict.toLowerCase());
+        st.showkbd(et,false);
+        
+        st.UniObserver obs = new st.UniObserver()
+        {
+            @Override
+            public int OnObserver(Object param1, Object param2)
+            {
+            	st.hidekbd();
+                if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+                {
+                	empty_dict = et.getText().toString().trim();
+                	empty_dict = empty_dict.toLowerCase();
+        			if (empty_dict != null && (empty_dict.length() == 2 || empty_dict.length() == 3)) {
+        				boolean fl = true;
+        				char cc = 0;
+        				for (int i = 0; i < empty_dict.length(); i++) {
+        					if (cc < 48 && cc > 57 && cc < 97 && cc > 122) {
+        						fl = false;
+        					}
+        				}
+        				if (fl) {
+        					final String path = st.getSettingsPath() + WordsService.DEF_PATH + empty_dict + "_v0.dic";
+        					File ff = new File(path);
+        					if (ff.exists()&&ff.isFile()) {
+        						Dlg.yesNoDialog(inst, inst.getString(R.string.rewrite_question), R.string.yes, R.string.no, new st.UniObserver() {
+									
+									@Override
+									public int OnObserver(Object param1, Object param2) {
+						                if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+						                {
+						                	File f_ind = new File(path+Words.INDEX_EXT);
+						                	if (f_ind.exists()&&f_ind.isFile()) {
+						                		f_ind.delete();
+						                	}
+				        					saveEmptyDictionary(path);
+						                }
+										return 0;
+									}
+								});
+        					} else
+        						saveEmptyDictionary(path);
+        				}
+        			}
+                	
+//                    Editor e = p.edit();
+//                	String text = et.getText().toString();
+//                    e.putString(st.PREF_EMPTY_DICT, text.toLowerCase());
+//                    e.commit();
+//                    if(OwnKeyboardHandler.inst!=null)
+//                        OwnKeyboardHandler.inst.loadFromSettings();
+                }
+                return 0;
+            }
+        };
+
+        Dlg.customDialog(inst, v, getString(R.string.ok), getString(R.string.cancel), null, obs);
+    }
+	public static void saveEmptyDictionary(String path) {
+		
+		FileWriter wr;
+		try {
+			wr = new FileWriter(path, false);
+			wr.write(st.STR_NULL);
+			// wr.write("~ 1\n");
+			wr.flush();
+			wr.close();
+			st.toast(R.string.create);
+		} catch (IOException e) {
+		}
+
+	}
+
+
     void showClipboardSize()
     {
         final View v = getLayoutInflater().inflate(R.layout.edit_intervals, null);
@@ -1813,8 +1963,9 @@ public void checkStartIntent()
                         @Override
                         public void onSelected(File file)
                         {
-                        	String text = st.STR_PREFIX+file.getAbsolutePath()+","
-                        			+file.getName()+"] ";
+                        	String text = file.getAbsolutePath();
+                        	text = st.getSettingsPathShort(text, Templates.INT_FOLDER_TEMPLATES);
+                        	text = st.STR_PREFIX+text+st.STR_COMMA+file.getName()+"] ";
                         	st.setInsertTextToCursorPosition(et, text);
                         	int pos = et.getSelectionStart()-2;
                         	if (pos < 0)
@@ -1837,7 +1988,7 @@ public void checkStartIntent()
         
         String str = p.getString(st.PREF_AC_DEFKEY, st.AC_DEF_WORD);
         et.setText(str);
-        st.showkbd(et);
+        st.showkbd(et,false);
         
         st.UniObserver obs = new st.UniObserver()
         {
@@ -1866,6 +2017,7 @@ public void checkStartIntent()
     {
         final SharedPreferences p = st.pref(this);
         final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+		((TextView) v.findViewById(R.id.eadw_title)).setText(R.string.gesture_popupchar_str1);
         final EditText et = (EditText)v.findViewById(R.id.eadw_edit);
         View.OnClickListener clickListener = new View.OnClickListener()
         {
@@ -1900,8 +2052,9 @@ public void checkStartIntent()
                         @Override
                         public void onSelected(File file)
                         {
-                        	String text = st.STR_PREFIX+file.getAbsolutePath()+","
-                        			+file.getName()+"] ";
+                        	String text = file.getAbsolutePath();
+                        	text = st.getSettingsPathShort(text, Templates.INT_FOLDER_TEMPLATES);
+                        	text = st.STR_PREFIX+text+st.STR_COMMA+file.getName()+"] ";
                         	st.setInsertTextToCursorPosition(et, text);
                         	int pos = et.getSelectionStart()-2;
                         	if (pos < 0)
@@ -1924,7 +2077,7 @@ public void checkStartIntent()
         
         String str = p.getString(st.PREF_AC_DEFKEY, st.AC_DEF_WORD);
         et.setText(str);
-        st.showkbd(et);
+        st.showkbd(et,false);
         
         st.UniObserver obs = new st.UniObserver()
         {

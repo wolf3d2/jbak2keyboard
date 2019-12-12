@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
+import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.SearchRegex;
 
@@ -28,14 +29,21 @@ public class Templates
     static Templates inst;
     public static com_menu menu = null;
     File m_editFile=null;
+    
 /** Обнуляет текущий объект */    
     static void destroy()
     {
         if(inst!=null)
             inst = null;
     }
-/** Конструктор. Инициализирует rootDir */  
-    Templates(int rej, int typ)
+/** Конструктор. Инициализирует rootDir 
+ * @param rej - режим какую папку открывать <br>
+ * 1 - templates
+ * 2 - calc
+ * @param typ - тип обработки для обработок папки calc <br>
+ * @param curDir - или null, или устанавливает текущую папку
+ * */  
+    Templates(int rej, int typ, String curDir)
     {
         inst = this;
         rejim = rej;
@@ -49,7 +57,14 @@ public class Templates
                 m_rootDir = null;
         }
         m_curDir = m_rootDir;
-        if (rejim == 1&&st.fiks_tpl.length()>0) {
+        // должна стоять первой проверкой
+        if (rejim == 1&&curDir!=null) {
+        	if (!curDir.startsWith(st.STR_SLASH))
+        		curDir = rd+st.STR_SLASH+curDir;
+        	m_curDir = new File(curDir);
+        	//st.fl_fiks_tpl = false;
+        }
+        else if (rejim == 1&&st.fiks_tpl.length()>0) {
         	m_curDir = new File(st.fiks_tpl);
         	st.fl_fiks_tpl = false;
         }
@@ -1343,13 +1358,15 @@ public class Templates
         });
         gd.showAlert();
     }
-
-/** Текущая папка */    
+    
+    /** Текущая папка */    
     File m_cd;
  // режим использования 
     // 1 - шаблоны
     // 2 - калькулятор
     public static int rejim = 1;
+    public static int INT_FOLDER_TEMPLATES = 1;
+    public static int INT_FOLDER_CALC = 2;
     public static String FOLDER_TEMPLATES = "templates";
     public static String FOLDER_CALC = "calc";
  /** тип<br>

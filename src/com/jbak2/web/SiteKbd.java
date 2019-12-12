@@ -246,6 +246,10 @@ public class SiteKbd {
 //		String slasttoast = st.getDatetime((long) (tlasttoast+TOAST_NOT_UPDATE), "1");
 //		String sTOAST_NOT_UPDATE = st.getDatetime((long) (TOAST_NOT_UPDATE), "1");
 
+		if (vapp >= vlini+8) {
+			st.toastLong(m_c, R.string.chk_wrong_version);
+			return 1;
+		}
 		if (vapp >= vlini)
 			return 0;
 		// ставить именно в таком порядке - сперва проверять бОльшие промежутки!

@@ -121,9 +121,9 @@ public class Popup2act extends Activity
         btnoff_size.setText((st.STR_NULL+st.btnoff_size).trim());
         btnoff_size.addTextChangedListener(tw);
 		ll_color = (LinearLayout)findViewById(R.id.pc2act_ll_color);
-        fl_changed = false;
         createColorLayout();
         str_add.requestFocusFromTouch();
+        fl_changed = false;
     }
     @Override
     public void onBackPressed() 
@@ -250,14 +250,16 @@ public class Popup2act extends Activity
                     @Override
                     public void onSelected(File file)
                     {
-                    	String text = st.STR_PREFIX+file.getAbsolutePath()+","
-                    			+file.getName()+"] ";
+                    	String text = file.getAbsolutePath();
+                    	text = st.getSettingsPathShort(text, Templates.INT_FOLDER_TEMPLATES);
+                    	text = st.STR_PREFIX+text+st.STR_COMMA+file.getName()+"] ";
                     	st.setInsertTextToCursorPosition(str_add, text);
                     	int pos = str_add.getSelectionStart()-2;
                     	if (pos < 0)
                     		pos = 0;
                     	str_add.setSelection(pos);
                     	st.showkbd();
+
                     }
                 }
                 .show();

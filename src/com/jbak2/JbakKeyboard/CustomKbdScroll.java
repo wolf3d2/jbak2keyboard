@@ -241,30 +241,30 @@ public class CustomKbdScroll
             		return;
             	case R.id.trans_lang: 
             		//close();
-                	final GlobDialog gd1 = new GlobDialog(ServiceJbKbd.inst);
-                	String txt = st.pref().getString(st.PREF_TRANSLATE_INTERFACE, st.getSystemLangApp(false));
-               		gd1.ret_edittext_text = txt;
-                    gd1.set(ServiceJbKbd.inst.getString(R.string.mm_translate_interfase_browser), R.string.ok, R.string.cancel);
-                    gd1.setObserver(new st.UniObserver()
-                      {
-                          @Override
-                          public int OnObserver(Object param1, Object param2)
-                          {
-                              if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
-                              {
-                            	  gd1.ret_edittext_text = gd1.ret_edittext_text.trim().toLowerCase();
-                            	  if (gd1.ret_edittext_text.length()!=2)
-                            		  gd1.ret_edittext_text = st.getSystemLangApp(false);
-                            	  st.pref().edit().putString(st.PREF_TRANSLATE_INTERFACE, gd1.ret_edittext_text).commit();
-                        		  //st.showkbd();
-                        		  if (Translate.inst!=null){
-                        			  Translate.inst.onCloseEditor();
-                        		  }
-                              }
-                              return 0;
-                          }
-                      });
-                      gd1.showEdit(txt,0);
+//                	final GlobDialog gd1 = new GlobDialog(ServiceJbKbd.inst);
+//                	String txt = st.pref().getString(st.PREF_TRANSLATE_INTERFACE, st.getSystemLangApp(false));
+//               		gd1.ret_edittext_text = txt;
+//                    gd1.set(ServiceJbKbd.inst.getString(R.string.mm_translate_interfase_browser), R.string.ok, R.string.cancel);
+//                    gd1.setObserver(new st.UniObserver()
+//                      {
+//                          @Override
+//                          public int OnObserver(Object param1, Object param2)
+//                          {
+//                              if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+//                              {
+//                            	  gd1.ret_edittext_text = gd1.ret_edittext_text.trim().toLowerCase();
+//                            	  if (gd1.ret_edittext_text.length()!=2)
+//                            		  gd1.ret_edittext_text = st.getSystemLangApp(false);
+//                            	  st.pref().edit().putString(st.PREF_TRANSLATE_INTERFACE, gd1.ret_edittext_text).commit();
+//                        		  //st.showkbd();
+//                        		  if (Translate.inst!=null){
+//                        			  Translate.inst.onCloseEditor();
+//                        		  }
+//                              }
+//                              return 0;
+//                          }
+//                      });
+//                      gd1.showEdit(txt,0);
             		return;
             	case R.id.but_new_template_folder: 
             		st.kbdCommand(st.CMD_TPL_NEW_FOLDER); 
@@ -328,7 +328,7 @@ public class CustomKbdScroll
                 	if (Templates.inst!=null) {
                 		int r = Templates.inst.rejim;
                 		int t = Templates.inst.type;
-                    	new Templates(r,t).makeCommonMenu();
+                    	new Templates(r,t,null).makeCommonMenu();
                 	}
                 	return;
                 case R.id.fiks_tpl:

@@ -372,13 +372,13 @@ public class JbKbd extends Keyboard {
         boolean trueRepeat = false;
         /** Клавиша обработана по longPress или repeat */        
         boolean processed = false;
-// поле содержащее помощь android:help         
+        /** поле содержащее помощь android:help */         
         String help = st.STR_NULL;
-// поле содержащее тег android:calcMenu         
+        /** поле содержащее тег android:calcMenu */         
         String calc_menu = st.STR_NULL;
-// поле содержащее тег android:calcKeyboard         
+        /** поле содержащее тег android:calcKeyboard */         
         boolean calc_keyboard = true;
-// какой это регистр калькулятора? Если нет то = -1
+        /** какой это регистр калькулятора? Если нет то = -1 */
         int calc_reg_fl = -1;
         
         String mainText;
@@ -467,7 +467,7 @@ public class JbKbd extends Keyboard {
         		return false;
         	String t = longPress?longText:mainText;
         	if (Templates.inst == null) {
-        		new Templates(1,0).processTemplate(t);
+        		new Templates(1,0,null).processTemplate(t);
         		Templates.destroy();
         	} else
         		Templates.inst.processTemplate(t);
