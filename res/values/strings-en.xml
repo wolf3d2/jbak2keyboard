@@ -8,7 +8,7 @@
     <string name="msg_begin">Do not show this again</string>   
 	<string name="kbd_warning">First turn on and activate the keyboard!\n(the first paragraph of Settings)</string>
 	<string name="jbak2layout">Custom layouts and languages</string>
-	<string name="jbak2layout_desc">This is an independent application that contains different languages and layouts. There you can also find the instruction (on Russian) for creating your own layout and language.</string>
+	<string name="jbak2layout_desc">This is an independent application that contains different languages and layouts. There you can also find the instruction for creating your own layout and language.</string>
 	<string name="jbak2skin">Custom skins</string>
 	<string name="jbak2skin_desc">This is an independent application that contains  different skins. There you can also find the instructions for creating your own skin.</string>
 	<string name="other_app">(Ad) Other applications </string>

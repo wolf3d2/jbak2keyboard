@@ -230,6 +230,16 @@ public class CustomKeyboard extends JbKbd
                                     	dim = "px";
                                     m_row.defaultHeight = getSize(String.valueOf(ff)+dim, m_row.defaultHeight, m_row.defaultHeight, B_keyHeight);
                                 }
+                                else if(b == B_keyWidth)
+                                {
+                                    ff = is.readFloat();
+                                    bb = is.readByte();
+                                    if (bb>-1&&bb==1)
+                                    	dim = "%p";
+                                    else if (bb>-1&&bb==2)
+                                    	dim = "px";
+                                    m_row.defaultWidth = getSize(String.valueOf(ff)+dim, m_row.defaultWidth, m_row.defaultWidth, B_keyWidth);
+                                }
                                 else if(b == B_verticalGap)
                                 {
                                     ff = is.readFloat();
@@ -495,6 +505,10 @@ public class CustomKeyboard extends JbKbd
                 {
                 	m_row.defaultHeight = getSize(p.getAttributeValue(i), m_row.defaultHeight, m_row.defaultHeight, B_keyHeight);
                 }
+                if(A_keyWidth.equals(name))
+                {
+                	m_row.defaultWidth = getSize(p.getAttributeValue(i), m_row.defaultWidth, m_row.defaultWidth, B_keyWidth);
+                }
                 if(A_verticalGap.equals(name))
                 {
                     m_row.verticalGap = getSize(p.getAttributeValue(i), m_displayHeight, m_row.verticalGap, B_verticalGap);
@@ -506,7 +520,10 @@ public class CustomKeyboard extends JbKbd
     LatinKey newKey()
     {
         LatinKey k = new LatinKey(m_row);
-        k.width = getKeyWidth();
+        if (m_row.defaultWidth!=0)
+            k.width = m_row.defaultWidth;
+        else
+            k.width = getKeyWidth();
         k.height = m_row.defaultHeight;
         k.gap = getHorizontalGap();
         k.x = m_x;

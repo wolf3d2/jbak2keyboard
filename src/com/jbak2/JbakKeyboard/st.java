@@ -1272,15 +1272,15 @@ public class st extends IKeyboard implements IKbdSettings
                         if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
                         {
                         	if (st.isLandscape(ServiceJbKbd.inst))
-                        		ServiceJbKbd.inst.m_LandscapeEditType = 1;
+                        		ServiceJbKbd.inst.m_LandscapeEditType = PREF_VAL_EDIT_TYPE_FULLSCREEN;
                         	else
-                        		ServiceJbKbd.inst.m_PortraitEditType = 1;
+                        		ServiceJbKbd.inst.m_PortraitEditType = PREF_VAL_EDIT_TYPE_FULLSCREEN;
                         	st.toastLong(R.string.full_display_input_toast);
                         }
                         else if(((Integer)param1).intValue()==AlertDialog.BUTTON_NEUTRAL)
                         {
                         	if (st.isLandscape(ServiceJbKbd.inst))
-                        		ServiceJbKbd.inst.m_LandscapeEditType = 0;
+                        		ServiceJbKbd.inst.m_LandscapeEditType = PREF_VAL_EDIT_TYPE_NOT_FULLSCREEN;
                         	else
                         		ServiceJbKbd.inst.m_PortraitEditType = 0;
                         }

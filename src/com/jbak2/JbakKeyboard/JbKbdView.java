@@ -832,8 +832,9 @@ public class JbKbdView extends KeyboardView
                     }
                     return;
                 case st.CMD_INPUT_LONG_GESTURE:
-                	onLongPress((Key) gest.downKey);
-                	//ServiceJbKbd.inst.onText(gest.downKey.m_kd.txtSmall);
+                	// работу жеста не менять - юзеры уже привыкли и реализуют 
+                	// с его помощью третье действие на кнопке
+                	ServiceJbKbd.inst.onText(gest.downKey.m_kd.txtSmall);
                 	ServiceJbKbd.inst.processCaseAndCandidates();
                 	return;
                 case st.TXT_ED_SELECT:

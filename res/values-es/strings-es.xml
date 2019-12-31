@@ -7,7 +7,7 @@
     <string name="msg_begin">NO mostrar más este mensaje</string>   
 	<string name="kbd_warning">¡Primero, inicia y activa el teclado!\n(el primer párrafo de Ajustes)</string>
 	<string name="jbak2layout">Disposiciones personalizadas</string>
-	<string name="jbak2layout_desc">Es una aplicación independiente que contiene diferentes idiomas y disposiciones. Allí mismo se encuentra la instrucción (en ruso) para crear su propia disposición e idioma.</string>
+	<string name="jbak2layout_desc">Es una aplicación independiente que contiene diferentes idiomas y disposiciones. Allí mismo se encuentra la instrucción para crear su propia disposición e idioma.</string>
 	<string name="jbak2skin">Temas personalizados</string>
 	<string name="jbak2skin_desc">Es una aplicación independiente que contiene temas diferentes. Allí mismo se encuentra la instrucción (en ruso) para crear su propio tema.</string>
 	<string name="other_app">(Ad) Otras aplicaciones </string>

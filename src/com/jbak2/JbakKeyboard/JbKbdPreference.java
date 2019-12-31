@@ -1024,15 +1024,24 @@ public void checkStartIntent()
 //        }
         else if("jbak2layout_app".equals(k))
         {
-        	Intent intent = new Intent(Intent.ACTION_VIEW);
-        	intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.jbak2.layout"));
-        	startActivity(intent);
+        	Intent in = new Intent(Intent.ACTION_VIEW);
+        	in.setData(Uri.parse(SiteKbd.SITE_KBD+SiteKbd.PAGE_ADDITIONA_COMPONENT)); 
+        	startActivity(in); 
+// страничка в маркете
+//        	Intent intent = new Intent(Intent.ACTION_VIEW);
+//        	intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.jbak2.layout"));
+//        	startActivity(intent);
         }
         else if("jbak2skin_app".equals(k))
         {
-        	Intent intent = new Intent(Intent.ACTION_VIEW);
-        	intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.jbak2.skin"));
-        	startActivity(intent);
+        	Intent in = new Intent(Intent.ACTION_VIEW);
+        	in.setData(Uri.parse(SiteKbd.SITE_KBD+SiteKbd.PAGE_ADDITIONA_COMPONENT)); 
+        	startActivity(in); 
+
+// страничка в маркете
+//        	Intent intent = new Intent(Intent.ACTION_VIEW);
+//        	intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.jbak2.skin"));
+//        	startActivity(intent);
         }
         else if("set_key_main_font".equals(k))
         {

@@ -22,10 +22,11 @@ public class SiteKbd {
 	public static final long FREQ_UPDATE_TIME= 1000l*3600l*24l*1l;
 	// для тестирования
 //	public static final long FREQ_UPDATE_TIME = 1000l*120l;
-    /** (2 дня) через какой промежуток времени ныть о старой версии */
-//	public static final long TOAST_NOT_UPDATE = 1000l*3600l*24l*1l;
+    /** (1 сутки) через какой промежуток времени ныть о старой версии */
+	public static final long TOAST_NOT_UPDATE = 1000l*3600l*24l*1l;
 	// для тестирования
-	public static final long TOAST_NOT_UPDATE = 1000l*3600l*2l;//30000l;//30 сек
+//	public static final long TOAST_NOT_UPDATE = 1000l*3600l*4l;
+//	public static final long TOAST_NOT_UPDATE = 1000l*3600l*2l;//30000l;//30 сек
 	// для тестирования
 //	public static final long TOAST_NOT_UPDATE= 1000l*120l;
     /** (3 месяца) последняя проверка была 3 месяца назад */
@@ -41,7 +42,10 @@ public class SiteKbd {
 	public static final String CHECK_KEY = ";cjbak2";
 	public static final String SITE_KBD = "https://jbak2.ucoz.net";
 	public static final String PAGE_UPDATE = "/upd/act_ver_kbd.htm";
-	public static final String PAGE_DOWТLOAD = "/load/1";
+	/** дополнительные компоненты (jbak2layout, jbak2skin) */
+	public static final String PAGE_ADDITIONA_COMPONENT = "/load/dopolnitelno/21";
+	/** урл для программы словарей */
+	public static final String PAGE_DICT = "/load/slovari/14";
 	/** страница отзывов */
 	public static final String PAGE_REVIEW = "/gb";
 	public static final String CHECK_VERSION_NAME = "ver";
