@@ -84,6 +84,9 @@ public class SiteKbd {
 				lastcheck = 0;
 				ini.setParam(ini.LAST_CHECK_TIME, st.STR_NULL+(curtime-LAST_CHECK_CHECK_3_MONTHS_BACK-1000));
 			}
+		} else {
+			ini.setParam(ini.LAST_CHECK_TIME, st.STR_NULL+(curtime-LAST_CHECK_CHECK_3_MONTHS_BACK-1000));
+			return true;
 		}
 
 //		String scurtime = "dd.MM.yyyy HH:mm:ss";

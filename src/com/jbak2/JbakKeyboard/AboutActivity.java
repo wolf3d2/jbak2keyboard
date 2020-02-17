@@ -52,6 +52,9 @@ public class AboutActivity extends Activity
     		debug_on = 0;
     	switch (v.getId())
     	{
+    	case R.id.about_btn_colorpicker:
+    		showPicker();
+    		break;
     	case R.id.about_other:
         	debug_on++;
         	if (!st.debug_mode) {
@@ -92,6 +95,16 @@ public class AboutActivity extends Activity
         	intent.setData(Uri.parse(st.ALL_APP_INMARKET));
         	startActivity(intent);
     		break;
-    		}
     	}
+    }
+    /** запуск выбора цвета */
+    void showPicker()
+    {
+    	ColorPicker m_colpic = null;
+        m_colpic = (ColorPicker) getLayoutInflater().inflate(R.layout.picker, null);
+        if (m_colpic != null){
+   			m_colpic.show(inst, null);
+        }
+    }
+
 }

@@ -1092,6 +1092,10 @@ public class ServiceJbKbd extends InputMethodService
 
 			return true;
 		}
+     	if (ColorPicker.inst!=null){
+    		ColorPicker.inst.finish();
+    		return true;
+    	}
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (JbKbdView.inst != null && JbKbdView.inst.m_pk.fl_popupcharacter_window) {
 				JbKbdView.inst.m_pk.close();
@@ -2188,6 +2192,11 @@ public class ServiceJbKbd extends InputMethodService
 			processCaseAndCandidates();
 			selOff();
 			break;
+		case st.TXT_SELECT_PARAGRAPF: // команды выделения
+		case st.TXT_SELECT_LINE: 
+		case st.TXT_SELECT_SENTENCE:
+			st.kbdCommand(code);
+			break;
 		case st.TXT_SELECT_FUNCTION: // функции выделения
 			com_menu.showFuncSelect(inst);
 			break;
@@ -2509,6 +2518,7 @@ public class ServiceJbKbd extends InputMethodService
 			st.setDefaultDesign();
 		}
 		st.debug_mode= sharedPreferences.getBoolean(st.PREF_KEY_DEBUG_MODE, false);
+		st.color_picker_type= sharedPreferences.getBoolean(st.PREF_KEY_TYPE_COLOR_PICKER, false);
 		st.ac_sub_panel = sharedPreferences.getBoolean(st.PREF_AC_SUB_PANEL, false);
 		try {
 	        st.enter_pict = Integer.decode(st.pref(this).getString(st.PREF_ENTER_PICT, st.STR_ZERO));

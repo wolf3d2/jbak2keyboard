@@ -192,6 +192,7 @@
     <string name="sc_help">If a parameter value is incorrect, the input field will turn red</string>
     <string name="sc_inf_port">ℹTap the color wheel to pick a color. Tap on the color code to copy a value to the clipboard</string>
     <string name="sc_inf_land">ℹTap the color rectangle to pick a color. Tap on the color code to copy a value to the clipboard</string>
+    <string name="picker_close">Для изменения типа требуется закрыть это окно.\nОткройте его снова.</string>
     <string name="sc_create">Create</string>
     <string name="sc_upd">Refresh</string>
     <string name="sc_create_edit">Create and Edit</string>
@@ -888,7 +889,8 @@
 	<string name="about_other">Other:</string>
 	<string name="about_other_desc">The application will be fully translated in a couple of months.\nTranslations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
     <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
-	<string name="diary">List of changes</string>
+	<string name="about_color_picker_btn">Подбор цвета</string>
+    <string name="diary">List of changes</string>
 	<string name="copy_buf_info">Copy your device information to the clipboard</string>
 
 	

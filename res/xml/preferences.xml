@@ -4,11 +4,10 @@
     <!-- 0 - Хелпер -->
     <Preference android:key="helper" />
 
-    <!-- активность задания цветов для кнопок автодополнения -->
+<!--     окно задания цветов -->
 <!--         <Preference -->
-<!--             android:key="ac_key_color" -->
-<!--             android:summary="@string/ac_color_desc" -->
-<!--             android:title="@string/ac_color_" /> -->
+<!--             android:key="show_picker" -->
+<!--             android:title="@string/about_color_picker_btn" /> -->
 
 
     <!-- <PreferenceScreen -->

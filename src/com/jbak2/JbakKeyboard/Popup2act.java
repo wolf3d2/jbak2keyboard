@@ -88,6 +88,10 @@ public class Popup2act extends Activity
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.popup2act);
 	    inst = this;
+    	if (ColorPicker.inst!=null) {
+    		ColorPicker.inst.finish();
+    	}
+
     	et = new EditText[AR_COUNT_INDEX];
     	for (int i=0;i<AR_COUNT_INDEX;i++) {
         	et[i] = new EditText(inst);
@@ -292,7 +296,7 @@ public class Popup2act extends Activity
     		EditText et = null;
     		et = (EditText) findViewById(id-1);
     		if (et!=null)
-    			m_colpic.show(this, et);
+    			m_colpic.show(inst, et);
         }
     	
     }

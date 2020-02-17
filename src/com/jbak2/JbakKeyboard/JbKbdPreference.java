@@ -111,6 +111,9 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
+    	if (ColorPicker.inst!=null) {
+    		ColorPicker.inst.finish();
+    	}
 		st.fl_pref_act = true;
         inst = this;
         checkCrash();
@@ -607,6 +610,15 @@ public void checkStartIntent()
         else
             pr.setOnPreferenceClickListener(getHelperListener(step));
     }
+    /** запуск выбора цвета */
+    void showPicker()
+    {
+    	ColorPicker m_colpic = null;
+        m_colpic = (ColorPicker) getLayoutInflater().inflate(R.layout.picker, null);
+        if (m_colpic != null){
+   			m_colpic.show(inst, null);
+        }
+    }
     OnPreferenceClickListener getHelperListener(final int step)
     {
         return new OnPreferenceClickListener()
@@ -714,6 +726,11 @@ public void checkStartIntent()
 //        	showCalcHeightCorrInd();
 //            return true;
 //        }
+        else if("show_picker".equals(k))
+        {
+        	showPicker();
+            return true;
+        }
         else if("empty_dict".equals(k))
         {
         	showEmptyDict();
@@ -2419,6 +2436,10 @@ public void checkStartIntent()
      @Override
      public void onBackPressed()
      {
+     	if (ColorPicker.inst!=null){
+    		ColorPicker.inst.finish();
+    		return;
+    	}
  		st.fl_pref_act = false;
   		 super.onBackPressed();
      }

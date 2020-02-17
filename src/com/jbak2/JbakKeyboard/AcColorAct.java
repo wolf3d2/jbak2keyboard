@@ -101,6 +101,10 @@ public class AcColorAct extends Activity
 	    setContentView(R.layout.accoloract);
 	    inst = this;
 	    
+    	if (ColorPicker.inst!=null) {
+    		ColorPicker.inst.finish();
+    	}
+
 		Spinner sp = (Spinner)findViewById(R.id.accolact_spinner_type);
 		ArrayAdapter<?> adapter = 
 		ArrayAdapter.createFromResource(this, R.array.ac_color_type, android.R.layout.simple_spinner_item);
@@ -449,7 +453,7 @@ public class AcColorAct extends Activity
     		EditText et = null;
     		et = (EditText) findViewById(id-1);
     		if (et!=null)
-    			m_colpic.show(this, et);
+    			m_colpic.show(inst, et);
         }
     	
     }

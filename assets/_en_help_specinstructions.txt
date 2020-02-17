@@ -15,7 +15,7 @@ help to organize the processing of selected text, for example, to enclose select
 
 
 
-$selReplaсe 
+$selReplace 
 
 The selReplace special instruction format : 
 
@@ -164,4 +164,6 @@ Also, you can specify key combinations, for example, Ctrl + A (select all), then
 
 The number of keys in combination is unlimited.
  
+Кроме того, в качестве кода можно указывать значение p<число> - вставляет паузу между выполнением соседних кодов.
+Если указать просто p без числа, то задержка между выполнением кодов, будет равна значению Следующего повтора клавиши (прочие настройки-интервалы клавиш)
 

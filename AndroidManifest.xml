@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.jbak2.JbakKeyboard"
         
-        android:versionName="2.34.03"
-        android:versionCode="275"
+        android:versionName="2.34.04"
+        android:versionCode="276"
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>
@@ -22,6 +22,7 @@
 		  android:name="App" 
 		  android:enabled="true"
           >
+<!--        Откоментить для рекламы. -->
 <!--        This meta-data tag is required to use Google Play Services. -->
 <!--         <meta-data  -->
 <!--             android:name="com.google.android.gms.version"  -->

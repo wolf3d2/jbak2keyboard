@@ -193,6 +193,7 @@
     <string name="sc_help">Если параметр содержит ошибочное значение, то поле ввода окрашивается в красный цвет</string>
     <string name="sc_inf_port">ℹТап на цветном круге выбирает цвет. Тап на номере цвета, копирует значение в буфер</string>
     <string name="sc_inf_land">ℹТап на цветном прямоугольнике выбирает цвет. Тап на номере цвета, копирует значение в буфер</string>
+    <string name="picker_close">Для изменения типа требуется закрыть это окно.\nОткройте его снова.</string>
     <string name="sc_upd">Обновить</string>
     <string name="sc_create_edit">Создать или редактировать</string>
     <string name="sc_create_new">Новый</string>
@@ -868,6 +869,7 @@
 	<string name="about_web">(Пролистайте до конца)\n\nСайт программы: http://jbak2.ucoz.net\n\nТема обсуждения: http://4pda.ru/forum/index.php?showtopic=638021\n\nГруппа на одноклассниках:\nhttps://ok.ru/jbak2keyboard\n\nДелается на основе jbak keyboard версии 0.97.7</string>
 
 	<string name="about_keycode_button">Код символа, удобно при создании своей раскладки или для жеста Дополнительные символы\n(приложение UnicodePad)</string>
+	<string name="about_color_picker_btn">Подбор цвета</string>
 	<string name="diary">История версий</string>
 	<string name="copy_buf_info">Скопировать в буфер информацию об устройстве</string>
 	

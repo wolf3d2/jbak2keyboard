@@ -720,11 +720,23 @@ public class Templates
                     		if (out !=null) {
                     			String[] ar3 = out.split(st.STR_COMMA);
                     			String[]ar4 = null;
+                    			String sss = null;
                     			Integer[] code = null;
                     			int cod = 0;
                     			for (int ii=0;ii<ar3.length;ii++) {
                     				if (ar3[ii]!=null&&ar3[ii].trim().length() < 1)
                     					continue;
+                    				sss = st.STR_NULL+ar3[ii].trim().toLowerCase();
+                    				if (sss!=null&&sss.length()>0&&sss.startsWith("p")) {
+                    					pb = (int) st.min_interval_press_key;
+                    					try {
+                        					sss = sss.substring(1);
+                        					pb = Integer.parseInt(sss);
+										} catch (NumberFormatException e) {
+										}
+                    					st.sleep(pb);
+                    					continue;
+                    				}
                     				pb = ar3[ii].indexOf("+");
                     				if (pb > -1) {
                         				// "+" ОБЯЗАТЕЛЬНО ДОЛЖЕН БЫТЬ ЭКРАНИРОЛВАННЫМ В SPLIT,

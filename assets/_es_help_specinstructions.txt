@@ -14,7 +14,7 @@ ayudan a organizar el procesamiento del texto seleccionado, por ejemplo, a encer
 
 
 
-$selReplaсe 
+$selReplace 
 
 El formato de la instrucción especial selReplace: 
 
@@ -171,4 +171,5 @@ Además, puede especificar las combinaciones de teclas, por ejemplo, Ctrl + A (s
 
 El número de teclas en combinación es ilimitado. 
 
-
+Кроме того, в качестве кода можно указывать значение p<число> - вставляет паузу между выполнением соседних кодов.
+Если указать просто p без числа, то задержка между выполнением кодов, будет равна значению Следующего повтора клавиши (прочие настройки-интервалы клавиш)

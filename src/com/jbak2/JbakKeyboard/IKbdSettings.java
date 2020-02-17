@@ -3,6 +3,8 @@ package com.jbak2.JbakKeyboard;
 /** Константы для настроек клавиатуры */
 public interface IKbdSettings
 {
+	/** Ключ, тип пикера - круг или линейный */
+	public static final String PREF_KEY_TYPE_COLOR_PICKER = "type_color_picker";
 	/** Ключ, режим отладки */
 	public static final String PREF_KEY_DEBUG_MODE= "debug_mode";
 	/** Ключ, проверка обновлений */
@@ -469,7 +471,11 @@ public interface IKbdSettings
     public static final int CLR_MACRO2 = -335;
     public static final int TXT_ED_UNDO = -336;
     public static final int TXT_ED_REDO = -337;
+
     public static final int TXT_SELECT_FUNCTION = -338;
+    public static final int TXT_SELECT_PARAGRAPF = -339;
+    public static final int TXT_SELECT_LINE = -340;
+    public static final int TXT_SELECT_SENTENCE = -341;
 
     /**-------------------------------------------------------------------    
 	/// Список команд 

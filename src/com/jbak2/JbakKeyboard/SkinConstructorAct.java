@@ -688,7 +688,8 @@ public class SkinConstructorAct extends Activity {
 		if (m_colpic != null) {
 			EditText et = null;
 			et = (EditText) findViewById(id - ID_BTN);
-			m_colpic.show(this, et);
+    		if (et!=null)
+    			m_colpic.show(inst, et);
 		}
 
 	}

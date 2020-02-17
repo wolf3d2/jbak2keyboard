@@ -60,6 +60,15 @@
 	/>
 
 <Button
+    android:id="@+id/about_btn_colorpicker"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:longClickable="false"
+    android:text="@string/about_color_picker_btn"
+	android:onClick="onClick"
+	/>
+
+<Button
     android:id="@+id/about_btn_diary"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"

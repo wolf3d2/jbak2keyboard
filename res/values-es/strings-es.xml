@@ -191,6 +191,7 @@
     <string name="sc_help">Si el parámetro contiene un valor incorrecto, el campo de entrada se pone rojo</string>
     <string name="sc_inf_port">ℹAl presionar el círculo de colores, elija un color. Al presionar el código de color se copiará el valor en el portapapeles</string>
     <string name="sc_inf_land">ℹAl presionar el rectángulo de colores, elija un color. Al presionar el código de color se copiará el valor en el portapapeles</string>
+    <string name="picker_close">Для изменения типа требуется закрыть это окно.\nОткройте его снова.</string>
     <string name="sc_create">Crear</string>
     <string name="sc_upd">Refrescar</string>
     <string name="sc_create_edit">Crear o editar</string>
@@ -861,7 +862,8 @@
 	<string name="about_web">Sitio del programa: http://jbak2.ucoz.net\n\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \n\nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
     
     <string name="about_keycode_button">Código del símbolo (útil para crear su propio tema) \n(la aplicación UnicodePad)</string>
-	<string name="diary">Lista de cambios</string>
+	<string name="about_color_picker_btn">Подбор цвета</string>
+    <string name="diary">Lista de cambios</string>
 	<string name="copy_buf_info">Copie la información de su dispositivo en el portapapeles</string>
 	
 	<string name="type_lang_all">Otros idiomas</string>

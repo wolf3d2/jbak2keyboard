@@ -68,6 +68,10 @@ import com.jbak2.words.UserWords.WordArray;
 /** Основной статический класс футкций и переменных */
 public class st extends IKeyboard implements IKbdSettings
 {
+	/** тип пикера:<br>
+	 * false - круг, <br>
+	 * true - линейный */
+	public static boolean color_picker_type= false;
     /** Режим отладки в клаве. <br>
 	 * ДЛЯ ВКЛЮЧЕНИЯ, нужно непрерывно 10 раз нажимать на заголовок <br>
 	 * Прочее в самом низу about активности. <br>
@@ -1203,6 +1207,32 @@ public class st extends IKeyboard implements IKbdSettings
     {
         return fn.replaceAll("[\\\"\\/:?!\\\'\\\\]", "_");
     }
+    /** Выполняет команду выделения с кодом action*/    
+    static void setSelected(int action)
+    {
+    	CurInput ci = new CurInput();
+    	if(!ci.init(ServiceJbKbd.inst.getCurrentInputConnection()))
+    		return;
+		switch(action)
+		{
+			case TXT_SELECT_LINE:
+				ci.setSelectLine();
+				break;
+			case TXT_SELECT_PARAGRAPF:
+				ci.setSelectParagraph();
+				break;
+			case TXT_SELECT_SENTENCE:
+				ci.setSelectSentence();
+				break;
+//				case R.string.menu_sel_line_up:
+//				ci.setSelectLine(true);
+//				break;
+//			case R.string.menu_sel_line_down:
+//				ci.setSelectLine(false);
+//				break;
+		}
+
+    }
 /** Выполняет клавиатурную команду с кодом cmd*/    
     static boolean kbdCommand(int action)
     {
@@ -1210,6 +1240,11 @@ public class st extends IKeyboard implements IKbdSettings
     	int qwerty_kbd = isQwertyKeyboard();
         switch(action)
         {
+    	case st.TXT_SELECT_PARAGRAPF: // выделение
+    	case st.TXT_SELECT_LINE: // выделение
+    	case st.TXT_SELECT_SENTENCE: // выделение
+    		setSelected(action);
+    		return true;
     	case st.CMD_START_SET_LANG_ACTIVITY: // быстрая смена скина
     		startSetLangActivity(c);
     		return true;
