@@ -202,16 +202,30 @@ public class Dlg
             }
             public abstract void run();
         }
-    public static AlertDialog helpDialog(Context c,String text,  UniObserver callback)
-    {
-        AlertDialog.Builder bd = new AlertDialog.Builder(c);
-        OnButtonListener cl = new OnButtonListener(callback);
-        bd.setPositiveButton(R.string.ok, cl);
-        bd.setMessage(text);
-        dlg = bd.create();
-        dlg.show();
-        return dlg;
-   }
+        public static AlertDialog helpDialog(Context c,String text,int ResIdTextButtonOrNull,  
+        		UniObserver callback)
+        {
+            AlertDialog.Builder bd = new AlertDialog.Builder(c);
+            OnButtonListener cl = new OnButtonListener(callback);
+            if (ResIdTextButtonOrNull == 0)
+            	bd.setPositiveButton(R.string.ok, cl);
+            else
+            	bd.setPositiveButton(ResIdTextButtonOrNull, cl);
+            bd.setMessage(text);
+            dlg = bd.create();
+            dlg.show();
+            return dlg;
+       }
+        public static AlertDialog helpDialog(Context c,String text,  UniObserver callback)
+        {
+            AlertDialog.Builder bd = new AlertDialog.Builder(c);
+            OnButtonListener cl = new OnButtonListener(callback);
+            bd.setPositiveButton(R.string.ok, cl);
+            bd.setMessage(text);
+            dlg = bd.create();
+            dlg.show();
+            return dlg;
+       }
     public static AlertDialog helpDialog(Context c,String text)
     {
         AlertDialog.Builder bd = new AlertDialog.Builder(c);

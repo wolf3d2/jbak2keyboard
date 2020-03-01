@@ -27,6 +27,8 @@ public class Templates
 	static String mrepl= st.STR_NULL;
 /** Статический объект для доступа к экземпляру класса */    
     static Templates inst;
+    /** Флаг, что выполняется шаблон (для специнструкции $codes) */    
+    public static boolean template_processing = false;
     public static com_menu menu = null;
     File m_editFile=null;
     
@@ -479,7 +481,7 @@ public class Templates
                         	}
                         	mrepl = out;
                 		break;
-                      case 11: //paste - специнструкция удалена
+                      case 11: //paste
                   		if (ServiceJbKbd.inst==null) { 
                         	mic.endBatchEdit();
                   			return;
@@ -687,7 +689,8 @@ public class Templates
                     			poz = mstr.indexOf(st.STR_LF, tp);
                     			if (poz > -1) {
                     				curstr = mstr.substring(tp, poz);
-                    				if (first_program&&curstr.compareToIgnoreCase("$program")==0) {
+                    				if (first_program&&curstr.compareToIgnoreCase(TPL_SPEC_CHAR
+                    						+SPEC_INSTR_PROGRAM)==0) {
                     					first_program = false;
                         				tp = poz+1;
                     					continue;
@@ -760,13 +763,18 @@ public class Templates
 											cod = Integer.parseInt(ar3[ii]);
 										} catch (Exception e) {
 										}
-                    					if (cod>0)
+                    					if (cod>0) {
+                    						template_processing = true;
                     						ServiceJbKbd.inst.onKey(cod, null);
-                    					else if (cod>st.KEYCODE_CODE&&cod<st.KEYCODE_CODE-2000)
+                    						template_processing = false;
+                    					}else if (cod>st.KEYCODE_CODE&&cod<st.KEYCODE_CODE-2000)
                         					ServiceJbKbd.inst.sendHardwareSequence(mic, 
                         							st.KEYCODE_CODE - cod);
-                    					else
+                    					else {
+                    						template_processing = true;
                     						ServiceJbKbd.inst.onKey(cod, null);
+                    						template_processing = false;
+                    					}
                     				}
                     			}
                     		}
@@ -1402,6 +1410,8 @@ public class Templates
     public static final int IB_WORD = 1;
     public static final int IB_LINE = 2;
     public static final char TPL_SPEC_CHAR = '$';
+    public static final String SPEC_INSTR_PROGRAM = "program";
+
     /** массв слов специнструкций. ПОРЯДОК НЕ МЕНЯТЬ! (используются в других местах) */
     public static final String[] Instructions = 
     	{
@@ -1419,7 +1429,7 @@ public class Templates
     	"paste",
     	"selReplaсe",
     	"selToPos",
-    	"program",
+    	SPEC_INSTR_PROGRAM,
     	"codes"
     	};
     /** константа для специнструкции selReplace */

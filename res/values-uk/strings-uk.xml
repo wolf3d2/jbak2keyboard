@@ -865,7 +865,7 @@
   <string name="about_keycode_button">Код символу, зручно при створенні своєї розкладки \n(програма UnicodePad)</string>
 	<string name="about_color_picker_btn">Подбор цвета</string>
   	<string name="diary">Щоденник (ru)</string>
-	<string name="copy_buf_info">Скопировать в буфер информацию об устройстве</string>
+	<string name="device_info">Информация об устройстве</string>
 	
 	<string name="type_lang_all">Інші мови</string>
 	<string name="type_lang_unknown">Невідомі мови</string>

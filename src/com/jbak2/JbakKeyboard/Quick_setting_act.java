@@ -210,7 +210,7 @@ public class Quick_setting_act extends Activity
             st.runAct(LangSetActivity.class,inst,EXXTRA_HELP,1);
             break;
         case R.id.qs_height_kbd:
-        	if (st.getOrientation(inst)==Configuration.ORIENTATION_PORTRAIT)
+        	if (st.getDisplayOrientation(inst)==Configuration.ORIENTATION_PORTRAIT)
         		st.runSetKbd(inst,st.SET_KEY_HEIGHT_PORTRAIT);
         	else
             	st.runSetKbd(inst,st.SET_KEY_HEIGHT_LANDSCAPE);

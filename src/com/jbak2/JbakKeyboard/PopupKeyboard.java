@@ -30,18 +30,19 @@ import android.widget.TextView;
 public class PopupKeyboard 
 {
 	int MIN_WIDTH_OFFICIAL_BUTTON = 30;
+	String V2 = "v2";
 	// координаты вызывающей кнопки
 	int keyXpos = -1;
 	int keyYpos = -1;
 	/** kvh - общая высота клавиатуры */
 	int kvh = -1;
-	PopupWindow pw = null;
+	static PopupWindow pw = null;
 	// координаты окна
 	int wm_up_x = 0;
 	int wm_up_y = 0;
 	public static Context m_c = null;
-	// главная для полноэкранной миниклавы
-	RelativeLayout llmain=null;
+	/** главная для полноэкранной миниклавы */
+	static RelativeLayout llmain=null;
 	// правая для полноэкранной миниклавы
 	LinearLayout llright = null;
 	// левая для миниклавы
@@ -50,9 +51,9 @@ public class PopupKeyboard
 	// параметры для full window
 	// временная переменная 
 	public static ArrayFuncAddSymbolsGest ar = new ArrayFuncAddSymbolsGest();
-	boolean fl_popupcharacter_window = false;
+	public static boolean fl_popupcharacter_window = false;
 	final int DEFAULT_Y = 20;
-	final int DEFAULT_X = 20;
+	final int DEFAULT_X = 5;
 	int MARGIN = 10;
 	/** если true - окно не закрывам */
 	boolean pc2_block = false;
@@ -69,8 +70,8 @@ public class PopupKeyboard
 	{
 		if (key == null)
 			return false;
-		if (key.popupCharacters.toString().startsWith("v2")
-			||key.popupCharacters.toString().startsWith("V2"))
+		if (key.popupCharacters.toString().startsWith(V2)
+			||key.popupCharacters.toString().startsWith(V2))
 			return createFullPopupWindow((key.popupCharacters.toString()));
 		else 
 			return createMiniPopupKbd(key);
@@ -78,8 +79,8 @@ public class PopupKeyboard
 	}
 	public boolean showPopupKeyboard(String str)
 	{
-		if (str.startsWith("v2")
-		  ||str.startsWith("V2"))
+		if (str.startsWith(V2)
+		  ||str.startsWith(V2))
 			return createFullPopupWindow(str);
 		return false;
 	}
@@ -683,8 +684,6 @@ public class PopupKeyboard
 					} else
 						if (ServiceJbKbd.inst!=null)
 							ServiceJbKbd.inst.processKey(el.code);
-					if (ServiceJbKbd.inst!=null)
-						ServiceJbKbd.inst.processKey(el.code);
     			} 
 				else if (txt.length()== 1) {
 					if (ServiceJbKbd.inst!=null)
@@ -730,7 +729,8 @@ public class PopupKeyboard
         }
         if (ll.getChildCount() > 0)
     		llrow.addView(ll, llrowpar);
-    	m_wm.addView(v, lp);
+        llmain = (RelativeLayout)v;
+    	m_wm.addView(llmain, lp);
     	fl_popupcharacter_window = true;
     	return true;
     }

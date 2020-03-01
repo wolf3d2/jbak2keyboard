@@ -115,7 +115,8 @@ $program
 
 There can be only one special instruction in the template and the first string. 
 
-To select links to templates, use the "+" button 
+To select links to templates, use the "+" button.
+При использовании в тегах template и longTemplate вместо символа перевода строки, указывайте '\n'.
 
 Example: 
 
@@ -164,6 +165,18 @@ Also, you can specify key combinations, for example, Ctrl + A (select all), then
 
 The number of keys in combination is unlimited.
  
-Кроме того, в качестве кода можно указывать значение p<число> - вставляет паузу между выполнением соседних кодов.
-Если указать просто p без числа, то задержка между выполнением кодов, будет равна значению Следующего повтора клавиши (прочие настройки-интервалы клавиш)
+In addition, the p<value> can be specified as a code, it inserts a pause between the execution of neighboring codes.
 
+If you set just the p value without a number, then the delay between the execution of codes will be equal to the value of the Next key repeat (other settings - key delays)
+
+Примеры:
+$codes[-323,-321] - выделить всё и вставить текущее значение буфера обмена. Команда состоит из кодов клавиатуры.
+Тоже самое, но с использованием KeyEvent клавиш (коды в клавиатуре из промежутка -5000 - -7000):
+$codes[-5113+-5029,-321]
+$codes[-5113+-5059+-5021] - Ctrl+Shift+← - выделить слово слева от курсора
+(в кодах -5xxx возможны ошибки - указывал по памяти)
+ЗАМЕЧАНИЕ.
+Комбинации клавиш, возможны только через указание KeyEvent символов (-5xxx). С кодамти клавиатуры комбинации скорее всего, работать не будут.
+
+Все коды доступные в клавиатуре, перечислены в приложеннии jbak2layout, в Инструкции по созданию своей раскладки.
+События KeyEvent смотрите в интернете.

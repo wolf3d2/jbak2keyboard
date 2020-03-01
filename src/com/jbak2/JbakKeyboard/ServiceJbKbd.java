@@ -208,7 +208,9 @@ public class ServiceJbKbd extends InputMethodService
 	int m_PortraitEditType = st.PREF_VAL_EDIT_TYPE_DEFAULT;
 	int m_LandscapeEditType = st.PREF_VAL_EDIT_TYPE_DEFAULT;
 	/** Разрешена автоматическая смена регистра */
-	public static final int STATE_AUTO_CASE = 0x00000001;
+	/** true - hазрешена правила автоматической смены регистра */
+	public static boolean state_auto_case = true;
+	//public static final int STATE_AUTO_CASE = 0x00000001;
 	/** Статус - вставка пробела после конца предложения */
 	public static final int STATE_SENTENCE_SPACE = 0x0000002;
 	/** Статус - верхний регистр в пустом поле */
@@ -1707,7 +1709,8 @@ public class ServiceJbKbd extends InputMethodService
 	 * @return true - используется автоввод, false - не используется
 	 */
 	final boolean canAutoInput(EditorInfo ei) {
-		if (!st.has(m_state, STATE_AUTO_CASE))
+//		if (!st.has(m_state, STATE_AUTO_CASE))
+		if (!state_auto_case)
 			return false;
 		try {
 			int var = ei.inputType & EditorInfo.TYPE_MASK_VARIATION;
@@ -2594,10 +2597,11 @@ public class ServiceJbKbd extends InputMethodService
 		m_soundVolume /= 10f;
 		m_LandscapeEditType = Integer.valueOf(sharedPreferences.getString(st.PREF_KEY_LANSCAPE_TYPE, st.STR_ZERO));
 		m_PortraitEditType = Integer.valueOf(sharedPreferences.getString(st.PREF_KEY_PORTRAIT_TYPE, st.STR_ZERO));
-		if (sharedPreferences.getBoolean(st.PREF_KEY_AUTO_CASE, true) || key == null)
-			m_state |= STATE_AUTO_CASE;
-		else
-			m_state = st.rem(m_state, STATE_AUTO_CASE);
+		state_auto_case = sharedPreferences.getBoolean(st.PREF_KEY_AUTO_CASE, true);
+//		if (sharedPreferences.getBoolean(st.PREF_KEY_AUTO_CASE, true) || key == null)
+//			m_state |= STATE_AUTO_CASE;
+//		else
+//			m_state = st.rem(m_state, STATE_AUTO_CASE);
 		if (sharedPreferences.getBoolean(st.PREF_KEY_UP_AFTER_SYMBOLS, true))
 			m_state |= STATE_UP_AFTER_SYMBOLS;
 		else
@@ -3065,7 +3069,8 @@ public class ServiceJbKbd extends InputMethodService
 	 *         действий
 	 */
 	final int getCase() {
-		if (!m_bCanAutoInput || m_SelStart != m_SelEnd || !st.has(m_state, STATE_AUTO_CASE))
+//		if (!m_bCanAutoInput || m_SelStart != m_SelEnd || !st.has(m_state, STATE_AUTO_CASE))
+		if (!m_bCanAutoInput || m_SelStart != m_SelEnd || !state_auto_case)
 			return 0;
 		try {
 			if (st.has(st.kv().m_state, JbKbdView.STATE_CAPS_LOCK))

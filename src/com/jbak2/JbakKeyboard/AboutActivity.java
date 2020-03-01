@@ -1,6 +1,7 @@
 package com.jbak2.JbakKeyboard;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jbak2.CustomGraphics.ColorsGradientBack;
+import com.jbak2.Dialog.Dlg;
 import com.jbak2.web.Mail;
 
 public class AboutActivity extends Activity
@@ -76,7 +78,19 @@ public class AboutActivity extends Activity
         	}
     		break;
     	case R.id.about_btn_copy_info:
-        	st.copyText(inst, st.getDeviceInfo(inst).toString());
+    		st.UniObserver obs = new st.UniObserver() {
+				
+				@Override
+				public int OnObserver(Object param1, Object param2) {
+                    if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+                    	st.copyText(inst, st.getDeviceInfo(inst).toString());
+					return 0;
+				}
+			};
+    		String info = inst.getString(R.string.device_info)+st.STR_LF+st.STR_LF;
+    		info += st.getDeviceInfo(inst).toString();
+    		//Dlg.helpDialog(inst, info, R.string.gesture_copy, obs);
+    		Dlg.yesNoDialog(inst, info, R.string.gesture_copy, R.string.ok, obs);
     		break;
         case R.id.about_btn_mail:
     		Mail.sendFeedback(inst);

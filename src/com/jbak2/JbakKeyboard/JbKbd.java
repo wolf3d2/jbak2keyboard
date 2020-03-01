@@ -465,6 +465,8 @@ public class JbKbd extends Keyboard {
         	int flag = longPress?FLAG_USER_TEMPLATE_LONG:FLAG_USER_TEMPLATE;
         	if(!st.has(flags, flag))
         		return false;
+        	if (Templates.template_processing)
+        		return false;
         	String t = longPress?longText:mainText;
         	if (Templates.inst == null) {
         		new Templates(1,0,null).processTemplate(t);

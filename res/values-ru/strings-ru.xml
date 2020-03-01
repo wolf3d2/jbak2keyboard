@@ -871,7 +871,7 @@
 	<string name="about_keycode_button">Код символа, удобно при создании своей раскладки или для жеста Дополнительные символы\n(приложение UnicodePad)</string>
 	<string name="about_color_picker_btn">Подбор цвета</string>
 	<string name="diary">История версий</string>
-	<string name="copy_buf_info">Скопировать в буфер информацию об устройстве</string>
+	<string name="device_info">Информация об устройстве</string>
 	
 	<string name="type_lang_all">Другие языки</string>
 	<string name="type_lang_unknown">Неизвестные языки</string>

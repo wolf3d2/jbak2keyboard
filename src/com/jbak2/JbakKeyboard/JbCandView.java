@@ -847,7 +847,7 @@ public class JbCandView extends RelativeLayout
     	}
 //      m_rightView.setImageResource(R.drawable.cand_arrow_up_icon);
     	setTextArrowRightButtonView(true);
-        final View v = m_inflater.inflate(R.layout.candidates_full, null);
+        final View v = m_inflater.inflate(R.layout.candidates_full_popup, null);
         final LinearLayout ll = (LinearLayout)v.findViewById(R.id.cand_view);
         ll.setPadding(0, 0, 0, 5);
 

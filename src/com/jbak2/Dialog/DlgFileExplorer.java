@@ -465,7 +465,7 @@ public abstract class DlgFileExplorer
 			int hw = m_draw.getIntrinsicWidth();
 			name+=st.STR_NULL+hw+"x";
 			hw= m_draw.getIntrinsicHeight();
-			name+=st.STR_NULL+hw+"), "+st.getLengthOfString(file.getAbsoluteFile().length());
+			name+=st.STR_NULL+hw+"), "+st.getNumericPackOfString(file.getAbsoluteFile().length());
 		}
 		tv.setText(name);
 

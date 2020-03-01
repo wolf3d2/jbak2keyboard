@@ -119,7 +119,8 @@ $program
 
 Puede haber solo una instrucción especial en la plantilla y la primera línea. 
 
-Para seleccionar enlaces a las plantillas, use el botón "+"
+Para seleccionar enlaces a las plantillas, use el botón "+".
+При использовании в тегах template и longTemplate вместо символа перевода строки, указывайте \n.
 
 
 
@@ -171,5 +172,17 @@ Además, puede especificar las combinaciones de teclas, por ejemplo, Ctrl + A (s
 
 El número de teclas en combinación es ilimitado. 
 
-Кроме того, в качестве кода можно указывать значение p<число> - вставляет паузу между выполнением соседних кодов.
-Если указать просто p без числа, то задержка между выполнением кодов, будет равна значению Следующего повтора клавиши (прочие настройки-интервалы клавиш)
+Además, el valor de p<número> puede especificarse como un código: inserta una pausa entre la ejecución de códigos adyacentes.
+Si establece solo el valor de p sin un número, el intervalo entre la ejecución de códigos será igual al valor de la repetición de la tecla Siguiente (Otros ajustes - Intervalos de teclas)
+
+Примеры:
+$codes[-323,-321] - выделить всё и вставить текущее значение буфера обмена. Команда состоит из кодов клавиатуры.
+Тоже самое, но с использованием KeyEvent клавиш (коды в клавиатуре из промежутка -5000 - -7000):
+$codes[-5113+-5029,-321]
+$codes[-5113+-5059+-5021] - Ctrl+Shift+← - выделить слово слева от курсора
+(в кодах -5xxx возможны ошибки - указывал по памяти)
+ЗАМЕЧАНИЕ.
+Комбинации клавиш, возможны только через указание KeyEvent символов (-5xxx). С кодамти клавиатуры комбинации скорее всего, работать не будут.
+
+Все коды доступные в клавиатуре, перечислены в приложеннии jbak2layout, в Инструкции по созданию своей раскладки.
+События KeyEvent смотрите в интернете.

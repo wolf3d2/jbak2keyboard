@@ -741,7 +741,7 @@ public class com_menu
 			kv.setKeyboard(st.loadKeyboard(kbd));
 			// сохраняем выбранную раскладку в настройки
 			String path = kbd.path;
-			int m_screenType = st.getOrientation(c);
+			int m_screenType = st.getDisplayOrientation(c);
 			if (m_screenType == 0 || m_screenType == 1)
 				st.pref().edit().putString(st.PREF_KEY_LANG_KBD_PORTRAIT + lname, path).commit();
 			if (m_screenType == 0 || m_screenType == 2)
@@ -1107,7 +1107,7 @@ public class com_menu
             String s = c.getString(0);
 // показываем размер записи
             if (st.show_size_record_clipboard)
-            	s = "("+st.getLengthOfString((long)s.length())+") "+s.trim();
+            	s = "("+st.getNumericPackOfString((long)s.length())+") "+s.trim();
             
             if(s.length()>50)
                 s = s.substring(0, 50)+"...";

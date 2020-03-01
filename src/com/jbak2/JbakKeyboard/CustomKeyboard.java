@@ -910,12 +910,20 @@ public class CustomKeyboard extends JbKbd
             else if(name.equals(A_Template))
             {
             	k.mainText = getString(p.getAttributeValue(i),B_template);
+            	if (k.mainText.startsWith(Templates.TPL_SPEC_CHAR+Templates.SPEC_INSTR_PROGRAM))
+            	{
+            		k.mainText = st.compileText(k.mainText);
+            	}
             	k.flags|=LatinKey.FLAG_USER_TEMPLATE;
                 flag_teg = true;
             }
             else if(name.equals(A_TemplateLong))
             {
             	k.longText = getString(p.getAttributeValue(i),B_templateLong);
+            	if (k.longText.startsWith(Templates.TPL_SPEC_CHAR+Templates.SPEC_INSTR_PROGRAM))
+            	{
+            		k.longText = st.compileText(k.longText);
+            	}
             	k.flags|=LatinKey.FLAG_USER_TEMPLATE_LONG;
                 flag_teg = true;
             }

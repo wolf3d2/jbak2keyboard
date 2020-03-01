@@ -133,6 +133,8 @@ public class OwnKeyboardHandler extends Handler
                             lk.processed = true;
 // вывод окошка маленькой клавиатурки первой версии  
                             st.fl_popupcharacter2 = false;
+                            m_kv.longpress = true;
+
                             m_kv.onLongPress(lk);
                         }
                     }

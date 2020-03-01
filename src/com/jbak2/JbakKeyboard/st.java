@@ -41,6 +41,9 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.view.Gravity;
@@ -104,7 +107,7 @@ public class st extends IKeyboard implements IKbdSettings
     public static boolean fl_copy_toast = false;
 	// показывать ли путь к текущей папке в шаблонах
     public static boolean fl_tpl_path = true;
-	// своя маленькая клавиатура первой версии
+	/** своя маленькая клавиатура первой версии */
     public static boolean fl_mini_kbd_its = false;
     public static int mini_kbd_btn_size = 0;
     public static int mini_kbd_btn_text_size = 0;
@@ -2308,7 +2311,7 @@ public class st extends IKeyboard implements IKbdSettings
     		return c.getResources().getDisplayMetrics().heightPixels;
     	return c().getResources().getDisplayMetrics().heightPixels;
     }
-    public static int getOrientation(Context c)
+    public static int getDisplayOrientation(Context c)
     {
     	/*int orient = getResources().getConfiguration().orientation;
 
@@ -2323,8 +2326,10 @@ public class st extends IKeyboard implements IKbdSettings
 		}*/
     	return c.getResources().getConfiguration().orientation;
     }
-    // запуск устакновленного приложения,
-    // если оно не установлено то запуск маркета на установку
+    /** запуск устакновленного приложения, <br>
+     * если оно не установлено то запуск маркета на установку
+     * @param packageName - имя ПАКЕТА
+     */
     public static void runApp(Context c, String packageName)
     {
     	Intent intent = null;
@@ -2444,7 +2449,7 @@ public class st extends IKeyboard implements IKbdSettings
    			return;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      	  int orient = st.getOrientation(c);
+      	  int orient = st.getDisplayOrientation(c);
       	  // акция для портрета или ландшафта?
       	  int orient_def = Configuration.ORIENTATION_PORTRAIT;
       	  int actOrient = orient_def;
@@ -2770,8 +2775,8 @@ public class st extends IKeyboard implements IKbdSettings
       	ServiceJbKbd.inst.stickyOff(st.TXT_ED_SELECT);
       	st.toast(R.string.send_share_create_list);
      }
-      // возвращает исходное число в форматированном виде (b, kb, mb, gb и tb)
-     public static String getLengthOfString(long val)
+/** возвращает исходное число в форматированном виде (b, kb, mb, gb и tb) */
+     public static String getNumericPackOfString(long val)
      {
     	 if(val <= 0) 
     		 return st.STR_ZERO;
@@ -3032,7 +3037,9 @@ public class st extends IKeyboard implements IKbdSettings
     static void checkUpdate(Context cont, IniFile ini, boolean bcheck) {
 		new SiteKbd(cont).checkUpdate(ini, bcheck);
     }
-    public static StringBuilder getDeviceInfo(Context c) {
+    /** Информация о устройстве */
+    @SuppressLint("NewApi")
+	public static StringBuilder getDeviceInfo(Context c) {
 		StringBuilder info = new StringBuilder();
 //		if (crash!=null)
 //			info = new StringBuilder(String.format(Locale.ENGLISH,
@@ -3052,6 +3059,46 @@ public class st extends IKeyboard implements IKbdSettings
 				Build.MANUFACTURER));
 		info.append(String.format(Locale.ENGLISH, "%s%s%s\n",
 				"Device", delim, Build.MODEL));
+
+		String str = st.STR_NULL;
+		// размер диспленя
+		try {
+			str = "(";
+			switch (st.getDisplayOrientation(c))
+			{
+			case Configuration.ORIENTATION_PORTRAIT:
+				str +="Port";
+				break;
+			case Configuration.ORIENTATION_LANDSCAPE:
+				str +="Land";
+				break;
+			default:
+				str += st.STR_3TIRE;
+				break;
+			}
+			str += ")"+st.STR_SPACE+st.getDisplayHeight(c)+"x"+st.getDisplayWidth(c);
+			
+		} catch (NumberFormatException e) {
+		}
+		if (str.length() > 0)
+			info.append(String.format(Locale.ENGLISH, "%s%s%s\n",
+				"Display", delim, str));
+
+		// размеры RAM
+		str = st.STR_NULL;
+		try {
+			MemoryInfo memoryInfo = new MemoryInfo();
+			ActivityManager activityManager = (ActivityManager)c.getSystemService(Context.ACTIVITY_SERVICE);
+			activityManager.getMemoryInfo(memoryInfo);
+			str = st.getNumericPackOfString(memoryInfo.totalMem)
+					+" ("+st.getNumericPackOfString(memoryInfo.availMem)+")";
+			//Log.i("Memory", "Total RAM="+memoryInfo.totalMem);
+			
+		} catch (NumberFormatException e) {
+		}
+		if (str.length() > 0)
+			info.append(String.format(Locale.ENGLISH, "%s%s%s\n",
+				"RAM", delim, str));
 		info.append(st.STR_LF);
 		return info;
     }

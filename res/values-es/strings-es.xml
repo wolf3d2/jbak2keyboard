@@ -595,7 +595,7 @@
     <string name="set_key_shift">Tecla Shift</string>
     <string name="set_key_appearance">Apariencia</string>
     <string name="set_key_appearance_desc">Configuración de la apariencia del teclado y del editor de la pantalla completa (selección de tema, herramientas adicionales, instalación de fuentes, tamaño de caracteres etc.)</string>
-	<string name="set_key_intervals">Intervalos de teclados</string>
+	<string name="set_key_intervals">Intervalos de teclas</string>
     <string name="set_key_intervals_desc">Retención y repetición de las teclas</string>
 	<string name="set_key_tpl_path">Ruta en Plantillas</string>
 	<string name="set_key_tpl_path_desc">Si está marcado, la ruta a la carpeta actual se mostrará en el menú de plantillas y otros menús</string>
@@ -864,7 +864,7 @@
     <string name="about_keycode_button">Código del símbolo (útil para crear su propio tema) \n(la aplicación UnicodePad)</string>
 	<string name="about_color_picker_btn">Подбор цвета</string>
     <string name="diary">Lista de cambios</string>
-	<string name="copy_buf_info">Copie la información de su dispositivo en el portapapeles</string>
+	<string name="device_info">Información del dispositivo</string>
 	
 	<string name="type_lang_all">Otros idiomas</string>
 	<string name="type_lang_unknown">Idiomas desconocidos</string>

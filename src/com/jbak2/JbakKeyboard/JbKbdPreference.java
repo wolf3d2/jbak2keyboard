@@ -610,7 +610,7 @@ public void checkStartIntent()
         else
             pr.setOnPreferenceClickListener(getHelperListener(step));
     }
-    /** запуск выбора цвета */
+    /** НЕ ИСПОЛЬЗУЕТСЯ! Но работает. Запуск выбора цвета */
     void showPicker()
     {
     	ColorPicker m_colpic = null;

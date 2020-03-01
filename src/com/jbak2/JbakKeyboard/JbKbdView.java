@@ -136,7 +136,7 @@ public class JbKbdView extends KeyboardView
         processLongKey = false;
         lk_this = null;
         lk_prev = null;
-    	if (m_pk==null)
+    	//if (m_pk==null)
     		m_pk = new PopupKeyboard(inst.getContext());
     	if (IKeyboard.arDesign==null)
     		IKeyboard.setDefaultDesign();

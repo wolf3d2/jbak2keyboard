@@ -891,7 +891,7 @@
     <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
 	<string name="about_color_picker_btn">Подбор цвета</string>
     <string name="diary">List of changes</string>
-	<string name="copy_buf_info">Copy your device information to the clipboard</string>
+	<string name="device_info">Device Information</string>
 
 	
 	<string name="type_lang_all">Other languages</string>

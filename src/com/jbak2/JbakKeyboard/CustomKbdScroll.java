@@ -706,7 +706,7 @@ public class CustomKbdScroll
         {
             String s = c.getString(0);
 // отображаем размер записи
-            s = "("+st.getLengthOfString((long)s.length())+") "+s.trim();
+            s = "("+st.getNumericPackOfString((long)s.length())+") "+s.trim();
             if(s.length()>50)
                 s = s.substring(0, 50)+"...";
             s.replace('\n', ' ');
