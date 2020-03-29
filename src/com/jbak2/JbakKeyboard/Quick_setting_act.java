@@ -8,6 +8,7 @@ import com.jbak2.Dialog.Dlg;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
 import com.jbak2.perm.Perm;
+import com.jbak2.web.SiteKbd;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -241,23 +242,36 @@ public class Quick_setting_act extends Activity
                 	st.pref(inst).edit().putString(st.PREF_KEY_AC_PLACE, st.STR_NULL+pos).commit();
                 	st.qs_ar[2] = 1;
                     if (pos > 0){
-                        GlobDialog gd1 = new GlobDialog(inst);
-                        gd1.setGravityText(Gravity.LEFT|Gravity.TOP);
-                        gd1.set(R.string.qs_btn5_help, R.string.no, R.string.yes);
-                        gd1.setObserver(new st.UniObserver()
-                        {
-                            @Override
-                            public int OnObserver(Object param1, Object param2)
-                            {
-                                if(((Integer)param1).intValue()==AlertDialog.BUTTON_NEUTRAL)
-                                {
-                                	st.runApp(inst,"com.jbak2.dictionary");
-                                }
-                            	
-                                return 0;
-                            }
-                        });
-                        gd1.showAlert();
+                    	Dlg.yesNoDialog(inst, inst.getString(R.string.qs_btn5_help), 
+                    			new st.UniObserver() {
+									
+									@Override
+									public int OnObserver(Object param1, Object param2) {
+		                                if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
+		                                {
+		                                	st.runApp(inst,st.APP_PACKAGE_DICTIONARY, SiteKbd.SITE_KBD+SiteKbd.PAGE_DICT);
+		                                }
+		                            	
+		                                return 0;
+									}
+								});
+//                        GlobDialog gd1 = new GlobDialog(inst);
+//                        gd1.setGravityText(Gravity.LEFT|Gravity.TOP);
+//                        gd1.set(R.string.qs_btn5_help, R.string.no, R.string.yes);
+//                        gd1.setObserver(new st.UniObserver()
+//                        {
+//                            @Override
+//                            public int OnObserver(Object param1, Object param2)
+//                            {
+//                                if(((Integer)param1).intValue()==AlertDialog.BUTTON_NEUTRAL)
+//                                {
+//                                	st.runApp(inst,st.APP_PACKAGE_DICTIONARY, SiteKbd.SITE_KBD+SiteKbd.PAGE_DICT);
+//                                }
+//                            	
+//                                return 0;
+//                            }
+//                        });
+//                        gd1.showAlert();
                     	
                     }
     			return 0;

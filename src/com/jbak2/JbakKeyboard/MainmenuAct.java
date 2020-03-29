@@ -44,7 +44,7 @@ public class MainmenuAct extends Activity
     	if (llview.getChildCount()>0)
     		llview.removeAllViews();
     	if (Mainmenu.arMenu.size()==0)
-    		Mainmenu.arMenu = mmenu.getItemDefault();
+    		Mainmenu.arMenu = mmenu.getDefaultItem();
     	int pos = 0;
     	for (Mainmenu mm:Mainmenu.arMenu)
     	{

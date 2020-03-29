@@ -102,12 +102,13 @@ public interface IKbdSettings
 		public static final String AC_LIST_VALUE = "ac_list_value";
 // высота окна автодополнения
 		public static final String PREF_AC_HEIGHT = "pref_ac_height";
-		// рисовать окно автодополнения как SUB_PANEL
-				public static final String PREF_AC_SUB_PANEL = "pref_ac_sub_panel";
+///** @deprecated рисовать окно автодополнения как SUB_PANEL */
+//		public static final String PREF_AC_SUB_PANEL = "pref_ac_sub_panel";
+/** тип отрисовки окна автодополнения <br>
+ *  Заменяет константу PREF_AC_SUB_PANEL */		
+		public static final String PREF_AC_WINDOW_TYPE = "pref_ac_window_type";
 // сортировка выпадающего списка автодопа
 		public static final String AC_SORT_DROPDOWNLIST_ALPHABETICALLY = "ac_list_dropdown";
-// имя программы кодов символов юникода
-		public static final String UNICODE_APP = "jp.ddo.hotmist.unicodepad";
 // имя файла для вывода по умолчанию
 	   public static final String PREF_VIEW_DESC = "desc_view";
 	/** ключ, Как пользоваться клавиатурой */    
@@ -357,6 +358,7 @@ public interface IKbdSettings
     public static final String STR_EQALLY = "=";
     public static final String STR_ERROR = "error";
     public static final String STR_PREFIX = "$[";
+    public static final String STR_PREFIX_FONT = "$f#";
     public static final String STR_COMMA = ",";
     public static final String STR_POINT = ".";
     public static final String STR_SLASH= "/";
@@ -476,6 +478,7 @@ public interface IKbdSettings
     public static final int TXT_SELECT_PARAGRAPF = -339;
     public static final int TXT_SELECT_LINE = -340;
     public static final int TXT_SELECT_SENTENCE = -341;
+    public static final int TXT_SELECT_WORD = -342;
 
     /**-------------------------------------------------------------------    
 	/// Список команд 
@@ -572,6 +575,12 @@ public interface IKbdSettings
     public static final int CMD_MENU_QUICK_SELECT_SKIN = -626;
     /** внутренняя команда - старт активности Языки и раскладки*/    
     public static final int CMD_START_SET_LANG_ACTIVITY = -627;
+    /** внутренняя команда - выводит список пользовательских раскладок типа hide <br> 
+     * из папки keyboards*/    
+    public static final int CMD_SHOW_USER_HIDE_LAYOUT = -628;
+    /** внутренняя команда - выводит меню дополнительных раскладок встроенных в клавиатуру <br>
+     *  типа hide*/    
+    public static final int CMD_SHOW_ADDITIONAL_HIDE_LAYOUT = -629;
 
     /** стартовое число для посылки кейкодов клавиш по формуле 0-KEYCODE_CODE-посылаемый_код 
      * (занимает промежуток кодов -5000 - -7000) */

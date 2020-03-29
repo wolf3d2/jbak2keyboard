@@ -56,13 +56,14 @@ public class Mainmenu {
     	}
     	return null;
     }
-    // пункты меню по умолчанию
-    public ArrayList<Mainmenu> getItemDefault()
+    /** пункты меню по умолчанию */
+    public ArrayList<Mainmenu> getDefaultItem()
     {
     	ArrayList<Mainmenu> ar= new ArrayList<Mainmenu>();
     	ar.add(new Mainmenu(R.string.mm_templates, st.CMD_TPL));
     	ar.add(new Mainmenu(R.string.mm_multiclipboard, st.CMD_CLIPBOARD));
     	ar.add(new Mainmenu(R.string.mm_settings, st.CMD_PREFERENCES));
+    	ar.add(new Mainmenu(R.string.addit_layout_menuname, st.CMD_SHOW_ADDITIONAL_HIDE_LAYOUT));
     	ar.add(new Mainmenu(R.string.lang_calc, st.CMD_CALC));
     	ar.add(new Mainmenu(R.string.mainmenu_setting, st.CMD_RUN_MAINMENU_SETTING));
     	return ar;
@@ -100,6 +101,8 @@ public class Mainmenu {
     	ar.add(new Mainmenu(R.string.euv_actname, st.CMD_EDIT_USER_VOCAB));
     	ar.add(new Mainmenu(R.string.mm_copy_notation, st.CMD_SHOW_COPY_NUMBER_ANY_NOTATION));
     	ar.add(new Mainmenu(R.string.ss_name, st.CMD_INSERT_SPEC_SYMBOL));
+    	ar.add(new Mainmenu(R.string.user_hide_layout_menuname, st.CMD_SHOW_USER_HIDE_LAYOUT));
+    	ar.add(new Mainmenu(R.string.addit_layout_menuname, st.CMD_SHOW_ADDITIONAL_HIDE_LAYOUT));
 
     	return ar;
     }

@@ -46,7 +46,7 @@
     android:layout_marginTop="2dp"
     android:text="[0/0]"
     android:textColor="#fff"
-    android:textSize="8sp" 
+    android:textSize="12sp" 
     />
 
 <EditText
@@ -130,72 +130,55 @@
     
 <Button
     android:id="@+id/desc_btn_sellang"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
     android:text="@string/euv_lang_text" />
 
-<Button 
-    android:id="@+id/desc_btn_search"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
-    android:onClick="onClick"
-	android:text="@string/search"
-		/> 
-
 <Button
     android:id="@+id/desc_btn_start"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
     android:text="toStart" 
     />
 
 <Button
     android:id="@+id/desc_btn_end"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
-    android:layout_weight ="1" 
     android:text="toEnd" 
     />
 
-<Button
-    android:id="@+id/desc_btn_pgdn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+<Button 
+    android:id="@+id/desc_btn_search"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
-    android:text="PgDn" 
-    />
+	android:text="@string/search"
+	/> 
 
 <Button
     android:id="@+id/desc_btn_pgup"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
     android:text="PgUp" 
     />
 
 <Button
+    android:id="@+id/desc_btn_pgdn"
+    style="@style/show_adit_activity_toolbar"
+    android:onClick="onClick"
+    android:text="PgDn" 
+    />
+
+<Button
     android:id="@+id/desc_btn_size"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
     android:text="@string/ann_btn_big" 
     />
 
 <Button
     android:id="@+id/desc_btn_left_right"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="50dp"
+    style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
     android:text="right_left" 
     />

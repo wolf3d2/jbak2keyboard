@@ -114,19 +114,16 @@ selToPos[0,0,0,.!?] - seleccionamos el texto desde el principio hasta el momento
 selToPos[0,-1,0,Hola] - seleccionamos el texto desde el principio hasta la palabra Hola.
 
 
-
 $program 
 
 Puede haber solo una instrucción especial en la plantilla y la primera línea. 
 
 Para seleccionar enlaces a las plantillas, use el botón "+".
-При использовании в тегах template и longTemplate вместо символа перевода строки, указывайте \n.
-
-
+Cuando se utiliza en las etiquetas template y  longTemplate en lugar del carácter de avance de línea, especifique '\n'. 
 
 Ejemplo:
 
-Seleccionar una frase y reemplazarla por un texto del búfer:  
+Seleccionar una frase y reemplazarla por un texto del portapepeles:  
 
 $program 
 
@@ -142,7 +139,7 @@ seltopos con el contenido:
 
 selToPos[0,0,0,.!?] 
 
-y la plantilla Paste que contiene una instrucción especial para pegar el texto copiado del búfer
+y la plantilla Paste que contiene una instrucción especial para pegar el texto copiado del portapepeles
 
 $paste 
 
@@ -173,16 +170,18 @@ Además, puede especificar las combinaciones de teclas, por ejemplo, Ctrl + A (s
 El número de teclas en combinación es ilimitado. 
 
 Además, el valor de p<número> puede especificarse como un código: inserta una pausa entre la ejecución de códigos adyacentes.
-Si establece solo el valor de p sin un número, el intervalo entre la ejecución de códigos será igual al valor de la repetición de la tecla Siguiente (Otros ajustes - Intervalos de teclas)
+Si establece solo el valor de p<el numero>, el intervalo entre la ejecución de códigos será igual al valor de la repetición de la tecla Siguiente (Otros ajustes - Intervalos de teclas)
 
-Примеры:
-$codes[-323,-321] - выделить всё и вставить текущее значение буфера обмена. Команда состоит из кодов клавиатуры.
-Тоже самое, но с использованием KeyEvent клавиш (коды в клавиатуре из промежутка -5000 - -7000):
+Cuando se utiliza en las etiquetas template y  longTemplate en lugar del carácter de avance de línea, especifique '\n'. 
+
+Ejemplos:
+$codes[-323,-321] : seleccionar todo y pegar el valor actual del portapapeles. El comando se compone de códigos de teclado. 
+Lo mismo, pero usando las teclas KeyEvent (códigos de teclado en el rango de -5000 - -7000):
 $codes[-5113+-5029,-321]
-$codes[-5113+-5059+-5021] - Ctrl+Shift+← - выделить слово слева от курсора
-(в кодах -5xxx возможны ошибки - указывал по памяти)
-ЗАМЕЧАНИЕ.
-Комбинации клавиш, возможны только через указание KeyEvent символов (-5xxx). С кодамти клавиатуры комбинации скорее всего, работать не будут.
+$codes[-5113+-5059+-5021] - Ctrl+Shift+← : seleccionar palabra desde la izquierda del cursor (errores son posibles en los códigos -5xxx (he indicado de memoria))
 
-Все коды доступные в клавиатуре, перечислены в приложеннии jbak2layout, в Инструкции по созданию своей раскладки.
-События KeyEvent смотрите в интернете.
+NOTA
+Se puede usar combinaciones de teclas solo especificando los caracteres KeyEvent (-5xxx). Las combinciones probablemente no funcionarán con los códigos de teclado. 
+
+Todos los códigos disponibles en el teclado se enumeran en la aplicación jbak2layout, en la Instrucción para crear su propia disposición. 
+Busque la información sobre KeyEvent en Internet.

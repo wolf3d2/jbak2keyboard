@@ -19,10 +19,8 @@ package com.jbak2.JbakKeyboard;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -58,7 +56,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
-import android.widget.TextView;
 import com.google.android.voiceime.VoiceRecognitionTrigger;
 import com.jbak2.JbakKeyboard.com_menu;
 import com.jbak2.JbakKeyboard.st;
@@ -72,6 +69,7 @@ import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.JbKbd.Replacement;
 import com.jbak2.JbakKeyboard.KeyboardGesture.GestureHisList;
 import com.jbak2.ctrl.ClipbrdService;
+import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
 import com.jbak2.ctrl.Mainmenu;
@@ -190,14 +188,14 @@ public class ServiceJbKbd extends InputMethodService
 	public LatinKey thiskey;
 
 	/** Место, в котором показано окно автодополнения */
-	public int m_acPlace = JbCandView.AC_PLACE_TITLE;
+	public int m_acPlace = CandView.AC_PLACE_TITLE;
 	PopupKeyboard pk;
 	/** Текущий просмотр кандидатов */
-	public JbCandView m_candView = null;
+	public CandView m_candView = null;
 	/** сохранение параметров для калькулятора */
-	JbCandView m_candView1;
+	CandView m_candView1;
 	/** Просмотр кандидатов, прикрепленный к клавиатуре */
-	JbCandView m_kbdCandView;
+	CandView m_kbdCandView;
 	WindowManager m_wm;
 	public static ServiceJbKbd inst;
 	/** Символы концов предложений */
@@ -279,6 +277,8 @@ public class ServiceJbKbd extends InputMethodService
 		// m_es.load(st.PREF_KEY_EDIT_SETTINGS);
 		// pref.registerOnSharedPreferenceChangeListener(this);
 		// onSharedPreferenceChanged(pref, null);
+		if (Font.tf == null)
+			new Font(inst, null);
 		readPreferences();
 		
 	}
@@ -363,10 +363,10 @@ public class ServiceJbKbd extends InputMethodService
 		return null;
 	}
 
-	JbCandView createNewCandView() {
+	CandView createNewCandView() {
 		// if (m_candView!=null)
 		// return m_candView;
-		return (JbCandView) getLayoutInflater().inflate(R.layout.candidates, null);
+		return (CandView) getLayoutInflater().inflate(R.layout.candidates, null);
 	}
 
 	void forceFullScreen(EditorInfo attribute) {
@@ -410,13 +410,14 @@ public class ServiceJbKbd extends InputMethodService
 			readPreferences();
 		}
 		if (st.fl_ac_list_view) {
-			m_candView.ViewCandList();
+			m_candView.popupViewFullList();
 		}
 		if (st.fl_sync)
 			st.startSyncServise();
 		// else
 		// st.stopSyncServise();
 
+		//m_candView.setInflatePopupPanelButton();
 		m_candView.setVisible(m_candView.m_counter, st.fl_counter);
 		setCountTextValue();
 		m_candView.setVisible(m_candView.m_keycode, st.fl_keycode);
@@ -726,12 +727,12 @@ public class ServiceJbKbd extends InputMethodService
 			if (com_menu.inst != null)
 				return;
 
-			if (m_acPlace != JbCandView.AC_PLACE_NONE) {
+			if (m_acPlace != CandView.AC_PLACE_NONE) {
 				m_candView.show(st.kv(), m_acPlace);
 				return;
 			}
 			// ||m_acPlace==JbCandView.AC_PLACE_NONE
-			if (m_suggestType == SUGGEST_NONE || m_acPlace == JbCandView.AC_PLACE_NONE)
+			if (m_suggestType == SUGGEST_NONE || m_acPlace == CandView.AC_PLACE_NONE)
 				return;
 			m_candView.show(st.kv(), m_acPlace);
 		} else {
@@ -762,7 +763,7 @@ public class ServiceJbKbd extends InputMethodService
 
 	@Override
 	public void onStartInput(EditorInfo attribute, boolean restarting) {
-		googleplayexist = st.isAppInstalled(inst, st.APP_GOOGLE_PLAY_PACKAGE);
+		googleplayexist = st.isAppInstalled(inst, st.APP_PACKAGE_GOOGLE_PLAY);
 		// st.toast(inst, "gp= "+googleplayexist);
 		if (m_candView != null)
 			showCandView(true);
@@ -897,7 +898,7 @@ public class ServiceJbKbd extends InputMethodService
 					processCaseAndCandidates();
 					m_lastInput = 0;
 				}
-				if (m_suggestType != SUGGEST_NONE && m_acPlace == JbCandView.AC_PLACE_CURSOR_POS)
+				if (m_suggestType != SUGGEST_NONE && m_acPlace == CandView.AC_PLACE_CURSOR_POS)
 					m_candView.show(st.kv(), m_acPlace);
 			} else {
 				getTextBeforeCursor();
@@ -922,7 +923,7 @@ public class ServiceJbKbd extends InputMethodService
 					processCaseAndCandidates();
 					m_lastInput = 0;
 				}
-				if (m_suggestType != SUGGEST_NONE && m_acPlace == JbCandView.AC_PLACE_CURSOR_POS)
+				if (m_suggestType != SUGGEST_NONE && m_acPlace == CandView.AC_PLACE_CURSOR_POS)
 					m_candView.show(st.kv(), m_acPlace);
 			} else {
 				getTextBeforeCursor();
@@ -980,7 +981,7 @@ public class ServiceJbKbd extends InputMethodService
 		if (m_suggestType != SUGGEST_VOCAB)
 			return;
 		try {
-			if (m_acPlace == JbCandView.AC_PLACE_NONE)
+			if (m_acPlace == CandView.AC_PLACE_NONE)
 				return;
 			// закоментил 30.11.18
 			//if (m_textBeforeCursor == null)
@@ -1366,7 +1367,7 @@ public class ServiceJbKbd extends InputMethodService
 
 	public final void processKey(int primaryCode) {
 		thiskey = null;
-
+		if (!Templates.template_processing) {
 		if (st.kv() != null) {
 			thiskey = st.kv().lk_this;
 			if (st.kv().longpress) {
@@ -1404,6 +1405,7 @@ public class ServiceJbKbd extends InputMethodService
 		}
 		if (st.fl_keycode)
 			m_candView.setKeycode(primaryCode);
+		}
 		beep(primaryCode);
 		InputConnection ic = getCurrentInputConnection();
 		// обработка комбинаций клавиш
@@ -1480,7 +1482,7 @@ public class ServiceJbKbd extends InputMethodService
 		else if (primaryCode == st.SET_KEY_CALC_CLOSE && JbKbdView.inst != null) {
 			m_candView.setInd(false);
 			m_candView.restoreAc_place();
-			if (m_acPlace == JbCandView.AC_PLACE_NONE)
+			if (m_acPlace == CandView.AC_PLACE_NONE)
 				removeCandView();
 			// m_candView.remove();
 
@@ -1581,7 +1583,10 @@ public class ServiceJbKbd extends InputMethodService
 		// какую раскладку выводить, hide, цмфровую или qwerty
 		else if (primaryCode == Keyboard.KEYCODE_MODE_CHANGE && JbKbdView.inst != null) {
 			selmode = false;
-			if (st.curKbd().kbd.path.startsWith("hide_") == true) {
+			JbKbd kb = st.curKbd();
+			String name = kb.kbd.lang.name;
+			if (name.startsWith(IKeyboard.LANG_HIDE_LAYOUT)) {
+//			if (st.curKbd().kbd.path.startsWith("hide_") == true) {
 				st.setQwertyKeyboard();
 			} else if (st.isQwertyKeyboard(st.curKbd().kbd) == true) {
 				st.setSymbolKeyboard(false);
@@ -1855,16 +1860,27 @@ public class ServiceJbKbd extends InputMethodService
 		if (autoCorrect)
 			ic.deleteSurroundingText(1, 0);
 		if (ci.init(ic)) {
-			String sss = (String) ic.getTextBeforeCursor(1, 0);
-			if (sss==null)
-				sss=st.STR_NULL;
-			if (st.fl_delsymb) {
-				if (st.fl_ac_word)
-					sss = st.STR_SPACE;
-				else
-					sss = "tgd";
-				st.fl_delsymb = false;
-				st.fl_ac_word = false;
+			String sss = null;
+			try {
+				sss = ic.getSelectedText(0).toString();
+			} catch (Throwable e) {
+				sss = null;
+			}
+			if (sss!=null) {
+				handleBackspace();
+				sss = st.STR_SPACE;
+			} else {
+				sss = (String) ic.getTextBeforeCursor(1, 0);
+				if (sss==null)
+					sss=st.STR_NULL;
+				if (st.fl_delsymb) {
+					if (st.fl_ac_word)
+						sss = st.STR_SPACE;
+					else
+						sss = "tgd";
+					st.fl_delsymb = false;
+					st.fl_ac_word = false;
+				}
 			}
 			st.fl_add_space_before_symb = false;
 			if (sss.compareTo(st.STR_SPACE) == 0)
@@ -1922,7 +1938,7 @@ public class ServiceJbKbd extends InputMethodService
 		};
 		Mainmenu mmenu = new Mainmenu();
 		if (Mainmenu.arMenu == null || Mainmenu.arMenu.isEmpty())
-			Mainmenu.arMenu.addAll(mmenu.getItemDefault());
+			Mainmenu.arMenu.addAll(mmenu.getDefaultItem());
 		for (Mainmenu mm : Mainmenu.arMenu) {
 			switch (mm.code) {
 			case st.CMD_AC_HIDE:
@@ -2198,6 +2214,7 @@ public class ServiceJbKbd extends InputMethodService
 		case st.TXT_SELECT_PARAGRAPF: // команды выделения
 		case st.TXT_SELECT_LINE: 
 		case st.TXT_SELECT_SENTENCE:
+		case st.TXT_SELECT_WORD:
 			st.kbdCommand(code);
 			break;
 		case st.TXT_SELECT_FUNCTION: // функции выделения
@@ -2456,7 +2473,7 @@ public class ServiceJbKbd extends InputMethodService
 
 	public void forceHide() {
 		if (st.fl_ac_list_view) {
-			m_candView.ViewCandList();
+			m_candView.popupViewFullList();
 			return;
 		}
 		hideWindow();
@@ -2522,7 +2539,10 @@ public class ServiceJbKbd extends InputMethodService
 		}
 		st.debug_mode= sharedPreferences.getBoolean(st.PREF_KEY_DEBUG_MODE, false);
 		st.color_picker_type= sharedPreferences.getBoolean(st.PREF_KEY_TYPE_COLOR_PICKER, false);
-		st.ac_sub_panel = sharedPreferences.getBoolean(st.PREF_AC_SUB_PANEL, false);
+		//st.ac_sub_panel = sharedPreferences.getBoolean(st.PREF_AC_SUB_PANEL, false);
+		st.type_ac_window = Integer.decode(sharedPreferences.getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL+st.TYPE_AC_METHOD2));
+		//sharedPreferences.getInt(st.PREF_AC_WINDOW_TYPE, st.TYPE_AC_METHOD2);
+		
 		try {
 	        st.enter_pict = Integer.decode(st.pref(this).getString(st.PREF_ENTER_PICT, st.STR_ZERO));
 			
@@ -2715,7 +2735,7 @@ public class ServiceJbKbd extends InputMethodService
 			ars = ars.trim();
 			mmenu = new Mainmenu();
 			if (ars == null || ars.isEmpty()) {
-				for (Mainmenu mm : mmenu.getItemDefault()) {
+				for (Mainmenu mm : mmenu.getDefaultItem()) {
 					ars += st.STR_NULL + mm.code + st.STR_COMMA;
 				}
 				ars = ars.substring(0, ars.length() - 1);
@@ -2832,11 +2852,11 @@ public class ServiceJbKbd extends InputMethodService
 		// "1")));
 		st.fl_counter = sharedPreferences.getBoolean(st.PREF_KEY_USE_COUNTER, false);
 		st.fl_keycode = sharedPreferences.getBoolean(st.PREF_KEYCODE, false);
-		if (m_candView != null) {
-			m_candView.setVisible(m_candView.m_counter, st.fl_counter);
-			m_candView.setVisible(m_candView.m_keycode, st.fl_keycode);
-
-		}
+//		if (m_candView != null) {
+//			m_candView.setVisible(m_candView.m_counter, st.fl_counter);
+//			m_candView.setVisible(m_candView.m_keycode, st.fl_keycode);
+//
+//		}
 		st.fl_enter_key = sharedPreferences.getBoolean(st.PREF_KEY_CLIPBRD_ENTER_AFTER_PASTE, false);
 		st.del_space = sharedPreferences.getBoolean(st.PREF_KEY_DEL_SPACE, false);
 		boolean bSpac = sharedPreferences.getBoolean(st.PREF_KEY_SENTENCE_SPACE, false);
@@ -3299,7 +3319,7 @@ public class ServiceJbKbd extends InputMethodService
 		// st.kv().invalidateAllKeys();
 		// }
 		if (!focusChanged && st.fl_ac_list_view && m_candView != null) {
-			m_candView.ViewCandList();
+			m_candView.popupViewFullList();
 		}
 	}
 
@@ -4104,7 +4124,7 @@ public class ServiceJbKbd extends InputMethodService
        if (st.ac1 == 1) {
     	   ServiceJbKbd.inst.removeCandView();
     	   st.ac1 = 2;
-    	   ServiceJbKbd.inst.m_acPlace = JbCandView.AC_PLACE_NONE;
+    	   ServiceJbKbd.inst.m_acPlace = CandView.AC_PLACE_NONE;
     	   ServiceJbKbd.setTypeKbd();
        } else {
     	   st.ac1 = 1;

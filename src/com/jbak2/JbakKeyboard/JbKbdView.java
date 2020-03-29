@@ -189,7 +189,7 @@ public class JbKbdView extends KeyboardView
 			}
         }
         Field[] af = KeyboardView.class.getDeclaredFields();
-        String txtClr="mKeyTextColor";  
+        String txtCol="mKeyTextColor";  
         String txtSz = "mKeyTextSize";  
         String labSz="mLabelTextSize";  
         String prevText="mPreviewText";
@@ -236,7 +236,7 @@ public class JbKbdView extends KeyboardView
                 {
                 }
             }
-            else if(f.getName().equals(txtClr))
+            else if(f.getName().equals(txtCol))
             {
               try{
                   f.setAccessible(true);
@@ -1083,7 +1083,7 @@ public class JbKbdView extends KeyboardView
     {
 // прячет список слов из автодополнения, если он на экране
     	if (st.fl_ac_list_view&&ServiceJbKbd.inst!=null) {
-    		ServiceJbKbd.inst.m_candView.ViewCandList();
+    		ServiceJbKbd.inst.m_candView.popupViewFullList();
     		return;
     	}
 

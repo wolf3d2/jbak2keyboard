@@ -1,8 +1,8 @@
 package com.jbak2.JbakKeyboard;
 
-import java.io.File;
-
 import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
+import com.jbak2.ctrl.Font;
+
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
@@ -281,7 +281,7 @@ public class PopupKeyboard
         // высота автодопа
         int cvh = 0;
         if (ServiceJbKbd.inst!=null
-        		&ServiceJbKbd.inst.m_candView.m_place == JbCandView.AC_PLACE_KEYBOARD
+        		&ServiceJbKbd.inst.m_candView.m_place == CandView.AC_PLACE_KEYBOARD
         		)
         	cvh = ServiceJbKbd.inst.m_candView.getHeight();
         kvh = st.kv().getHeight()-cvh;
@@ -626,7 +626,6 @@ public class PopupKeyboard
         int ll_btn_width = lp.width-MARGIN-MARGIN-wid;
 
         int id =1;
-        
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
         for (int i=0;i<txt.length;i++) {
         	if (txt[i].trim().length() == 0){
@@ -649,6 +648,10 @@ public class PopupKeyboard
         	st.setElementSpecFormatAddSymbol(st.ar_asg,txt[i],id);
         	ar = st.getElementSpecFormatSymbol(st.ar_asg, id);
         	if (ar!=null){
+        		if (ar.visibleText.contains(st.STR_PREFIX_FONT)) {
+        			tv.setTypeface(Font.tf);
+       				ar.visibleText = ar.visibleText.replace(st.STR_PREFIX_FONT, st.STR_NULL);
+        		}
         		tv.setText(ar.visibleText+st.STR_SPACE);
         		Drawable img = m_c.getResources().getDrawable( R.drawable.bullet_red);
         		img.setBounds( 0, 0, 15, 15 );
@@ -686,8 +689,11 @@ public class PopupKeyboard
 							ServiceJbKbd.inst.processKey(el.code);
     			} 
 				else if (txt.length()== 1) {
-					if (ServiceJbKbd.inst!=null)
+					if (ServiceJbKbd.inst!=null) {
+						Templates.template_processing = true;
 						ServiceJbKbd.inst.processKey(txt.charAt(0));
+						Templates.template_processing = false;
+					}
 				} else
     				new Templates(1,0,null).processTemplate(txt);
         		}

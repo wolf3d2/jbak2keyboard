@@ -1,6 +1,5 @@
 package com.jbak2.JbakKeyboard;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -14,7 +13,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -33,6 +31,7 @@ import android.widget.TextView;
 import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
+import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.perm.Perm;
 import com.jbak2.words.TextTools;
@@ -40,8 +39,9 @@ import com.jbak2.words.UserWords;
 import com.jbak2.words.WordsService;
 import com.jbak2.words.IWords.WordEntry;
 
-
-public class JbCandView extends RelativeLayout
+/** класс вывода окна автодополнения (кандидатов (подсказок слов)) */
+@SuppressLint("NewApi")
+public class CandView extends RelativeLayout
 {
 	// значения ширины экрана (узнаём один раз в init, 
 	// для ускорения вывода стрелки вниз
@@ -106,6 +106,8 @@ public class JbCandView extends RelativeLayout
     TextView m_forcibly;
     // счетчик нажатий символов
     TextView m_counter;
+ // код последней нажатой клавиши
+    TextView m_keycode;
     TextView m_addVocab;
     TextView temp_color_tv;
 	// ключ, включена ли дробная часть
@@ -141,8 +143,6 @@ public class JbCandView extends RelativeLayout
     int m_acPlace1;
 // временные переменные
     String tmp = st.STR_NULL;
-// код последней нажатой клавиши
-    TextView m_keycode;
 
     String calc_full = st.STR_NULL;
     String calc_cel = st.STR_NULL;
@@ -196,25 +196,17 @@ public class JbCandView extends RelativeLayout
 //        ":(",
 //    };
     
-    public int getPlace()
-    {
-        return m_place;
-    }
-    public void setPlace(int place)
-    {
-        this.m_place = place;
-    }
-    public JbCandView(Context context, AttributeSet attrs)
-    {
-        super(context, attrs);
-        init(context);
-    }
     int m_height;
     WindowManager wm;
     LinearLayout m_ll;
     /** подложка для задания цвета, чтобы менял его на лету */
     LinearLayout m_temp_ll_for_color;
     
+    public CandView(Context context, AttributeSet attrs)
+    {
+        super(context, attrs);
+        init(context);
+    }
     @SuppressLint("NewApi")
 	void init(Context context)
     {
@@ -226,11 +218,20 @@ public class JbCandView extends RelativeLayout
     	display_width = st.getDisplayWidth(m_c);
     	m_ll = (LinearLayout)findViewById(R.id.completions);
    		m_defkey = ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey);
-   		m_keycode = ((TextView)findViewById(R.id.cand_keycode)); 
-    	m_counter = ((TextView)findViewById(R.id.cand_counter));
-    	m_forcibly = ((TextView)findViewById(R.id.cand_forcibly));
-    	m_calcind = ((TextView)findViewById(R.id.cand_calcind)); 
-    	m_calcmenu = ((TextView)findViewById(R.id.cand_calcmenu));
+   		if (st.type_ac_window != st.TYPE_AC_METHOD2) {
+   	   		m_keycode = ((TextView)findViewById(R.id.cand_keycode)); 
+   	    	m_counter = ((TextView)findViewById(R.id.cand_counter));
+   	    	m_forcibly = ((TextView)findViewById(R.id.cand_forcibly));
+   	    	m_calcind = ((TextView)findViewById(R.id.cand_calcind)); 
+   	    	m_calcmenu = ((TextView)findViewById(R.id.cand_calcmenu));
+   		} else {
+   	   		m_keycode = ((TextView)findViewById(R.id.cand2_keycode)); 
+   	    	m_counter = ((TextView)findViewById(R.id.cand2_counter));
+   	    	m_forcibly = ((TextView)findViewById(R.id.cand2_forcibly));
+   	    	m_calcind = ((TextView)findViewById(R.id.cand2_calcind)); 
+   	    	m_calcmenu = ((TextView)findViewById(R.id.cand2_calcmenu));
+   			
+   		}
         
     	m_height = context.getResources().getDimensionPixelSize(R.dimen.cand_height);
         m_defaultFontSize = context.getResources().getDimensionPixelSize(R.dimen.candidate_font_height);
@@ -267,6 +268,14 @@ public class JbCandView extends RelativeLayout
         	}
         }
         setTexts(null);
+    }
+    public int getPlace()
+    {
+        return m_place;
+    }
+    public void setPlace(int place)
+    {
+        this.m_place = place;
     }
     public void setACColors()
     {
@@ -312,15 +321,15 @@ public class JbCandView extends RelativeLayout
 // установка цвета фона окна автодопа
 	public void setACBackground()
     {
-// не актуально с версии 2.33.09 (или 2.34)		
-//        if (m_ll!=null){
-//        	m_ll.setBackgroundColor(st.ac_col_main_back);
-//        	//m_ll.setOnLongClickListener(m_LongClickListenerLayout);
-//        }
-//        if (hsv!=null){
-//        	hsv.setBackgroundColor(st.ac_col_main_back);
-//        	//hsv.setOnLongClickListener(m_LongClickListenerLayout);
-//        }
+// не актуально с версии 2.33.09 (или 2.34) - актуально для cand2		
+        if (m_ll!=null){
+        	m_ll.setBackgroundColor(st.ac_col_main_back);
+        	//m_ll.setOnLongClickListener(m_LongClickListenerLayout);
+        }
+        if (hsv!=null){
+        	hsv.setBackgroundColor(st.ac_col_main_back);
+        	//hsv.setOnLongClickListener(m_LongClickListenerLayout);
+        }
         if (temp_color_tv!=null){
         	temp_color_tv.setBackgroundColor(st.ac_col_main_back);
         	temp_color_tv.setTextColor(st.ac_col_main_back);
@@ -344,10 +353,11 @@ public class JbCandView extends RelativeLayout
 	@Override
     protected void onFinishInflate() 
     {
-		// фон для всего автодопа
-		// если откоментить, то глюки с лайотом слов - они вроде как hide, 
-		// но при этом видны...
-		//this.setBackgroundColor(st.ac_col_main_back);
+        if (ServiceJbKbd.inst!=null&&ServiceJbKbd.inst.m_acPlace!=AC_PLACE_TITLE 
+        		&&st.type_ac_window == st.TYPE_AC_METHOD2) {
+        	setInflatePopupPanelButton();
+        	return;
+        }
         m_ll = (LinearLayout)findViewById(R.id.completions);
         //m_ll.setPadding(0, st.ac_height, 0, st.ac_height);
         m_temp_ll_for_color = (LinearLayout)findViewById(R.id.temp_completions);
@@ -371,6 +381,7 @@ public class JbCandView extends RelativeLayout
         if (ServiceJbKbd.inst != null)
         	ServiceJbKbd.inst.setCountTextValue();
         m_counter.setOnClickListener(m_ClickListenerBtn);
+		setVisible(m_counter, st.fl_counter);
 
         m_calcind = (TextView)findViewById(R.id.cand_calcind);
         m_calcind = keyColor(m_calcind,3);
@@ -382,9 +393,11 @@ public class JbCandView extends RelativeLayout
 
         m_keycode = (TextView)findViewById(R.id.cand_keycode);
         m_keycode.setMinWidth(50);
+        m_keycode.setPadding(5, 0, 5, 0);
         m_keycode = keyColor(m_keycode,2);
         m_keycode.setOnClickListener(m_ClickListenerBtn);
         m_keycode.setOnLongClickListener(m_LongClickListenerBtn);
+		setVisible(m_keycode, st.fl_keycode);
 
         m_forcibly = (TextView)findViewById(R.id.cand_forcibly);
         m_forcibly.setMinWidth(50);
@@ -401,7 +414,8 @@ public class JbCandView extends RelativeLayout
         setTextArrowRightButtonView(false);
 
     }
-    public void ViewCandList()
+	/** показывает или прячет выпадающий список слов */
+    public void popupViewFullList()
     {
     	if (st.fl_ac_list_view) {
     		st.fl_ac_list_view = false;
@@ -415,11 +429,12 @@ public class JbCandView extends RelativeLayout
         }
         if(m_popupWnd!=null)
         {
-        	popupHideACView();
+        	popupHideFullListView();
         }
         else
         {
-        	popupShowACView();
+        	if (!m_bShownFull)
+        		popupShowFullListView();
         }
     }
 
@@ -502,9 +517,12 @@ public class JbCandView extends RelativeLayout
         if (we_is_none)
         	ar.remove(0);
     }
+    /** подсчитываем ширинц автодопа.<br>
+     * Для метода setTexts чтобы не утекала память */
+    int ac_width = 0;
     public void setTexts(String words[],CompletionInfo[]completions)
     {
-    	popupHideACView();
+    	popupHideFullListView();
         if (ServiceJbKbd.inst.m_ac_defkey == null)
        		ServiceJbKbd.inst.onCreate();
         m_defkey=ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey);
@@ -575,7 +593,7 @@ public class JbCandView extends RelativeLayout
         }
         m_ll.measure(0, 0);
         m_addVocab.measure(0, 0);
-        int w = m_ll.getMeasuredWidth();
+        ac_width = m_ll.getMeasuredWidth();
     	if (!st.ac_place_arrow_down) {
             m_counter.measure(0, 0);
             m_keycode.measure(0, 0);
@@ -583,20 +601,20 @@ public class JbCandView extends RelativeLayout
             // считаем полную ширину строки автодопа
             // не забываем, что в w уже есть ширина m_ll
             if (m_addVocab.getVisibility()==View.VISIBLE)
-                w+=m_addVocab.getMeasuredWidth();
+            	ac_width+=m_addVocab.getMeasuredWidth();
             if (m_counter.getVisibility()==View.VISIBLE)
-                w+=m_counter.getMeasuredWidth();
+            	ac_width+=m_counter.getMeasuredWidth();
             if (m_keycode.getVisibility()==View.VISIBLE)
-                w+=m_keycode.getMeasuredWidth();
+            	ac_width+=m_keycode.getMeasuredWidth();
             if (m_forcibly.getVisibility()==View.VISIBLE)
-                w+=m_forcibly.getMeasuredWidth();
-            if (w >= display_width) {
-            	if (st.ac_place_arrow_down == false)
-        		if (getWidth()>0)
-        			m_rightView.setVisibility(View.VISIBLE);
+            	ac_width+=m_forcibly.getMeasuredWidth();
+            if (ac_width >= display_width) {
+            	if (!st.ac_place_arrow_down) {
+            		//if (getWidth()>0)
+            			m_rightView.setVisibility(View.VISIBLE);
 //        		//if (st.ac_sub_panel) 
 //        			m_rightView.setVisibility(View.VISIBLE);
-        		
+            	}
             	
             } else
     			m_rightView.setVisibility(View.GONE);
@@ -633,38 +651,45 @@ public class JbCandView extends RelativeLayout
             switch (v.getId())
             {
             case R.id.cand_left:
+            case R.id.cand2_left:
            		st.freq_dict = UserWords.FREQ_USER_WORD;
                 ServiceJbKbd.inst.saveUserWord(((TextView)v).getText().toString());
                 createWord(false);
                 return;
             case R.id.cand_counter:
+            case R.id.cand2_counter:
                 ServiceJbKbd.inst.setWord(((TextView)v).getText().toString().trim(),false);
                 ServiceJbKbd.inst.setCountTextValue();
                 return;
             case R.id.cand_calcind:
+            case R.id.cand2_calcind:
                 ServiceJbKbd.inst.setWord(((TextView)v).getText().toString(),false);
                 ServiceJbKbd.inst.setCountTextValue();
                 createWord(false);
                 return;
             case R.id.cand_calcmenu:
+            case R.id.cand2_calcmenu:
                 ServiceJbKbd.inst.onCalcMenu();
                 return;
             case R.id.cand_keycode:
+            case R.id.cand2_keycode:
                 ServiceJbKbd.inst.setWord(((TextView)v).getText().toString().trim(),false);
                 m_addVocab.setVisibility(View.GONE);
                 return;
             case R.id.cand_forcibly:
+            case R.id.cand2_forcibly:
             	st.fl_suggest_dict = true;
             	createWord(true);
             	m_forcibly.setVisibility(View.GONE);
                 return;
             case R.id.cand_right:
-            	ViewCandList();
+            case R.id.cand2_right:
+            	popupViewFullList();
             	return;
             }
         }
     };
- // долгий тап на служебной кнопке из автодопа    
+ /** долгий тап на служебной кнопке из автодопа */    
     View.OnLongClickListener m_LongClickListenerLayout = new View.OnLongClickListener() 
     {
         @Override
@@ -683,13 +708,16 @@ public class JbCandView extends RelativeLayout
             switch (v.getId())
             {
             case R.id.cand_keycode:
+            case R.id.cand2_keycode:
             	com_menu.showNotationNumber(getContext(),((TextView)v).getText().toString().trim());
 				break;
             case R.id.cand_left:
+            case R.id.cand2_left:
 //            	st.toast("В разработке");
 				st.kbdCommand(st.CMD_EDIT_USER_VOCAB);
 				break;
             case R.id.cand_right:
+            case R.id.cand2_right:
 				st.hidekbd();
 				st.runAct(AcColorAct.class);
 				break;
@@ -817,7 +845,10 @@ public class JbCandView extends RelativeLayout
     };
 
     PopupWindow m_popupWnd = null;
-    void popupHideACView()
+    boolean m_bShownFull = false;
+    
+    /** скрывает выпадающий список слов */
+    void popupHideFullListView()
     {
     	if (ar_mtext!=null&&ar_mtext.length>0){
     		
@@ -829,10 +860,12 @@ public class JbCandView extends RelativeLayout
             setTextArrowRightButtonView(false);
             m_popupWnd.dismiss();
             m_popupWnd = null;
+            m_bShownFull = false;
         }
     }
+    /** показывает выпадающий список слов */
     @SuppressLint("NewApi")
-	void popupShowACView()
+	void popupShowFullListView()
     {
     	if (st.fl_ac_list_view==false)
     		return;
@@ -859,7 +892,7 @@ public class JbCandView extends RelativeLayout
          *   */
         int width = 0;
         int global_width = 0;
-        if (st.ac_sub_panel)
+        if (st.type_ac_window >= st.TYPE_AC_METHOD0) 
         	width = getContext().getResources().getDisplayMetrics().widthPixels;
         else
         	width = getWidth();
@@ -890,7 +923,7 @@ public class JbCandView extends RelativeLayout
 			@Override
 			public void onDismiss() {
 		    	if (st.fl_ac_list_view==true)
-		    		ViewCandList();
+		    		popupViewFullList();
 			}
 		});
         m_popupWnd.setTouchable(true);
@@ -917,7 +950,7 @@ public class JbCandView extends RelativeLayout
 //                	if (st.ac_popup_panel)
 //                		return false;
                 	if(m_rightView.dispatchTouchEvent(event)){
-                		popupHideACView();
+                		popupHideFullListView();
                 		st.fl_ac_list_view = false;
                         return false;
                 	}
@@ -933,7 +966,7 @@ public class JbCandView extends RelativeLayout
                         bHide = true;
                 }
                 if(bHide)
-                	popupHideACView();
+                	popupHideFullListView();
                 return bHide;
             }
         });
@@ -947,7 +980,8 @@ public class JbCandView extends RelativeLayout
         m_popupWnd.showAsDropDown(st.kv(), 0, yoff);
 //        m_popupWnd.showAtLocation(st.kv(), Gravity.LEFT|Gravity.TOP, 0, m_height);
 //        ServiceJbKbd.inst.setInputView(v);
-//        m_bShownFull = true;
+        m_bShownFull = true;
+        
     }
     void addFullViewPopupPart(LinearLayout parent,int width,int pos)
     {
@@ -986,7 +1020,7 @@ public class JbCandView extends RelativeLayout
     
     public void remove()
     {
-    	popupHideACView();
+    	popupHideFullListView();
         try{
         	if (st.kv()!=null) {
                 CustomKeyboard kbd = (CustomKeyboard)st.kv().getCurKeyboard();
@@ -1006,7 +1040,28 @@ public class JbCandView extends RelativeLayout
 //                kbd.setTopSpace(0,false);
 //            }
             m_place = AC_PLACE_NONE;
-            wm.removeViewImmediate(this);
+//        	if (pw!=null) {
+//        		pw.dismiss();
+//        		pw = null;
+//        	}
+//            wm.removeViewImmediate(this);
+            if (ServiceJbKbd.inst!=null&&ServiceJbKbd.inst.m_acPlace==AC_PLACE_TITLE){
+                wm.removeViewImmediate(this);
+            } else {
+                switch (st.type_ac_window)
+                {
+                case st.TYPE_AC_METHOD0:
+                case st.TYPE_AC_METHOD1:
+                    wm.removeViewImmediate(this);
+                    break;
+                case st.TYPE_AC_METHOD2:
+                	if (pw!=null) {
+                		pw.dismiss();
+                		pw = null;
+                	}
+                	break;
+                }
+            }
         }
         catch (Throwable e) {
         }
@@ -1015,7 +1070,7 @@ public class JbCandView extends RelativeLayout
 // юзается    
     public void hide()
     {
-    	popupHideACView();
+    	popupHideFullListView();
         try{
             m_place = AC_PLACE_NONE;
             wm.removeView(this);
@@ -1039,88 +1094,185 @@ public class JbCandView extends RelativeLayout
         }
         return 0;
     }
-    /** НЕ ИСПОЛЬЗУЕТСЯ. ОСТАВЛЕНО НА БУДУЩЕЕ!
-     *  рисуем автодоп через PopupWindow.
+    int mACkoordYtotal = -1;
+    /** рисуем автодоп через PopupWindow.<br>
      * ВЫЗЫВАТЬ ОБЯЗАТЕЛЬНО через метод show */
     public void showPopupPanel(JbKbdView kv,int place)
     {
-//       if(fl_ac_show){
-//    	   remove();
-//       }
-//       fl_ac_show = true;
-//        CustomKeyboard kbd = (CustomKeyboard)kv.getCurKeyboard();
-//        m_place = place;
-//        int ypos = 0;
-//        switch (place)
-//        {
-//        case AC_PLACE_KEYBOARD:
-//            kbd.setTopSpace(m_height,false);
-//            ypos = place==AC_PLACE_KEYBOARD?getContext().getResources().getDisplayMetrics().heightPixels-kbd.getHeight():0;
-//      	  break;
-//        case AC_PLACE_BOTTOM_KEYBOARD:
-//            kbd.setTopSpace(m_height,true);
-//            ypos = m_height;//getContext().getResources().getDisplayMetrics().heightPixels-m_height;
-//      	  break;
-//        }
-//        if(place==AC_PLACE_CURSOR_POS)
-//        {
-//            ypos = getYCursor();
-//        }
-//        if (place == this.AC_PLACE_KEYBOARD)
+       if(fl_ac_show){
+    	   remove();
+       }
+       fl_ac_show = true;
+        CustomKeyboard kbd = (CustomKeyboard)kv.getCurKeyboard();
+        m_place = place;
+        int ypos = 0;
+        switch (place)
+        {
+        case AC_PLACE_KEYBOARD:
+            kbd.setTopSpace(m_height,false);
+//            int full_disp_h = getContext().getResources().getDisplayMetrics().heightPixels;
+//            int hei = kbd.getHeight();
+//            int koorY = full_disp_h - hei;
+//            int th = m_height;
+            ypos = 0-kbd.getHeight();
+//            st.toastLong("disp_full: "+full_disp_h
+//                	  +"\nkbd_h    : "+hei
+//                	  +"\nkoord_y  : "+koorY
+//                	  +"\nheiAC    : "+th
+//                	  +"\nypos     : "+ypos
+//              	 );
+            
+//            ypos = getContext().getResources().getDisplayMetrics().heightPixels
+//            		-kbd.getHeight();
+      	  break;
+        case AC_PLACE_BOTTOM_KEYBOARD:
+            kbd.setTopSpace(m_height,true);
+            ypos = 0-getContext().getResources().getDisplayMetrics().heightPixels-m_height;
+      	  break;
+        }
+        if(place==AC_PLACE_CURSOR_POS)
+        {
+            ypos = getYCursor();
+        }
+//        if (place == AC_PLACE_KEYBOARD) {
+////        	if (mACkoordYtotal != -1)
+////        		ypos -= mACkoordYtotal;
 //        	showPopupPanelInView(kbd.getHeight());
-//        else
-//        	showPopupPanelInView(ypos);
+//        } else
+        	showPopupPanelInView(ypos, place);
     }
-//    
-//    // если поставить lp.type = TYPE_SYSTEM_ERROR 
-//    // и в токене lp.type=TYPE_APPLICATION_SUB_PANEL
-//    // а на теле сперва поставить автодоп с статус баре и потом 
-//    // переключить на вверху кейборды, то автодоп становится
-//    // не поверх всех окон! 
-//    //Но смещён на полстроки кнопок ниже.
-//    
-//    //!!! ещё читай комент к закоменченному методу show
-    public void showPopupPanelInView(int yPos)
+    public void showPopupPanelInView(int yPos, int place)
     {
-////        IBinder tok = st.kv().getWindowToken();
-////        if (tok==null)
-////        	return;
-//        if (!ServiceJbKbd.inst.isInputViewShown())
-//        	return;
-////      IBinder tok = st.kv().getWindowToken();
-////      if (tok==null) {
-//////    	  if (ServiceJbKbd.inst.mToken!=null)
-//////    		  tok = ServiceJbKbd.inst.mToken;
-////      }
-//        View v = m_inflater.inflate(R.layout.cand2, null);
-//        if (v==null)
-//        	return;
-//        // переназначает кнопки из cand2
-//        //setInflatePopupPanelButton(v);
-//        pw = new PopupWindow(v,
-//				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-//        pw.setAnimationStyle(0);
-//        pw.setHeight(m_height);
-//        pw.setBackgroundDrawable(new BitmapDrawable());
-//
-//        pw.setTouchable(true);
-//        pw.setFocusable(false);
-//        //pw.setOutsideTouchable(false);
-//
-//        pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
-//			
-//			@Override
-//			public void onDismiss() {
-//				pw.dismiss();
-//			}
-//		});
-//        try {
-//        	pw.showAsDropDown(st.kv(), 0, 0-yPos);
-//			
-//		} catch (Throwable e) {
-//			st.log("cand error");
-//			st.logEx(e);
-//		}
+//      IBinder tok = st.kv().getWindowToken();
+//      if (tok==null) {
+////    	  if (ServiceJbKbd.inst.mToken!=null)
+////    		  tok = ServiceJbKbd.inst.mToken;
+//      }
+        int hei = st.kv().getHeight();
+        if (hei == 0)
+        	return;
+        View vv = m_inflater.inflate(R.layout.cand2, null);
+        if (vv==null)
+        	return;
+        // переназначает кнопки из cand2
+        setInflatePopupPanelButton(vv);
+        pw = new PopupWindow(vv,
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        pw.setAnimationStyle(0);
+        pw.setHeight(m_height);
+        pw.setBackgroundDrawable(new BitmapDrawable());
+
+        pw.setTouchable(true);
+        pw.setFocusable(false);
+        //pw.setOutsideTouchable(false);
+
+        pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
+			
+			@Override
+			public void onDismiss() {
+				pw.dismiss();
+			}
+		});
+        switch (place)
+        {
+        case AC_PLACE_KEYBOARD:
+        	yPos = 0-st.kv().getHeight();
+        	if (st.debug_mode)
+        		st.toast(""+yPos);
+        	break;
+        case AC_PLACE_BOTTOM_KEYBOARD:
+        	//yPos = 0-500;
+            //yPos = 0-st.kv().getHeight();
+            yPos = 0-300;
+            //yPos = +m_height;//-getContext().getResources().getDisplayMetrics().heightPixels+m_height+m_height;
+          int full_disp_h = getContext().getResources().getDisplayMetrics().heightPixels;
+          int heig = st.kv().getHeight();
+          int koorY = full_disp_h - hei;
+          int th = m_height;
+      	if (st.debug_mode)
+            st.toast("disp_full: "+full_disp_h
+                	  +"\nkbd_h    : "+hei
+                	  +"\nkoord_y  : "+koorY
+                	  +"\nheiAC    : "+th
+                	  +"\nypos     : "+yPos
+              	 );
+        	break;
+        }
+        try {
+        	// основной
+        	pw.showAsDropDown(st.kv(), 0, yPos);
+        	// для Стелса
+        	//pw.showAsDropDown(st.kv(), 0, 0-yPos, Gravity.TOP);
+        	// НЕ ЮЗАТЬ!Зависит от статус бара (а может и навбара)
+        	//pw.showAtLocation(st.kv(), Gravity.LEFT, 0, 0-yPos);
+			
+		} catch (Throwable e) {
+			st.log("popupWnd candidate create error");
+			st.logEx(e);
+		}
+    }
+    public void setInflatePopupPanelButton()
+    {
+        View v = m_inflater.inflate(R.layout.cand2, null);
+        if (v==null)
+        	return;
+        setInflatePopupPanelButton(v);
+    }
+    public void setInflatePopupPanelButton(View v)
+    {
+		v.setBackgroundColor(st.ac_col_main_back);
+        m_ll = (LinearLayout)v.findViewById(R.id.completions2);
+        //m_ll.setPadding(0, st.ac_height, 0, st.ac_height);
+        m_temp_ll_for_color = (LinearLayout)v.findViewById(R.id.temp_completions2);
+        m_temp_ll_for_color.setBackgroundColor(st.ac_col_main_back);
+        hsv = (HorizontalScrollView)v.findViewById(R.id.cand2_hsv);
+        setACBackground();
+        m_addVocab = (TextView)v.findViewById(R.id.cand2_left);
+   		m_addVocab = keyColor(m_addVocab,7);
+        if(m_es!=null)
+            m_es.setToEditor(m_addVocab);
+        m_addVocab.setVisibility(View.GONE);
+        m_addVocab.setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
+        m_addVocab.setPadding(0, 0, 5, 0);
+        m_addVocab.setOnClickListener(m_ClickListenerBtn);
+        m_addVocab.setOnLongClickListener(m_LongClickListenerBtn);
+
+        m_counter = (TextView)v.findViewById(R.id.cand2_counter);
+        m_counter = keyColor(m_counter,1);
+        m_counter.setMinWidth(50);
+        if (ServiceJbKbd.inst != null)
+        	ServiceJbKbd.inst.setCountTextValue();
+        m_counter.setOnClickListener(m_ClickListenerBtn);
+		setVisible(m_counter, st.fl_counter);
+
+        m_calcind = (TextView)v.findViewById(R.id.cand2_calcind);
+        m_calcind = keyColor(m_calcind,3);
+        m_calcind.setOnClickListener(m_ClickListenerBtn);
+
+        m_calcmenu = (TextView)v.findViewById(R.id.cand2_calcmenu);
+        m_calcmenu = keyColor(m_calcmenu,4);
+        m_calcmenu.setOnClickListener(m_ClickListenerBtn);
+
+        m_keycode = (TextView)v.findViewById(R.id.cand2_keycode);
+        m_keycode.setMinWidth(50);
+        m_keycode.setPadding(5, 0, 5, 0);
+        m_keycode = keyColor(m_keycode,2);
+        m_keycode.setOnClickListener(m_ClickListenerBtn);
+        m_keycode.setOnLongClickListener(m_LongClickListenerBtn);
+		setVisible(m_keycode, st.fl_keycode);
+
+        m_forcibly = (TextView)v.findViewById(R.id.cand2_forcibly);
+        m_forcibly.setMinWidth(50);
+    	m_forcibly = keyColor(m_forcibly, 5);
+    	m_forcibly.setOnClickListener(m_ClickListenerBtn);
+
+    	m_rightView = (TextView)v.findViewById(R.id.cand2_right);
+        m_rightView = keyColor(m_rightView, 8);
+        m_rightView.setMinWidth(50);
+        m_rightView.setPadding(10, 0, 10, 0);
+        setTextArrowRightButtonView(false);
+        m_rightView.setOnClickListener(m_ClickListenerBtn);
+        m_rightView.setOnLongClickListener(m_LongClickListenerBtn);
     }
     public void showSubPanel(JbKbdView kv,int place)
     {
@@ -1129,6 +1281,7 @@ public class JbCandView extends RelativeLayout
        }
        fl_ac_show = true;
         CustomKeyboard kbd = (CustomKeyboard)kv.getCurKeyboard();
+
         m_place = place;
         int sbh = st.getStatusBarHeight(m_c);
         int ypos = 0;
@@ -1227,11 +1380,16 @@ public class JbCandView extends RelativeLayout
 //        	remove();
         if(!ServiceJbKbd.inst.isInputViewShown())
             return;
-        // экспериментальный автодоп не поверх всех окон
-        if (st.ac_sub_panel&&place!=AC_PLACE_TITLE) {
-        	showSubPanel(kv, place);
-        	
-      	  return;
+        if (place!=AC_PLACE_TITLE) {
+            switch (st.type_ac_window)
+            {
+            case st.TYPE_AC_METHOD1:
+            	showSubPanel(kv, place);
+            	return;
+            case st.TYPE_AC_METHOD2:
+            	showPopupPanel(kv, place);
+            	return;
+            }
         }
         // я добавил, было выше
        if(fl_ac_show){
@@ -2615,7 +2773,7 @@ if(st.calc_fl_ind == true)
     	else
     		tv.setVisibility(View.GONE);
     }
-    // преобразует кнопку в функциональную или пишет на ней текст
+    /** преобразует кнопку в функциональную или пишет на ней текст */
 	public void setTexAndFuncKey(TextView tv, String txt, int id)
     {
 		if (txt.startsWith(st.STR_PREFIX)){
@@ -2624,6 +2782,10 @@ if(st.calc_fl_ind == true)
         	ArrayFuncAddSymbolsGest ar = st.getElementSpecFormatSymbol(arFuncKey, id);
         	if (ar!=null){
         		txt = ar.visibleText+st.STR_SPACE;
+        		if (txt.contains(st.STR_PREFIX_FONT)) {
+        			tv.setTypeface(Font.tf);
+       				txt = txt.replace(st.STR_PREFIX_FONT, st.STR_NULL);
+        		}
         		tv.setId(id);
         		Drawable img = m_c.getResources().getDrawable( R.drawable.bullet_red);
         		img.setBounds( 0, 0, 15, 15 );

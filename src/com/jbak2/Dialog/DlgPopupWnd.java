@@ -2,7 +2,7 @@ package com.jbak2.Dialog;
 
 import java.util.ArrayList;
 
-import com.jbak2.JbakKeyboard.JbCandView;
+import com.jbak2.JbakKeyboard.CandView;
 import com.jbak2.JbakKeyboard.ServiceJbKbd;
 import com.jbak2.JbakKeyboard.st;
 import android.R.drawable;
@@ -169,7 +169,7 @@ public class DlgPopupWnd
 		}
         int cvh = 0;
         if (ServiceJbKbd.inst!=null
-        		&ServiceJbKbd.inst.m_acPlace == JbCandView.AC_PLACE_KEYBOARD
+        		&ServiceJbKbd.inst.m_acPlace == CandView.AC_PLACE_KEYBOARD
         		)
         	cvh = ServiceJbKbd.inst.m_candView.getHeight();
         yoff += cvh;

@@ -54,7 +54,7 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
-    android:layout_toLeftOf="@+id/pc2act_plus_btn_button"
+    android:layout_toLeftOf="@+id/pc2act_plus_btn_font"
 	android:text="@string/tpl_unicode_app" 
      />
 
@@ -72,6 +72,14 @@
     android:layout_toLeftOf="@id/pc2act_plus_tpl_button"
     android:layout_marginRight="10dp"
     android:text="+B"
+    />
+
+<Button
+    android:id="@+id/pc2act_plus_btn_font"
+    style="@style/round_button_blue"
+    android:layout_toLeftOf="@id/pc2act_plus_btn_button"
+    android:layout_marginRight="10dp"
+    android:text="+F"
     />
 
 </RelativeLayout>

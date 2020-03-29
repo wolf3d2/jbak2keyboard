@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -811,14 +812,6 @@ public class CustomKeyboard extends JbKbd
                 	k.codes = parseCodes(p.getAttributeValue(i),B_codes);
                     flag_teg = true;
             }
-            else if(name.equals(A_comboKeyCodes)) {
-            	k.comboKeyCodes = parseCodes(p.getAttributeValue(i),B_comboKeyCodes);
-                flag_teg = true;
-            }
-            else if(name.equals(A_longComboKeyCode)) {
-            	k.longComboKeyCode = Integer.decode(p.getAttributeValue(i));
-                flag_teg = true;
-            }
             else if(name.equals(A_upCode))
             {
                 k.longCode = Integer.decode(p.getAttributeValue(i));
@@ -831,6 +824,14 @@ public class CustomKeyboard extends JbKbd
 }
             else if(name.equals(A_keyLabel)){
                 k.label = processLabel(p.getAttributeValue(i));
+                flag_teg = true;
+            }
+            else if(name.equals(A_comboKeyCodes)) {
+            	k.comboKeyCodes = parseCodes(p.getAttributeValue(i),B_comboKeyCodes);
+                flag_teg = true;
+            }
+            else if(name.equals(A_longComboKeyCode)) {
+            	k.longComboKeyCode = Integer.decode(p.getAttributeValue(i));
                 flag_teg = true;
             }
             else if(name.equals(A_noColor)){
@@ -1123,6 +1124,7 @@ public class CustomKeyboard extends JbKbd
                 return null;
             }
             File keyboards[] = st.getFilesByExt(f, st.EXT_XML);
+            Arrays.sort(keyboards);
             if(keyboards==null||keyboards.length==0)
                 return null;
             for(File kf:keyboards)
@@ -1214,7 +1216,7 @@ public class CustomKeyboard extends JbKbd
         }
         return false;
     }
-    /** увеличивает размер клавиатуры по вертикали
+    /** смещает клавиши клавиатуры по вертикали
      * @param space - величина смещения
      * @param updown - если true - клавиши смещаются наверх
      *  */

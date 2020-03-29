@@ -29,7 +29,7 @@
 	<string name="upd_go_site">Go to the website</string>
 	<string name="upd_go_site_desc">Open the program website</string>
 	<string name="upd_unknown_source">Unknown sources</string>
-	<string name="upd_unknown_source_desc_">Before installing a new version of the program, do not forget to allow installation of apps from unknown sources</string>
+	<string name="upd_unknown_source_desc_">Before installing the program, do not forget to allow installation of apps from unknown sources</string>
 
 <!-- отзыв -->
 	<string name="review">Leave a review</string>
@@ -83,7 +83,7 @@
 <!-- Title for show keyboard notification-->
 	<string name="set_show_kbd_notif">Enable from the notification panel</string>
 	<string name="set_show_kbd_notif_desc">Enable the keyboard via the notification panel. Sometimes it is necessary</string>
-	<string name="set_show_kbd_notif_title">Show the jbak2 keyboard</string>
+	<string name="set_show_kbd_notif_title">Show the Jbak2 keyboard</string>
 	<string name="set_show_kbd_notif_body">You can disable this notification going to Other settings</string>
 	
 <!-- Title for small keyboard-->
@@ -91,10 +91,12 @@
     <string name="pref_mini_kbd_screen_desc">Still in beta. These settings apply only to the first version of the small keyboard (i.e. when the popupCharacter tag is not v2).</string>
     <string name="pref_mini_kbd_its">Its own small keyboard</string>
     <string name="pref_mini_kbd_its_desc">If checked, its own small keyboard is used, otherwise the default one will be used</string>
+	<string name="pref_mini_kbd_help">Использование своей маленькой клавиатуры говорит только о том, что будет показываться не системная, а собственная маленькая всплывающая клавиатура, создаваемая программой.
+\nНастройки ниже, задают внешний вид миниклавиатуры, не как вы хотите, а как она будет удобнее всего в использовании именно на вашем устройстве и под ваши пальцы.</string>
     <string name="pref_mini_kbd_btnsize">Key size</string>
     <string name="pref_mini_kbd_btnsize_desc">Key size in the small keyboard</string>
-    <string name="pref_mini_kbd_example">Посмотреть пример</string>
-    <string name="pref_mini_kbd_example_desc">Вызовите в клавиатуре маленькую клавиатуру</string>
+    <string name="pref_mini_kbd_example">See the example</string>
+    <string name="pref_mini_kbd_example_desc">Call the small keyboard on the keyboard</string>
     <string-array name="array_minikbd_btn_size">
         <item>Default</item>
         <item>Small</item>
@@ -137,7 +139,7 @@
 
 <!-- Title for quick setting activity -->
 	<string name="qs_title">Quick settings wizard</string>
-	<string name="qs_ann">This professional keyboard is fully customizable and differs from most other keyboards.\nThis is a keyboard constructor with huge possibilities.\nFor this reason, the keyboard does not have predictive input and and Swype function.\n\nThe warning about a possible theft of passwords is a standard system message. For more information, see \"How to use the keyboard\".\n\nIf you have a device with a MIUI ROM, by default the autocomplete box (where you can see word suggestion) and the keypress pop-up feature will be turned off. To turn them on, read How to use the keyboard.</string>
+	<string name="qs_ann">This professional keyboard is fully customizable and differs from most other keyboards.\nThis is a keyboard constructor with huge possibilities.\nFor this reason, the keyboard does not have predictive input and and Swype function.\n\nThe warning about a possible theft of passwords is a standard system message. For more information, see \"How to use the keyboard\".\n\nIf you have a device with a MIUI ROM, by default the Autocomplete box (where you can see word suggestion) and the keypress pop-up feature will be turned off. To turn them on, read How to use the keyboard.</string>
 	<string name="qs_ann_perm">Information about permissions</string>
 	<string name="qs_xiaomi">The Xiaomi manufacture has been detected: by default, some windows will not work on your device (Autocomplete, keystroke display, some confirmation messages before actions, etc), be sure to read “How to use the keyboard”</string>
 	<string name="qs_btn1">Enable the jbak2 keyboard</string>
@@ -183,7 +185,7 @@
     <string name="euv_save">Saving</string>   
     <string name="euv_help">(the scrolling text feature is available)\n\nYou can edit a word or change its frequency by clicking on this word or its frequency accordingly.\nPress Enter to finish editing.\nLong press on a word will delete it from the dictionary, and the word itself will be colored with red.\n\nThe higher is the word frequency, the closer is a word to the top of list, if the list of AutoComplete is given by frequency.\nFrequency range of words from 0 to 10000000.\nThe word frequency above 500000 indicates that the word was not in the main dictionaries, and it has been added by the user, and it needs to be shown at the top of the list (that is why it has such a large number).\nIf the frequency of a word is set to 0, its frequency will not increase, and it will not appear in the word list (words from the main dictionary have a minimal frequency set to 1, that is why they will be always displayed).</string>
     <string name="euv_cb1">Always open this language</string>
-    <string name="euv_del_table">Удалить язык из базы данных</string>
+    <string name="euv_del_table">Remove language from database</string>
     
 <!-- Title for skin constructor  -->
     <string name="sc_actname">Skin constructor</string>
@@ -192,7 +194,7 @@
     <string name="sc_help">If a parameter value is incorrect, the input field will turn red</string>
     <string name="sc_inf_port">ℹTap the color wheel to pick a color. Tap on the color code to copy a value to the clipboard</string>
     <string name="sc_inf_land">ℹTap the color rectangle to pick a color. Tap on the color code to copy a value to the clipboard</string>
-    <string name="picker_close">Для изменения типа требуется закрыть это окно.\nОткройте его снова.</string>
+    <string name="picker_close">Close this window to change the type.\nReopen it.</string>
     <string name="sc_create">Create</string>
     <string name="sc_upd">Refresh</string>
     <string name="sc_create_edit">Create and Edit</string>
@@ -252,8 +254,8 @@
 <!-- цвета кнопок для accoloract -->
 	<string name="ac_color_type_layout_title">Type of the Autocomplete color:\n(only the \"Custom colors\" option works fully, the rest: if it is possible)</string>
 	<string name="ac_color_type0">Custom colors</string>
-	<string name="ac_color_type1">Цвета начального градиента</string>
-	<string name="ac_color_type2">Цвета конечного градиента</string>
+	<string name="ac_color_type1">Initial gradient color</string>
+	<string name="ac_color_type2">Final gradient color</string>
 		
 	<string name="ac_color_mainback">Background color of Autocomplete</string>
 	<string name="ac_color_title">All keys color in Autocomplete</string>
@@ -425,7 +427,8 @@
 
 <!-- активность help -->
     <string name="help">Help</string>
-
+    <string name="help_readme">Read me</string>
+    
 <!-- оценка приложения -->
     <string name="rate_title">Application rating</string>
     <string name="rate_about">Please, rate this app.</string>
@@ -448,9 +451,9 @@
 	<string name="dict_load">Dictionary download</string>
 	<string name="dict_empty_dict">Create empty dictionary</string>
 	<string name="dict_empty_dict_desc">Two-letter language code to make Autocomplete work. Words will be added to the custom dictionary</string>	
-	<string name="dict_empty_dict_help">Если для языка отсутствует словарь, а хочется чтобы подсказки слов были, можно создать пустой словарь для этого языка. Тогда слова в автодополнении показываться будут, но исключительно из тех слов, которые вы добавили сами, через кнопку + в автодополнении.
-\n\nДля этого введите две буквы кода языка, или выберите его из списка, нажав на кнопку Языки</string>
-	<string name="dict_languages">Langs</string>
+	<string name="dict_empty_dict_help">If there is no dictionary for your language, but you want to get word suggestions, you can create an empty dictionary for this language. Then the words will be shown in Autocomplete, but only those words that you added yourself by pressing the + button in Autocomplete. 
+\n\nTo this end, enter the two-letter language code or select it from the list by clicking on the Languages button</string>
+	<string name="dict_languages">Languages</string>
 	<string name="student_dict">Learning dictionary</string>
 	<string name="student_dict_desc">By choosing a word from Autocomplete, you will increase its frequency of use by one count. Over time, the most common words will be always displayed on the screen.</string>
 	<string name="student_ext_dict">Advanced training</string>
@@ -485,7 +488,14 @@
 \nTemplate name must not contain commas.
 \nt :text displayed on the button (by default, the template name is inserted)
 \n\nIf the template folder is specified as the template name, templates will be opened on this folder </string>
-    <string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
+	<string name="set_ac_defkey_help_button_font">\n\nКнопка +F, вставляет в позицию курсора специальное значение $f#&lt;символ&gt;, для включения в отображении кнопки, символа из встроенного в клавиатуру шрифта, который выбирается в диалоге (вставленное значение будет показываться буквой, но на кнопке будет показан символ из встроенного).
+\nПоэтому курсор всегда необходимо ставить на место вставки названия создаваемой кнопки и перед нажатием кнопки +F.
+\n\nЕсли в строке названия создаваемой кнопки, присутствует хотя-бы одно значение $f#, то на кнопке будет включен шрифт клавиатуры.
+\n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
+\n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
+\nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
+
+	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>
     <string name="set_ac_space_desc">Insert space after a word selected from Autocomplete</string>
 
@@ -605,8 +615,8 @@
     <string name="set_key_appearance_desc">Keyboard appearance and fullscreen editor settings (skin selection, additional tools, font installation, character size etc.)</string>
     <string name="set_key_clipbrd_size">Clipboard size</string>
     <string name="set_key_clipbrd_size_desc">Maximum number of items in the multi-clipboard</string>
-    <string name="set_key_show_clipbrd_record_size">Показывать размер записи</string>
-    <string name="set_key_show_clipbrd_record_size_desc">Показывать размер каждой записи в мультибуфере</string>
+    <string name="set_key_show_clipbrd_record_size">Show entry size</string>
+    <string name="set_key_show_clipbrd_record_size_desc">Show the size of each entry in the clipboard</string>
     <string name="set_key_intervals">Key delays</string>
     <string name="set_key_intervals_desc">Delays for long-press and repeats</string>
 	<string name="set_key_tpl_path">Path in Templates</string>
@@ -619,7 +629,8 @@
     <string name="set_key_ac">Autocomplete</string>
     <string name="set_key_ac_desc">Settings for words in Autocomplete</string>
 	<string name="set_key_ac_place_sub_panel">Rendering method of Autocomplete</string>
-    <string name="set_key_ac_place_sub_panel_desc">Experimental feature. Correct functioning is not guaranteed!\nIf checked, the autocomplete box will not be displayed on top of all windows.</string>
+<!--     <string name="set_key_ac_place_sub_panel_desc">Experimental feature. Correct functioning is not guaranteed!\nIf checked, the autocomplete box will not be displayed on top of all windows.</string> -->
+    <string name="set_key_ac_place_sub_panel_desc">Попробуйте разные методы, если есть проблемы с отображением окна автодополнения</string>
     <string name="set_key_ac_place">Autocomplete box</string>
     <string name="set_key_ac_place_desc">Where to display the Autocomplete box?</string>
     <string name="set_key_ac_place_0">Disable</string>
@@ -668,6 +679,12 @@
     <string name="interval_next_repeat">Next repeat delay (in ms)</string>
     <string name="interval_min_repeat">Delay between keystrokes (in ms)</string>
     <string name="intervals_keys_title_def_value">Default values:</string>
+    
+	<string-array name="array_type_ac_place">
+        <item>Method 1</item>
+        <item>Method 2</item>
+        <item>Method 3</item>
+    </string-array>
     
     <string-array name="array_shift_vars">
         <item>3 modes (normal,shift,capslock)</item>
@@ -799,7 +816,7 @@
     <string name="tpl_fields_empty">All fields must to be filled out!</string>
     <string name="tpl_delete">Do you want to delete \"%s\"?</string>
     <string name="tpl_unicode_app">Program with Unicode characters (Unicode Pad)</string>
-    <string name="tpl_full_edit">Редактировать в полноэкранном редакторе</string>
+    <string name="tpl_full_edit">Edit in full-screen editor</string>
     <string name="tpl_cb_inv">Invert buttons</string>
 	<string name="tpl_cb_right">Align to the right</string>
     <string name="tpl_seltopos_toast">Large text. Cannot process</string>
@@ -889,7 +906,7 @@
 	<string name="about_other">Other:</string>
 	<string name="about_other_desc">The application will be fully translated in a couple of months.\nTranslations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
     <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
-	<string name="about_color_picker_btn">Подбор цвета</string>
+	<string name="about_color_picker_btn">Color picker</string>
     <string name="diary">List of changes</string>
 	<string name="device_info">Device Information</string>
 
@@ -998,8 +1015,8 @@
  	<string name="menu_sel_paragraph">Select paragraph</string>
  	<string name="menu_sel_sentence">Select sentence</string>
  	<string name="menu_sel_line">Select line</string>
- 	<string name="menu_sel_line_up">Выделить до начала строки</string>
- 	<string name="menu_sel_line_down">Выделить до конца строки</string>
+ 	<string name="menu_sel_line_up">Select before the beginning of the string</string>
+ 	<string name="menu_sel_line_down">Select to the end of the string</string>
  	<string name="menu_sel_word">Select word</string>
  		
 	<string name="set_copy_msg">Notification about copying</string>
@@ -1012,5 +1029,23 @@
  		
     <string name="error_lang_layout_found1">Cannot find layouts for this language:</string>
     <string name="error_lang_layout_found2">Turn it off in the Settings</string>
-   		
+ 
+    <string name="user_hide_layout_menuname">Custom hidden layouts</string>
+    <string name="addit_layout_help">Not all characters will be shown, only those that are in fonts on your device.\nThe older the version of Android, the less characters will be displayed</string>
+    <string name="addit_layout_menuname">Additional layouts</string>
+    <string name="addit_layout0">Arrows 1</string>
+    <string name="addit_layout1">Arrows 2</string>
+    <string name="addit_layout2">Blocks and circles</string>
+    <string name="addit_layout3">Blocks</string>
+    <string name="addit_layout4">Currencies</string>
+    <string name="addit_layout5">Fractions</string>
+    <string name="addit_layout6">Mathematical symbols</string>
+    <string name="addit_layout7">Numbers</string>
+    <string name="addit_layout8">List of numbers and other</string>
+    <string name="addit_layout9">Superscript and subscript characters</string>
+    <string name="addit_layout10">Pseudographics (draw a table)</string>
+    <string name="addit_layout11">Technical symbols 1</string>
+    <string name="addit_layout12">Technical symbols  2</string>
+    <string name="addit_layout13">Other 1</string>
+    <string name="addit_layout14">Other 2</string>
 </resources>

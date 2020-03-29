@@ -125,7 +125,6 @@ class KeyDrw extends RectShape
             rb = new Rect(0, 0, /*st.kv().m_PreviewHeight*/PopupKeyWindow.m_w, /*st.kv().m_PreviewHeight*/PopupKeyWindow.m_h);
         else    
             rb = new Rect(0,0,key.width,key.height);
-
     }
     final void drawFuncBackground(Canvas canvas)
     {

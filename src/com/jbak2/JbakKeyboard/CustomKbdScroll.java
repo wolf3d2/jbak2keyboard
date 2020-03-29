@@ -37,7 +37,7 @@ public class CustomKbdScroll
 	static int posY =0;
 	int btn_mark_color = Color.BLACK;
 	String btn_mark_text = st.STR_NULL;
-    JbCandView                 m_candView;
+    CandView                 m_candView;
     /** Элемент-разделитель. Не нажимается, имеет оформление, отличное от основного списка*/
     public static final int ID_DELIMETER            =-2;
 /** Окно меню */    

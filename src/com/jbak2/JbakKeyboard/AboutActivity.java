@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.jbak2.CustomGraphics.ColorsGradientBack;
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.web.Mail;
+import com.jbak2.web.SiteKbd;
 
 public class AboutActivity extends Activity
 {
@@ -96,7 +97,7 @@ public class AboutActivity extends Activity
     		Mail.sendFeedback(inst);
     		break;
     	case R.id.about_btn_keycode:
-        	st.runApp(inst,st.UNICODE_APP);
+        	st.runApp(inst,st.APP_PACKAGE_UNICODE, null);
     		break;
     	case R.id.about_btn_diary:
             st.runActShowText(inst, R.string.diary, st.STA_FILENAME_DIARY, 
@@ -105,9 +106,20 @@ public class AboutActivity extends Activity
 //        	st.runAct(ShowTextAct.class,inst);
     		break;
     	case R.id.about_btn_other_app:
-        	Intent intent = new Intent(Intent.ACTION_VIEW);
-        	intent.setData(Uri.parse(st.ALL_APP_INMARKET));
-        	startActivity(intent);
+    		String link =  SiteKbd.SITE_KBD+SiteKbd.PAGE_OTHER_APP;
+    		try {
+
+    	        Intent intent = new Intent(Intent.ACTION_VIEW);
+    	        intent.setData(Uri.parse(link));
+    	        inst.startActivity(intent);
+
+    		} catch (Throwable e) {
+    		}
+
+// запуск маркета
+//    		Intent intent = new Intent(Intent.ACTION_VIEW);
+//        	intent.setData(Uri.parse(st.ALL_APP_INMARKET));
+//        	startActivity(intent);
     		break;
     	}
     }

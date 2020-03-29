@@ -1,49 +1,50 @@
 ﻿<resources>
-    <!-- Title for Latin keyboard  -->
+
+    <!-- Title for Latin keyboard -->
     <string name="ime_name">Teclado Jbak2</string>
     <string name="ime_settings">Ajustes del teclado Jbak2</string>
-    <string name="pref_keys">Configuración de teclas</string>    
-	<string name="pref_keys_desc">Altura, desplazamiento horizontal del teclado y corrección vertical de las teclas</string>    
-    <string name="msg_begin">NO mostrar más este mensaje</string>   
-	<string name="kbd_warning">¡Primero, inicia y activa el teclado!\n(el primer párrafo de Ajustes)</string>
-	<string name="jbak2layout">Disposiciones personalizadas</string>
-	<string name="jbak2layout_desc">Es una aplicación independiente que contiene diferentes idiomas y disposiciones. Allí mismo se encuentra la instrucción para crear su propia disposición e idioma.</string>
-	<string name="jbak2skin">Temas personalizados</string>
-	<string name="jbak2skin_desc">Es una aplicación independiente que contiene temas diferentes. Allí mismo se encuentra la instrucción (en ruso) para crear su propio tema.</string>
-	<string name="other_app">(Ad) Otras aplicaciones </string>
-	<string name="reboot">Descargado. Se requiere el reinicio</string>
-	<string name="default_pref">Ajustes predeterminados</string>
-	<string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
+    <string name="pref_keys">Configuración de teclas</string>
+    <string name="pref_keys_desc">Altura, desplazamiento horizontal del teclado y corrección vertical de las teclas</string>
+    <string name="msg_begin">NO mostrar más este mensaje</string>
+    <string name="kbd_warning">¡Primero, inicia y activa el teclado!\n(el primer párrafo de Ajustes)</string>
+    <string name="jbak2layout">Disposiciones personalizadas</string>
+    <string name="jbak2layout_desc">Es una aplicación independiente que contiene diferentes idiomas y disposiciones. Allí mismo se encuentra la instrucción para crear su propia disposición e idioma.</string>
+    <string name="jbak2skin">Temas personalizados</string>
+    <string name="jbak2skin_desc">Es una aplicación independiente que contiene temas diferentes. Allí mismo se encuentra la instrucción (en ruso) para crear su propio tema.</string>
+    <string name="other_app">(Ad) Otras aplicaciones </string>
+    <string name="reboot">Descargado. Se requiere el reinicio</string>
+    <string name="default_pref">Ajustes predeterminados</string>
+    <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
 
-<!-- Title for update preferences -->
-	<string name="upd_screen">Actualizaciones</string>
-	<string name="upd_screen_desc">Revisión de actualizaciones y más</string>
-	<string name="upd_check">Buscar actuializaciones</string>
-	<string name="upd_check_desc"></string>
-	<string name="upd_check_desc_yes">Una nueva versión de la aplicación está disponible</string>
-	<string name="upd_check_desc_no">No hay actualizaciones disponibles</string>
-	<string name="upd_checking">Verificando...</string>
-	<string name="upd_checking_before_dlg">Al hacer clic en OK, se iniciará una revisión de actualizaciones en segundo plano.\n\nToma un tiempo en revisar.\n\n¡Asegúrese de que el Wi-Fi o los datos móviles estén activados!</string>
-	<string name="upd_last_check">Última revisión:</string>
-	<string name="upd_go_site">Ir al sitio web</string>
-	<string name="upd_go_site_desc">Abrir el sitio web del programa</string>
-	<string name="upd_unknown_source">Fuentes desconocidas</string>
-	<string name="upd_unknown_source_desc_">Antes de instalar una nueva versión del programa, no olvide permitir la instalación de aplicaciones de fuentes desconocidas</string>
+    <!-- Title for update preferences -->
+    <string name="upd_screen">Actualizaciones</string>
+    <string name="upd_screen_desc">Revisión de actualizaciones y más</string>
+    <string name="upd_check">Buscar actuializaciones</string>
+    <string name="upd_check_desc"></string>
+    <string name="upd_check_desc_yes">Una nueva versión de la aplicación está disponible</string>
+    <string name="upd_check_desc_no">No hay actualizaciones disponibles</string>
+    <string name="upd_checking">Verificando...</string>
+    <string name="upd_checking_before_dlg">Al hacer clic en OK, se iniciará una revisión de actualizaciones en segundo plano.\n\nToma un tiempo en revisar.\n\n¡Asegúrese de que el Wi-Fi o los datos móviles estén activados!</string>
+    <string name="upd_last_check">Última revisión:</string>
+    <string name="upd_go_site">Ir al sitio web</string>
+    <string name="upd_go_site_desc">Abrir el sitio web del programa</string>
+    <string name="upd_unknown_source">Fuentes desconocidas</string>
+    <string name="upd_unknown_source_desc_">Antes de instalar el programa, no olvide permitir la instalación de aplicaciones de fuentes desconocidas</string>
 
-<!-- отзыв -->
-	<string name="review">Deje un comentario</string>
-	<string name="review_desc">Deje un comentario en el sitio web del programa para que otras personas puedan tener una opinión inicial sobre el teclado.</string>
-	
-<!-- Title for new version check site-->
-	<string name="chk_new_version">Se ha lanzado una nueva versión del programa\nActualice el teclado desde la página web del programa.</string>
-	<string name="chk_old_version">Su versión del teclado está desactualizada!\nLe gustaría revisar la nueva versión del teclado en la página web del programa?</string>
-	<string name="chk_wrong_version">Su versión del teclado es incorrecta.\n¡Por favor, actualice a la última versión!</string>
-			
-<!-- Title for new version-->
-	<string name="nv_upload">Esta ventana de diálogo se visualizará después de la segunda llamada del teclado, después de cada actualización. En algunos dispositivos se mostrará 2 veces\nDesafortunadamente, no puede hacerse de manera diferente.\n\nDespués de cada actualización, el teclado debe ser detenido de los servicios en ejecución, de lo contrario su comportamiento será impredecible.</string>
+    <!-- отзыв -->
+    <string name="review">Deje un comentario</string>
+    <string name="review_desc">Deje un comentario en el sitio web del programa para que otras personas puedan tener una opinión inicial sobre el teclado.</string>
 
-<!-- Title for permission-->
-	<string name="perm_expl1">¡No hay actividades no autorizadas en la aplicación, nada está siendo recolectado o robado!
+    <!-- Title for new version check site -->
+    <string name="chk_new_version">Se ha lanzado una nueva versión del programa\nActualice el teclado desde la página web del programa.</string>
+    <string name="chk_old_version">Su versión del teclado está desactualizada!\nLe gustaría revisar la nueva versión del teclado en la página web del programa?</string>
+    <string name="chk_wrong_version">Su versión del teclado es incorrecta.\n¡Por favor, actualice a la última versión!</string>
+
+    <!-- Title for new version -->
+    <string name="nv_upload">Esta ventana de diálogo se visualizará después de la segunda llamada del teclado, después de cada actualización. En algunos dispositivos se mostrará 2 veces\nDesafortunadamente, no puede hacerse de manera diferente.\n\nDespués de cada actualización, el teclado debe ser detenido de los servicios en ejecución, de lo contrario su comportamiento será impredecible.</string>
+
+    <!-- Title for permission -->
+    <string name="perm_expl1">¡No hay actividades no autorizadas en la aplicación, nada está siendo recolectado o robado!
 \n\nEste es un mensaje estandard de sistema. Para más detalles ver \“Cómo usar el teclado\” 
 \n\nASEGÚRESE de leer \“Cómo usar el teclado\” , allí puede encontrar respuesta a casi todas sus preguntas 
 \n\nComo la aplicación ya no se publica en Google Play, tuve que agregar acceso a Internet al teclado.
@@ -54,12 +55,12 @@
 \n\nPara un uso correcto la applicación requiere algunos permisos, SIN ALGUNO DE ELLOS EL TECLADO NO FUNCIONARÁ:
 \n\n- permiso para Leer/Escribire en Almacenamiemto Interno (para el funcionamiento del diccionario de usuario, plantillas, disposiciones personalizadas, diseños y otro item del teclado).
 \n\n- Permiso para ventanas emergentes: permitir superponer a otras aplicaciones (para el funcionamiento del Autocompletado (predicción de palabras), visualización de teclas pulsadas y otros cuadros de diálogo).</string>
-<!-- 	<string name="perm_expl1">No hay acciones no autorizadas en el teclado, nada es recolectado o robado!\nEste es un mensaje estándar de sistema. Para más detalles ver \“Cómo usar el teclado\” \n\nASÉGURESE de leer Cómo usar el teclado: contiene respuestas a casi todas sus preguntas que puedan surgir durante el uso del teclado. \n\nPara el uso correcto la aplicación requiere algunos permisos,  SIN ALGUNO DE ELLOS EL TECLADO NO PODRÁ FUNCIONAR:\n\n- acceso a leer y escribir en el almacenamiento interno (para el funcionamiento del diccionario de usuario, plantillas, disposiciones externas, temas y otro ítem del teclado).\n\n- acceso especial \“Mostrar sobre otras apps\” (para el funcionamiento del Autocompletado (predicción de palabras), visualización de teclas pulsadas y otros cuadros de diálogo).</string>	 -->
+    <!-- <string name="perm_expl1">No hay acciones no autorizadas en el teclado, nada es recolectado o robado!\nEste es un mensaje estándar de sistema. Para más detalles ver \“Cómo usar el teclado\” \n\nASÉGURESE de leer Cómo usar el teclado: contiene respuestas a casi todas sus preguntas que puedan surgir durante el uso del teclado. \n\nPara el uso correcto la aplicación requiere algunos permisos,  SIN ALGUNO DE ELLOS EL TECLADO NO PODRÁ FUNCIONAR:\n\n- acceso a leer y escribir en el almacenamiento interno (para el funcionamiento del diccionario de usuario, plantillas, disposiciones externas, temas y otro ítem del teclado).\n\n- acceso especial \“Mostrar sobre otras apps\” (para el funcionamiento del Autocompletado (predicción de palabras), visualización de teclas pulsadas y otros cuadros de diálogo).</string> -->
     <string name="perm_expl2"> Para el funcionamiento del Autocompletado (predicción de palabras), visualización de teclas pulsadas y algunas otras ventanas (cuadros de diálogo,visualización de teclas pulsadas, etc), el programa requiere el siguiente permiso: \“Mostrar sobre otras apps\” .</string>
     <string name="perm_expl3">En caso que por alguna razón se hayan denegado permisos, y su solicitud ya no aparece, los permisos pueden ser dados a través de los ajustes de sistema del teclado Jbak2: Información de la aplicación - Mostrar sobre otras apps</string>
-	<string name="perm_not_all_perm">No todos los permisos requeridos han sido dados</string> 
+    <string name="perm_not_all_perm">No todos los permisos requeridos han sido dados</string>
 
-<!-- Title for file explorer-->
+    <!-- Title for file explorer -->
     <string name="fi_title">Administrador de archivos</string>
     <string name="fi_filter">Filtro</string>
     <string name="fi_filt1">Filtro actual:</string>
@@ -71,29 +72,31 @@
     <string name="fi_folder_emulated">emulated</string>
     <string name="fi_not_open">No se puede abrir</string>
     <string name="fi_done">Hecho</string>
-    
-	<string name="set_kbd_background">Fondo del teclado</string>
-	<string name="set_kbd_background_desc">Imagen como fondo del teclado. El teclado consumirá más memoria</string>
-	<string name="set_kbd_background_error">¡No hay suficiente memoria!\nNo se puede usar la imagen como fondo del teclado</string>
-	<string name="set_kbd_background_alpha">Transparencia del teclado</string>
-	<string name="set_kbd_background_alpha_desc">0: totalmente transparente, 10: transparencia del tema de teclado. Tiene sentido solamente si se usa una imagen de fondo</string>
-	<string name="cancel_kbd_background">Fondo del tema</string>
-	
-<!-- Title for show keyboard notification-->
-	<string name="set_show_kbd_notif">Habilitar desde el panel de notificaciones</string>
-	<string name="set_show_kbd_notif_desc">Habilitar el teclado desde el panel de notificaciones. Es necesario de vez en cuando</string>
-	<string name="set_show_kbd_notif_title">Mostrar el teclado Jbak2</string>
-	<string name="set_show_kbd_notif_body">Se puede desactivar esta notificación yendo a Otros ajustes</string>
-    
-<!-- Title for small keyboard-->
+    <string name="set_kbd_background">Fondo del teclado</string>
+    <string name="set_kbd_background_desc">Imagen como fondo del teclado. El teclado consumirá más memoria</string>
+    <string name="set_kbd_background_error">¡No hay suficiente memoria!\nNo se puede usar la imagen como fondo del teclado</string>
+    <string name="set_kbd_background_alpha">Transparencia del teclado</string>
+    <string name="set_kbd_background_alpha_desc">0: totalmente transparente, 10: transparencia del tema de teclado. Tiene sentido solamente si se usa una imagen de fondo</string>
+    <string name="cancel_kbd_background">Fondo del tema</string>
+
+    <!-- Title for show keyboard notification -->
+    <string name="set_show_kbd_notif">Habilitar desde el panel de notificaciones</string>
+    <string name="set_show_kbd_notif_desc">Habilitar el teclado desde el panel de notificaciones. Es necesario de vez en cuando</string>
+    <string name="set_show_kbd_notif_title">Mostrar el teclado Jbak2</string>
+    <string name="set_show_kbd_notif_body">Se puede desactivar esta notificación yendo a Otros ajustes</string>
+
+    <!-- Title for small keyboard -->
     <string name="pref_mini_kbd_screen">Teclado pequeño(todavía en fase beta)</string>
     <string name="pref_mini_kbd_screen_desc">Todavía en fase beta. Estas configuraciones se aplican solamente a la primera versión del teclado pequeño (es decir, cuándo la etiqueta popupCharacter no es v2).</string>
     <string name="pref_mini_kbd_its">Su propio teclado pequeño</string>
     <string name="pref_mini_kbd_its_desc">Si está marcado, se usa su propio teclado pequeño, de lo contrario se usará el predeterminado</string>
+	<string name="pref_mini_kbd_help">Использование своей маленькой клавиатуры говорит только о том, что будет показываться не системная, а собственная маленькая всплывающая клавиатура, создаваемая программой.
+\nНастройки ниже, задают внешний вид миниклавиатуры, не как вы хотите, а как она будет удобнее всего в использовании именно на вашем устройстве и под ваши пальцы.</string>
     <string name="pref_mini_kbd_btnsize">Tamaño de las teclas</string>
     <string name="pref_mini_kbd_btnsize_desc">Tamaño de las teclas en el teclado pequeño</string>
-    <string name="pref_mini_kbd_example">Посмотреть пример</string>
-    <string name="pref_mini_kbd_example_desc">Вызовите в клавиатуре маленькую клавиатуру</string>
+    <string name="pref_mini_kbd_example">Ver el ejemplo</string>
+    <string name="pref_mini_kbd_example_desc">Accede al teclado pequeño de la aplicación</string>
+
     <string-array name="array_minikbd_btn_size">
         <item>Por defecto</item>
         <item>Pequeño</item>
@@ -101,16 +104,18 @@
         <item>Como de las teclas del teclado</item>
         <item>Grande</item>
     </string-array>
+
     <string name="pref_mini_kbd_textbtnsize">Tamaño de los caracteres en las teclas</string>
     <string name="pref_mini_kbd_textbtnsize_desc">Tamaño de los caracteres en las teclas del teclado pequeño</string>
+
     <string-array name="array_minikbd_btn_text_size">
         <item>Por defecto</item>
         <item>Pequeño</item>
         <item>Mediano</item>
         <item>Grande</item>
     </string-array>
-    
-<!-- Title for syncronize multiclipboard activity -->
+
+    <!-- Title for syncronize multiclipboard activity -->
     <string name="cs_pref_desc">Sincronización de registros del portapapeles en segundo plano, en un intervalo de tiempo especificado.</string>
     <string name="cs_ann">Se utiliza para grabar de forma automática el número especificado de registros del portapapeles en el archivo \"save.txt\", en la carpeta Jbak2Keyboard/save_clipboard de la tarjeta de memoria, periódicamente, después del intervalo de tiempo especificado.\n\nSi:\n- la carpeta save_clipboard no existe, se creará.\n- este servicio está habilitado, el programa requiere más memoria.\n- el primer registro en el portapapeles tiene la misma fecha que la fecha del último registro guardado, la grabación no iniciará.\n\nNo se requiere el uso obligatorio.</string>
     <string name="cs_time">Intervalos en minutos (después de cuanto tiempo grabar los datos en el portapapeles):\n(cuanto mayor sea la frecuencia de grabación, mayor será la carga en el procesador y más lento será el programa)\nPor defecto: 24 horas</string>
@@ -125,34 +130,33 @@
     <string name="cs_start_msg">Se iniciará cuando abra el teclado por primera vez</string>
     <string name="cs_sync_msg">Portapapeles ha sido sincronizado</string>
     <string name="cs_error_write">Error!\nNo se puede escribir en el archivo</string>
-    
-<!-- Title for crash and feedbak -->
+
+    <!-- Title for crash and feedbak -->
     <string name="crash_question">Ejecución anterior de programa terminó con un error.\n\n¿Desea enviar un informe al desarrollador?</string>
     <string name="crash_desc">Por favor, no borre la información adjunta. Esto ayudará a corregir el error más rápido.\n</string>
     <string name="mail_developer">Mensaje al desarrollador</string>
-    
-	<string name="pref_one_start_text">(el texto desplegable está activo)\n\nLeer \"Cómo usar el teclado\"? (En dispositivos de baja potencia, puede tardar más tiempo en mostrar el texto)\n\nEste teclado es profesional, totalmente personalizable y se diferencia de la mayoría de los teclados.\nEsta es la razón por la que el teclado no tiene entrada de texto predictivo y modo Swype.\nInicialmente, el teclado está configurado según el principio \"activar y usar\".\nAntes de cambiar la configuración avanzada, lea este texto que contiene respuestas a casi todas sus preguntas.</string>
-	<string name="transparency">Transparencia:</string>
+    <string name="pref_one_start_text">(el texto desplegable está activo)\n\nLeer \"Cómo usar el teclado\"? (En dispositivos de baja potencia, puede tardar más tiempo en mostrar el texto)\n\nEste teclado es profesional, totalmente personalizable y se diferencia de la mayoría de los teclados.\nEsta es la razón por la que el teclado no tiene entrada de texto predictivo y modo Swype.\nInicialmente, el teclado está configurado según el principio \"activar y usar\".\nAntes de cambiar la configuración avanzada, lea este texto que contiene respuestas a casi todas sus preguntas.</string>
+    <string name="transparency">Transparencia:</string>
 
-<!-- Title for quick setting activity -->
+    <!-- Title for quick setting activity -->
     <string name="qs_title">Asistente de configuración rápida</string>
-	<string name="qs_ann">Este teclado es profesional, totalmente configurable y se diferencia de la mayoría de los teclados.\nEste teclado es constructor con enormes oportunidades.\nPor tanto el teclado no tiene ni texto predictivo, ni función Swype.\n\nAlerta sobre el posible robo de contraseñas es un mensaje estándar de sistema. Lea más sobre ello en \"Cómo usar el teclado\".\n\nSi tiene un dispositivo con una rom MIUI, por  defecto la ventana de Autocompletado (donde puede ver palabras sugeridas) y las ventanas emergentes con teclas pulsadas estarán desactivadas. Para activarlas, lea \"Cómo usar el teclado"\.</string>
-	<string name="qs_ann_perm">Información sobre permisos</string>
-	<string name="qs_xiaomi">El fabricante Xiaomi  ha sido detectado: por defecto, algunas ventanas no funcionarán en su dispositivo (Autocompletado, visualización de las teclas pulsadas, algunos mensajes de confirmación antes de ejecutar alguna acción, etc.), asegúrese de leer "Cómo usar el teclado"</string>
-	<string name="qs_btn1">Habilita el teclado Jbak2</string>
+    <string name="qs_ann">Este teclado es profesional, totalmente configurable y se diferencia de la mayoría de los teclados.\nEste teclado es constructor con enormes oportunidades.\nPor tanto el teclado no tiene ni texto predictivo, ni función Swype.\n\nAlerta sobre el posible robo de contraseñas es un mensaje estándar de sistema. Lea más sobre ello en \"Cómo usar el teclado\".\n\nSi tiene un dispositivo con una rom MIUI, por  defecto la ventana de Autocompletado (donde puede ver palabras sugeridas) y las ventanas emergentes con teclas pulsadas estarán desactivadas. Para activarlas, lea \"Cómo usar el teclado"\.</string>
+    <string name="qs_ann_perm">Información sobre permisos</string>
+    <string name="qs_xiaomi">El fabricante Xiaomi  ha sido detectado: por defecto, algunas ventanas no funcionarán en su dispositivo (Autocompletado, visualización de las teclas pulsadas, algunos mensajes de confirmación antes de ejecutar alguna acción, etc.), asegúrese de leer "Cómo usar el teclado"</string>
+    <string name="qs_btn1">Habilita el teclado Jbak2</string>
     <string name="qs_btn2">Activa el teclado Jbak2</string>
     <string name="qs_sel_lang">Seleccionar el idioma de la aplicación</string>
     <string name="qs_sel_lang_def">Por defecto</string>
     <string name="qs_btn3">Seleccionar idiomas y disposiciones</string>
     <string name="qs_btn3_help">Marque los idiomas necesarios.\nFrente de cada idioma se encuentra la tecla \"Seleccionar disposición\". Haga clic en ella.\nSe abrirá la pantalla de selección de disposiciones. Usa la flecha derecha e izquierda para hojear la lista de disposiciones.\nDespués de seleccionar la disposición que le gusta, asegúrese de presionar el botón \"Guardar\".\nRepita la misma operación para cada idioma seleccionado.</string>
-	<string name="qs_btn3_1">Altura del teclado</string> 
+    <string name="qs_btn3_1">Altura del teclado</string>
     <string name="qs_btn4">Seleccione un tema de teclado</string>
     <string name="qs_btn4_help">Seleccione un tema.\nDespués de seleccionar presione \"Guardar\".</string>
     <string name="qs_btn5_help">Para habilitar el Autocompletado debe instalar los diccionarios de los idiomas seleccionados.\n\nDescargar la aplicación para instalar los diccionarios?</string>
     <string name="qs_end_msg">Para una configuración detallada lea \"Cómo usar el teclado\", contiene las respuestas a casi cualquier pregunta.\n\nAbrir?\n\n(puede tardar en abrir en los dispositivos de baja potencia)</string>
     <string name="qs_restart_app">Reinicie la aplicación para aplicar los cambios</string>
-    
-<!-- Title for set sound activity -->
+
+    <!-- Title for set sound activity -->
     <string name="ssact_title">Sonidos de teclas</string>
     <string name="ssact_key_symb">Teclas de caracteres</string>
     <string name="ssact_key_left">Flecha izquierda</string>
@@ -164,16 +168,16 @@
     <string name="ssact_key_backspace">Backspace</string>
     <string name="ssact_key_delete">Suprimir</string>
     <string name="ssact_key_shift">Shift</string>
-    
-<!-- Комбинированные символы -->
+
+    <!-- Комбинированные символы -->
     <string name="ss_name">Inserción de caracteres especiales</string>
     <string name="ss_comb">Carácter combinado</string>
     <string name="ss_comb_underscore">Carácter subrayado</string>
     <string name="ss_comb_strikethrough">Tachado</string>
     <string name="ss_comb_overline">Sobrerrayado</string>
     <string name="ss_comb_emphasis">Tilde</string>
-    
-<!-- Title for edit user vocab -->
+
+    <!-- Title for edit user vocab -->
     <string name="euv_actname">Editar el diccionario del usuario</string>
     <string name="euv_lang_text">Idioma</string>
     <string name="euv_all_word_text">Total de palabras:</string>
@@ -182,16 +186,16 @@
     <string name="euv_save">Guardando...</string>
     <string name="euv_help">(el desplazamiento del texto está activado)\n\nSe puede editar palabras y sus frecuencias haciendo clic en la palabra deseada y en su frecuencia, respectivamente.\nPresione la tecla Enter para terminar la edición.\nAl tocar una palabra con pulsación larga, la eliminará del diccionario, y la palabra por sí mismo tomará el color rojo.\n\nCuanto mayor sea la frecuencia de la palabra, más cerca estará la palabra a la parte superior de la lista (si la lista de Autocompletado está dada por la frecuencia).\nEl rango de frecuencia de las palabras es desde 0 hasta 10000000.\nLa frecuencia de la palabra encima de 500000 indica que la palabra no estaba en los diccionarios principales, y ha sido añadida por el usuario, y debe ser mostrada en la parte superior de la lista (por lo tanto ella tiene un número tan grande).\nSi la palabra se establece en 0, la frecuencia no aumentará, y esa palabra no aparecerá en la lista (las palabras del diccionario principal tienen una frecuencia mínima establecida en 1, lo que les permite estar siempre visualizadas) .</string>
     <string name="euv_cb1">Siempre abrir este idioma</string>
-    <string name="euv_del_table">Удалить язык из базы данных</string>
-    
-<!-- Title for skin constructor  -->
+    <string name="euv_del_table">Eliminar idioma de la base de datos</string>
+
+    <!-- Title for skin constructor -->
     <string name="sc_actname">Constructor de temas</string>
     <string name="sc_name">Constructor de temas</string>
     <string name="sc_name_desc">Creación de temas personalizados</string>
     <string name="sc_help">Si el parámetro contiene un valor incorrecto, el campo de entrada se pone rojo</string>
     <string name="sc_inf_port">ℹAl presionar el círculo de colores, elija un color. Al presionar el código de color se copiará el valor en el portapapeles</string>
     <string name="sc_inf_land">ℹAl presionar el rectángulo de colores, elija un color. Al presionar el código de color se copiará el valor en el portapapeles</string>
-    <string name="picker_close">Для изменения типа требуется закрыть это окно.\nОткройте его снова.</string>
+    <string name="picker_close">Cierre la ventana para cambiar el tipo.\nVuelve a abrirlo.</string>
     <string name="sc_create">Crear</string>
     <string name="sc_upd">Refrescar</string>
     <string name="sc_create_edit">Crear o editar</string>
@@ -199,14 +203,12 @@
     <string name="sc_skin_name">Nombre del tema:</string>
     <string name="sc_skin_change">Renombrar</string>
     <string name="sc_notskin">Primero, descargue el tema</string>
-    
     <string name="sc_cat1">Fondo de las teclas</string>
     <string name="sc_cat2">Texto sobre las teclas</string>
     <string name="sc_cat3">Contorno de las teclas</string>
     <string name="sc_cat4">Fondo del teclado</string>
     <string name="sc_cat5">Valores de las teclas especiales (Shift, Backspace, etc.).</string>
     <string name="sc_cat6">General</string>
-
     <string name="sc_msg1">Color de inicio del gradiente para el fondo de la tecla</string>
     <string name="sc_msg2">Color final del gradiente</string>
     <string name="sc_msg3">Tipo de gradiente. 0: lineal, 1: radial</string>
@@ -228,232 +230,227 @@
     <string name="sc_msg19">Color del texto sobre la tecla</string>
     <string name="sc_msg20">Color del símbolo adicional</string>
     <string name="sc_msg21">Color del texto en estado presionado</string>
-	<string name="sc_msg22">Color del símbolo adicional en estado presionado</string>
+    <string name="sc_msg22">Color del símbolo adicional en estado presionado</string>
     <string name="sc_msg23">Color de inicio del gradiente para el fondo de la tecla</string>
     <string name="sc_msg24">Color final del gradiente para el fondo de la tecla</string>
     <string name="sc_msg25">Color de inicio del gradiente para el contorno de las teclas</string>
-	<string name="sc_msg26">Color final del gradiente para el contorno de las teclas</string>
+    <string name="sc_msg26">Color final del gradiente para el contorno de las teclas</string>
     <string name="sc_msg27">Color de inicio del gradiente para el fondo de la tecla en estado presionado</string>
     <string name="sc_msg28">Color final del gradiente para el fondo de la tecla en estado presionado</string>
     <string name="sc_msg29">Tipo de gradiente. 0: lineal, 1 : radial</string>
-	<string name="sc_msg30">Radio de redondeo del rectángulo de la tecla en el eje X, si no está establecido: 9</string>
+    <string name="sc_msg30">Radio de redondeo del rectángulo de la tecla en el eje X, si no está establecido: 9</string>
     <string name="sc_msg31">Radio de redondeo del rectángulo de la tecla en el eje Y, si no está establecido: 9</string>
     <string name="sc_msg32">Tipo de gradiente  de las teclas en estado presionado. 0: lineal, 1 : radial</string>
-    
-<!-- сохранение строки дополнительных символов -->
-	<string name="pop2s_save">Guardar la cadena</string>
-	<string name="pop2s_save_desc">Guardar la cadena con símbolos adicionales en un archivo separado</string>
-	<string name="pop2s_load">Descargar la cadena</string>
-	<string name="pop2s_load_desc">Descargar la cadena con símbolos adicionales del archivo separado</string>
-	<string name="pop2s_str_not_empty">Cadena no está vacía.\n¿Descargar?</string>
-	<string name="pop2s_file_not_empty">Archivo no está vacío.\n¿Reescribir?</string>
-					
-<!-- цвета кнопок для accoloract -->
-	<string name="ac_color_type_layout_title">Tipo de color del Autocompletado:\n(sólo la opción \"Colores de usuario\" funciona completamente, el resto si es posible)</string>
-	<string name="ac_color_type0">Colores personalizados</string>
-	<string name="ac_color_type1">Цвета начального градиента</string>
-	<string name="ac_color_type2">Цвета конечного градиента</string>
-	
-	<string name="ac_color_mainback">Color del fondo del Autocompletado</string>
-	<string name="ac_color_title">Color de todas las teclas en Autocompletado</string>
-	<string name="ac_color_">Colores en Autocompletado</string>
-	<string name="ac_color_desc">Establecimiento del color de las teclas en Autocompletado</string>
-	<string name="ac_color_back">Color de la tecla</string>
-	<string name="ac_color_text">Color del texto</string>
-	<string name="ac_color_addvocab">Añadir la palabra</string>
-	<string name="ac_color_forcibly">Diccionario forzado</string>
-	<string name="ac_color_keycode">Código de la tecla presionada</string>
-	<string name="ac_color_word">Palabras</string>
-	<string name="ac_color_arrowdown">Flecha hacia abajo</string>
-	<string name="ac_color_calcmenu">Menú de la calculadora</string>
-	<string name="ac_color_calcind">Indicador de la calculadora</string>
-								
-<!-- активность popup2act -->
-	<string name="ac_place_arrow_down">Flecha hacia abajo del Autocompletado</string>
-	<string name="ac_place_arrow_down_desc">Si está seleccionado, \"flecha hacia abajo\" no se muestra en el Autocompletado. Se puede usar un gesto en vez de ella</string>
-	<string name="ac_place_separator_symb">Pulsación en el separador de caracteres</string>
-	<string name="ac_place_separator_symb_desc">Si está marcado, al hacer clic en el símbolo de separador (.,?!, etc) en el Autocompletado, la palabra donde se encuentra el cursor no se reemplaza, y este carácter se inserta en la posición del cursor</string>
-	<string name="ac_list_value">Cantidad de palabras</string>
-	<string name="ac_list_value_desc">Cantidad de palabras en la lista desplegable. Mientras más alto sea el valor, más lento será el proceso</string>
-	<string name="ac_del_word">¿Eliminar la palabra?</string>
-	<string name="ac_del_word_notdict">Acción no puede ser ejecutada\nLa palabra no existe en el diccionario</string>
-	<string name="ac_del_word_ok">Eliminada</string>
-	<string name="ac_listview_alfavit">Lista desplegable en orden alfabético</string>
-	<string name="ac_listview_alfavit_desc">Si está marcado, las palabras de la lista desplegable se clasificarán por orden alfabético, de lo contrario, según la frecuencia de uso</string>
-	<string name="ac_abbrev_word">Abreviaciones</string>
-	<string name="ac_abbrev_word_desc">Reduce las palabras sugeridas después de las primeras 4 letras en el Autocompletado </string>
-	
-<!-- активность popup2act -->
-	<string name="pc2act_title">Configuración de la ventana del teclado pequeño</string>
-	<string name="pc2act_color_desc">El color se especifica en formato hexadecimal - #aarrggbb, o 0xaarrggbb, (el registro de las letras no tiene importancia) donde:\naa - transparencia (00 - completamente transparente, ff - completamente opaco)\nrr - rojo\ngg - verde\nbb - azul.</string>
-	<string name="pc2act_wind_color_back">Color del fondo de la ventana:\n(por defecto #cc000000)</string>
-	<string name="pc2act_btn_off_color_txt">Color del texto de las teclas adicionales:\n(por defecto #fffffffe)</string>
-	<string name="pc2act_btn_off_color_back">Color del fondo de las teclas adicionales:\n(por defecto #ff444444)</string>
-	<string name="pc2act_btn_color_txt">Color del texto de las teclas:\n(por defecto #ff000000)</string>
-	<string name="pc2act_btn_color_back">Color del fondo de las teclas:\n (por defecto #fffffffe)</string>
-	<string name="pc2act_str_add">Cadena de ajustes para el Gesto adicional</string>
-	<string name="pc2act_str_help1">En la cadena de abajo se duplica la cadena de los ajustes para el gesto "Símbolos adicionales".</string>
-	<string name="pc2act_btn_size">Tamaño de las teclas\n(por defecto 20)</string>
-	<string name="pc2act_btn_off_size">Tamaño de las teclas adicionales\n(por defecto 20)</string>
-	<string name="pc2act_winfix">Fijación de la ventana</string>
-	<string name="pc2act_winfix_desc">Si está seleccionado, después de pulsar la tecla predeterminada, la ventana del teclado pequeño no se cierra\n\n</string>
-	<string name="pc2act_lr">Para usuarios zurdos</string>
-		
-<!-- окно popupcharacter2 -->
-	<string name="pc2_info">ℹ Si hay varias teclas, la ventana se desplaza</string>
 
-<!-- создание своего жеста -->
-	<string name="gesture_create">Creación de su propio gesto</string>
-	<string name="gesture_create_all">Gestos creados:</string>
-	<string name="gesture_create_add">Añadir</string>
-	<string name="gesture_save">Guardar</string>
-	<string name="gesture_tv1">Es conveniente introducir el código de la tecla activando la visualización del código de la tecla (en Apariencia) en Autocompletado. Tiene que presionar la tecla para cual se crea un gesto, y, después, hacer clic en el botón del código presionado.\nSi una tecla corresponde a varios símbolos, se tomará el primero.\n\nCódigo 32 (espacio) ha sido reservado!\n\nAl especificar todos los parámetros, presione la tecla Guardar.</string>
-	<string name="gesture_tv2">Código de la tecla: </string>
-	<string name="gc_type">Dirección del gesto\n(para que el gesto funcione se necesita al menos una tecla en la dirección del gesto después de la tecla elegida):</string>
-	<string name="gc_left">A la izquierda de la tecla</string>
-	<string name="gc_right">A la derecha de la tecla</string>
-	<string name="gc_up">Arriba de la tecla</string>
-	<string name="gc_down">Abajo de la tecla</string>
-	<string name="gc_action">Acción:</string>
-									
-<!-- новые жесты -->
-	<string name="gesture_select_all">Seleccionar todo</string>
-	<string name="gesture_select">Cambio del modo de selección (la disposición debe tener la tecla Select)</string>
-	<string name="gesture_space_quantity">El número de los espacios depende del largo del gesto</string>
-	<string name="gesture_d_vr">Entrada de voz</string>
-	<string name="gesture_to_start">Al comienzo del texto</string>
-	<string name="gesture_to_end">Al final del texto</string>
-	<string name="gesture_begin">Al principio del párrafo</string>
-	<string name="gesture_end">Al final del párrafo</string>
-	<string name="gesture_homestr">Al principio de la cadena</string>
-	<string name="gesture_endstr">Al final de la cadena</string>
-	<string name="gesture_mainmenu">Abrir el menú principal</string>
-	<string name="gesture_del">Borrar</string>
-	<string name="gesture_delword">Borrar la palabra que está antes del cursor</string>
-	<string name="gesture_space_up">Arriba del espacio</string>
-	<string name="gesture_space_down">Abajo del espacio</string>
-	<string name="gesture_space_down_desc">Se necesita al menos una tecla debajo del espacio</string>
-	<string name="gesture_popupchar1">Símbolos adicionales</string>
-	<string name="gesture_popupchar_str1">Ventana emergente de símbolos adicionales</string>
-	<string name="gesture_popupchar_str1_desc">Para abrir la ventana de símbolos adicionales al usar el gesto “Símbolos adicionales”, se necesita enumerarlos aquí</string>
-	<string name="gesture_popupchar_str1_help1">Aquí se puede especificar la cadena para el gesto de "Símbolos adicionales".
+    <!-- сохранение строки дополнительных символов -->
+    <string name="pop2s_save">Guardar la cadena</string>
+    <string name="pop2s_save_desc">Guardar la cadena con símbolos adicionales en un archivo separado</string>
+    <string name="pop2s_load">Descargar la cadena</string>
+    <string name="pop2s_load_desc">Descargar la cadena con símbolos adicionales del archivo separado</string>
+    <string name="pop2s_str_not_empty">Cadena no está vacía.\n¿Descargar?</string>
+    <string name="pop2s_file_not_empty">Archivo no está vacío.\n¿Reescribir?</string>
+
+    <!-- цвета кнопок для accoloract -->
+    <string name="ac_color_type_layout_title">Tipo de color del Autocompletado:\n(sólo la opción \"Colores de usuario\" funciona completamente, el resto si es posible)</string>
+    <string name="ac_color_type0">Colores personalizados</string>
+    <string name="ac_color_type1">Color de gradiente inicial</string>
+    <string name="ac_color_type2">Color de gradiente final</string>
+    <string name="ac_color_mainback">Color del fondo del Autocompletado</string>
+    <string name="ac_color_title">Color de todas las teclas en Autocompletado</string>
+    <string name="ac_color_">Colores en Autocompletado</string>
+    <string name="ac_color_desc">Establecimiento del color de las teclas en Autocompletado</string>
+    <string name="ac_color_back">Color de la tecla</string>
+    <string name="ac_color_text">Color del texto</string>
+    <string name="ac_color_addvocab">Añadir la palabra</string>
+    <string name="ac_color_forcibly">Diccionario forzado</string>
+    <string name="ac_color_keycode">Código de la tecla presionada</string>
+    <string name="ac_color_word">Palabras</string>
+    <string name="ac_color_arrowdown">Flecha hacia abajo</string>
+    <string name="ac_color_calcmenu">Menú de la calculadora</string>
+    <string name="ac_color_calcind">Indicador de la calculadora</string>
+
+    <!-- активность popup2act -->
+    <string name="ac_place_arrow_down">Flecha hacia abajo del Autocompletado</string>
+    <string name="ac_place_arrow_down_desc">Si está seleccionado, \"flecha hacia abajo\" no se muestra en el Autocompletado. Se puede usar un gesto en vez de ella</string>
+    <string name="ac_place_separator_symb">Pulsación en el separador de caracteres</string>
+    <string name="ac_place_separator_symb_desc">Si está marcado, al hacer clic en el símbolo de separador (.,?!, etc) en el Autocompletado, la palabra donde se encuentra el cursor no se reemplaza, y este carácter se inserta en la posición del cursor</string>
+    <string name="ac_list_value">Cantidad de palabras</string>
+    <string name="ac_list_value_desc">Cantidad de palabras en la lista desplegable. Mientras más alto sea el valor, más lento será el proceso</string>
+    <string name="ac_del_word">¿Eliminar la palabra?</string>
+    <string name="ac_del_word_notdict">Acción no puede ser ejecutada\nLa palabra no existe en el diccionario</string>
+    <string name="ac_del_word_ok">Eliminada</string>
+    <string name="ac_listview_alfavit">Lista desplegable en orden alfabético</string>
+    <string name="ac_listview_alfavit_desc">Si está marcado, las palabras de la lista desplegable se clasificarán por orden alfabético, de lo contrario, según la frecuencia de uso</string>
+    <string name="ac_abbrev_word">Abreviaciones</string>
+    <string name="ac_abbrev_word_desc">Reduce las palabras sugeridas después de las primeras 4 letras en el Autocompletado </string>
+
+    <!-- активность popup2act -->
+    <string name="pc2act_title">Configuración de la ventana del teclado pequeño</string>
+    <string name="pc2act_color_desc">El color se especifica en formato hexadecimal - #aarrggbb, o 0xaarrggbb, (el registro de las letras no tiene importancia) donde:\naa - transparencia (00 - completamente transparente, ff - completamente opaco)\nrr - rojo\ngg - verde\nbb - azul.</string>
+    <string name="pc2act_wind_color_back">Color del fondo de la ventana:\n(por defecto #cc000000)</string>
+    <string name="pc2act_btn_off_color_txt">Color del texto de las teclas adicionales:\n(por defecto #fffffffe)</string>
+    <string name="pc2act_btn_off_color_back">Color del fondo de las teclas adicionales:\n(por defecto #ff444444)</string>
+    <string name="pc2act_btn_color_txt">Color del texto de las teclas:\n(por defecto #ff000000)</string>
+    <string name="pc2act_btn_color_back">Color del fondo de las teclas:\n (por defecto #fffffffe)</string>
+    <string name="pc2act_str_add">Cadena de ajustes para el Gesto adicional</string>
+    <string name="pc2act_str_help1">En la cadena de abajo se duplica la cadena de los ajustes para el gesto "Símbolos adicionales".</string>
+    <string name="pc2act_btn_size">Tamaño de las teclas\n(por defecto 20)</string>
+    <string name="pc2act_btn_off_size">Tamaño de las teclas adicionales\n(por defecto 20)</string>
+    <string name="pc2act_winfix">Fijación de la ventana</string>
+    <string name="pc2act_winfix_desc">Si está seleccionado, después de pulsar la tecla predeterminada, la ventana del teclado pequeño no se cierra\n\n</string>
+    <string name="pc2act_lr">Para usuarios zurdos</string>
+
+    <!-- окно popupcharacter2 -->
+    <string name="pc2_info">ℹ Si hay varias teclas, la ventana se desplaza</string>
+
+    <!-- создание своего жеста -->
+    <string name="gesture_create">Creación de su propio gesto</string>
+    <string name="gesture_create_all">Gestos creados:</string>
+    <string name="gesture_create_add">Añadir</string>
+    <string name="gesture_save">Guardar</string>
+    <string name="gesture_tv1">Es conveniente introducir el código de la tecla activando la visualización del código de la tecla (en Apariencia) en Autocompletado. Tiene que presionar la tecla para cual se crea un gesto, y, después, hacer clic en el botón del código presionado.\nSi una tecla corresponde a varios símbolos, se tomará el primero.\n\nCódigo 32 (espacio) ha sido reservado!\n\nAl especificar todos los parámetros, presione la tecla Guardar.</string>
+    <string name="gesture_tv2">Código de la tecla: </string>
+    <string name="gc_type">Dirección del gesto\n(para que el gesto funcione se necesita al menos una tecla en la dirección del gesto después de la tecla elegida):</string>
+    <string name="gc_left">A la izquierda de la tecla</string>
+    <string name="gc_right">A la derecha de la tecla</string>
+    <string name="gc_up">Arriba de la tecla</string>
+    <string name="gc_down">Abajo de la tecla</string>
+    <string name="gc_action">Acción:</string>
+
+    <!-- новые жесты -->
+    <string name="gesture_select_all">Seleccionar todo</string>
+    <string name="gesture_select">Cambio del modo de selección (la disposición debe tener la tecla Select)</string>
+    <string name="gesture_space_quantity">El número de los espacios depende del largo del gesto</string>
+    <string name="gesture_d_vr">Entrada de voz</string>
+    <string name="gesture_to_start">Al comienzo del texto</string>
+    <string name="gesture_to_end">Al final del texto</string>
+    <string name="gesture_begin">Al principio del párrafo</string>
+    <string name="gesture_end">Al final del párrafo</string>
+    <string name="gesture_homestr">Al principio de la cadena</string>
+    <string name="gesture_endstr">Al final de la cadena</string>
+    <string name="gesture_mainmenu">Abrir el menú principal</string>
+    <string name="gesture_del">Borrar</string>
+    <string name="gesture_delword">Borrar la palabra que está antes del cursor</string>
+    <string name="gesture_space_up">Arriba del espacio</string>
+    <string name="gesture_space_down">Abajo del espacio</string>
+    <string name="gesture_space_down_desc">Se necesita al menos una tecla debajo del espacio</string>
+    <string name="gesture_popupchar1">Símbolos adicionales</string>
+    <string name="gesture_popupchar_str1">Ventana emergente de símbolos adicionales</string>
+    <string name="gesture_popupchar_str1_desc">Para abrir la ventana de símbolos adicionales al usar el gesto “Símbolos adicionales”, se necesita enumerarlos aquí</string>
+    <string name="gesture_popupchar_str1_help1">Aquí se puede especificar la cadena para el gesto de "Símbolos adicionales".
 \n\nSeparador: espacio.
 \n\nEn esta cadena se puede configurar sus palabras y caracteres para introducir, así como crear botones para ejecutar códigos de programa o para ejecutar plantillas</string>
-		<string name="gesture_cand_list">Lista de palabras del Autocompletado</string>
-	<string name="gesture_cut">Cortar</string>
-	<string name="gesture_copy">Copiar</string>
-	<string name="gesture_paste">Pegar</string>
-	<string name="gesture_search_copy">Buscar el texto copiado en el navegador</string>
-	<string name="gesture_search_sel">Buscar el texto seleccionado en el navegador</string>
-	<string name="gesture_trans_sel">Traducir el texto seleccionado</string>
-	<string name="gesture_trans_copy">Traducir el texto copiado</string>
-	<string name="gesture_upcase">Carácter en mayúscula</string>
-	<string name="gesture_lowercase">Carácter en minúscula</string>
-	<string name="gesture_long_text">Ingrese carácter de pulsación larga de la tecla</string>
-	<string name="share">Compartir</string>
-	<string name="gesture_select_share">Compartir texto seleccionado</string>
-	<string name="gesture_copy_share">Compartir texto copiado</string>
-	<string name="send_share_create_list">Preparando la lista de aplicaciones apropiadas</string>
-
-	<string name="gesture_selector_edittext">Cambio entre el teclado de edición y el teclado qwerty </string>
-  	<string name="gesture_selector_calc">Cambio entre la calculadora y el teclado qwerty</string>
-   	<string name="gesture_selector_smile">Cambio entre el teclado de emoticones y el teclado qwerty</string>
+    <string name="gesture_cand_list">Lista de palabras del Autocompletado</string>
+    <string name="gesture_cut">Cortar</string>
+    <string name="gesture_copy">Copiar</string>
+    <string name="gesture_paste">Pegar</string>
+    <string name="gesture_search_copy">Buscar el texto copiado en el navegador</string>
+    <string name="gesture_search_sel">Buscar el texto seleccionado en el navegador</string>
+    <string name="gesture_trans_sel">Traducir el texto seleccionado</string>
+    <string name="gesture_trans_copy">Traducir el texto copiado</string>
+    <string name="gesture_upcase">Carácter en mayúscula</string>
+    <string name="gesture_lowercase">Carácter en minúscula</string>
+    <string name="gesture_long_text">Ingrese carácter de pulsación larga de la tecla</string>
+    <string name="share">Compartir</string>
+    <string name="gesture_select_share">Compartir texto seleccionado</string>
+    <string name="gesture_copy_share">Compartir texto copiado</string>
+    <string name="send_share_create_list">Preparando la lista de aplicaciones apropiadas</string>
+    <string name="gesture_selector_edittext">Cambio entre el teclado de edición y el teclado qwerty </string>
+    <string name="gesture_selector_calc">Cambio entre la calculadora y el teclado qwerty</string>
+    <string name="gesture_selector_smile">Cambio entre el teclado de emoticones y el teclado qwerty</string>
     <string name="gesture_selector_num">Cambio entre el teclado numérico y el teclado qwerty</string>
-    			
-<!-- запуск приложений -->
-	<string name="runapp_favorite"><b>Favoritos</b>\npulsación corta: ejecutar la aplicación</string>
-	<string name="runapp_all">pulsación corta: ejecutar la aplicación,\n pulsación larga: añadir en favoritos</string>
-	<string name="runapp_rescaning">Actualizar</string>
-	<string name="runapp_save_favorite">Guardar en Favoritos</string>
-	<string name="runapp_favorite_cnt">Aplicaciones en Favoritos: </string>
-	<string name="runapp_error_start">No se puede iniciar</string>
-				
-<!-- настройки главного меню -->
-	<string name="mainmenu_setting">Visualización del menú principal</string>
-	<string name="mainmenu_setting_desc">Seleccione elementos del menú principal para visualizar</string>
-	<string name="mainmenu_toast">Pulsación larga en el botón del elemento del menú: eliminar</string>
-	<string name="mainmenu_cb1">Borrar sin preguntar</string>
-			
-<!-- калькулятор -->
-	<string name="calc_menu_history">Historial de cálculos</string>
-	<string name="calc_menu_list">Listado del programa</string>
-	<string name="calc_menu">Menú</string>
-<!-- 	<string name="calc_setting">Ajustes de la calculadora</string> -->
-<!-- 	<string name="calc_corr_ind">Corrección de la ventana del indicador</string> -->
-<!-- 	<string name="calc_corr_ind_desc">Altura de la ventana del indicador encima del teclado (funciona solo si la ventana del Autocompletado está deshabilitada)</string> -->
-	<string name="calc_prog_empty">Memoria del programa está vacía. No hay nada que mostrar</string>
-	<string name="calc_save">Guardar</string>
-	<string name="calc_load">Descargar</string>
-	<string name="calc_save_prg">Guardar el programa</string>
-	<string name="calc_load_prg">Descargar el programa</string>
-	<string name="calc_load_prg_msg">Memoria del programa de la calculadora no está vacía.\nReescribir?</string>
-			
-<!-- поведение стрелок влево/вправо -->
-	<string name="arrow_key">Comportamiento de las flechas a la derecha/a la izquierda</string>
-	<string name="arrow_key_desc">Si está seleccionado, al alcanzar el fin del texto el cursor se moverá al inicio del texto y viceversa</string>
-	
-<!-- Strings for popupKeyboard -->
-	<string name="pop_scr">Dónde mostrar la ventana con teclas pulsadas</string>
-	<string name="pop_scr_desc">Ajustes de la ventana con teclas pulsadas</string>
-	<string name="pop_scr_fon">Color del fondo de la ventana</string>
-	<string name="pop_scr_txt">Color del texto de la ventana</string>
-	<string name="pop_scr_col_desc">Todos los colores se restablecen a 0: negro, 255: blanco</string>
-	<string name="pop_scr_fon_r">Rojo</string>
-	<string name="pop_scr_fon_g">Verde</string>
-	<string name="pop_scr_fon_b">Azul</string>
-					
-    <string name="hotkey">Selección de la carpeta de las teclas de acceso rápido</string>   
-    <string name="hotkey_cancel">Anulación de la selección de carpetas de las teclas de acceso rápido</string>   
-    
+
+    <!-- запуск приложений -->
+    <string name="runapp_favorite"><b>Favoritos</b>\npulsación corta: ejecutar la aplicación</string>
+    <string name="runapp_all">pulsación corta: ejecutar la aplicación,\n pulsación larga: añadir en favoritos</string>
+    <string name="runapp_rescaning">Actualizar</string>
+    <string name="runapp_save_favorite">Guardar en Favoritos</string>
+    <string name="runapp_favorite_cnt">Aplicaciones en Favoritos: </string>
+    <string name="runapp_error_start">No se puede iniciar</string>
+
+    <!-- настройки главного меню -->
+    <string name="mainmenu_setting">Visualización del menú principal</string>
+    <string name="mainmenu_setting_desc">Seleccione elementos del menú principal para visualizar</string>
+    <string name="mainmenu_toast">Pulsación larga en el botón del elemento del menú: eliminar</string>
+    <string name="mainmenu_cb1">Borrar sin preguntar</string>
+
+    <!-- калькулятор -->
+    <string name="calc_menu_history">Historial de cálculos</string>
+    <string name="calc_menu_list">Listado del programa</string>
+    <string name="calc_menu">Menú</string>
+    <!-- <string name="calc_setting">Ajustes de la calculadora</string> -->
+    <!-- <string name="calc_corr_ind">Corrección de la ventana del indicador</string> -->
+    <!-- <string name="calc_corr_ind_desc">Altura de la ventana del indicador encima del teclado (funciona solo si la ventana del Autocompletado está deshabilitada)</string> -->
+    <string name="calc_prog_empty">Memoria del programa está vacía. No hay nada que mostrar</string>
+    <string name="calc_save">Guardar</string>
+    <string name="calc_load">Descargar</string>
+    <string name="calc_save_prg">Guardar el programa</string>
+    <string name="calc_load_prg">Descargar el programa</string>
+    <string name="calc_load_prg_msg">Memoria del programa de la calculadora no está vacía.\nReescribir?</string>
+
+    <!-- поведение стрелок влево/вправо -->
+    <string name="arrow_key">Comportamiento de las flechas a la derecha/a la izquierda</string>
+    <string name="arrow_key_desc">Si está seleccionado, al alcanzar el fin del texto el cursor se moverá al inicio del texto y viceversa</string>
+
+    <!-- Strings for popupKeyboard -->
+    <string name="pop_scr">Dónde mostrar la ventana con teclas pulsadas</string>
+    <string name="pop_scr_desc">Ajustes de la ventana con teclas pulsadas</string>
+    <string name="pop_scr_fon">Color del fondo de la ventana</string>
+    <string name="pop_scr_txt">Color del texto de la ventana</string>
+    <string name="pop_scr_col_desc">Todos los colores se restablecen a 0: negro, 255: blanco</string>
+    <string name="pop_scr_fon_r">Rojo</string>
+    <string name="pop_scr_fon_g">Verde</string>
+    <string name="pop_scr_fon_b">Azul</string>
+    <string name="hotkey">Selección de la carpeta de las teclas de acceso rápido</string>
+    <string name="hotkey_cancel">Anulación de la selección de carpetas de las teclas de acceso rápido</string>
     <string name="set_key_par_delay">Retención después de registrar par.ini (en ms)</string>
     <string name="set_key_par_delay_desc">Por ejemplo, si la petición de valoración a través de Google Play aparece cada vez, sólo aumenta el tiempo de retención</string>
-    
     <string name="set_key_symb_delay">Retención antes de ingresar símbolos (en ms)</string>
     <string name="set_key_symb_delay_desc">Si no se puede presionar algunos símbolos (o no funcionan correctamente), aumenta el valor</string>
-    
-<!-- оценка приложения -->
+
+    <!-- оценка приложения -->
     <string name="rate_title">Evaluación de la aplicación</string>
     <string name="rate_about">Por favor, evalúa la aplicación</string>
-<string name="rate_query">Por favor, evalúa la aplicación presionando el botón Evaluar </string>
+    <string name="rate_query">Por favor, evalúa la aplicación presionando el botón Evaluar </string>
     <string name="rate_toast">Por favor, califique la aplicación seleccionando el párrafo de configuración: Evaluar la aplicación</string>
-    <string name="rate_btn">Evaluar</string>	    
+    <string name="rate_btn">Evaluar</string>
 
-<!-- активность help -->
+    <!-- активность help -->
     <string name="help">Soporte</string>
+    <string name="help_readme">Léeme.</string>
     
-<!-- Как пользоваться клавиатурой -->
+    <!-- Как пользоваться клавиатурой -->
     <string name="ann">Cómo usar el teclado</string>
     <string name="ann_desc">Examine las configuraciones antes de hacer una pregunta o informar algún defecto, y encontrará el 99% de respuestas</string>
     <string name="ann_last_edit">Versión de la traducción actual de</string>
     <string name="ann_info">\n(puede tardar en abrir en los dispositivos de baja potencia)</string>
     <string name="ann_btn_big">Agrandar</string>
     <string name="ann_btn_small">Achicar</string>
-    	
-<!-- Словари -->
-	<string name="dict">Diccionarios</string>
-	<string name="dict_desc">Descarga de diccionarios (sin ellos el Autocompletado no sugerirá palabras) y sus configuraciones</string> 
-	<string name="dict_load">Descarga de diccionarios</string>
-	<string name="dict_load_desc">Autocompletado no funciona sin diccionarios descargados para idiomas determinados</string>
-	<string name="dict_empty_dict">Crear un diccionario vacío</string>
-	<string name="dict_empty_dict_desc">Dos letras del código de idioma  para que el Autocompletado funcione. Las palabras se agregan al diccionario de usuario</string> 
-	<string name="dict_empty_dict_help">Если для языка отсутствует словарь, а хочется чтобы подсказки слов были, можно создать пустой словарь для этого языка. Тогда слова в автодополнении показываться будут, но исключительно из тех слов, которые вы добавили сами, через кнопку + в автодополнении.
-\n\nДля этого введите две буквы кода языка, или выберите его из списка, нажав на кнопку Языки</string>
-	<string name="dict_languages">Idiomas</string>
-	<string name="student_dict">Diccionario de aprendizaje</string>
-	<string name="student_dict_desc">Después de elegir una palabra del Autocompletado, su frecuencia de uso aumenta a uno. Con el tiempo las palabras más comunes se mostrarán siempre en la pantalla.</string>
-	<string name="student_ext_dict">Aprendizaje avanzado</string>
-	<string name="student_ext_dict_desc">Aprendizaje de diccionario será más rápido, pero con más carga al procesador. Funciona solo junto con la configuración anterior.</string>
 
-<!-- Labels on soft keys -->
+    <!-- Словари -->
+    <string name="dict">Diccionarios</string>
+    <string name="dict_desc">Descarga de diccionarios (sin ellos el Autocompletado no sugerirá palabras) y sus configuraciones</string>
+    <string name="dict_load">Descarga de diccionarios</string>
+    <string name="dict_load_desc">Autocompletado no funciona sin diccionarios descargados para idiomas determinados</string>
+    <string name="dict_empty_dict">Crear un diccionario vacío</string>
+    <string name="dict_empty_dict_desc">Dos letras del código de idioma  para que el Autocompletado funcione. Las palabras se agregan al diccionario de usuario</string>
+    <string name="dict_empty_dict_help">Si no hay diccionario para su idioma,   pero desea obtener sugerencias de palabras,   puede crear un diccionario vacío para este  idioma. Luego las palabras se mostrarán en Autocompletado, pero solo aquellas palabras que agregó usted mismo presionando el botón + en Autocompletado.
+\n\n Para este fin, ingrese el código de idioma de dos letras o selecciónelo de la lista presionando el botón Idiomas.</string>
+    <string name="dict_languages">Idiomas</string>
+    <string name="student_dict">Diccionario de aprendizaje</string>
+    <string name="student_dict_desc">Después de elegir una palabra del Autocompletado, su frecuencia de uso aumenta a uno. Con el tiempo las palabras más comunes se mostrarán siempre en la pantalla.</string>
+    <string name="student_ext_dict">Aprendizaje avanzado</string>
+    <string name="student_ext_dict_desc">Aprendizaje de diccionario será más rápido, pero con más carga al procesador. Funciona solo junto con la configuración anterior.</string>
+
+    <!-- Labels on soft keys -->
     <string name="label_go_key">Ir</string>
     <string name="label_next_key">Sig.</string>
     <string name="label_send_key">Enviar</string>
-
-	<string name="set_enter_state">Tecla Enter</string>
-	<string name="set_enter_state_desc">Cambiar el ícono en la tecla Enter dependiendo del contexto?</string>
+    <string name="set_enter_state">Tecla Enter</string>
+    <string name="set_enter_state_desc">Cambiar el ícono en la tecla Enter dependiendo del contexto?</string>
     <string name="set_ac_defkey">Palabras por defecto</string>
     <string name="set_ac_defkey_desc">Palabras por defecto en el panel de Autocompletado. Separador: espacio. Si una tecla corresponde a varios caracteres, se introducirá el primero.</string>
-	<string name="set_ac_defkey_help1">Esta es la cadena de texto predeterminada.
+    <string name="set_ac_defkey_help1">Esta es la cadena de texto predeterminada.
 \n\nSe muestra en la ventana de Autocompletado, cuando el campo de entrada está vacío o uno de los caracteres ingresados no es un símbolo o un número.
 \nPor ejemplo, un punto, una coma, dos puntos, etc.
 \n\nSeparador: espacio.
@@ -471,14 +468,22 @@
 \nNombre de la plantilla no debe contener comas.
 \nt : texto mostrado en el botón (por defecto, se inserta el nombre de la plantilla)
 \n\nSi se especifica la carpeta de plantillas como nombre de plantilla, las plantillas se abrirán en esta carpeta</string>
-
-<string name="indicators">Indicadores</string>
+	<string name="set_ac_defkey_help_button_font">\n\nКнопка +F, вставляет в позицию курсора специальное значение $f#&lt;символ&gt;, для включения в отображении кнопки, символа из встроенного в клавиатуру шрифта, который выбирается в диалоге (вставленное значение будет показываться буквой, но на кнопке будет показан символ из встроенного).
+\nПоэтому курсор всегда необходимо ставить на место вставки названия создаваемой кнопки и перед нажатием кнопки +F.
+\n\nЕсли в строке названия создаваемой кнопки, присутствует хотя-бы одно значение $f#, то на кнопке будет включен шрифт клавиатуры.
+\n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
+\n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
+\nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
+    
+    <string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
+    <string name="set_ac_space">Вставка пробела</string>
+    <string name="set_ac_space_desc">Вставлять пробел после ввода слова из автодополнения</string>
+    <string name="indicators">Indicadores</string>
     <string name="set_counter">Longitud del texto</string>
     <string name="set_counter_desc">Longitud del texto en el área de entrada ACTUAL\nActiva el Autocompletado para visualizar.</string>
     <string name="set_keycode">Código de la tecla presionada</string>
     <string name="set_keycode_desc">Activa el Autocompletado para visualizar.\nMás detalles en\"Cómo usar el teclado\".</string>
     <string name="set_longtap_keycode_help">Pulsación corta en el elemento del menú ingresará el valor especificado que se indica en él, pulsación larga copiará el número en el portapapeles\n\n---\n\n</string>
-    
     <string name="set_key_height">Altura de las teclas</string>
     <string name="set_kbd_horiz">Desplazamiento horizontal del teclado</string>
     <string name="set_ch_keys_preview">Muestra del indicador de teclas</string>
@@ -492,7 +497,6 @@
     <string name="set_key_height_landscape_toast">Gire la pantalla al modo paisaje</string>
     <string name="set_key_ac_height">Altura del Autocompletado</string>
     <string name="set_key_ac_height_desc">Funcionamiento correcto depende del tamaño de la fuente en el Autocompletado (ajuste de la fuente en Apariencia)</string>
-    
     <string name="set_languages">Idiomas y disposiciones</string>
     <string name="set_languages_desc">Cambio de idiomas y de disposiciones del teclado (se puede cambiar la disposición predeterminada)</string>
     <string name="set_key_voice">Vibración y sonido</string>
@@ -504,17 +508,15 @@
     <string name="set_key_repeat_vibro">Vibrar al repetir</string>
     <string name="set_key_repeat_vibro_desc">Si está activado,la pantalla vibra con repeticiones de teclas (p.e.,retención de backspace)</string>
     <string name="set_key_vibro_in_silent">Vibración en modo \"Silencio\"</string>
-	<string name="set_key_vibro_in_silent_desc">Si está activado, las teclas vibrarán cuando el dispositivo esté establecido en modo silencioso </string>
+    <string name="set_key_vibro_in_silent_desc">Si está activado, las teclas vibrarán cuando el dispositivo esté establecido en modo silencioso </string>
     <string name="set_key_long_vibro_duration">Intervalo de retención</string>
     <string name="set_key_repeat_vibro_duration">Intervalo de repetición</string>
     <string name="set_key_vibro_durations">Intervalos de vibración</string>
     <string name="set_key_vibro_durations_desc">Ajustes de intervalos de la vibración en milisegundos</string>
-        
     <string name="set_key_sounds">Sonidos</string>
     <string name="set_key_sounds_desc">Reproducir sonidos de sistema al presionar las teclas</string>
     <string name="set_key_sounds_volume">Volumen de sonidos</string>
     <string name="set_key_sounds_volume_desc">Volumen de todos los sonidos (funciona solamente en algunos dispositivos, en otros permanece por defecto)</string>
-    
     <string name="calibr_portrait">Corrección vertical en modo retrato</string>
     <string name="calibr_landscape">Corrección vertical en modo paisaje</string>
     <string name="calibr_desc">Corrección vertical de teclados (para pulsaciones más precisas)</string>
@@ -524,15 +526,12 @@
     <string name="calibr_save">Su corrección vertical: %1$d.\n Valor por defecto: %2$d\n\n ¿Quiere guardar?</string>
     <string name="calibr_label">Corrección vertical:</string>
     <string name="calibr_test_hint">Test de entrada</string>
-    
     <string name="set_ac_font">Fuente del Autocompletado</string>
     <string name="set_ac_font_desc">Fuente del panel de Autocompletado</string>
-    
     <string name="set_select_layout">Selección de la disposición</string>
     <string name="set_input_keyboard">Selección del método de entrada</string>
     <string name="set_key_skins">Temas del teclado</string>
     <string name="set_key_skins_desc">Varios temas del teclado</string>
-
     <string name="set_key_other">Entrada automática</string>
     <string name="set_key_register">Paso a mayúsculas</string>
     <string name="set_key_spaces">Hacer espacios</string>
@@ -541,13 +540,11 @@
     <string name="set_key_auto_case_desc">Cambio automático a mayúsculas</string>
     <string name="set_key_auto_case_rules">Opciones del cambio automático</string>
     <string name="set_key_auto_case_rules_desc">Opciones del cambio a mayúsculas</string>
-        
-	<string name="set_key_del_spase_category">Eliminación del espacio</string>
-	<string name="set_key_del_space">Eliminar espacio antes de los símbolos</string>
-	<string name="set_key_del_space_desc">Activa eliminación de espacios (si hay) después de algunos símbolos que figuran en la configuración siguiente</string>
+    <string name="set_key_del_spase_category">Eliminación del espacio</string>
+    <string name="set_key_del_space">Eliminar espacio antes de los símbolos</string>
+    <string name="set_key_del_space_desc">Activa eliminación de espacios (si hay) después de algunos símbolos que figuran en la configuración siguiente</string>
     <string name="set_key_del_space_symbols">Símbolos de eliminación del espacio</string>
     <string name="set_key_del_space_symbols_desc">Activa eliminación del espacio (si hay) antes de uno de esos símbolos. Haga clic para editar</string>
-
     <string name="set_key_empty_uppercase">En espacios vacíos</string>
     <string name="set_key_empty_uppercase_desc">Si está activado, el cambio a mayúsculas se realiza en el espacio vacío</string>
     <string name="set_key_sentence_upper">Después de la entrada de símbolos</string>
@@ -558,30 +555,31 @@
     <string name="set_key_space_sentence_end_desc">Activa adición de espacios después de algunos símbolos que figuran en la configuración siguiente</string>
     <string name="set_key_space_symbols">Símbolos de adición de espacios</string>
     <string name="set_key_space_symbols_desc">Después de entrar uno de esos símbolos se inserta un espacio. Haga clic para editar</string>
-	<string name="set_key_add_space_before_symbols_desc">Antes de ingresar uno de estos símbolos, se insertará un espacio. Haz clic para editar</string>
-	<string name="set_key_space_sentence_before">Antes de insertar símbolos</string>
-	<string name="set_key_space_sentence_before_desc">Permite agregar espacio antes de ingresar uno de los símbolos listados en la siguiente configuración</string>
+    <string name="set_key_add_space_before_symbols_desc">Antes de ingresar uno de estos símbolos, se insertará un espacio. Haz clic para editar</string>
+    <string name="set_key_space_sentence_before">Antes de insertar símbolos</string>
+    <string name="set_key_space_sentence_before_desc">Permite agregar espacio antes de ingresar uno de los símbolos listados en la siguiente configuración</string>
     <string name="set_key_sentence_space_end">Sólo después de espacios</string>
     <string name="set_key_sentence_space_end_desc">Cambio a mayúsculas se realiza después de uno de los símbolos de la configuración anterior y después del espacio posterior al símbolo</string>
-    
     <string name="set_key_landscape_input">Modo de pantalla completa</string>
     <string name="set_key_landscape_input_desc">Ajustes de la entrada en modo de pantalla completa</string>
     <string name="set_key_portrait_input_type">En modo retrato</string>
     <string name="set_key_portrait_input_type_desc">Selección del editor de pantalla completa en modo retrato</string>
-        <string name="set_key_landscape_input_type">En modo paisaje</string>
+    <string name="set_key_landscape_input_type">En modo paisaje</string>
     <string name="set_key_landscape_input_type_desc">Selección del editor de pantalla completa en modo paisaje</string>
     <string name="full_display_input_toast">Modo de pantalla completa no siempre funciona (depende de la aplicación donde se haya realizado la entrada)</string>
     <string name="set_key_landscape_input_settings">Configuración de editor</string>
     <string name="set_key_landscape_input_settings_desc">Configuración de la fuente de espacio de entrada en modo de pantalla completa</string>
     <string name="set_key_clipbrd_size">Tamaño del portapapeles</string>
     <string name="set_key_clipbrd_size_desc">Número máximo de elementos en el portapapeles</string>
-    <string name="set_key_show_clipbrd_record_size">Показывать размер записи</string>
-    <string name="set_key_show_clipbrd_record_size_desc">Показывать размер каждой записи в мультибуфере</string>
+    <string name="set_key_show_clipbrd_record_size">Mostrar el tamaño de entrada</string>
+    <string name="set_key_show_clipbrd_record_size_desc">Mostrar el tamaño de cada entrada del portapapeles</string>
+
     <string-array name="array_input_type">
         <item>Por defecto</item>
         <item>Pantalla completa siempre activada</item>
         <item>Pantalla completa desactivada</item>
     </string-array>
+
     <string name="set_key_fonts">Fuentes</string>
     <string name="set_key_fonts_desc">Ajuste de la fuente de teclas</string>
     <string name="set_key_font_first">Fuente básica</string>
@@ -595,50 +593,43 @@
     <string name="set_key_shift">Tecla Shift</string>
     <string name="set_key_appearance">Apariencia</string>
     <string name="set_key_appearance_desc">Configuración de la apariencia del teclado y del editor de la pantalla completa (selección de tema, herramientas adicionales, instalación de fuentes, tamaño de caracteres etc.)</string>
-	<string name="set_key_intervals">Intervalos de teclas</string>
+    <string name="set_key_intervals">Intervalos de teclas</string>
     <string name="set_key_intervals_desc">Retención y repetición de las teclas</string>
-	<string name="set_key_tpl_path">Ruta en Plantillas</string>
-	<string name="set_key_tpl_path_desc">Si está marcado, la ruta a la carpeta actual se mostrará en el menú de plantillas y otros menús</string>
-    
+    <string name="set_key_tpl_path">Ruta en Plantillas</string>
+    <string name="set_key_tpl_path_desc">Si está marcado, la ruta a la carpeta actual se mostrará en el menú de plantillas y otros menús</string>
     <string name="set_key_save_pref">Guardar las configuraciones</string>
     <string name="set_key_save_pref_desc">En el archivo:</string>
     <string name="set_key_load_pref">Descargar las configuraciones</string>
     <string name="set_key_load_pref_desc">Del archivo:</string>
-
     <string name="set_key_ac">Autocompletado</string>
     <string name="set_key_ac_desc">Ajustes del Autocompletado</string>
-	<string name="set_key_ac_place_sub_panel">Método de renderizado de Autocompletado</string>
-    <string name="set_key_ac_place_sub_panel_desc">Función experimental. El funcionamiento correcto no está garantizado!\nSi está marcado, la ventana de Autocompletado no se visualizará sobre todas las ventanas</string>
+    <string name="set_key_ac_place_sub_panel">Método de renderizado de Autocompletado</string>
+    <!-- <string name="set_key_ac_place_sub_panel_desc">Función experimental. El funcionamiento correcto no está garantizado!\nSi está marcado, la ventana de Autocompletado no se visualizará sobre todas las ventanas</string> -->
+    <string name="set_key_ac_place_sub_panel_desc">Попробуйте разные методы, если есть проблемы с отображением окна автодополнения</string>
     <string name="set_key_ac_place">Ventana del autocompletado</string>
     <string name="set_key_ac_place_desc">¿Dónde mostrar la ventana del Autocompletado?</string>
     <string name="set_key_ac_place_0">No mostrar</string>
     <string name="set_key_ac_place_1">En la parte superior del teclado</string>
     <string name="set_key_ac_place_2">En la barra de estado</string>
     <string name="set_key_ac_place_3">En la parte inferior del teclado</string>
-    
     <string name="set_key_ac_autocorrect">Autocorrector</string>
     <string name="set_key_ac_autocorrect_desc">Inserta la corrección actual después de hacer un espacio o ingresar otros signos de puntuación</string>
-        
-	<string name="preview_show_0">No mostrar</string>
-	<string name="preview_show_1">Por encima de las teclas pulsadas</string>
-	<string name="preview_show_2">En el centro</string>
-    
-	<string name="preview_size_win">Tamaño de la ventana</string>
-	<string name="preview_size_win_desc">Tamaño de la ventana emergente de las teclas pulsadas</string>
-	<string name="preview_size_0">Muy pequeño</string>
-	<string name="preview_size_1">Pequeño</string>
-	<string name="preview_size_2">Normal</string>
-	<string name="preview_size_3">Grande</string>
-	<string name="preview_size_4">Muy grande</string>
-				
-	<string name="set_key_use_volumeKeys">Teclas de volumen</string>
+    <string name="preview_show_0">No mostrar</string>
+    <string name="preview_show_1">Por encima de las teclas pulsadas</string>
+    <string name="preview_show_2">En el centro</string>
+    <string name="preview_size_win">Tamaño de la ventana</string>
+    <string name="preview_size_win_desc">Tamaño de la ventana emergente de las teclas pulsadas</string>
+    <string name="preview_size_0">Muy pequeño</string>
+    <string name="preview_size_1">Pequeño</string>
+    <string name="preview_size_2">Normal</string>
+    <string name="preview_size_3">Grande</string>
+    <string name="preview_size_4">Muy grande</string>
+    <string name="set_key_use_volumeKeys">Teclas de volumen</string>
     <string name="set_key_use_volumeKeys_desc">Usar las teclas de volumen para mover el cursor</string>
     <string name="vk_use_1">+ A la izquierda, - a la derecha</string>
     <string name="vk_use_2">- a la izquierda, + a al derecha</string>
-	
     <string name="set_key_gestures">Gestos</string>
     <string name="set_key_gestures_desc">Ajustes de los gestos</string>
-    
     <string name="set_key_use_gestures">Habilitar los gestos</string>
     <string name="set_key_use_gestures_desc">Activar/desactivar todos los gestos</string>
     <string name="set_key_gesture_left">A la izquierda</string>
@@ -651,43 +642,51 @@
     <string name="set_key_gesture_length_desc">Rango 1-1000. Por defecto 100</string>
     <string name="set_key_gesture_vel">Velocidad del gesto</string>
     <string name="set_key_gesture_vel_desc">Rango 1-1000. Por defecto 150</string>
-    
     <string name="interval_long_press">Retención de las teclas pulsadas (ms)</string>
     <string name="interval_first_repeat">Retención de la primera repetición de teclas (ms)</string>
     <string name="interval_next_repeat">Retención de la repetición siguiente de teclas (ms)</string>
     <string name="interval_min_repeat">Latencia entre pulsaciones de teclas(ms)</string>
     <string name="intervals_keys_title_def_value">Valores por defecto:</string>
-    
+
+    <string-array name="array_type_ac_place">
+        <item>Método 1</item>
+        <item>Método 2</item>
+        <item>Método 3</item>
+    </string-array>
     <string-array name="array_shift_vars">
         <item>3 posiciones (normal,shift,capslock)</item>
         <item>2 posiciones (normal,shift)</item>
         <item>2 posiciones (normal,capslock)</item>
         <item>2 posiciones (normal,shift (doble clic = capslock))</item>
-        </string-array>
+    </string-array>
     <string-array name="screen_type_vars">
         <item>Modo retrato y paisaje</item>
         <item>En modo retrato</item>
         <item>En modo paisaje</item>
     </string-array>
+
     <string name="enter_pict">Imagen en la tecla Enter</string>
+
     <string-array name="array_enter_pict">
         <item>Antiguo Enter+smile</item>
         <item>Antiguo Enter+emoticón</item>
         <item>Tecla Enter curva y transparente+emoticón</item>
         <item>Tecla Enter curva y transparente+smile</item>
-		<item>Tecla Enter curva y sólida+emoticón</item>
-		<item>Tecla Enter curva y sólida+smile</item>
+        <item>Tecla Enter curva y sólida+emoticón</item>
+        <item>Tecla Enter curva y sólida+smile</item>
     </string-array>
+
     <string name="kbdact_back">Fondo de esa ventana</string>
     <string name="kbdact_toast1">Pulsación larga en las teclas hacia derecha/izquierda para abrir la lista</string>
     <string name="kbdact_error_open">Aún no está listo. Inténtelo más tarde</string>
+
     <string-array name="vibro_short_type">
         <item>No vibrar</item>
         <item>Cuando se suelta la tecla</item>
         <item>Al presionar la tecla</item>
     </string-array>
-        
-            <string name="es_title">Configuración del editor de la pantalla completa</string>
+
+    <string name="es_title">Configuración del editor de la pantalla completa</string>
     <string name="es_sample">Modelo</string>
     <string name="es_sample_text">Nunca tenga miedo de hacer lo que no sabe. Recuerde, el Arca fue construida por un aficionado. Profesionales construyeron el Titanic</string>
     <string name="es_font">Fuente</string>
@@ -695,55 +694,53 @@
     <string name="es_font_bold">Negrita</string>
     <string name="es_font_italic">Cursiva</string>
     <string name="es_def_font">Tamaño estándar</string>
-            
     <string name="mm_setting">Menú</string>
     <string name="mm">Menú principal</string>
     <string name="mm_path">Ruta actual:</string>
     <string name="mm_delrec">Borrar registro después de pegar</string>
     <string name="mm_enter_end">Enter después de pegar</string>
-   	<string name="mm_synchronize">Sincronización</string>
+    <string name="mm_synchronize">Sincronización</string>
     <string name="mm_info">ℹ Si hay varias teclas, el menú se desplaza\n(las teclas de la derecha también).\n\nUna pulsación larga sobre un elemento de menú (en los lugares adecuados) abre el editor del elemento.\n\nSe puede realizar varias operaciones de archivos con las plantillas y con los programas de calculadora, usando cualquier administrador de archivos. Cada plantilla (programa de calculadora) es un archivo regular donde el nombre de la plantilla es un nombre de archivo.\nLa ruta a la carpeta de la plantilla o del programa de calculadora se muestra en la parte superior de la pantalla de menú.</string>
     <string name="mm_btn_size_desc">Establece el tamaño del texto de las teclas (Por defecto 15))</string>
-	<string name="mm_btnoff_size">Tamaño del texto de las teclas adicionales</string>
-	<string name="mm_btnoff_size_desc">Establece el tamaño del texto de las teclas adicionales(Por defecto 8)</string>
+    <string name="mm_btnoff_size">Tamaño del texto de las teclas adicionales</string>
+    <string name="mm_btnoff_size_desc">Establece el tamaño del texto de las teclas adicionales(Por defecto 8)</string>
     <string name="mm_templates">Plantillas</string>
     <string name="mm_multiclipboard">Portapapeles</string>
     <string name="mm_settings">Ajustes del teclado Jbak2</string>
     <string name="mm_close">Cerrar</string>
     <string name="mm_home">Al inicio</string>
     <string name="mm_reload_skin">Reinicio del tema</string>
-	<string name="mm_reload_skin_desk">\n(Se muestra al usar un tema externo)</string>
+    <string name="mm_reload_skin_desk">\n(Se muestra al usar un tema externo)</string>
     <string name="mm_method_sym">(No ha utilizado)\nMétodo de entrada de dígitos:</string>
     <string name="mm_compil">Compilación de los teclados</string>
     <string name="mm_decompil">Descompilación de los teclados</string>
-	<string name="mm_runapp">Ejecución de las aplicaciones</string>
-	<string name="mm_ac_hide0">Mostrar la ventana de autocompletación\n(funciona solamente si la ventana de autocompletación está habilitada)</string>
-	<string name="mm_ac_hide1">Autocompletado: Esconder</string>
-	<string name="mm_ac_hide2">Autocompletado: Mostrar</string>
-	<string name="mm_translate_interfase">Idioma de la interfaz del traductor</string>
-	<string name="mm_translate_interfase_browser">idioma de la interfaz del traductor (código de dos letras: ru, en, etc) en un navegador</string>
-	<string name="mm_notation">Sistema numérico</string>
-	<string name="mm_copy_notation">Número copiado en diferentes sistemas numéricos</string>
-	<string name="mm_stop_dict0">Deshabilitación temporal del diccionario (solo se muestra la cadena predeterminada)</string>
-	<string name="mm_stop_dict1">Diccionario: habilitado</string>
-	<string name="mm_stop_dict2">Diccionario: deshabilitado</string>
-	
-<!-- notation number  -->
-	<string name="notation_name">¿Cuál es la notación de base del número?</string>
-	<string name="notation_not_number">Texto en el portapapeles debe especificarse como un número, y el número debe ser entero, positivo y menos de 10 caracteres (decimal)</string>
-	
-	<string name="search">Búsqueda</string>
-	<string name="ok">OK</string>
+    <string name="mm_runapp">Ejecución de las aplicaciones</string>
+    <string name="mm_ac_hide0">Mostrar la ventana de autocompletación\n(funciona solamente si la ventana de autocompletación está habilitada)</string>
+    <string name="mm_ac_hide1">Autocompletado: Esconder</string>
+    <string name="mm_ac_hide2">Autocompletado: Mostrar</string>
+    <string name="mm_translate_interfase">Idioma de la interfaz del traductor</string>
+    <string name="mm_translate_interfase_browser">idioma de la interfaz del traductor (código de dos letras: ru, en, etc) en un navegador</string>
+    <string name="mm_notation">Sistema numérico</string>
+    <string name="mm_copy_notation">Número copiado en diferentes sistemas numéricos</string>
+    <string name="mm_stop_dict0">Deshabilitación temporal del diccionario (solo se muestra la cadena predeterminada)</string>
+    <string name="mm_stop_dict1">Diccionario: habilitado</string>
+    <string name="mm_stop_dict2">Diccionario: deshabilitado</string>
+
+    <!-- notation number -->
+    <string name="notation_name">¿Cuál es la notación de base del número?</string>
+    <string name="notation_not_number">Texto en el portapapeles debe especificarse como un número, y el número debe ser entero, positivo y menos de 10 caracteres (decimal)</string>
+    <string name="search">Búsqueda</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-	<string name="later">Más tarde</string>
+    <string name="later">Más tarde</string>
     <string name="empty">Vacío</string>
-	<string name="unload">Detener</string>
-	<string name="create">Creado</string>
-	<string name="save">Guardar</string>
-	<string name="decompil_skin">Descompilar el archivo del tema</string>
-	<string name="delete">Borrar</string>
+    <string name="unload">Detener</string>
+    <string name="create">Creado</string>
+    <string name="save">Guardar</string>
+    <string name="decompil_skin">Descompilar el archivo del tema</string>
+    <string name="delete">Borrar</string>
     <string name="delete_q">Borrar?</string>
     <string name="def">Por defecto</string>
     <string name="skin_not_found">Error.\nTema no encontrado\nSe usa el tema por defecto</string>
@@ -751,17 +748,15 @@
     <string name="clear_question">¿Limpiar?</string>
     <string name="honeycomb">No es compatible con su versión de Android</string>
     <string name="not_work">No funciona aún</string>
-	<string name="out_of_memory">¡Sin memoria!</string>
+    <string name="out_of_memory">¡Sin memoria!</string>
     <string name="by_def">Por defecto</string>
-	
     <string name="sel_del">Borrar de forma selectiva</string>
     <string name="rewrite_question">Archivo ya existe.\n¿Desea reemplazarlo?</string>
     <string name="settings_saved">¡Configuraciones se han guardado!</string>
     <string name="add">Añadido</string>
     <string name="data_changed">Datos han sido modificados.\n¿Guardar?</string>
     <string name="selection">Seleccionar</string>
-	<string name="are_you_sure">¿Está seguro?</string>
-    
+    <string name="are_you_sure">¿Está seguro?</string>
     <string name="tpl_empty">Nada que borrar</string>
     <string name="tpl_new_template">Añadir</string>
     <string name="tpl_new_folder">Nueva\ncarpeta</string>
@@ -775,22 +770,20 @@
     <string name="tpl_fields_empty">¡Rellene todos los espacios!</string>
     <string name="tpl_delete">¿Quiere borrar \"%s\"?</string>
     <string name="tpl_unicode_app">Programa con caracteres Unicode(Unicode Pad)</string>
-    <string name="tpl_full_edit">Редактировать в полноэкранном редакторе</string>
+    <string name="tpl_full_edit">Editar en editor de pantalla completa</string>
     <string name="tpl_cb_inv">Invertir las teclas</string>
-	<string name="tpl_cb_right">Alinear a la derecha</string>
+    <string name="tpl_cb_right">Alinear a la derecha</string>
     <string name="tpl_seltopos_toast">Texto largo. No se puede procesar</string>
     <string name="tpl_help_spec">Ayuda con instrucciones especiales</string>
     <string name="fm_btn_plus_title"> Selección de plantilla</string>
-    
     <string name="tpl_translate_menuname">Traductor</string>
     <string name="tpl_translate">Registro del traductor</string>
     <string name="tpl_translate_in">Idioma de origen (ru, en, es, etc)</string>
     <string name="tpl_translate_out">Idioma de destino (ru, en, es, etc)</string>
-    
     <string name="clipboard_empty">Portapapeles está vacío</string>
     <string name="clipboard_clear">¿Quiere limpiar el portapapeles?</string>
-        
-<!-- List for menu with special template instructions -->    
+
+    <!-- List for menu with special template instructions -->
     <string-array name="tpl_spec_instructions">
         <item><b>$select</b> - instrucción se sustituye por el texto de la selección actual</item>
         <item><b>$selword</b> - si nada se selecciona, se sustituye por la palabra bajo el cursor, si no por el texto seleccionado</item>
@@ -802,27 +795,30 @@
         <item><b>$selinsertword</b> - inserta un símbolo o una palabra seleccionada entre los símbolos en la selección</item>
         <item><b>$selDeleteWord</b> - elimina un carácter o palabra especificada en la selección</item>
         <item><b>$seltranslit</b> - translitera caracteres de idioma ruso en caracteres latinos en la selección</item>
-		<item><b>$selVerseMode</b> - modo verso: cada letra de la cadena en la selección estará en mayúscula</item>
+        <item><b>$selVerseMode</b> - modo verso: cada letra de la cadena en la selección estará en mayúscula</item>
         <item><b>$selAsInTheSentences</b> - tamaño de letras en la selección como en las sentencias</item>
         <item><b>$paste</b> - insertar el valor actual del portapapeles</item>
         <item><b>$selReplaсe</b> -  buscar y reemplazar en el texto seleccionado</item>
         <item><b>$selToPos</b> - seleccionar hasta la posición especificada según los parámetros establecidos</item>
         <item><b>$program</b> - ejecución de la secuencia de plantillas</item>
         <item><b>$codes</b> - ejecuta los códigos especificados de forma secuencial </item>
-        </string-array>
+    </string-array>
 
-<!-- список символов разделения для специнструкции $insertsymbol -->
-  <string name="insertsymbol_title">Símbolo o palabra</string>
+    <!-- список символов разделения для специнструкции $insertsymbol -->
+    <string name="insertsymbol_title">Símbolo o palabra</string>
+
     <string-array name="tpl_insertsymbol">
         <item><b>[ ]</b> - espacio</item>
         <item><b>[-]</b> - guión</item>
         <item><b>[_]</b> - subrayado</item>
         <item><b>[]</b> - su valor (se puede escribir una frase entre paréntesis)</item>
-        </string-array>
+    </string-array>
+
     <string name="insertsymbol_toast">Esta instrucción especial probablemente no funcione en todas partes o no funcione correctamente, todo depende de la aplicación donde se realiza la entrada</string>
-    
-<!-- список форматов для специнструкции $datetime -->
-  <string name="datetime_format_title">Formato de fecha y hora</string>
+
+    <!-- список форматов для специнструкции $datetime -->
+    <string name="datetime_format_title">Formato de fecha y hora</string>
+
     <string-array name="datetime_format">
         <item><b>[]</b> - su propio formato (todos los formatos se describen en \"Cómo usar el teclado\"))</item>
         <item><b>[yyyy.MM.dd HH:mm:ss]</b> - fecha y hora  (2016.12.31 14:56:35)</item>
@@ -832,143 +828,157 @@
         <item><b>[yyyy.MM.dd]</b> - fecha (2016.12.31)</item>
         <item><b>[HH:mm]</b> - hora sin segundos</item>
         <item><b>[HH:mm:ss]</b> - hora con segundos</item>
-        </string-array>
-    
-    <string name="helper_1">¡Teclado no está habilitado!</string>   
-    <string name="helper_1_desc">Haga clic en este mensaje y seleccione  </string>   
-    <string name="helper_2">¡Teclado no está activado!</string>   
-<!-- Update strings -->
-	<string name="upd_new_vocab">Diccionario nuevo</string>
-	<string name="upd_vocab_version_update">Actualización a </string>
-<!-- 	<string name="upd_check">Comprobando actualizaciones... ...</string> -->
-	<string name="upd_download">Cargando...</string>
-	<string name="upd_unzip">Desembalaje...</string>
-	<string name="upd_index">Indexación...</string>
-	<string name="upd_no_updates">Servidor de actualización no está disponible</string>
-	<string name="upd_get_error">Se ha producido un error al comprobar las actualizaciones</string>
-        
-	<!-- Strings for about dialog -->
-	<string name="about">Otro</string>
-	<string name="about_desc">Código de color, código de símbolos, lista de cambios, página web del programa (con preguntas frecuentes), versión, etc.</string>
-	<string name="about_app">Aplicación:</string>
-	<string name="about_version">Versión:</string>
-	<string name="about_author">Desarrollador:</string>
-	<string name="about_author_desc">Michail Wyazenki\n(MWcorp, 4pda - wolf3d2)\nDesarrollador antiguo (hasta 0.97.7): Yuri Bakunin</string>
-	<string name="about_other">Otro:</string>
-	<string name="about_other_desc">La aplicación será traducida por completo en un par de meses.\nTraducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
+    </string-array>
 
-<!-- переводить только то, что есть на русском и именно так, как указано здесь -->
-<!-- для каждой локали своя строка! -->
-	<string name="about_web">Sitio del programa: http://jbak2.ucoz.net\n\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \n\nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
-    
+    <string name="helper_1">¡Teclado no está habilitado!</string>
+    <string name="helper_1_desc">Haga clic en este mensaje y seleccione  </string>
+    <string name="helper_2">¡Teclado no está activado!</string>
+    <!-- Update strings -->
+    <string name="upd_new_vocab">Diccionario nuevo</string>
+    <string name="upd_vocab_version_update">Actualización a </string>
+    <!-- <string name="upd_check">Comprobando actualizaciones... ...</string> -->
+    <string name="upd_download">Cargando...</string>
+    <string name="upd_unzip">Desembalaje...</string>
+    <string name="upd_index">Indexación...</string>
+    <string name="upd_no_updates">Servidor de actualización no está disponible</string>
+    <string name="upd_get_error">Se ha producido un error al comprobar las actualizaciones</string>
+
+    <!-- Strings for about dialog -->
+    <string name="about">Otro</string>
+    <string name="about_desc">Código de color, código de símbolos, lista de cambios, página web del programa (con preguntas frecuentes), versión, etc.</string>
+    <string name="about_app">Aplicación:</string>
+    <string name="about_version">Versión:</string>
+    <string name="about_author">Desarrollador:</string>
+    <string name="about_author_desc">Michail Wyazenki\n(MWcorp, 4pda - wolf3d2)\nDesarrollador antiguo (hasta 0.97.7): Yuri Bakunin</string>
+    <string name="about_other">Otro:</string>
+    <string name="about_other_desc">La aplicación será traducida por completo en un par de meses.\nTraducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
+
+    <!-- переводить только то, что есть на русском и именно так, как указано здесь -->
+    <!-- для каждой локали своя строка! -->
+    <string name="about_web">Sitio del programa: http://jbak2.ucoz.net\n\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \n\nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
     <string name="about_keycode_button">Código del símbolo (útil para crear su propio tema) \n(la aplicación UnicodePad)</string>
-	<string name="about_color_picker_btn">Подбор цвета</string>
+    <string name="about_color_picker_btn">Selector de color</string>
     <string name="diary">Lista de cambios</string>
-	<string name="device_info">Información del dispositivo</string>
-	
-	<string name="type_lang_all">Otros idiomas</string>
-	<string name="type_lang_unknown">Idiomas desconocidos</string>
-	<string name="type_lang_main">Idiomas principales</string>
-	<string name="type_lang_symbol2">Se activa desde la disposición de los caracteres principales, al pulsar la tecla Shift, si hay una.</string>
-	<string name="type_lang_virtual">Disposiciones auxiliares. No se puede desactivar, pero puede elegir una disposición (si la hay).</string>
-	
-<!-- Names for various keyboards -->
-    <string name="kbd_name_qwerty">Teclado Qwerty</string>    
-    <string name="kbd_name_mwcorp">Teclado de MWcorp\n(pulsación larga para insertar los símbolos que faltan (si hay para ese idioma)) ;add para las minúsculas, ADD para las mayúsculas.</string>       
-    <string name="smiles_MWcorp">Teclado de MWcorp</string>    
-    <string name="smiles_MaxQwertyKeys">Emoticones de MaxQwertyKeys para Android 4.4 y superior</string>    
-    <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 de MWcorp</string>    
-    <string name="kbd_t9_mwcorp">T9 de MWcorp\n(se debe activar el modo Shift 3 (Ajustes-Otros ajustes-Shift))</string>    
-    <string name="kbd_name_qwerty_hyastan64">Qwerty de Haystan64</string>    
-    <string name="kbd_name_qwerty_rusrespect">Qwerty de RusRespect</string>    
-    <string name="kbd_name_qwerty_eliz69">Qwerty de  eliz69</string>    
-    <string name="kbd_name_round">Teclado para los relojes redondos</string>    
+    <string name="device_info">Información del dispositivo</string>
+    <string name="type_lang_all">Otros idiomas</string>
+    <string name="type_lang_unknown">Idiomas desconocidos</string>
+    <string name="type_lang_main">Idiomas principales</string>
+    <string name="type_lang_symbol2">Se activa desde la disposición de los caracteres principales, al pulsar la tecla Shift, si hay una.</string>
+    <string name="type_lang_virtual">Disposiciones auxiliares. No se puede desactivar, pero puede elegir una disposición (si la hay).</string>
+
+    <!-- Names for various keyboards -->
+    <string name="kbd_name_qwerty">Teclado Qwerty</string>
+    <string name="kbd_name_mwcorp">Teclado de MWcorp\n(pulsación larga para insertar los símbolos que faltan (si hay para ese idioma)) ;add para las minúsculas, ADD para las mayúsculas.</string>
+    <string name="smiles_MWcorp">Teclado de MWcorp</string>
+    <string name="smiles_MaxQwertyKeys">Emoticones de MaxQwertyKeys para Android 4.4 y superior</string>
+    <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 de MWcorp</string>
+    <string name="kbd_t9_mwcorp">T9 de MWcorp\n(se debe activar el modo Shift 3 (Ajustes-Otros ajustes-Shift))</string>
+    <string name="kbd_name_qwerty_hyastan64">Qwerty de Haystan64</string>
+    <string name="kbd_name_qwerty_rusrespect">Qwerty de RusRespect</string>
+    <string name="kbd_name_qwerty_eliz69">Qwerty de  eliz69</string>
+    <string name="kbd_name_round">Teclado para los relojes redondos</string>
     <string name="kbd_name_qwerty_tablet">Qwerty para tablets</string>
-	<string name="kbd_name_wide">Teclas anchas</string>
-	<string name="kbd_name_sym_edit">Símbolos y redacción</string>
-	<string name="kbd_name_5_rows">5 líneas</string>
-	<string name="kbd_name_2_sides">Bilateral</string>
-	<string name="kbd_calc">Calculadora</string>
-	<string name="kbd_calc_saent">Calculadora científica</string>
-	<string name="kbd_calc_prog">Calculadora programable</string>
-	<string name="kbd_landscape_mwcorp">Teclado de  MWcorp v100 en modo paisaje\n(modelo con todas las teclas del teclado)</string>    
-	<string name="kbd_name_dvorak">Dvorak de Vladimyr</string>
+    <string name="kbd_name_wide">Teclas anchas</string>
+    <string name="kbd_name_sym_edit">Símbolos y redacción</string>
+    <string name="kbd_name_5_rows">5 líneas</string>
+    <string name="kbd_name_2_sides">Bilateral</string>
+    <string name="kbd_calc">Calculadora</string>
+    <string name="kbd_calc_saent">Calculadora científica</string>
+    <string name="kbd_calc_prog">Calculadora programable</string>
+    <string name="kbd_landscape_mwcorp">Teclado de  MWcorp v100 en modo paisaje\n(modelo con todas las teclas del teclado)</string>
+    <string name="kbd_name_dvorak">Dvorak de Vladimyr</string>
 
-<!-- Names for keyboards designs -->
-	<string name="kbd_design_standard">Por defecto</string>    
-	<string name="kbd_design_iphone">Pseudo iPhone</string>
-	<string name="kbd_design_ukraine">Зроблено в Україні</string>
-	<string name="kbd_design_ukraine_old">viejo Зроблено в Україні</string>
-		<string name="kbd_design_chokolate">Chocolate</string>
-	<string name="kbd_design_red">Rojo y azul</string>
-	<string name="kbd_design_htc">Pseudo HTC</string>
-	<string name="kbd_design_pink">Rosado</string>
-	<string name="kbd_design_dark">Oscuro</string>
-	<string name="kbd_design_solid">Sólido</string>
-	
-<!-- Names for designs of assets -->
-	<string name="design_eliz1">Crema by elizz69</string>    
-	<string name="design_eliz2">Manzana by elizz69</string>    
-	<string name="design_eliz3">Café by elizz69</string>    
-	<string name="design_eliz4">Oro by elizz69</string>    
-	<string name="design_eliz5">Violeta by elizz69</string>    
-	<string name="design_eliz6">Gota by elizz69</string>    
-	<string name="design_schenee">Chocolate by Schnee-Leopard</string>    
-	<string name="design_thepop3250_1">Claro</string>    
-	<string name="design_thepop3250_2">Azul</string>    
-	<string name="design_thepop3250_3">Neón</string>    
-	<string name="design_rusrespect1">Notebook</string>    
-	<string name="design_keylifes1">En blanco y negro by keyslifes</string>    
-			
-	<string name="lang_symbol">Teclado de símbolos</string>   
- 	<string name="lang_symbol_shift">Teclado de símbolos adicionales</string>   
- 	<string name="lang_edittext">Teclado de edición de texto</string>   
- 	<string name="lang_edittext2">Teclado de edición de texto MWcorp</string>   
- 	<string name="lang_edittext3">Teclado de edición de texto para pantallas grandes</string>   
- 		<string name="lang_smiles">Teclado de emoticones</string>   
- 	<string name="lang_numbers">Teclado numérico</string>   
- 	<string name="lang_calc">Calculadora</string>   
- 	<string name="lang_symbol_selector">Switch entre los teclados de símbolos y qwerty</string>   
- 	
- <!-- Names for gestures commands -->
- 	<string name="cmd_lang_change">Cambio de idioma</string>   
- 	<string name="cmd_lang_change_next">Cambio de idioma en círculo, sin el menú</string>   
- 	<string name="cmd_lang_change_prev">Cambio de idioma en orden inverso, sin el</string>   
- 	<string name="cmd_lang_change_two_lang">Cambio de idioma. Idiomas recientes</string>   
- 	<string name="cmd_left">Cursor a la izquierda</string>   
- 	<string name="cmd_right">Cursor a la derecha</string>   
- 	<string name="cmd_up">Cursor hacia arriba</string>   
- 	<string name="cmd_down">Cursor hacia abajo</string>   
- 	<string name="cmd_none">Hacer nada</string>   
- 	<string name="cmd_close">Cerrar el teclado</string>   
- 	<string name="cmd_space">Espacio</string>   
+    <!-- Names for keyboards designs -->
+    <string name="kbd_design_standard">Por defecto</string>
+    <string name="kbd_design_iphone">Pseudo iPhone</string>
+    <string name="kbd_design_ukraine">Зроблено в Україні</string>
+    <string name="kbd_design_ukraine_old">viejo Зроблено в Україні</string>
+    <string name="kbd_design_chokolate">Chocolate</string>
+    <string name="kbd_design_red">Rojo y azul</string>
+    <string name="kbd_design_htc">Pseudo HTC</string>
+    <string name="kbd_design_pink">Rosado</string>
+    <string name="kbd_design_dark">Oscuro</string>
+    <string name="kbd_design_solid">Sólido</string>
 
-<!-- функции копирования -->
- 	<string name="menu_copy_title">Funciones de copiado</string>
- 	<string name="menu_copy_all">Copiar todo el texto</string>
- 	<string name="menu_copy_paragraph">Copiar párrafo</string>
- 	<string name="menu_copy_line">Copiar cadena (no funciona correctamente en todas partes)</string>
- 	<string name="menu_copy_sentence">Copiar frase</string>
- 	<string name="menu_copy_word">Copiar palabra</string>
- 	<string name="menu_copy">Copiado</string>
+    <!-- Names for designs of assets -->
+    <string name="design_eliz1">Crema by elizz69</string>
+    <string name="design_eliz2">Manzana by elizz69</string>
+    <string name="design_eliz3">Café by elizz69</string>
+    <string name="design_eliz4">Oro by elizz69</string>
+    <string name="design_eliz5">Violeta by elizz69</string>
+    <string name="design_eliz6">Gota by elizz69</string>
+    <string name="design_schenee">Chocolate by Schnee-Leopard</string>
+    <string name="design_thepop3250_1">Claro</string>
+    <string name="design_thepop3250_2">Azul</string>
+    <string name="design_thepop3250_3">Neón</string>
+    <string name="design_rusrespect1">Notebook</string>
+    <string name="design_keylifes1">En blanco y negro by keyslifes</string>
+    <string name="lang_symbol">Teclado de símbolos</string>
+    <string name="lang_symbol_shift">Teclado de símbolos adicionales</string>
+    <string name="lang_edittext">Teclado de edición de texto</string>
+    <string name="lang_edittext2">Teclado de edición de texto MWcorp</string>
+    <string name="lang_edittext3">Teclado de edición de texto para pantallas grandes</string>
+    <string name="lang_smiles">Teclado de emoticones</string>
+    <string name="lang_numbers">Teclado numérico</string>
+    <string name="lang_calc">Calculadora</string>
+    <string name="lang_symbol_selector">Switch entre los teclados de símbolos y qwerty</string>
 
- 	<!-- функции выделения -->
- 	<string name="menu_sel_title">Funciones de selección</string>
- 	<string name="menu_sel_paragraph">Seleccionar párrafo</string>
- 	<string name="menu_sel_sentence">Seleccionar frase</string>
- 	<string name="menu_sel_line">Seleccionar cadena</string>
- 	<string name="menu_sel_line_up">Выделить до начала строки</string>
- 	<string name="menu_sel_line_down">Выделить до конца строки</string>
- 	<string name="menu_sel_word">Seleccionar palabra</string>
- 		
-	<string name="set_copy_msg">Notificación de copiado</string>
- 	<string name="set_copy_msg_desc">Si está marcado, al copiar se mostrará una notificación de copiado</string>
+    <!-- Names for gestures commands -->
+    <string name="cmd_lang_change">Cambio de idioma</string>
+    <string name="cmd_lang_change_next">Cambio de idioma en círculo, sin el menú</string>
+    <string name="cmd_lang_change_prev">Cambio de idioma en orden inverso, sin el</string>
+    <string name="cmd_lang_change_two_lang">Cambio de idioma. Idiomas recientes</string>
+    <string name="cmd_left">Cursor a la izquierda</string>
+    <string name="cmd_right">Cursor a la derecha</string>
+    <string name="cmd_up">Cursor hacia arriba</string>
+    <string name="cmd_down">Cursor hacia abajo</string>
+    <string name="cmd_none">Hacer nada</string>
+    <string name="cmd_close">Cerrar el teclado</string>
+    <string name="cmd_space">Espacio</string>
 
- 	<string name="menu_sel_layout">Cambio rápido de la disposición de idioma</string>
- 	<string name="menu_select_lang_title">Selección de idioma </string>
- 	<string name="menu_sel_skin">Cambio rápido de tema</string>
- 	<string name="menu_select_skin_title">Cambio de tema</string>
- 		
-	<string name="error_lang_layout_found1">No se puede encontrar disposiciones para este idioma:</string>
-	<string name="error_lang_layout_found2">Desactívalo en los Ajustes</string> 		
+    <!-- функции копирования -->
+    <string name="menu_copy_title">Funciones de copiado</string>
+    <string name="menu_copy_all">Copiar todo el texto</string>
+    <string name="menu_copy_paragraph">Copiar párrafo</string>
+    <string name="menu_copy_line">Copiar cadena (no funciona correctamente en todas partes)</string>
+    <string name="menu_copy_sentence">Copiar frase</string>
+    <string name="menu_copy_word">Copiar palabra</string>
+    <string name="menu_copy">Copiado</string>
+
+    <!-- функции выделения -->
+    <string name="menu_sel_title">Funciones de selección</string>
+    <string name="menu_sel_paragraph">Seleccionar párrafo</string>
+    <string name="menu_sel_sentence">Seleccionar frase</string>
+    <string name="menu_sel_line">Seleccionar cadena</string>
+    <string name="menu_sel_line_up">Seleccionar hasta el inicio de la cadena</string>
+    <string name="menu_sel_line_down">Seleccionar hasta el fin de la cadena</string>
+    <string name="menu_sel_word">Seleccionar palabra</string>
+    <string name="set_copy_msg">Notificación de copiado</string>
+    <string name="set_copy_msg_desc">Si está marcado, al copiar se mostrará una notificación de copiado</string>
+    <string name="menu_sel_layout">Cambio rápido de la disposición de idioma</string>
+    <string name="menu_select_lang_title">Selección de idioma </string>
+    <string name="menu_sel_skin">Cambio rápido de tema</string>
+    <string name="menu_select_skin_title">Cambio de tema</string>
+    <string name="error_lang_layout_found1">No se puede encontrar disposiciones para este idioma:</string>
+    <string name="error_lang_layout_found2">Desactívalo en los Ajustes</string>
+
+    <string name="user_hide_layout_menuname">Disposiciones personalizadas ocultas</string>
+    <string name="addit_layout_help">No se mostrarán todos los caracteres, solo aquellos que estén en fuentes en su dispositivo.\nCuanto más antigua sea la versión de Android, menos caracteres se mostrarán</string>
+    <string name="addit_layout_menuname"> Disposiciones adicionales</string>
+    <string name="addit_layout0">Flechas 1</string>
+    <string name="addit_layout1">Flechas 2</string>
+    <string name="addit_layout2">Bloques y círculos</string>
+    <string name="addit_layout3">Bloques</string>
+    <string name="addit_layout4">Monedas</string>
+    <string name="addit_layout5">Fracciones</string>
+    <string name="addit_layout6">Símbolos matemáticos</string>
+    <string name="addit_layout7">Números</string>
+    <string name="addit_layout8">Lista de números y otro</string>
+    <string name="addit_layout9">Caracteres subíndices y superíndices</string>
+    <string name="addit_layout10">Pseudográfica (dibujar una tabla)</string>
+    <string name="addit_layout11">Símbolos técnicos 1</string>
+    <string name="addit_layout12">Símbolos técnicos 2</string>
+    <string name="addit_layout13">Otro 1</string>
+    <string name="addit_layout14">Otro 2</string>
+
 </resources>

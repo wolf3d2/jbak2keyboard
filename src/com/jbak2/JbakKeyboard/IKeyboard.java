@@ -12,8 +12,6 @@ import android.os.Environment;
 
 import com.jbak2.CustomGraphics.BitmapCachedGradBack;
 import com.jbak2.CustomGraphics.GradBack;
-import com.jbak2.JbakKeyboard.IKeyboard.KbdDesign;
-import com.jbak2.JbakKeyboard.IKeyboard.Lang;
 import com.jbak2.JbakKeyboard.st.IntEntry;
 
 public class IKeyboard {
@@ -542,8 +540,8 @@ public class IKeyboard {
 		 * выбрать)
 		 */
 		final boolean isVirtualLang() {
-			return lang == LANG_SYM || lang == LANG_SMIL || lang == LANG_SYM1 || lang == LANG_EDIT || lang == LANG_NUM
-					|| lang == LANG_CALC;
+			return lang == LANG_SYM || lang == LANG_SMIL || lang == LANG_SYM1 
+					|| lang == LANG_EDIT || lang == LANG_NUM || lang == LANG_CALC;
 		}
 	    /** возвращает сортированным массивом String список всех доступных в Locale языков 
 	     * @param type - возвращаемый формат: <br>
@@ -625,12 +623,12 @@ public class IKeyboard {
 		 * @param resName
 		 *            Строка из ресурсов с названием клавиатуры
 		 */
-		Keybrd(String asset, int resName) {
+		Keybrd(String assetFileName, int resName) {
 			this.kbdCode = KBD_COMPILED;
-			this.lang = getLangByName(asset.substring(0, asset.indexOf('_')));
+			this.lang = getLangByName(assetFileName.substring(0, assetFileName.indexOf('_')));
 			this.resId = R.xml.kbd_empty;
-			path = asset;
-			isWide = asset.endsWith(WIDE_SUFFIX);
+			path = assetFileName;
+			isWide = assetFileName.endsWith(WIDE_SUFFIX);
 			this.resName = resName;
 		}
 

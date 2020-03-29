@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jbak2.JbakKeyboard.CandView 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cand_window"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" 
     android:background="#aaaaaa"
-    >
+    android:orientation="vertical" >
+
 <TextView
-    android:id="@+id/cand_calcmenu"
+    android:id="@+id/cand2_calcmenu"
     android:background="#00f"
     android:includeFontPadding="false"
     android:textColor="#fff"
@@ -21,13 +21,13 @@
     android:text="@string/calc_menu"
     />
 <TextView
-    android:id="@+id/cand_calcind"
+    android:id="@+id/cand2_calcind"
     android:background="#000"
     android:includeFontPadding="false"
     android:textColor="#0f0"
     android:layout_height="match_parent"
-    android:layout_width="fill_parent"
-    android:layout_toRightOf ="@+id/cand_calcmenu"
+    android:layout_width="match_parent"
+    android:layout_toRightOf ="@+id/cand2_calcmenu"
     android:drawablePadding="25dp"
     android:text="0"
     android:gravity="right|center_vertical"
@@ -35,7 +35,7 @@
     />
 
 <TextView
-    android:id="@+id/cand_keycode"
+    android:id="@+id/cand2_keycode"
     android:background="#0f0"
     android:includeFontPadding="false"
     android:textColor="#000"
@@ -50,21 +50,21 @@
 
 
 <TextView
-    android:id="@+id/cand_counter"
+    android:id="@+id/cand2_counter"
     android:background="#f00"
     android:includeFontPadding="false"
     android:textColor="#000"
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
     android:drawablePadding="25dp"
-    android:layout_toRightOf ="@+id/cand_keycode"
+    android:layout_toRightOf ="@+id/cand2_keycode"
     android:gravity="center"
     android:text="  0  "
     android:visibility="gone"
     />
 
 <TextView
-    android:id="@+id/cand_forcibly"
+    android:id="@+id/cand2_forcibly"
     android:background="#ff0"
     android:includeFontPadding="false"
     android:textColor="#000"
@@ -72,7 +72,7 @@
     android:layout_width="wrap_content"
     android:gravity="center"
     android:drawablePadding="25dp"
-    android:layout_toRightOf ="@+id/cand_counter"
+    android:layout_toRightOf ="@+id/cand2_counter"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:visibility="gone"
@@ -80,7 +80,7 @@
     />
 
 <TextView
-    android:id="@+id/cand_left"
+    android:id="@+id/cand2_left"
     android:includeFontPadding="false"
     android:textColor="#000000"
     android:layout_height="match_parent"
@@ -89,21 +89,22 @@
     android:drawablePadding="2dp"
 	android:gravity="top"
 	android:layout_gravity="center"
-    android:layout_toRightOf ="@+id/cand_forcibly"
+    android:layout_toRightOf ="@+id/cand2_forcibly"
     android:visibility="gone"
     />
+
 <!--  просто чтобы цвет был на всю ширину -->
 <LinearLayout 
-    android:id="@+id/temp_completions"
+    android:id="@+id/temp_completions2"
 	android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:gravity="left"
-    android:layout_toRightOf ="@+id/cand_left"
- 	android:layout_toEndOf="@+id/cand_left" 
+    android:layout_toRightOf ="@+id/cand2_left"
+ 	android:layout_toEndOf="@+id/cand2_left" 
     >
 <TextView
-    android:id="@+id/cand_temp_tv"
+    android:id="@+id/cand2_temp_tv"
     android:textColor="#000000"
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
@@ -113,32 +114,33 @@
     />
     
 </LinearLayout>
+
 <HorizontalScrollView
-    android:id="@+id/cand_hsv"
-    android:layout_width="match_parent"
+    android:id="@+id/cand2_hsv"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#00000000"
-    android:layout_toRightOf ="@+id/cand_left"
- 	android:layout_toEndOf="@+id/cand_left" 
+    android:layout_toRightOf ="@+id/cand2_left"
+    android:layout_toLeftOf ="@+id/cand2_right"
  	android:scrollbars="none"
     >
     
 <LinearLayout 
-    android:id="@+id/completions"
+    android:id="@+id/completions2"
 	android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:layout_toRightOf ="@+id/cand2_left"
+    android:layout_toLeftOf ="@+id/cand2_right"
     android:background="#00000000"
 	android:gravity="left"
     />
 </HorizontalScrollView>
 <TextView
-    android:id="@+id/cand_right"
+    android:id="@+id/cand2_right"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:visibility="gone"
 	android:gravity="center"
     android:layout_alignParentRight="true"
-    android:text=" ∇ "
+    android:text="∇"
     />
-</com.jbak2.JbakKeyboard.CandView>
+</RelativeLayout>

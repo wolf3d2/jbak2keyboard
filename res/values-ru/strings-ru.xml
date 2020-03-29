@@ -16,8 +16,8 @@
 	<string name="msg_avtocorrect_and_addspace">Вы включили одновременно \"автоисправление\" и \"добавлять пробел после символов\" (в Автовводе).\n\nВместе они работают некорректно!</string>
 
 <!-- отзыв -->
-	<string name="review">Оставить отзыв</string>
-	<string name="review_desc">Напишите пожалуйста отзыв на сайте программы, чтобы другие люди могли составить первоначальное мнение о программе.</string>
+	<string name="review">Вам нравится программа?</string>
+	<string name="review_desc">Оставьте пожалуйста свой отзыв на сайте программы.</string>
 	
 <!-- Title for update preferences -->
 	<string name="upd_screen">Обновления</string>
@@ -32,7 +32,7 @@
 	<string name="upd_go_site">Перейти на сайт</string>
 	<string name="upd_go_site_desc">Открыть сайт программы</string>
 	<string name="upd_unknown_source">Неизвестные источники</string>
-	<string name="upd_unknown_source_desc_">Перед установкой новой версии программы, незабудьте разрешить установку программ из неизвестных источников</string>
+	<string name="upd_unknown_source_desc_">Перед установкой программы, не забудьте разрешить установку программ из неизвестных источников</string>
 			
 <!-- Title for new version check site-->
 	<string name="chk_new_version">Вышла новая версия программы\nОбновите клавиатуру на сайте программы.</string>
@@ -94,6 +94,8 @@
     <string name="pref_mini_kbd_screen_desc">Пока beta. Данные настройки действуют только для маленькой клавиатуры первой версии (т.е. когда тег popupCharacter не v2).</string>
     <string name="pref_mini_kbd_its">Своя маленькая клавиатура</string>
     <string name="pref_mini_kbd_its_desc">Если отмечено, то используется своя маленькая клавиатура, иначе - системная</string>
+	<string name="pref_mini_kbd_help">Использование своей маленькой клавиатуры говорит только о том, что будет показываться не системная, а собственная маленькая всплывающая клавиатура, создаваемая программой.
+\nНастройки ниже, задают внешний вид миниклавиатуры, не как вы хотите, а как она будет удобнее всего в использовании именно на вашем устройстве и под ваши пальцы.</string>
     <string name="pref_mini_kbd_btnsize">Размер кнопок</string>
     <string name="pref_mini_kbd_btnsize_desc">Размер кнопок в маленькой клавиатуре</string>
     <string name="pref_mini_kbd_example">Посмотреть пример</string>
@@ -415,7 +417,8 @@
     
 <!-- активность help -->
     <string name="help">Помощь</string>
-
+    <string name="help_readme">Прочти меня</string>
+    
 <!-- оценка приложения -->
     <string name="rate_title">Оценка приложения</string>
     <string name="rate_about">Пожалуйста, оцените приложение.</string>
@@ -475,7 +478,14 @@
 \nИмя шаблона не должно содержать запятых.
 \nt - текст отображаемый на кнопке (по умолчанию вставляется имя шаблона)
 \n\nЕсли в качестве названия шаблона указана папка шаблонов, то шаблоны откроются на этой папке</string>
-    <string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
+	<string name="set_ac_defkey_help_button_font">\n\nКнопка +F, вставляет в позицию курсора специальное значение $f#&lt;символ&gt;, для включения в отображении кнопки, символа из встроенного в клавиатуру шрифта, который выбирается в диалоге (вставленное значение будет показываться буквой, но на кнопке будет показан символ из встроенного).
+\nПоэтому курсор всегда необходимо ставить на место вставки названия создаваемой кнопки и перед нажатием кнопки +F.
+\n\nЕсли в строке названия создаваемой кнопки, присутствует хотя-бы одно значение $f#, то на кнопке будет включен шрифт клавиатуры.
+\n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
+\n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
+\nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
+
+	<string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
     <string name="set_ac_space">Вставка пробела</string>
     <string name="set_ac_space_desc">Вставлять пробел после ввода слова из автодополнения</string>
 
@@ -615,7 +625,8 @@
     <string name="set_key_ac">Автодополнение</string>
     <string name="set_key_ac_desc">Настройки для автодополнения слов</string>
     <string name="set_key_ac_place_sub_panel">Метод отрисовки автодополнения</string>
-    <string name="set_key_ac_place_sub_panel_desc">Экспериментальная функция. Правильная работа не гарантируется!\nЕсли отмечено, то окно автодополнения выводится не поверх всех окон</string>
+<!--     <string name="set_key_ac_place_sub_panel_desc">Экспериментальная функция. Правильная работа не гарантируется!\nЕсли отмечено, то окно автодополнения выводится не поверх всех окон</string> -->
+    <string name="set_key_ac_place_sub_panel_desc">Попробуйте разные методы, если есть проблемы с отображением окна автодополнения</string>
     <string name="set_key_ac_place">Окно автодополнения</string>
     <string name="set_key_ac_place_desc">Где показывать окно автодополнений (подсказки слов)?</string>
     <string name="set_key_ac_place_0">Не показывать</string>
@@ -665,12 +676,21 @@
     <string name="interval_min_repeat">Задержка между нажатиями клавиш (ms)</string>
     <string name="intervals_keys_title_def_value">Стандартные значения:</string>
     
+	<string name="type_ac_window0">Метод 1</string>
+	<string name="type_ac_window1">Метод 2</string>
+	<string name="type_ac_window2">Метод 3</string>
+
+	<string-array name="array_type_ac_place">
+        <item>Метод 1</item>
+        <item>Метод 2</item>
+        <item>Метод 3</item>
+    </string-array>
     <string-array name="array_shift_vars">
         <item>3 позиции (normal,shift,capslock)</item>
         <item>2 позиции (normal,shift)</item>
         <item>2 позиции (normal,capslock)</item>
         <item>2 позиции (normal,shift (двойное нажатие=capslock))</item>
-        </string-array>
+    </string-array>
     <string-array name="screen_type_vars">
         <item>Портрет и ландшафт</item>
         <item>В портретном режиме</item>
@@ -978,5 +998,25 @@
  		
  	<string name="error_lang_layout_found1">Не нахожу раскладки для этого языка:</string>
  	<string name="error_lang_layout_found2">Отключите его в настройках.</string>
+
  	
+ 	<string name="user_hide_layout_menuname">Пользовательские скрытые раскладки</string>
+ 	<string name="addit_layout_menuname">Дополнительные раскладки</string>
+ 	<string name="addit_layout_help">Не все символы будут показываться, только те, которые есть в ваших шрифтах на устройстве.\nЧем старее версия андроид, тем меньше будет показываться символов</string>
+ 	<string name="addit_layout0">Стрелки 1</string>
+	<string name="addit_layout1">Стрелки 2</string>
+ 	<string name="addit_layout2">Блоки и кружки</string>
+ 	<string name="addit_layout3">Блоки</string>
+ 	<string name="addit_layout4">Валюты </string>
+ 	<string name="addit_layout5">Дроби</string>
+ 	<string name="addit_layout6">Математические символы</string>
+ 	<string name="addit_layout7">Цифры</string>
+ 	<string name="addit_layout8">Цифры списком и другое</string>
+ 	<string name="addit_layout9">Надстрочные и подстрочные символы</string>
+ 	<string name="addit_layout10">Псевдографика (нарисовать таблицу)</string>
+ 	<string name="addit_layout11">Технические символы 1</string>
+ 	<string name="addit_layout12">Технические символы 2</string>
+ 	<string name="addit_layout13">Прочее 1</string>
+ 	<string name="addit_layout14">Прочее 2</string>
+ 			 	 	 	 			
 </resources>

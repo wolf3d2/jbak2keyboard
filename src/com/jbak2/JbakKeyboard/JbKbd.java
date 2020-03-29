@@ -470,7 +470,8 @@ public class JbKbd extends Keyboard {
         	String t = longPress?longText:mainText;
         	if (Templates.inst == null) {
         		new Templates(1,0,null).processTemplate(t);
-        		Templates.destroy();
+            	if (!Templates.template_processing)
+            		Templates.destroy();
         	} else
         		Templates.inst.processTemplate(t);
         	return true;

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Vector;
 
 import com.jbak2.CustomGraphics.BitmapCachedGradBack;
@@ -274,6 +275,7 @@ public class CustomKbdDesign
             });
             if(skins!=null&skins.length==0)
                 return err;
+            Arrays.sort(skins);
             Vector<KbdDesign> ar = new Vector<IKeyboard.KbdDesign>();
             for(File fs:skins)
             {

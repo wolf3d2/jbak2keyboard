@@ -125,22 +125,5 @@
     android:dividerHeight="0px"
     android:orientation="vertical" />
 
-<!-- <ScrollView -->
-<!--    android:id="@+id/euv_scroll" -->
-<!--    android:layout_width="fill_parent" -->
-<!--    android:layout_height="wrap_content" -->
-<!--    android:layout_below="@id/euv_rlcap" -->
-<!--    android:layout_above="@id/llad_euv" -->
-<!--    > -->
-    
-<!-- <LinearLayout -->
-<!--     android:id="@+id/euv_ll" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:orientation="vertical"  -->
-<!--     > -->
-    
-<!-- </LinearLayout> -->
-<!--  </ScrollView> -->
 
 </RelativeLayout>

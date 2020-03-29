@@ -26,6 +26,7 @@ import com.jbak2.Dialog.Dlg;
 import com.jbak2.Dialog.DlgFileExplorer;
 import com.jbak2.Dialog.DlgPopupWnd;
 import com.jbak2.JbakKeyboard.st;
+import com.jbak2.ctrl.Font;
 
 /** класс для вывода активности настроек маленькой клавиатуры второй версии */
 public class Popup2act extends Activity
@@ -111,6 +112,8 @@ public class Popup2act extends Activity
         btn_unicode_app = (Button)findViewById(R.id.pc2act_plus_btn_button);
         btn_unicode_app.setOnClickListener(m_ClickListener);
         btn_unicode_app = (Button)findViewById(R.id.pc2act_plus_tpl_button);
+        btn_unicode_app.setOnClickListener(m_ClickListener);
+        btn_unicode_app = (Button)findViewById(R.id.pc2act_plus_btn_font);
         btn_unicode_app.setOnClickListener(m_ClickListener);
 
         btn_unicode_app = (Button)findViewById(R.id.pc2act_unicode_app);
@@ -231,8 +234,34 @@ public class Popup2act extends Activity
             case R.id.pc2act_help:
             	String txt = inst.getString(R.string.pc2act_str_help1); 
             	txt += inst.getString(R.string.set_ac_defkey_help_buttons);
+            	txt += inst.getString(R.string.set_ac_defkey_help_button_font);
 				Dlg.helpDialog(inst, txt);
             	return;
+            case R.id.pc2act_plus_btn_font:
+            	Font.showDialogGridSelectSymbolOfFont(inst, new st.UniObserver() {
+    				
+    				@Override
+    				public int OnObserver(Object param1, Object param2) {
+						int pos = AlertDialog.BUTTON_NEGATIVE;
+						if (param1 != null)
+							pos = (Integer) param1;
+						boolean blong = false;
+						if (param2 != null)
+							blong = ((Boolean) param2).booleanValue();
+						if (pos > -1) {
+							if (!blong) {
+								Dlg.dismiss();
+								String text = st.STR_PREFIX_FONT + Font.ar_symbol[pos];
+								st.setInsertTextToCursorPosition(str_add, text);
+								return 0;
+							} else {
+								st.copyText(inst, st.STR_NULL + Font.ar_symbol[pos]);
+							}
+						}
+						return 0;
+    				}
+    			});
+                return;
             case R.id.pc2act_plus_btn_button:
             	String text = st.STR_PREFIX+"0,t] ";
             	st.setInsertTextToCursorPosition(str_add, text);
@@ -274,7 +303,7 @@ public class Popup2act extends Activity
                 return;
             case R.id.pc2act_unicode_app:
             	ServiceJbKbd.inst.forceHide();
-            	st.runApp(inst, st.UNICODE_APP);
+            	st.runApp(inst, st.APP_PACKAGE_UNICODE, null);
                 return;
             case R.id.cand_left:
                 return;

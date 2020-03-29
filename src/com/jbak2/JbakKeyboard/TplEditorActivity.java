@@ -77,7 +77,7 @@ public class TplEditorActivity extends Activity
             {
             case  R.id.tpl_unicode_app:
             	st.hidekbd();
-            	st.runApp(inst, st.UNICODE_APP);
+            	st.runApp(inst, st.APP_PACKAGE_UNICODE, null);
             	break;
             case  R.id.tpl_full_edit:
             	help_specinstruction = true;

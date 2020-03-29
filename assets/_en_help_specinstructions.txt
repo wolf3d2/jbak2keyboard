@@ -116,7 +116,7 @@ $program
 There can be only one special instruction in the template and the first string. 
 
 To select links to templates, use the "+" button.
-При использовании в тегах template и longTemplate вместо символа перевода строки, указывайте '\n'.
+When using in the template and longTemplate tags instead of the line feed character, specify '\n'.
 
 Example: 
 
@@ -167,16 +167,19 @@ The number of keys in combination is unlimited.
  
 In addition, the p<value> can be specified as a code, it inserts a pause between the execution of neighboring codes.
 
-If you set just the p value without a number, then the delay between the execution of codes will be equal to the value of the Next key repeat (other settings - key delays)
+If you set just the p<number> without a number, then the delay between the execution of codes will be equal to the value of the Next key repeat (other settings - key delays)
 
-Примеры:
-$codes[-323,-321] - выделить всё и вставить текущее значение буфера обмена. Команда состоит из кодов клавиатуры.
-Тоже самое, но с использованием KeyEvent клавиш (коды в клавиатуре из промежутка -5000 - -7000):
+When using in the template and longTemplate tags instead of the line feed character, specify '\n'.
+
+Examples:
+$ codes [-323, -321]: select all and paste the current clipboard value. The command consists of keyboard codes.
+The same, but using the KeyEvent keys ( keyboard codes in the range of -5000 - -7000):
 $codes[-5113+-5029,-321]
-$codes[-5113+-5059+-5021] - Ctrl+Shift+← - выделить слово слева от курсора
-(в кодах -5xxx возможны ошибки - указывал по памяти)
-ЗАМЕЧАНИЕ.
-Комбинации клавиш, возможны только через указание KeyEvent символов (-5xxx). С кодамти клавиатуры комбинации скорее всего, работать не будут.
+$codes[-5113+-5059+-5021] - Ctrl+Shift+← : select word from the left of the cursor
+(errors are possible in the -5xxx codes (I indicated from memory))
 
-Все коды доступные в клавиатуре, перечислены в приложеннии jbak2layout, в Инструкции по созданию своей раскладки.
-События KeyEvent смотрите в интернете.
+NOTE
+You can use keyboard shortcuts only by specifying the KeyEvent characters (-5xxx). The shortcuts probably will not work with the keyboard codes. 
+
+All codes available in the keyboard are listed in the jbak2layout application, in the Instruction for creating your own layout. 
+Look for the KeyEvent information on the internet.

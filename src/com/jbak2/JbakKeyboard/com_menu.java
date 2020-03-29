@@ -1,5 +1,6 @@
 package com.jbak2.JbakKeyboard;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -34,8 +35,12 @@ import com.jbak2.ctrl.GlobDialog;
 /** Универсальное меню. Используется как для выпадающего, так и для контекстного меню */
 public class com_menu
 {
+	/** флаг, что открыта одна из менюшек дополнительных раскладок,
+	 * или скрытых раскладок пользователя <br>
+	 * и нужно возвращать на qwerty при нажатии на кнопку Закрыть*/
+	static boolean show_hide_layout_menu = false;
 	static boolean close_menu = false; 
-	static int arcounter =0;
+	static int arcounter = 0;
 	static int posY =0;
 	int btn_mark_color = Color.BLACK;
 	String btn_mark_text = st.STR_NULL;
@@ -54,6 +59,7 @@ public class com_menu
     public static final int STAT_KEYCODE_NOTATION = 0x000005;
     public static final int STAT_SPEC_SYMBOL = 0x000006;
     public static final int STAT_SHOW_LANGS = 0x000007;
+    //public static final int STAT_SHOW_USER_HIDE_LAYOUT= 0x000008;
 
     static com_menu inst;
     protected static final int[] PRESSED_STATE_SET = {android.R.attr.state_pressed};
@@ -184,7 +190,7 @@ public class com_menu
         btn.setOnClickListener(m_listener);
         return btn;
     }
-/** НЕ ЮЗАЕТСЯ! Обработчик нажатия кнопки меню */  
+/** Обработчик нажатия кнопки меню */  
     st.UniObserver m_lvObserver = new st.UniObserver()
     {
         @Override
@@ -241,6 +247,8 @@ public class com_menu
     {
     	if (Templates.inst!=null)
     		Templates.inst = null;
+    	Templates.template_processing = false;
+
     	if (Translate.inst!=null)
     		Translate.inst = null;
     }
@@ -254,7 +262,14 @@ public class com_menu
         if(ServiceJbKbd.inst!=null)
         {
             try{
-                st.kv().setKeyboard(st.curKbd());
+            	if (show_hide_layout_menu) {
+            		Keybrd kb = st.getCurQwertyKeybrd();
+		        	st.kv().setKeyboard(st.loadKeyboard(kb));
+		        	show_hide_layout_menu = false;
+            	} else {
+                    st.kv().setKeyboard(st.curKbd());
+            		
+            	}
                 ServiceJbKbd.inst.setInputView(st.kv());
                 st.showAcPlace();
             }
@@ -368,7 +383,7 @@ public class com_menu
                     closeTplAndTrans();
                 	return;
                 case R.id.help:
-               		st.help += st.c().getString(R.string.mm_info);
+               		st.help += st.STR_LF+st.STR_3TIRE+st.STR_LF+st.c().getString(R.string.mm_info);
                     st.runActShowText(st.c(), R.string.help, null, 
                     		ShowTextAct.FLAG_TEXT_IN_HELP_VARIABLE
                     		|ShowTextAct.FLAG_HIDE_BTN_LANG
@@ -853,6 +868,115 @@ public class com_menu
 				return 0;
 			}
 		}, false);
+    }
+    public static void showUserHideLayout()
+    {
+        String path = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER;
+        final Vector<File> arf = st.getFilesByStartText(IKeyboard.LANG_HIDE_LAYOUT+st.STR_UNDERSCORING, path, st.EXT_XML);
+
+    	st.help = st.STR_NULL;
+    	final com_menu menu = new com_menu();
+        //menu.m_state = STAT_SHOW_USER_HIDE_LAYOUT;
+    	menu.setMenuname(st.getStr(R.string.user_hide_layout_menuname));
+    	pos = 0;
+    	menu.add((R.string.addit_layout_menuname), 0);
+    	String str = null;
+    	for(int i=0;i<arf.size();i++)
+    	{
+    		pos++;
+    		str = arf.get(i).getName();
+    		menu.add(str, pos);
+    	}
+    	menu.show(new st.UniObserver() {
+			
+			@Override
+			public int OnObserver(Object param1, Object param2) {
+				pos = (int) param1;
+            	com_menu.close();
+				switch (pos)
+				{
+				case 0:
+					st.kbdCommand(st.CMD_SHOW_ADDITIONAL_HIDE_LAYOUT);
+					break;
+				default:
+		        	Keybrd kb = null;
+		        	try {
+			        	try {
+			        		kb = new Keybrd(IKeyboard.LANG_HIDE, st.getLangByName(IKeyboard.LANG_HIDE_LAYOUT), R.xml.kbd_empty, R.string.kbd_name_sym_edit);
+			        		kb.path=arf.get(pos-1).getAbsolutePath();
+				        	st.kv().setKeyboard(st.loadKeyboard(kb));
+
+						} catch (NumberFormatException e) {
+						}
+					} catch (NumberFormatException e) {
+					}
+				}
+				return 0;
+			}
+		}, false);
+    	show_hide_layout_menu = true;
+    }
+	static int pos = 0;
+    /** выводим менюшку для выбора дополнительных раскладок типа hide */
+    public static void showAdditionalLayout(Context c)
+    {
+    	final Keybrd[] arKbd = {
+    			new Keybrd("hide_arrow1", R.string.addit_layout0),
+    			new Keybrd("hide_arrow2", R.string.addit_layout1),
+    			new Keybrd("hide_block&circle", R.string.addit_layout2),
+    			new Keybrd("hide_block1", R.string.addit_layout3),
+    			new Keybrd("hide_currency", R.string.addit_layout4),
+    			new Keybrd("hide_drobs", R.string.addit_layout5),
+    			new Keybrd("hide_matematic1", R.string.addit_layout6),
+    			new Keybrd("hide_numeric1", R.string.addit_layout7),
+    			new Keybrd("hide_numeric2list&other", R.string.addit_layout8),
+    			new Keybrd("hide_ss_symbols", R.string.addit_layout9),
+    			new Keybrd("hide_table", R.string.addit_layout10),
+    			new Keybrd("hide_tech1", R.string.addit_layout11),
+    			new Keybrd("hide_tech2", R.string.addit_layout12),
+    			new Keybrd("hide_other1", R.string.addit_layout13),
+    			new Keybrd("hide_other2", R.string.addit_layout14),
+    	};
+
+
+    	st.help = c.getString(R.string.addit_layout_help);
+    	final com_menu menu = new com_menu();
+    	menu.setMenuname(st.getStr(R.string.addit_layout_menuname));
+    	pos = 0;
+    	menu.add((R.string.user_hide_layout_menuname), pos);
+    	String str = null;
+    	for(int i=0;i<arKbd.length;i++)
+    	{
+    		pos++;
+    		str = arKbd[i].getName(c);
+    		menu.add(str, pos);
+    	}
+    	menu.show(new st.UniObserver() {
+			
+			@Override
+			public int OnObserver(Object param1, Object param2) {
+				pos = (int) param1;
+            	com_menu.close();
+				switch (pos)
+				{
+				case 0:
+					st.kbdCommand(st.CMD_SHOW_USER_HIDE_LAYOUT);
+					break;
+				default:
+		        	Keybrd kb = null;
+		        	try {
+		        		kb = new Keybrd(IKeyboard.KBD_COMPILED, st.getLangByName(IKeyboard.LANG_HIDE_LAYOUT), R.xml.kbd_empty, R.string.kbd_name_sym_edit);
+		        		kb.path=arKbd[pos-1].path;
+//		        		kb = new Keybrd(arf.get((int)param1).getName().substring(0), R.string.kbd_name_qwerty);
+		        		//kb.lang = st.getLangByName(IKeyboard.LANG_SYMBOL_KBD);
+			        	st.kv().setKeyboard(st.loadKeyboard(kb));
+					} catch (NumberFormatException e) {
+					}
+				}
+				return 0;
+			}
+		}, false);
+    	show_hide_layout_menu = true;
     }
     /** пытается определить исходную систему счисления и выдать варианты в клаве*/
     public static void showNotationNumber()

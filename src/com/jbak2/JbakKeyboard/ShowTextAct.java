@@ -3,17 +3,21 @@ package com.jbak2.JbakKeyboard;
 import java.io.File;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Vector;
 
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
+import com.jbak2.ctrl.Font;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -150,16 +154,22 @@ public class ShowTextAct extends Activity
         // настраиваем текст на кнопках
         Button btn = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            btn = (Button)llcont.findViewById(R.id.desc_btn_search);
-           	btn.setText("🔎");
+            btn = (Button)llcont.findViewById(R.id.desc_btn_sellang);
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.TRANSLATE);
             btn = (Button)llcont.findViewById(R.id.desc_btn_start);
-    		btn.setText("⇱");
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.TO_START);
             btn = (Button)llcont.findViewById(R.id.desc_btn_end);
-    		btn.setText("⇲");
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.TO_END);
+            btn = (Button)llcont.findViewById(R.id.desc_btn_search);
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.SEARCH);
+            btn = (Button)llcont.findViewById(R.id.desc_btn_pgup);
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.PGUP);
+            btn = (Button)llcont.findViewById(R.id.desc_btn_pgdn);
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.PGDN);
             btn = (Button)llcont.findViewById(R.id.desc_btn_size);
-    		btn.setText("a⇄A");
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.BIG_TEXT);
             btn = (Button)llcont.findViewById(R.id.desc_btn_left_right);
-    		btn.setText("l⇄r");
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.LEFT_RIGHT);
         }
         
         btn = (Button)llcont.findViewById(R.id.desc_btn_search);
@@ -265,6 +275,7 @@ public class ShowTextAct extends Activity
             	    }
                 	
                 	setViewText();
+                	st.hidekbd();
                 	return 0;
                 }
             });
@@ -644,6 +655,8 @@ public class ShowTextAct extends Activity
 	            	hideSearchPanel();
 	        	if (load_progress!=null)
 	      			load_progress.setVisibility(View.GONE);
+            	et.clearFocus();
+	        	st.hidekbd();
 	        }
 	    // если времени указать мало, то load_progress не крутится
 	    }, 1000);

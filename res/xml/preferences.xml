@@ -69,7 +69,7 @@
             />
 
         <Preference
-            android:key="sistem_setting_unknown_source"
+            android:key="system_setting_unknown_source"
             android:summary="@string/upd_unknown_source_desc_"
             android:title="@string/upd_unknown_source" />
         
@@ -84,6 +84,10 @@
     <PreferenceScreen
         android:summary="@string/dict_desc"
         android:title="@string/dict" >
+        <Preference
+            android:key="system_setting_unknown_source"
+            android:summary="@string/upd_unknown_source_desc_"
+            android:title="@string/upd_unknown_source" />
         <Preference
             android:key="dict_app"
             android:summary="@string/dict_load_desc"
@@ -291,12 +295,20 @@
             android:summary="@string/set_key_ac_place_desc"
             android:title="@string/set_key_ac_place" />
 
-        <!-- метод отрисовки автодопа как SUB_PANEL -->
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="pref_ac_sub_panel"
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/array_type_ac_place"
+            android:entryValues="@array/integer_vals"
+            android:key="pref_ac_window_type"
             android:summary="@string/set_key_ac_place_sub_panel_desc"
             android:title="@string/set_key_ac_place_sub_panel" />
+            />
+        <!-- метод отрисовки автодопа как SUB_PANEL -->
+<!--         <CheckBoxPreference -->
+<!--             android:defaultValue="false" -->
+<!--             android:key="pref_ac_sub_panel" -->
+<!--             android:summary="@string/set_key_ac_place_sub_panel_desc" -->
+<!--             android:title="@string/set_key_ac_place_sub_panel" /> -->
 
         <Preference
             android:key="ac_defkey"
@@ -465,12 +477,18 @@
     <PreferenceScreen
         android:summary="@string/pref_mini_kbd_screen_desc"
         android:title="@string/pref_mini_kbd_screen" >
+
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="mini_kbd_its"
             android:summary="@string/pref_mini_kbd_its_desc"
             android:title="@string/pref_mini_kbd_its" />
 
+    	<Preference
+    		android:key="mini_keyboard_help"
+    		android:summary="@string/help_readme"
+    		android:title="@string/help"
+    />
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/array_minikbd_btn_size"

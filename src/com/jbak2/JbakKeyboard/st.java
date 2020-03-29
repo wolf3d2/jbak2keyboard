@@ -56,10 +56,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.KeyboardGesture.GestureHisList;
-import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
-import com.jbak2.ctrl.Mainmenu;
 import com.jbak2.perm.Perm;
 import com.jbak2.receiver.ClipbrdSyncService;
 import com.jbak2.web.SearchGoogle;
@@ -71,6 +69,12 @@ import com.jbak2.words.UserWords.WordArray;
 /** Основной статический класс футкций и переменных */
 public class st extends IKeyboard implements IKbdSettings
 {
+
+	/** переменная временного хранения текущего открытого языка. <br>
+	 * Используется для возврата из раскладки hide на раскладку <br>
+	 * из которой была запущена hide. 
+	 * После обработки не забыть поставить переменную в null! */
+//	public static String tempReturnLang = null;
 	/** тип пикера:<br>
 	 * false - круг, <br>
 	 * true - линейный */
@@ -93,7 +97,7 @@ public class st extends IKeyboard implements IKbdSettings
 	// горизонтальное смещение клавиатуры
 	public static int kbd_horiz_port = 0;
 	public static int kbd_horiz_land = 0;
-	// если true, то при нажатии символа-разделителя в автодоте, исходное слово
+	// если true, то при нажатии символа-разделителя в автодоgе, исходное слово
 	// не заменяется, а этот символ добавляется в позиции курсора
     public static boolean fl_ac_separator_symbol = false;
 	public static int KBD_BACK_ALPHA_DEF = 10;
@@ -175,12 +179,16 @@ public class st extends IKeyboard implements IKbdSettings
 	public static boolean add_space_before_symbols = false;
 /** запущена preferences activity или редактор шаблонов */
 	public static boolean fl_pref_act = false;
-// строка для запуска интента для маркета
+/** строка для запуска интента для маркета */
 	public static String RUN_MARKET_STRING = "https://play.google.com/store/apps/details?id=";
-// строка имени пакета google play
-	public static String APP_GOOGLE_PLAY_PACKAGE= "com.android.vending";
+/** строка имени пакета google play */
+	public static String APP_PACKAGE_GOOGLE_PLAY = "com.android.vending";
+/** имя программы кодов символов юникода */
+	public static final String APP_PACKAGE_UNICODE = "jp.ddo.hotmist.unicodepad";
+/** имя пакета программы словарей */	
+	public static String APP_PACKAGE_DICTIONARY= "com.jbak2.dictionary";
 // слова в автодополнении по умолчанию
-	public static String AC_DEF_WORD = "$[-500,Menu] ! @ ? ; : , .";
+	public static String AC_DEF_WORD = "$[-500,Menu] $[-629,+AS] ! @ ? ; : , .";
 // последнее состояние шифта
 	public static int last_case = 0;
 /** флаг, что delsymb() из servicekbd выполнил удаление */	
@@ -190,8 +198,9 @@ public class st extends IKeyboard implements IKbdSettings
 // флаг что нажато слово из автодополнения
 	public static boolean fl_ac_word = false;
 	
-// отображение счётчика нажатых клавиш и кода нажатой клавиши
+/** флаг, отображение счётчика нажатых клавиш */
 	public static boolean fl_counter = false;
+	/** флаг, отображение кода нажатой клавиши */
 	public static boolean fl_keycode = false;
 // показывать код в десятичной (true) или в 16х
     public static boolean fl_keycode_dec = true;
@@ -240,8 +249,14 @@ public class st extends IKeyboard implements IKbdSettings
 	public static boolean student_dict_ext = false;
 // количество слов в списке автодополнения 	
 	public static int ac_list_value = 20;
-	/** флаг, что рисуем автодоп через тип окна TYPE_APPLICATION_SUB_PANEL */	
-	public static boolean ac_sub_panel = false;
+	/** TYPE_APPLICATION_OVERLAY */
+	public static final int TYPE_AC_METHOD0 = 0;
+	/** TYPE_APPLICATION_SUB_PANEL */
+	public static final int TYPE_AC_METHOD1 = 1;
+	/** popupWindow */
+	public static final int TYPE_AC_METHOD2 = 2;
+	/** тип отрисовки окна автодопа */	
+	public static int type_ac_window = TYPE_AC_METHOD2;
 // высота окна автодополнения	
 	public static int ac_height = 0;
 
@@ -556,7 +571,8 @@ public class st extends IKeyboard implements IKbdSettings
  	    	}
  	    	return out;
  	    }
- 	    /** выполняет шаблон, указанный в el*/    
+ 	    /** выполняет шаблон, указанный в el, или открывает указанную 
+ 	     * в el папку шаблонов */    
  	    public static void processTemplateClick(Context c, ArrayFuncAddSymbolsGest el)
  	    {
  			File ff = null;
@@ -964,7 +980,7 @@ public class st extends IKeyboard implements IKbdSettings
 /** Установка клавиатуры смайликов */
     public static void setSmilesKeyboard()
     {
-        JbKbdView.inst.setKeyboard(loadKeyboard(getKeybrdForLangName(LANG_SMILE)));
+        JbKbdView.inst.setKeyboard(loadKeyboard(st.getKeybrdForLangName(LANG_SMILE)));
     }
     /** Установка цифровой клавиатуры */
     public static void setNumberKeyboard()
@@ -974,9 +990,9 @@ public class st extends IKeyboard implements IKbdSettings
     /** Установа клавиатуры калькулятора*/
     public static void setCalcKeyboard()
     {
-        if (st.calc_fl_ind==false&&ServiceJbKbd.inst.m_acPlace==JbCandView.AC_PLACE_NONE) {
+        if (st.calc_fl_ind==false&&ServiceJbKbd.inst.m_acPlace==CandView.AC_PLACE_NONE) {
         	ServiceJbKbd.inst.m_candView.saveAc_place();
-        	ServiceJbKbd.inst.m_acPlace=JbCandView.AC_PLACE_KEYBOARD;
+        	ServiceJbKbd.inst.m_acPlace=CandView.AC_PLACE_KEYBOARD;
         	ServiceJbKbd.inst.createNewCandView();
         	ServiceJbKbd.inst.selmode=false;
         }
@@ -1024,6 +1040,7 @@ public class st extends IKeyboard implements IKbdSettings
         for(Keybrd ck:arKbd)
         {
             if(ck.lang.name.equals(k.lang.name))
+            	
                 return loadKeyboard(ck);
         }
         return loadKeyboard(arKbd[0]);
@@ -1227,6 +1244,9 @@ public class st extends IKeyboard implements IKbdSettings
 			case TXT_SELECT_SENTENCE:
 				ci.setSelectSentence();
 				break;
+			case TXT_SELECT_WORD:
+				ci.setSelectWord();
+				break;
 //				case R.string.menu_sel_line_up:
 //				ci.setSelectLine(true);
 //				break;
@@ -1246,6 +1266,7 @@ public class st extends IKeyboard implements IKbdSettings
     	case st.TXT_SELECT_PARAGRAPF: // выделение
     	case st.TXT_SELECT_LINE: // выделение
     	case st.TXT_SELECT_SENTENCE: // выделение
+    	case st.TXT_SELECT_WORD: // выделение
     		setSelected(action);
     		return true;
     	case st.CMD_START_SET_LANG_ACTIVITY: // быстрая смена скина
@@ -1253,6 +1274,12 @@ public class st extends IKeyboard implements IKbdSettings
     		return true;
     	case st.CMD_MENU_QUICK_SELECT_SKIN: // быстрая смена скина
     		com_menu.showQuickSelectSkin(c);
+    		return true;
+    	case st.CMD_SHOW_USER_HIDE_LAYOUT: // показываем скрытые раскладки юзера
+    		com_menu.showUserHideLayout();
+    		return true;
+    	case st.CMD_SHOW_ADDITIONAL_HIDE_LAYOUT: // показываем дополнительные раскладки
+    		com_menu.showAdditionalLayout(c);
     		return true;
     	case st.CMD_MENU_QUICK_SELECT_LAYOUT: // быстрая смена раскладки
     		com_menu.showQuickSelectLangLayout(c);
@@ -1338,7 +1365,7 @@ public class st extends IKeyboard implements IKbdSettings
                 if(st.kv().isUserInput())
                 {
                 	if (st.fl_ac_list_view) 
-                		ServiceJbKbd.inst.m_candView.ViewCandList();
+                		ServiceJbKbd.inst.m_candView.popupViewFullList();
                     ServiceJbKbd.inst.onOptions();
                 }
             break;
@@ -1516,7 +1543,7 @@ public class st extends IKeyboard implements IKbdSettings
             	popupAdditional(1);
             break;
             case GESTURE_AC_PLACE_LIST:
-            	ServiceJbKbd.inst.m_candView.ViewCandList();
+            	ServiceJbKbd.inst.m_candView.popupViewFullList();
             break;
             case GESTURE_SPACE_QUANTITY:
             	float z = st.gesture_length / minGestSize;
@@ -1806,6 +1833,34 @@ public class st extends IKeyboard implements IKbdSettings
                 return filename.substring(pos).compareTo(ext)==0;
             }
         });
+    }
+    /** возвращает массив Vector с File из пути path, <br>
+     *  начинающихся с startText и расширением ext */
+    public static Vector<File> getFilesByStartText(String startText, String path, String ext)
+    {
+    	if (path == null)
+    		path = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER;
+        File f = new File(path);
+        if(!f.exists())
+        {
+            f.mkdirs();
+            st.toast(st.STR_ERROR);
+            return null;
+        }
+
+        File keyb[] = st.getFilesByExt(f, st.EXT_XML);
+        Vector arv= new Vector<WordEntry>();
+        if(keyb!=null||keyb.length>0) {
+            Arrays.sort(keyb);
+            for(File kf:keyb)
+            {
+            	if (kf.getName().startsWith(startText))
+            		arv.add(kf);
+            }
+        }
+        if (arv.size() < 1)
+        	return null;
+    	return arv;
     }
     public static CharSequence[] getGestureEntries(Context c)
     {
@@ -2329,9 +2384,12 @@ public class st extends IKeyboard implements IKbdSettings
     /** запуск устакновленного приложения, <br>
      * если оно не установлено то запуск маркета на установку
      * @param packageName - имя ПАКЕТА
+     * @param url- если null, то запускаем маркет, иначе идём по ссылке
      */
-    public static void runApp(Context c, String packageName)
+    public static void runApp(Context c, String packageName, String url)
     {
+    	if (url == null)
+    		url = RUN_MARKET_STRING+packageName;
     	Intent intent = null;
     	try {
 			PackageInfo pi = c.getPackageManager().getPackageInfo(packageName, 0);
@@ -2340,12 +2398,12 @@ public class st extends IKeyboard implements IKbdSettings
 				  c.startActivity(intent);
 	        	} else {
 		        	intent = new Intent(Intent.ACTION_VIEW);
-		            intent.setData(Uri.parse(RUN_MARKET_STRING+packageName));
+		            intent.setData(Uri.parse(url));
 		            c.startActivity(intent);
 	        	}
 		} catch (NameNotFoundException e) {
         	intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(RUN_MARKET_STRING+packageName));
+            intent.setData(Uri.parse(url));
             c.startActivity(intent);
 		}        
    	}
@@ -2566,7 +2624,9 @@ public class st extends IKeyboard implements IKbdSettings
        	arGestures.add(new KbdGesture(R.string.euv_actname, CMD_EDIT_USER_VOCAB));
        	arGestures.add(new KbdGesture(R.string.menu_sel_layout, CMD_MENU_QUICK_SELECT_LAYOUT));
        	arGestures.add(new KbdGesture(R.string.menu_sel_skin, CMD_MENU_QUICK_SELECT_SKIN));
-           }
+       	arGestures.add(new KbdGesture(R.string.user_hide_layout_menuname, CMD_SHOW_USER_HIDE_LAYOUT));
+       	arGestures.add(new KbdGesture(R.string.addit_layout_menuname, CMD_SHOW_ADDITIONAL_HIDE_LAYOUT));
+    }
 // запускает сервис синхронизации мультибуфера
     public static void startSyncServise()
     {
@@ -2888,7 +2948,7 @@ public class st extends IKeyboard implements IKbdSettings
 	 * чтобы появился токен. */
 	public static void showAcPlace()
 	{
-		if(ServiceJbKbd.inst.m_acPlace == JbCandView.AC_PLACE_NONE)
+		if(ServiceJbKbd.inst.m_acPlace == CandView.AC_PLACE_NONE)
 			return;
 		if(!ServiceJbKbd.inst.isInputViewShown())
 			return;
@@ -3174,5 +3234,10 @@ public class st extends IKeyboard implements IKbdSettings
     	        text, 0, text.length());
 		return et;
     }
-    
+    /** просто для breakpoint при тестированиив дебаггере */
+    public static void test() {
+    	System.out.println("test"); 
+
+    }
+  
 }

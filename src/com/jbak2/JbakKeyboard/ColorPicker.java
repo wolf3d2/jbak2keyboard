@@ -783,8 +783,8 @@ public class ColorPicker extends View implements View.OnTouchListener
 // правая сторона
 		rlp = new RelativeLayout.LayoutParams(
         		RelativeLayout.LayoutParams.WRAP_CONTENT,
-        		RelativeLayout.LayoutParams.WRAP_CONTENT)
-        		;
+        		RelativeLayout.LayoutParams.WRAP_CONTENT
+        		);
 		rlp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		
         LinearLayout llr = new LinearLayout(m_c);
@@ -819,13 +819,9 @@ public class ColorPicker extends View implements View.OnTouchListener
         		RelativeLayout.LayoutParams.MATCH_PARENT,
         		RelativeLayout.LayoutParams.WRAP_CONTENT)
         		;
-		//rlp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		rlp.setMargins(5, 10, 5, 5);
 		Spinner sp = new Spinner(m_c);
 		Adapt adapter = new Adapt(m_c,ar_color_example);
-//		ArrayAdapter<?> adapter = 
-//		ArrayAdapter.createFromResource(getContext(), R.array.ww_back_color, android.R.layout.simple_spinner_item);
-//		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp.setLayoutParams(rlp);
 		//sp.setBackgroundColor(0xffffffff);
 		sp.setAdapter(adapter);
@@ -1185,7 +1181,6 @@ public class ColorPicker extends View implements View.OnTouchListener
     			sb_g.setProgress(col_g);
     		if (sb_b!=null)
     			sb_b.setProgress(col_b);
-//    		((Spinner)parent).setBackgroundColor(rgb);
     		((Spinner)parent).setBackgroundResource(R.drawable.colors_table);;
     		setExampleText();
     	}

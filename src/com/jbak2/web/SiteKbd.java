@@ -42,9 +42,10 @@ public class SiteKbd {
 	public static final String CHECK_KEY = ";cjbak2";
 	public static final String SITE_KBD = "https://jbak2.ucoz.net";
 	public static final String PAGE_UPDATE = "/upd/act_ver_kbd.htm";
+	public static final String PAGE_OTHER_APP= "/index/vse_programmy/0-16";
 	/** дополнительные компоненты (jbak2layout, jbak2skin) */
 	public static final String PAGE_ADDITIONA_COMPONENT = "/load/dopolnitelno/21";
-	/** урл для программы словарей */
+	/** страница загрузки словарей */
 	public static final String PAGE_DICT = "/load/slovari/14";
 	/** страница отзывов */
 	public static final String PAGE_REVIEW = "/gb";
@@ -229,14 +230,18 @@ public class SiteKbd {
 		try {
 			vlini = Integer.parseInt(ver);
 		} catch (NumberFormatException e) {
+			ini.setParam(ini.LAST_CHECK_VERSION, st.STR_NULL+(vapp-1));
+			return 0;
 		}
+		long curtime = new Date().getTime();
 		ver = ini.getParamValue(ini.LAST_TIME_TOAST_NOT_UPDATE);
 		long tlasttoast = 0;
 		try {
 			tlasttoast = Long.parseLong(ver);
 		} catch (NumberFormatException e) {
+			ini.setParam(ini.LAST_TIME_TOAST_NOT_UPDATE, st.STR_NULL+curtime);
+			return 0;
 		}
-		long curtime = new Date().getTime();
 //		long tstart = 0;
 //		ver = ini.getParamValue(ini.VERSION_APP_CODE_START);
 //		if (ver == null) {
