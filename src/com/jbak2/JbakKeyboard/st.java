@@ -459,7 +459,7 @@ public class st extends IKeyboard implements IKbdSettings
 
 	public static final boolean DEBUG = true;
 /** Код, который используется, если основной текст клавиши из нескольких букв*/    
-    public static int KeySymbol = -201;
+    public static int keySymbol = -201;
  // теги скинов. 
  /** Используются в CustonDesign и конструкторе скинов */	
  	public static String arDesignNames[] = new String[]{
@@ -1031,7 +1031,7 @@ public class st extends IKeyboard implements IKbdSettings
     
     static JbKbd loadKeyboard(Keybrd k)
     {
-        KeySymbol = -201;
+    	keySymbol = -201;
         CustomKeyboard jk =  new CustomKeyboard(st.c(), k);
         if(!jk.m_bBrokenLoad)
         {
@@ -1302,7 +1302,7 @@ public class st extends IKeyboard implements IKbdSettings
         			runSetKbd(c,st.SET_KEY_HEIGHT_PORTRAIT);
         		return true;
         	case st.CMD_SHARE_SELECTED:
-        		st.sendShareTextIntent(c);
+        		st.sendShareSelectTextIntent(c);
             	com_menu.close();
         		st.hidekbd();
         		return true;
@@ -2330,7 +2330,7 @@ public class st extends IKeyboard implements IKbdSettings
                 		et.setSelection(et.getText().toString().length());
                 	}
             }
-        }, 200);
+        }, 50);
     }
     public static void hidekbd()
     {
@@ -2350,6 +2350,12 @@ public class st extends IKeyboard implements IKbdSettings
     public static float floatDp(float value,Context c)
     {
         return value*screenDensity(c);
+    }
+    public static int getDisplayDPI(Context c)
+    {
+    	if (c!=null)
+    		return c.getResources().getDisplayMetrics().densityDpi;
+    	return c().getResources().getDisplayMetrics().densityDpi;
     }
     public static int getDisplayWidth(Context c)
     {
@@ -2812,20 +2818,30 @@ public class st extends IKeyboard implements IKbdSettings
 
       	return step;
      	}
-      // поделиться выделенным
-      public static void sendShareTextIntent(Context c)
+      /** поделиться выделенным */
+      public static void sendShareSelectTextIntent(Context c)
       {
       	if (ServiceJbKbd.inst==null)
       		return;
           InputConnection ic = ServiceJbKbd.inst.getCurrentInputConnection();
-          String txt = ic.getSelectedText(0).toString();
+          String txt = null;
+          try {
+              txt = ic.getSelectedText(0).toString();
+		} catch (Throwable e) {
+			st.toast(R.string.empty);
+			return;
+		}
           st.sendShareTextIntent(c, txt);
      }
-     // поделиться
+     /** поделиться */
       public static void sendShareTextIntent(Context c, String txt)
       {
       	if (ServiceJbKbd.inst==null)
        		return;
+      	if (txt == null) {
+			st.toast(R.string.empty);
+      		return;
+      	}
       	Intent sendIntent = new Intent();
       	sendIntent.setAction(Intent.ACTION_SEND);
       	sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -3234,7 +3250,7 @@ public class st extends IKeyboard implements IKbdSettings
     	        text, 0, text.length());
 		return et;
     }
-    /** просто для breakpoint при тестированиив дебаггере */
+    /** просто для breakpoint при тестированиив в дебаггере */
     public static void test() {
     	System.out.println("test"); 
 

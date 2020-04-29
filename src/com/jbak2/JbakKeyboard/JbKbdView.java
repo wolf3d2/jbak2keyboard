@@ -30,7 +30,11 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,8 +90,8 @@ public class JbKbdView extends KeyboardView
     public static final int STATE_CAPS_LOCK     = 0x0000002;
 /** Состояние - включены звуки при наборе текста*/    
     public static final int STATE_SOUNDS        = 0x0000004;
-/** Состояние - включены жесты при наборе текста */    
-    public static final int STATE_GESTURES      = 0x0000008;
+/** НЕ ИСПОЛЬЗУЕТСЯ!!! Состояние - включены жесты при наборе текста */    
+    //public static final int STATE_GESTURES      = 0x0000008;
     int m_previewType = 1;
     int m_state = 0;
     int m_PreviewHeight=0;
@@ -98,6 +102,7 @@ public class JbKbdView extends KeyboardView
     static KbdDesign g_lastLoadedDesign= null;
     KbdDesign m_curDesign = null;
     static Field g_vertCorrectionField;
+    
     public JbKbdView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -140,7 +145,7 @@ public class JbKbdView extends KeyboardView
     		m_pk = new PopupKeyboard(inst.getContext());
     	if (IKeyboard.arDesign==null)
     		IKeyboard.setDefaultDesign();
-        g_lastLoadedDesign= st.arDesign[st.KBD_DESIGN_STANDARD];
+        g_lastLoadedDesign = st.arDesign[st.KBD_DESIGN_STANDARD];
         m_curDesign = g_lastLoadedDesign;
 
         m_vibro = VibroThread.getInstance(getContext());
@@ -198,7 +203,7 @@ public class JbKbdView extends KeyboardView
         String keyBack = "mKeyBackground";
         String shadowRadius = "mShadowRadius";
         String handler = "mHandler";
-        String gd = "mGestureDetector";
+        //String gd = "mGestureDetector";
         String vertCorr = "mVerticalCorrection";
         m_gd = new KeyboardGesture(this);
         for(int i=0;i<af.length;i++)
@@ -552,8 +557,14 @@ public class JbKbdView extends KeyboardView
         m_state = 0;
 //        if(pref.getBoolean(st.PREF_KEY_VIBRO_SHORT_KEY, false))
 //            m_state|=STATE_VIBRO_SHORT;
-        if(pref.getBoolean(st.PREF_KEY_USE_GESTURES, true))
-            m_state|=STATE_GESTURES;
+
+// не использовать! Сделано по другому (10.04.20)        
+//        if(pref.getBoolean(st.PREF_KEY_USE_GESTURES, true)) {
+//            //m_state|=STATE_GESTURES;
+//            m_gd = new KeyboardGesture(this);
+//        } else {
+//        	m_gd = null;
+//        }
         if(pref.getBoolean(st.PREF_KEY_SOUND, false))
             m_state|=STATE_SOUNDS;
 //        boolean bp = pref.getBoolean(st.PREF_KEY_PREVIEW, true);
@@ -1118,5 +1129,45 @@ public class JbKbdView extends KeyboardView
         }
         catch (Throwable e) {
         }
+    }
+    /** ставит на Button или TextView, оформление текущего скина
+     * @param view - TextView или Button
+     * @param bspec - как оформлять, как спецклавиша, или обычная */
+    public View getCurrentDesign(View view, boolean bspec)
+    {
+    	if (inst == null)
+    		return view;
+    	TextView tv = null;
+    	try {
+        	tv = (TextView)view;
+			
+		} catch (Throwable e) {
+			return view;
+		}
+    	KbdDesign des = null;
+    	if (!bspec)
+    		des = inst.m_curDesign;
+    	else
+    		des = inst.m_curDesign.m_kbdFuncKeys;
+    	if (des == null)
+    		des = inst.m_curDesign;
+    		
+        tv.setGravity(Gravity.CENTER);
+        tv.setTextSize(inst.m_LabelTextSize);
+        tv.setHeight(m_KeyHeight);
+        tv.setTextColor(des.textColor);
+        if (des.m_keyBackground!=null)
+        	tv.setBackground(des.m_keyBackground.getDrawable());
+        else
+        	tv.setBackground(inst.m_defDrawable);
+    	
+		if (view instanceof Button) {
+			view = (Button) tv;
+		} 
+		else if (view instanceof TextView) {
+			view = (TextView) tv;
+		} 
+
+    	return view;
     }
 }

@@ -14,9 +14,10 @@
 	<string name="other_app">(Ad) Другие приложения</string>
 	<string name="default_pref">Настройки по умолчанию</string>
 	<string name="msg_avtocorrect_and_addspace">Вы включили одновременно \"автоисправление\" и \"добавлять пробел после символов\" (в Автовводе).\n\nВместе они работают некорректно!</string>
-
+    <string name="in_developing">В разработке</string>
+	
 <!-- отзыв -->
-	<string name="review">Вам нравится программа?</string>
+	<string name="review">Оценить приложение</string>
 	<string name="review_desc">Оставьте пожалуйста свой отзыв на сайте программы.</string>
 	
 <!-- Title for update preferences -->
@@ -424,6 +425,7 @@
     <string name="rate_about">Пожалуйста, оцените приложение.</string>
     <string name="rate_query">Пожалуйста оцените однократно приложение, нажав на кнопку Оценить </string>
     <string name="rate_toast">Пожалуйста оцените приложение, выбрав пункт настроек Оценить приложение </string>
+    <string name="rate_not_toast">Что-то вы быстро написали отзыв...</string>
     <string name="rate_btn">Оценить</string>
     
 <!-- Как пользоваться клавиатурой -->
@@ -657,8 +659,11 @@
     <string name="set_key_gestures">Жесты</string>
     <string name="set_key_gestures_desc">Настройки для жестов</string>
     
-    <string name="set_key_use_gestures">Включить жесты</string>
-    <string name="set_key_use_gestures_desc">Включает/отключает все жесты</string>
+    <string name="gesture_clear">Очистить все жесты</string>
+    <string name="gesture_clear_desc">Действие, аналогичное отключению жестов</string>
+    <string name="gesture_clear_query">Это очистит все действия назначенные на жесты.</string>
+<!--     <string name="set_key_use_gestures">Включить жесты</string> -->
+<!--     <string name="set_key_use_gestures_desc">Включает/отключает все жесты</string> -->
     <string name="set_key_gesture_left">Влево</string>
     <string name="set_key_gesture_right">Вправо</string>
     <string name="set_key_gesture_up">Вверх</string>
@@ -706,6 +711,9 @@
 		<item>Изогнутый сплошной enter+улыбка</item>
 	</string-array>
     <string name="kbdact_back">Фон этого окна</string>
+    <string name="kbdact_kbd_none">Это прокручивающаяся раскладка, она не может быть показана здесь.
+\nОна может только использоваться.
+\nПри её выборе, не забудьте нажать кнопку Сохранить.</string>
     <string name="kbdact_toast1">Долгое нажатие на кнопки вправо/влево, открывают список</string>
     <string name="kbdact_error_open">Пока не всё подготовлено. Попробуйте немного позже</string>
     <string-array name="vibro_short_type">
@@ -903,6 +911,7 @@
     <string name="kbd_name_qwerty">Клавиатура Qwerty</string>    
     <string name="kbd_name_mwcorp">Клавиатура от MWcorp\n(недостающие символы - долгое нажатие на (если есть для данного языка)) add-маленькие, ADD-БОЛЬШИЕ.</string>    
     <string name="smiles_MWcorp">Смайлики от MWcorp</string>    
+ 	<string name="smiles_android7">Смайлики Android 7</string>
     <string name="smiles_MaxQwertyKeys">Смайлики от MaxQwertyKeys для Android 4.4 и выше</string>    
     <string name="kbd_psevdo_t9_mwcorp">Псевдо T9 от MWcorp</string>    
     <string name="kbd_landscape_mwcorp">Ландшафт от MWcorp v100\n(пример всех кнопок клавиатуры)</string>    
@@ -952,6 +961,7 @@
  	<string name="lang_edittext">Клавиатура правки текста</string>   
  	<string name="lang_edittext2">Клавиатура правки текста MWcorp</string>   
  	<string name="lang_edittext3">Клавиатура правки текста для больших экранов</string>   
+ 	<string name="lang_text_smiles">Текстовые смайлики</string>   
  	<string name="lang_smiles">Клавиатура смайликов</string>   
  	<string name="lang_numbers">Числовая клавиатура</string>   
  	<string name="lang_calc">Калькулятор</string>   

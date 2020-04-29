@@ -17,7 +17,8 @@
 	<string name="reboot">Завантажено. Потрібне перезавантаження пристрою</string>
 	<string name="default_pref">Налаштування за замовчуванням</string>
 	<string name="msg_avtocorrect_and_addspace">Ви увімкнули  одночасно \"автовиправлення\" та \"додавати пробіл після символів\" (в Автовводі).\n\nРазом вони працюють некоректно!</string>
-
+    <string name="in_developing">В розробці</string>
+	
 <!-- Title for update preferences -->
 	<string name="upd_screen">Обновления</string>
 	<string name="upd_screen_desc">Проверка обновлений программы и другое</string>
@@ -34,7 +35,7 @@
 	<string name="upd_unknown_source_desc_">Перед установкой программы, не забудьте разрешить установку программ из неизвестных источников</string>
 
 <!-- отзыв -->
-	<string name="review">Вам нравится программа?</string>
+	<string name="review">Оцінити додаток</string>
 	<string name="review_desc">Оставьте пожалуйста свой отзыв на сайте программы.</string>
 	
 <!-- Title for new version check site-->
@@ -433,6 +434,7 @@
     <string name="rate_about">Будь ласка, оцініть додаток.</string>
     <string name="rate_query">Будь ласка оцініть однократно додаток, натиснувши на кнопку Оцінити </string>
     <string name="rate_toast">Будь ласка оцініть додаток, обравши пункт налаштувань Оцінити додаток </string>
+    <string name="rate_not_toast">Что-то вы быстро написали отзыв...</string>
     <string name="rate_btn">Оцінити</string>
     
 <!-- активность help -->
@@ -630,8 +632,12 @@
 
   <string name="set_key_gestures">Жести</string>
   <string name="set_key_gestures_desc">Налаштування для жестів</string>
-  <string name="set_key_use_gestures">Увімкнути жести</string>
-  <string name="set_key_use_gestures_desc">Вмикає/вимикає всі жести</string>
+
+    <string name="gesture_clear">Очистить все жесты</string>
+    <string name="gesture_clear_desc">Действие, аналогичное отключению жестов</string>
+    <string name="gesture_clear_query">Это очистит все действия назначенные на жесты.</string>
+<!--   <string name="set_key_use_gestures">Увімкнути жести</string> -->
+<!--   <string name="set_key_use_gestures_desc">Вмикає/вимикає всі жести</string> -->
   <string name="set_key_gesture_left">Ліворуч</string>
   <string name="set_key_gesture_right">Праворуч</string>
   <string name="set_key_gesture_up">Догори</string>
@@ -693,6 +699,9 @@
 		<item>Вигнутий суцільний enter+посмішка</item>
     </string-array>
     <string name="kbdact_back">Фон цього вікна</string>
+    <string name="kbdact_kbd_none">Это прокручивающаяся раскладка, она не может быть показана здесь.
+\nОна может только использоваться.
+\nПри её выборе, не забудьте нажать кнопку Сохранить.</string>
     <string name="kbdact_toast1">Довге натискання на кнопки праворуч/ліворуч відкриває список</string>
     <string name="kbdact_error_open">Поки не все підготовлено. Спробуйте трішки пізніше</string>
     <string-array name="vibro_short_type">
@@ -892,7 +901,8 @@
   <string name="kbd_name_qwerty">Клавіатура Qwerty</string>
   <string name="kbd_name_mwcorp">Клавіатура вiд MWcorp</string>
   <string name="smiles_MWcorp">Смайлики від MWcorp</string>    
-    <string name="smiles_MaxQwertyKeys">Смайлики від MaxQwertyKeys для Android 4.4 і вище</string>    
+ 	<string name="smiles_android7">Смайлики Android 7</string>
+  <string name="smiles_MaxQwertyKeys">Смайлики від MaxQwertyKeys для Android 4.4 і вище</string>    
   <string name="kbd_psevdo_t9_mwcorp">Псевдо T9 вiд MWcorp</string>    
   <string name="kbd_t9_mwcorp">T9 вiд MWcorp</string>    
   <string name="kbd_name_qwerty_hyastan64">Вiд Hyastan64</string>    
@@ -940,7 +950,8 @@
   <string name="lang_edittext">Клавіатура правки тексту</string>
  	<string name="lang_edittext2">Клавіатура правки тексту MWcorp</string>   
  	<string name="lang_edittext3">Клавіатура правки тексту для великих екранів</string>   
- 	<string name="lang_smiles">Клавіатура смайликів</string>
+ 	<string name="lang_text_smiles">Текстові смайли</string>   
+ 		<string name="lang_smiles">Клавіатура смайликів</string>
   <string name="lang_numbers">Числова клавіатура</string>
    	<string name="lang_calc">Калькулятор</string>   
   <string name="lang_symbol_selector">Перемикач символьної та qwerty клавіатури</string>   

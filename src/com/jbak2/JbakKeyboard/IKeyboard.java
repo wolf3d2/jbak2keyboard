@@ -933,9 +933,11 @@ public class IKeyboard {
 				new Keybrd("edittext_4row_8inch_MWcorp", R.string.lang_edittext3),
 
 				new Keybrd("smile_MaxQwertyKeys Emoji_my-3", R.string.smiles_MaxQwertyKeys),
-				new Keybrd("smile_standard", R.string.lang_smiles), 
+				new Keybrd("smile_standard", R.string.lang_text_smiles), 
 				new Keybrd("smile_MWcorp_v100", R.string.smiles_MWcorp),
-
+				new Keybrd("smile_scroll_android7", R.string.smiles_android7),
+//				new Keybrd("smile_scroll_example_andr6", R.string.about),
+				
 				new Keybrd("num_kbd", R.string.lang_numbers), 
 				new Keybrd("num_5row", R.string.kbd_name_5_rows),
 				new Keybrd("num_Round", R.string.kbd_name_round),

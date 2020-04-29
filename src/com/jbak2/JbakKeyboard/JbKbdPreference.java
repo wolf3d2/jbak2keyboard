@@ -65,6 +65,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	// long rateLen = 0;
 	// String rateapp = null;
 
+/** время старта на оставление отзыва. <br>
+ * Записываем значение что оценили  в onResume, если отсутствовали в программе <br>
+ * более какого-то времени */
+	long review_time_start = 0;
 	File file_crash;
 	private static final int MAX_STACK_STRING = 8192;
 	private static final String CAUSED_BY = "caused by";
@@ -134,7 +138,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		// st.help(sss);
 
 		if (Font.tf == null)
-			new Font(inst, null);
+			new Font(inst);
 
 		// проверяем был ли послан текст для записи в буфер
 		checkStartIntent();
@@ -367,6 +371,16 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		}
 		setCheckEntry(inst, 1, ini);
 		new SiteKbd(inst).checkVersion(ini);
+		String par = null;
+		rate_app = 0;
+		par = ini.getParamValue(ini.RATE_APP);
+		if (par != null) {
+			try {
+				rate_app = Integer.parseInt(par);
+			} catch (NumberFormatException e) {
+				rate_app = 0;
+			}
+		}
 
 		//// ini.setFilename(st.getSettingsPath()+ini.PAR_INI);
 		//// if (!ini.isFileExist()){
@@ -374,7 +388,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		//// return;
 		//// }
 		// new_vers = false;
-		// String par = ini.getParamValue(ini.VERSION_CODE);
+		// String par = null;
+		// par = ini.getParamValue(ini.VERSION_CODE);
 		// if (par == null)
 		// new_vers = false;
 		// else if (par.compareToIgnoreCase(vers)!=0)
@@ -432,8 +447,44 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		// rateCheck();
 		// или проверка новой версии на сайте клавы
 		else {
+			// просьба оценить приложение в маркете
+			rateCheckSiteKbd();
 			st.checkUpdate(inst, ini, false);
 		}
+	}
+
+	/** просьба оставить отзыв на сайте программы, если не оставляли */
+	public boolean rateCheckSiteKbd() {
+		// если оценивали - выходим
+		if (rate_app != 0)
+			return true;
+		if (ini == null)
+			return true;
+		long curtime = new Date().getTime();
+		String param = ini.getParamValue(ini.RATE_APP);
+		if (param == null) {
+			ini.setParam(ini.RATE_APP, st.STR_ZERO);
+			return true;
+		}
+
+
+//		 String scurtime = "dd.MM.yyyy HH:mm:ss";
+//		 Date dt = new Date();
+//		 dt.setTime(curtime);
+//		 SimpleDateFormat sdf = new SimpleDateFormat(scurtime);
+//		 scurtime = sdf.format(dt);
+//		 String spartime = "dd.MM.yyyy HH:mm:ss";
+//		 dt = new Date();
+//		 dt.setTime((long) (timeini));
+//		 sdf = new SimpleDateFormat(spartime);
+//		 scurtime = scurtime;
+//		 spartime = sdf.format(dt);
+
+		// curtime и initime сравнивать не нужно - мы только выводим тост
+		if (rate_app == 0&&Quick_setting_act.inst == null) {
+			st.toastLong(R.string.rate_toast);
+		}
+		return rate_app == 1;
 	}
 
 	public boolean rateCheck() {
@@ -497,6 +548,18 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 		// st.fl_pref_act = true;
 		super.onResume();
+		if (review_time_start!=0) {
+			long cur = new Date().getTime();
+			// если вернулись в программу меньше, чем за 10сек., то НЕ записываем 
+			// что оставили отзыв
+			if (cur >= review_time_start + 10000) {
+				if (ini!=null)
+					ini.setParam(ini.RATE_APP, st.STR_ONE);
+			} else {
+				st.toastLong(R.string.rate_not_toast);
+			}
+			review_time_start = 0;
+		}
 		// if (rateStart!=0) {
 		// st.toast("rateStart!=0\n");
 		// try {
@@ -714,6 +777,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	// }
 	//
 	// }
+
+	//
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -734,7 +799,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		// showCalcHeightCorrInd();
 		// return true;
 		// }
-		else if ("show_picker".equals(k)) {
+		else if ("gesture_clear".equals(k)) {
+			showGestureClear();
+			return true;
+		} else if ("show_picker".equals(k)) {
 			showPicker();
 			return true;
 		} else if ("mini_keyboard_help".equals(k)) {
@@ -766,6 +834,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			Intent in = new Intent(Intent.ACTION_VIEW);
 			in.setData(Uri.parse(SiteKbd.SITE_KBD + SiteKbd.PAGE_REVIEW));
 			startActivity(in);
+			// записываем что отзыв оставил в onResume
+			review_time_start = new Date().getTime();
 
 		} else if ("go_on_site".equals(k)) {
 			Intent in = new Intent(Intent.ACTION_VIEW);
@@ -1467,6 +1537,38 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			}
 		});
 		Dlg.customDialog(inst, v, inst.getString(R.string.ok), inst.getString(R.string.cancel), null, obs);
+	}
+
+	void showGestureClear() {
+		String query = inst.getString(R.string.are_you_sure);
+		query += st.STR_LF + st.STR_LF + inst.getString(R.string.gesture_clear_query);
+
+		Dlg.yesNoDialog(inst, query, new st.UniObserver() {
+
+			@Override
+			public int OnObserver(Object param1, Object param2) {
+				if (((Integer) param1).intValue() == AlertDialog.BUTTON_POSITIVE) {
+					SharedPreferences sp = st.pref(inst);
+					Editor e = sp.edit();
+					e.putString(st.PREF_KEY_GESTURE_LEFT, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_RIGHT, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_UP, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_DOWN, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_SPACE_LEFT, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_SPACE_RIGHT, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_SPACE_UP, st.STR_ZERO);
+					e.putString(st.PREF_KEY_GESTURE_SPACE_DOWN, st.STR_ZERO);
+
+					e.putInt(st.PREF_KEY_GESTURE_CNT, 0);
+
+					e.commit();
+					inst.recreate();
+				}
+
+				return 0;
+			}
+		});
+
 	}
 
 	/** коррекция высоты индикатора над калькулятором */

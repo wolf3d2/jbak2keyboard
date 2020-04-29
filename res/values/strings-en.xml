@@ -15,7 +15,8 @@
 	<string name="reboot">Loaded. Device reboot required</string>
 	<string name="default_pref">Default settings</string>
 	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
-
+    <string name="in_developing">In developing</string>
+	
 <!-- Title for update preferences -->
 	<string name="upd_screen">Updates</string>
 	<string name="upd_screen_desc">Check for app updates and more</string>
@@ -32,7 +33,7 @@
 	<string name="upd_unknown_source_desc_">Before installing the program, do not forget to allow installation of apps from unknown sources</string>
 
 <!-- отзыв -->
-	<string name="review">Leave a review</string>
+	<string name="review">Rate the app</string>
 	<string name="review_desc">Please write a review on the program website so that other people can make an initial opinion about the program.</string>
 
 <!-- Title for new version check site-->
@@ -91,8 +92,8 @@
     <string name="pref_mini_kbd_screen_desc">Still in beta. These settings apply only to the first version of the small keyboard (i.e. when the popupCharacter tag is not v2).</string>
     <string name="pref_mini_kbd_its">Its own small keyboard</string>
     <string name="pref_mini_kbd_its_desc">If checked, its own small keyboard is used, otherwise the default one will be used</string>
-	<string name="pref_mini_kbd_help">Использование своей маленькой клавиатуры говорит только о том, что будет показываться не системная, а собственная маленькая всплывающая клавиатура, создаваемая программой.
-\nНастройки ниже, задают внешний вид миниклавиатуры, не как вы хотите, а как она будет удобнее всего в использовании именно на вашем устройстве и под ваши пальцы.</string>
+	<string name="pref_mini_kbd_help">Using its own small keyboard means that the small pop-up keyboard created by the program will be shown and not the system keyboard.
+\nThe settings below determine the appearance of the mini-keyboard not the way you want, but how it will be the most convenient to use on your device and for your fingers.</string>
     <string name="pref_mini_kbd_btnsize">Key size</string>
     <string name="pref_mini_kbd_btnsize_desc">Key size in the small keyboard</string>
     <string name="pref_mini_kbd_example">See the example</string>
@@ -434,6 +435,7 @@
     <string name="rate_about">Please, rate this app.</string>
 <string name="rate_query">Please, rate the app once by clicking the Rate button </string>
     <string name="rate_toast">Please, rate the application by selecting the \“Rate the app\” setting item</string>
+    <string name="rate_not_toast">You left your review too quickly</string>
     <string name="rate_btn">Rate</string>
 
 <!-- Как пользоваться клавиатурой -->
@@ -488,12 +490,12 @@
 \nTemplate name must not contain commas.
 \nt :text displayed on the button (by default, the template name is inserted)
 \n\nIf the template folder is specified as the template name, templates will be opened on this folder </string>
-	<string name="set_ac_defkey_help_button_font">\n\nКнопка +F, вставляет в позицию курсора специальное значение $f#&lt;символ&gt;, для включения в отображении кнопки, символа из встроенного в клавиатуру шрифта, который выбирается в диалоге (вставленное значение будет показываться буквой, но на кнопке будет показан символ из встроенного).
-\nПоэтому курсор всегда необходимо ставить на место вставки названия создаваемой кнопки и перед нажатием кнопки +F.
-\n\nЕсли в строке названия создаваемой кнопки, присутствует хотя-бы одно значение $f#, то на кнопке будет включен шрифт клавиатуры.
-\n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
-\n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
-\nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
+	<string name="set_ac_defkey_help_button_font">\n\nThe +F, button inserts at the cursor position the special value  $f#&lt;character&gt;,  to display in the button the character from the built-in font that is selected in the dialog box (the inserted value will be shown as a letter, but the character that will be shown on the button will be from the built-in font).
+\nTherefore, the cursor should always be set in place where the name of the created button will be inserted and before pressing the +F button. 
+\n\nIf at least one of the value of $f#, is presented in the name string of the created button, then the keyboard font will be enabled on the button.
+\n\nBUILT-IN FONT ICONS WILL BE SHOWN ONLY IN THE KEYBOARD!
+\n\nA standard font character will be inserted in the input field, if there is one in the font. 
+\nTherefore, this feature makes sense only when you create buttons and for their better perception</string>
 
 	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>
@@ -630,7 +632,7 @@
     <string name="set_key_ac_desc">Settings for words in Autocomplete</string>
 	<string name="set_key_ac_place_sub_panel">Rendering method of Autocomplete</string>
 <!--     <string name="set_key_ac_place_sub_panel_desc">Experimental feature. Correct functioning is not guaranteed!\nIf checked, the autocomplete box will not be displayed on top of all windows.</string> -->
-    <string name="set_key_ac_place_sub_panel_desc">Попробуйте разные методы, если есть проблемы с отображением окна автодополнения</string>
+    <string name="set_key_ac_place_sub_panel_desc">Try different methods if there are problems with the display of the Autocomplete box</string>
     <string name="set_key_ac_place">Autocomplete box</string>
     <string name="set_key_ac_place_desc">Where to display the Autocomplete box?</string>
     <string name="set_key_ac_place_0">Disable</string>
@@ -644,8 +646,11 @@
     <string name="set_key_gestures">Gestures</string>
     <string name="set_key_gestures_desc">Gesture settings</string>
 
-    <string name="set_key_use_gestures">Use gestures</string>
-    <string name="set_key_use_gestures_desc">Enable/disable all gestures</string>
+    <string name="gesture_clear">Clear all gestures</string>
+    <string name="gesture_clear_desc">Action similar to gesture disabling</string>
+    <string name="gesture_clear_query">This will clear all actions assigned to gestures</string>
+<!--     <string name="set_key_use_gestures">Use gestures</string> -->
+<!--     <string name="set_key_use_gestures_desc">Enable/disable all gestures</string> -->
     <string name="set_key_gesture_left">To the left</string>
     <string name="set_key_gesture_right">To the right</string>
     <string name="set_key_gesture_up">Up</string>
@@ -702,6 +707,9 @@
 		<item>Curved solid Enter+smile</item>
     </string-array>
     <string name="kbdact_back">Current window background</string>
+    <string name="kbdact_kbd_none">This is a scrollable layout; it cannot be shown here.
+\nIt can only be used.
+\nWhen selecting it, do not forget to click the Save button.</string>
     <string name="kbdact_toast1">Long press on the buttons to the right/left to open the list</string>
     <string name="kbdact_error_open">Not fully ready yet. Try later</string>
     <string-array name="vibro_short_type">
@@ -718,7 +726,7 @@
 
     <string name="es_title">Fullscreen editor settings</string>
     <string name="es_sample">Sample</string>
-    <string name="es_sample_text">First line\nSecond line\nThird line</string>
+    <string name="es_sample_text">Never be afraid to try something new. Remember, amateurs built the Ark, professionals built the Titanic</string>
     <string name="es_font">Font</string>
     <string name="es_font_size">Font size</string>
     <string name="es_font_bold">Bold</string>
@@ -812,7 +820,7 @@
     <string name="tpl_text_calc_hint">Description</string>
     <string name="tpl_editor">Template editor</string>
     <string name="tpl_save">Save</string>
-    <string name="tpl_spec_options">Special options</string>
+    <string name="tpl_spec_options">Special instructions</string>
     <string name="tpl_fields_empty">All fields must to be filled out!</string>
     <string name="tpl_delete">Do you want to delete \"%s\"?</string>
     <string name="tpl_unicode_app">Program with Unicode characters (Unicode Pad)</string>
@@ -904,7 +912,7 @@
 
 	<string name="about_author_desc">Michail Wyazenkin (MWcorp, 4pda - wolf3d2)\n Previous developer (until 0.97.7)\nJuriy Bakunin</string>
 	<string name="about_other">Other:</string>
-	<string name="about_other_desc">The application will be fully translated in a couple of months.\nTranslations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
+	<string name="about_other_desc">Translations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
     <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
 	<string name="about_color_picker_btn">Color picker</string>
     <string name="diary">List of changes</string>
@@ -921,7 +929,8 @@
 	<string name="kbd_name_qwerty">Qwerty keyboard</string>
     <string name="kbd_name_mwcorp">MWcorp\'s keyboard</string>
  	<string name="smiles_MWcorp">Emoji MWcorp</string>
-    <string name="smiles_MaxQwertyKeys">Emoji from MaxQwertyKeys for Android 4.4 and above</string>    
+ 	<string name="smiles_android7">Emoji Android 7</string>
+ 	<string name="smiles_MaxQwertyKeys">Emoji from MaxQwertyKeys for Android 4.4 and above</string>    
  	<string name="kbd_name_qwerty_hyastan64">Haystan64\'s keyboard</string>
     <string name="kbd_name_qwerty_rusrespect">from RusRespect</string>    
     <string name="kbd_name_qwerty_eliz69">from eliz69</string>    
@@ -980,6 +989,7 @@
  	<string name="lang_edittext">TextEdit keyboard</string>
  	<string name="lang_edittext2">TextEdit keyboard MWcorp</string>   
  	<string name="lang_edittext3">TextEdit keyboard for large screens</string>   
+ 	<string name="lang_text_smiles">Text emoji</string>   
  	<string name="lang_smiles">Emoji keyboard</string>
  	<string name="lang_numbers">Numeric keyboard</string>
  	<string name="lang_calc">Calculator</string>
@@ -1045,7 +1055,7 @@
     <string name="addit_layout9">Superscript and subscript characters</string>
     <string name="addit_layout10">Pseudographics (draw a table)</string>
     <string name="addit_layout11">Technical symbols 1</string>
-    <string name="addit_layout12">Technical symbols  2</string>
+    <string name="addit_layout12">Technical symbols 2</string>
     <string name="addit_layout13">Other 1</string>
     <string name="addit_layout14">Other 2</string>
 </resources>

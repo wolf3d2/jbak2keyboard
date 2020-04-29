@@ -613,11 +613,18 @@
     <PreferenceScreen
         android:summary="@string/set_key_gestures_desc"
         android:title="@string/set_key_gestures" >
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="use_gestures"
-            android:summary="@string/set_key_use_gestures_desc"
-            android:title="@string/set_key_use_gestures" />
+        
+        <Preference
+            android:key="gesture_clear"
+            android:summary="@string/gesture_clear_desc"
+            android:title="@string/gesture_clear" 
+            />
+
+<!--         <CheckBoxPreference -->
+<!--             android:defaultValue="true" -->
+<!--             android:key="use_gestures" -->
+<!--             android:summary="@string/set_key_use_gestures_desc" -->
+<!--             android:title="@string/set_key_use_gestures" /> -->
 
         <Preference
             android:key="gesture_create"

@@ -12,6 +12,7 @@ import java.util.Vector;
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.ctrl.Font;
+import com.jbak2.ctrl.Font.FontArSymbol;
 
 import android.app.Activity;
 import android.app.AlertDialog;

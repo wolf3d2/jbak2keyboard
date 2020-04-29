@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView
+        android:id="@+id/ks_scroll_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:padding="2dp" 
+        >
+  
+        <LinearLayout
+            android:id="@+id/ks_ll_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" 
+            >
+
+        </LinearLayout>
+    </ScrollView>
+
+    <GridView
+        android:id="@+id/ks_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+	    android:layout_toRightOf ="@+id/ks_scroll_left"
+	    android:layout_toLeftOf ="@+id/ks_scroll_right"
+        android:padding="2dp" 
+        >
+  
+        </GridView>>
+
+    <ScrollView
+        android:id="@+id/ks_scroll_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:padding="2dp" 
+        >
+  
+        <LinearLayout
+            android:id="@+id/ks_ll_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" 
+            >
+
+        </LinearLayout>
+    </ScrollView>
+
+    
+</RelativeLayout>

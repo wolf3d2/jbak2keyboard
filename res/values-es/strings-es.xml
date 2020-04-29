@@ -15,7 +15,8 @@
     <string name="reboot">Descargado. Se requiere el reinicio</string>
     <string name="default_pref">Ajustes predeterminados</string>
     <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
-
+    <string name="in_developing">En desarrollo</string>
+    
     <!-- Title for update preferences -->
     <string name="upd_screen">Actualizaciones</string>
     <string name="upd_screen_desc">Revisión de actualizaciones y más</string>
@@ -32,7 +33,7 @@
     <string name="upd_unknown_source_desc_">Antes de instalar el programa, no olvide permitir la instalación de aplicaciones de fuentes desconocidas</string>
 
     <!-- отзыв -->
-    <string name="review">Deje un comentario</string>
+    <string name="review">Evaluar la aplicación</string>
     <string name="review_desc">Deje un comentario en el sitio web del programa para que otras personas puedan tener una opinión inicial sobre el teclado.</string>
 
     <!-- Title for new version check site -->
@@ -90,8 +91,8 @@
     <string name="pref_mini_kbd_screen_desc">Todavía en fase beta. Estas configuraciones se aplican solamente a la primera versión del teclado pequeño (es decir, cuándo la etiqueta popupCharacter no es v2).</string>
     <string name="pref_mini_kbd_its">Su propio teclado pequeño</string>
     <string name="pref_mini_kbd_its_desc">Si está marcado, se usa su propio teclado pequeño, de lo contrario se usará el predeterminado</string>
-	<string name="pref_mini_kbd_help">Использование своей маленькой клавиатуры говорит только о том, что будет показываться не системная, а собственная маленькая всплывающая клавиатура, создаваемая программой.
-\nНастройки ниже, задают внешний вид миниклавиатуры, не как вы хотите, а как она будет удобнее всего в использовании именно на вашем устройстве и под ваши пальцы.</string>
+	<string name="pref_mini_kbd_help">El uso de su propio teclado pequeño significa que se mostrará el pequeño teclado emergente creado por el programa y no el teclado del sistema.
+\nLos ajustes siguientes determinan la apariencia del mini teclado no de la manera que desea, sino de cómo será más conveniente usarlo en su dispositivo y para sus dedos.</string>
     <string name="pref_mini_kbd_btnsize">Tamaño de las teclas</string>
     <string name="pref_mini_kbd_btnsize_desc">Tamaño de las teclas en el teclado pequeño</string>
     <string name="pref_mini_kbd_example">Ver el ejemplo</string>
@@ -304,7 +305,7 @@
     <string name="pc2_info">ℹ Si hay varias teclas, la ventana se desplaza</string>
 
     <!-- создание своего жеста -->
-    <string name="gesture_create">Creación de su propio gesto</string>
+    <string name="gesture_create">Crear su propio gesto</string>
     <string name="gesture_create_all">Gestos creados:</string>
     <string name="gesture_create_add">Añadir</string>
     <string name="gesture_save">Guardar</string>
@@ -413,11 +414,12 @@
     <string name="rate_about">Por favor, evalúa la aplicación</string>
     <string name="rate_query">Por favor, evalúa la aplicación presionando el botón Evaluar </string>
     <string name="rate_toast">Por favor, califique la aplicación seleccionando el párrafo de configuración: Evaluar la aplicación</string>
+    <string name="rate_not_toast">Usted dejó su reseña demasiado rápido</string>
     <string name="rate_btn">Evaluar</string>
 
     <!-- активность help -->
     <string name="help">Soporte</string>
-    <string name="help_readme">Léeme.</string>
+    <string name="help_readme">Léeme</string>
     
     <!-- Как пользоваться клавиатурой -->
     <string name="ann">Cómo usar el teclado</string>
@@ -446,6 +448,9 @@
     <string name="label_go_key">Ir</string>
     <string name="label_next_key">Sig.</string>
     <string name="label_send_key">Enviar</string>
+
+	<string name="set_market1">Por favor, evalúa la aplicación</string>
+
     <string name="set_enter_state">Tecla Enter</string>
     <string name="set_enter_state_desc">Cambiar el ícono en la tecla Enter dependiendo del contexto?</string>
     <string name="set_ac_defkey">Palabras por defecto</string>
@@ -468,16 +473,16 @@
 \nNombre de la plantilla no debe contener comas.
 \nt : texto mostrado en el botón (por defecto, se inserta el nombre de la plantilla)
 \n\nSi se especifica la carpeta de plantillas como nombre de plantilla, las plantillas se abrirán en esta carpeta</string>
-	<string name="set_ac_defkey_help_button_font">\n\nКнопка +F, вставляет в позицию курсора специальное значение $f#&lt;символ&gt;, для включения в отображении кнопки, символа из встроенного в клавиатуру шрифта, который выбирается в диалоге (вставленное значение будет показываться буквой, но на кнопке будет показан символ из встроенного).
-\nПоэтому курсор всегда необходимо ставить на место вставки названия создаваемой кнопки и перед нажатием кнопки +F.
-\n\nЕсли в строке названия создаваемой кнопки, присутствует хотя-бы одно значение $f#, то на кнопке будет включен шрифт клавиатуры.
-\n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
-\n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
-\nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
-    
-    <string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
-    <string name="set_ac_space">Вставка пробела</string>
-    <string name="set_ac_space_desc">Вставлять пробел после ввода слова из автодополнения</string>
+    <string name="set_ac_defkey_help_button_font">\n\nEl botón +F, inserta en la posición del cursor el valor especial $f#&lt;carácter&gt;, y para visualizar en el botón el carácter de la fuente incorporada que se selecciona en el cuadro de diálogo (el valor insertado se mostrará como una letra, pero el carácter que se mostrará en el botón será de la fuente incorporada). 
+\nPor lo tanto, el cursor siempre debe establecerse en el lugar donde se insertará el nombre del botón creado y antes de presionar el botón +F. 
+\n\nSi al menos un valor de $f# está presente en la cadena del nombre del botón que se está creando, la fuente del teclado se habilitará en el botón. 
+\n\n¡ICONOS DE LA FUENTE INCORPORADA SE VISUALIZARÁN SOLO EN EL TECLADO!
+\n\nSe insertará el símbolo de la fuente estándar en el campo de entrada, si hay uno en la fuente.
+\nPor lo tanto, esta función solo tiene sentido al crear botones, para su mejor percepción</string>
+
+    <string name="set_ac_new_defkey">La cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
+    <string name="set_ac_space">Insertar espacio</string>
+    <string name="set_ac_space_desc">Insertar espacio después de una palabra seleccionada del Autocompletado</string>
     <string name="indicators">Indicadores</string>
     <string name="set_counter">Longitud del texto</string>
     <string name="set_counter_desc">Longitud del texto en el área de entrada ACTUAL\nActiva el Autocompletado para visualizar.</string>
@@ -605,7 +610,7 @@
     <string name="set_key_ac_desc">Ajustes del Autocompletado</string>
     <string name="set_key_ac_place_sub_panel">Método de renderizado de Autocompletado</string>
     <!-- <string name="set_key_ac_place_sub_panel_desc">Función experimental. El funcionamiento correcto no está garantizado!\nSi está marcado, la ventana de Autocompletado no se visualizará sobre todas las ventanas</string> -->
-    <string name="set_key_ac_place_sub_panel_desc">Попробуйте разные методы, если есть проблемы с отображением окна автодополнения</string>
+    <string name="set_key_ac_place_sub_panel_desc">Pruebe diferentes métodos si hay problemas para mostrar la ventana de Autocompletado</string>
     <string name="set_key_ac_place">Ventana del autocompletado</string>
     <string name="set_key_ac_place_desc">¿Dónde mostrar la ventana del Autocompletado?</string>
     <string name="set_key_ac_place_0">No mostrar</string>
@@ -630,8 +635,12 @@
     <string name="vk_use_2">- a la izquierda, + a al derecha</string>
     <string name="set_key_gestures">Gestos</string>
     <string name="set_key_gestures_desc">Ajustes de los gestos</string>
-    <string name="set_key_use_gestures">Habilitar los gestos</string>
-    <string name="set_key_use_gestures_desc">Activar/desactivar todos los gestos</string>
+
+    <string name="gesture_clear">Borrar todos los gestos</string>
+    <string name="gesture_clear_desc">Acción similar a la desactivación de gestos</string>
+    <string name="gesture_clear_query">Esto borrará todas las acciones asignadas a los gestos.</string>
+<!--     <string name="set_key_use_gestures">Habilitar los gestos</string> -->
+<!--     <string name="set_key_use_gestures_desc">Activar/desactivar todos los gestos</string> -->
     <string name="set_key_gesture_left">A la izquierda</string>
     <string name="set_key_gesture_right">A la derecha</string>
     <string name="set_key_gesture_up">Arriba</string>
@@ -677,6 +686,9 @@
     </string-array>
 
     <string name="kbdact_back">Fondo de esa ventana</string>
+    <string name="kbdact_kbd_none">Este es un diseño desplazable; no se puede mostrar.
+\nSolo se puede usar.
+\nAl seleccionarlo, no olvide hacer clic en el botón Guardar.</string>
     <string name="kbdact_toast1">Pulsación larga en las teclas hacia derecha/izquierda para abrir la lista</string>
     <string name="kbdact_error_open">Aún no está listo. Inténtelo más tarde</string>
 
@@ -701,6 +713,7 @@
     <string name="mm_enter_end">Enter después de pegar</string>
     <string name="mm_synchronize">Sincronización</string>
     <string name="mm_info">ℹ Si hay varias teclas, el menú se desplaza\n(las teclas de la derecha también).\n\nUna pulsación larga sobre un elemento de menú (en los lugares adecuados) abre el editor del elemento.\n\nSe puede realizar varias operaciones de archivos con las plantillas y con los programas de calculadora, usando cualquier administrador de archivos. Cada plantilla (programa de calculadora) es un archivo regular donde el nombre de la plantilla es un nombre de archivo.\nLa ruta a la carpeta de la plantilla o del programa de calculadora se muestra en la parte superior de la pantalla de menú.</string>
+    <string name="mm_btn_size">Tamaño del texto de las teclas</string>
     <string name="mm_btn_size_desc">Establece el tamaño del texto de las teclas (Por defecto 15))</string>
     <string name="mm_btnoff_size">Tamaño del texto de las teclas adicionales</string>
     <string name="mm_btnoff_size_desc">Establece el tamaño del texto de las teclas adicionales(Por defecto 8)</string>
@@ -851,11 +864,11 @@
     <string name="about_author">Desarrollador:</string>
     <string name="about_author_desc">Michail Wyazenki\n(MWcorp, 4pda - wolf3d2)\nDesarrollador antiguo (hasta 0.97.7): Yuri Bakunin</string>
     <string name="about_other">Otro:</string>
-    <string name="about_other_desc">La aplicación será traducida por completo en un par de meses.\nTraducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
+    <string name="about_other_desc">Traducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
 
     <!-- переводить только то, что есть на русском и именно так, как указано здесь -->
     <!-- для каждой локали своя строка! -->
-    <string name="about_web">Sitio del programa: http://jbak2.ucoz.net\n\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \n\nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
+    <string name="about_web">(Lea hasta el final))Sitio del programa: http://jbak2.ucoz.net\n\nTema de conversación del programa Jbak2: http://4pda.ru/forum/index.php?showtopic=638021 \n\nmi nick: wolf3d2\n\nBasado en el Jbak keyboard versión 0.97.7\n</string>
     <string name="about_keycode_button">Código del símbolo (útil para crear su propio tema) \n(la aplicación UnicodePad)</string>
     <string name="about_color_picker_btn">Selector de color</string>
     <string name="diary">Lista de cambios</string>
@@ -870,6 +883,7 @@
     <string name="kbd_name_qwerty">Teclado Qwerty</string>
     <string name="kbd_name_mwcorp">Teclado de MWcorp\n(pulsación larga para insertar los símbolos que faltan (si hay para ese idioma)) ;add para las minúsculas, ADD para las mayúsculas.</string>
     <string name="smiles_MWcorp">Teclado de MWcorp</string>
+ 	<string name="smiles_android7">Teclado Android 7</string>
     <string name="smiles_MaxQwertyKeys">Emoticones de MaxQwertyKeys para Android 4.4 y superior</string>
     <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 de MWcorp</string>
     <string name="kbd_t9_mwcorp">T9 de MWcorp\n(se debe activar el modo Shift 3 (Ajustes-Otros ajustes-Shift))</string>
@@ -918,6 +932,7 @@
     <string name="lang_edittext">Teclado de edición de texto</string>
     <string name="lang_edittext2">Teclado de edición de texto MWcorp</string>
     <string name="lang_edittext3">Teclado de edición de texto para pantallas grandes</string>
+ 	<string name="lang_text_smiles">Emoticones de texto</string>   
     <string name="lang_smiles">Teclado de emoticones</string>
     <string name="lang_numbers">Teclado numérico</string>
     <string name="lang_calc">Calculadora</string>

@@ -10,7 +10,8 @@ $selword
 
 $selline 
 
-ayudan a organizar el procesamiento del texto seleccionado, por ejemplo, a encerrar el texto seleccionado entre comillas ("$select") 
+ayudan a organizar el procesamiento del texto seleccionado, por ejemplo, a encerrar el texto seleccionado entre comillas ("$select").
+Cuando se utiliza en las etiquetas template y  longTemplate en lugar del carácter de avance de línea, especifique '\n'. 
 
 
 
@@ -75,7 +76,7 @@ En diferentes dispositivos, este valor puede variar en cualquier dirección. Est
 
 formato de instrucción:
 
-selToPos[0,0,0,.] 
+$selToPos[0,0,0,.] 
 
 (todos los parámetros están separados por comas, excepto el cuarto (se permite una coma)). 
 
@@ -103,15 +104,15 @@ Si es menor que 0, buscamos la cadena completa especificada en el 4to parámetro
 
 Ejemplos: 
 
-selToPos[0,0,0,.] : seleccionamos el texto desde el principio y hasta el primer punto desde el principio. 
+$selToPos[0,0,0,.] : seleccionamos el texto desde el principio y hasta el primer punto desde el principio. 
 
-selToPos[0,0,-1,.] : lo mismo, pero seleccionamos hasta el primer punto desde el final del texto. 
+$selToPos[0,0,-1,.] : lo mismo, pero seleccionamos hasta el primer punto desde el final del texto. 
 
-selToPos[10,0,0,.] : seleccionamos el texto desde la décima posición desde el principio hasta el primer punto desde el principio.
+$selToPos[10,0,0,.] : seleccionamos el texto desde la décima posición desde el principio hasta el primer punto desde el principio.
 
-selToPos[0,0,0,.!?] - seleccionamos el texto desde el principio hasta el momento en que aparecen uno de los siguientes caracteres .!? 
+$selToPos[0,0,0,.!?] - seleccionamos el texto desde el principio hasta el momento en que aparecen uno de los siguientes caracteres .!? 
 
-selToPos[0,-1,0,Hola] - seleccionamos el texto desde el principio hasta la palabra Hola.
+$selToPos[0,-1,0,Hola] - seleccionamos el texto desde el principio hasta la palabra Hola.
 
 
 $program 

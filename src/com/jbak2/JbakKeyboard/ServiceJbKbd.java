@@ -195,7 +195,7 @@ public class ServiceJbKbd extends InputMethodService
 	/** сохранение параметров для калькулятора */
 	CandView m_candView1;
 	/** Просмотр кандидатов, прикрепленный к клавиатуре */
-	CandView m_kbdCandView;
+	//CandView m_kbdCandView;
 	WindowManager m_wm;
 	public static ServiceJbKbd inst;
 	/** Символы концов предложений */
@@ -278,7 +278,7 @@ public class ServiceJbKbd extends InputMethodService
 		// pref.registerOnSharedPreferenceChangeListener(this);
 		// onSharedPreferenceChanged(pref, null);
 		if (Font.tf == null)
-			new Font(inst, null);
+			new Font(inst);
 		readPreferences();
 		
 	}
@@ -382,6 +382,9 @@ public class ServiceJbKbd extends InputMethodService
 	public void onStartInputView(EditorInfo attribute, boolean restarting) {
 		if (com_menu.inst != null) {
 			com_menu.close();
+		}
+		if (CustomKbdScroll.inst != null) {
+			CustomKbdScroll.close();
 		}
 		if (!Perm.checkPermission(inst)) {
 			st.runAct(Quick_setting_act.class, inst);
@@ -1368,43 +1371,43 @@ public class ServiceJbKbd extends InputMethodService
 	public final void processKey(int primaryCode) {
 		thiskey = null;
 		if (!Templates.template_processing) {
-		if (st.kv() != null) {
-			thiskey = st.kv().lk_this;
-			if (st.kv().longpress) {
-				if (JbKbdView.processLongKey)
-					return;
-				else
-					JbKbdView.processLongKey = true;
-			}
-
-		} else
-			thiskey = st.curKbd().getKeyByCode(primaryCode);
-		if (thiskey == null)
-			thiskey = st.curKbd().getKeyByCode(primaryCode);
-			
-//		lastkey_index = st.kv().getKeyIndex(thiskey);
-
-		if (thiskey != null && thiskey.mainText != null && thiskey.mainText.length() > 0) {
 			if (st.kv() != null) {
+				thiskey = st.kv().lk_this;
 				if (st.kv().longpress) {
-					if (thiskey.runSpecialInstructions(true))
+					if (JbKbdView.processLongKey)
 						return;
-				} else {
-					if (thiskey.runSpecialInstructions(false))
-						return;
+					else
+						JbKbdView.processLongKey = true;
 				}
 
+			} else
+				thiskey = st.curKbd().getKeyByCode(primaryCode);
+			if (thiskey == null)
+				thiskey = st.curKbd().getKeyByCode(primaryCode);
+				
+//			lastkey_index = st.kv().getKeyIndex(thiskey);
+
+			if (thiskey != null && thiskey.mainText != null && thiskey.mainText.length() > 0) {
+				if (st.kv() != null) {
+					if (st.kv().longpress) {
+						if (thiskey.runSpecialInstructions(true))
+							return;
+					} else {
+						if (thiskey.runSpecialInstructions(false))
+							return;
+					}
+
+				}
 			}
-		}
-		if (thiskey != null && JbKbdView.inst != null && !JbKbdView.inst.longpress
-				&& thiskey.shortPopupCharacters.length() > 0) {
-			if (!JbKbdView.inst.m_pk.fl_popupcharacter_window) {
-				JbKbdView.inst.m_pk.showPopupKeyboard("v2 " + thiskey.shortPopupCharacters.trim());
-				return;
+			if (thiskey != null && JbKbdView.inst != null && !JbKbdView.inst.longpress
+					&& thiskey.shortPopupCharacters.length() > 0) {
+				if (!JbKbdView.inst.m_pk.fl_popupcharacter_window) {
+					JbKbdView.inst.m_pk.showPopupKeyboard("v2 " + thiskey.shortPopupCharacters.trim());
+					return;
+				}
 			}
-		}
-		if (st.fl_keycode)
-			m_candView.setKeycode(primaryCode);
+			if (st.fl_keycode)
+				m_candView.setKeycode(primaryCode);
 		}
 		beep(primaryCode);
 		InputConnection ic = getCurrentInputConnection();
@@ -1927,7 +1930,7 @@ public class ServiceJbKbd extends InputMethodService
 					menu.close();
 					break;
 				case st.CMD_DECOMPILE_KEYBOARDS:
-					CompiledKbdToXML();
+					compiledKbdToXML();
 					menu.close();
 					break;
 				default:
@@ -2540,9 +2543,12 @@ public class ServiceJbKbd extends InputMethodService
 		st.debug_mode= sharedPreferences.getBoolean(st.PREF_KEY_DEBUG_MODE, false);
 		st.color_picker_type= sharedPreferences.getBoolean(st.PREF_KEY_TYPE_COLOR_PICKER, false);
 		//st.ac_sub_panel = sharedPreferences.getBoolean(st.PREF_AC_SUB_PANEL, false);
-		st.type_ac_window = Integer.decode(sharedPreferences.getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL+st.TYPE_AC_METHOD2));
-		//sharedPreferences.getInt(st.PREF_AC_WINDOW_TYPE, st.TYPE_AC_METHOD2);
-		
+		if (st.PREF_AC_WINDOW_TYPE.equals(key) || key == null) {
+			st.type_ac_window = Integer.decode(sharedPreferences.getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL+st.TYPE_AC_METHOD2));
+			//sharedPreferences.getInt(st.PREF_AC_WINDOW_TYPE, st.TYPE_AC_METHOD2);
+			m_candView = null;
+			m_candView = createNewCandView();
+		}
 		try {
 	        st.enter_pict = Integer.decode(st.pref(this).getString(st.PREF_ENTER_PICT, st.STR_ZERO));
 			
@@ -2596,8 +2602,9 @@ public class ServiceJbKbd extends InputMethodService
 		}
 		if (st.PREF_KEY_USE_VOLUME_KEYS.equals(key) || key == null)
 			m_volumeKeys = Integer.valueOf(sharedPreferences.getString(st.PREF_KEY_USE_VOLUME_KEYS, st.STR_ZERO));
-		if (st.PREF_KEY_AC_PLACE.equals(key) || key == null)
+		if (st.PREF_KEY_AC_PLACE.equals(key) || key == null) {
 			m_acPlace = Integer.valueOf(sharedPreferences.getString(st.PREF_KEY_AC_PLACE, st.STR_ONE));
+		}
 		if (st.PREF_KEY_ADD_SPACE_SYMBOLS.equals(key) || key == null) {
 			m_SpaceSymbols = sharedPreferences.getString(st.PREF_KEY_ADD_SPACE_SYMBOLS, ",?!.");
 			m_SpaceSymbols = st.getDelSpace(m_SpaceSymbols, st.STR_SPACE);
@@ -3038,7 +3045,7 @@ public class ServiceJbKbd extends InputMethodService
 		return b;
 	}
 
-	void CompiledKbdToXML() {
+	void compiledKbdToXML() {
 		try {
 			String path = st.getSettingsPath() + "keyboards/res/";
 			new File(path).mkdirs();

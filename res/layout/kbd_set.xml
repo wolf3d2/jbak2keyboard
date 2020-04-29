@@ -171,6 +171,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
 	android:layout_alignParentBottom="true"
+	android:orientation="vertical"
 	android:gravity="bottom"
 	 android:layout_below="@id/kbd_set_controls"
     >
@@ -182,5 +183,19 @@
 		android:clickable="false"
 	  	android:gravity="bottom"
 	/>
+
+ <TextView
+     android:id="@+id/keyboard_height_none_txt"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_gravity="center_horizontal"
+     android:layout_marginBottom="100px"
+     android:layout_marginLeft="15dp"
+     android:layout_marginRight="15dp"
+     android:text="@string/kbdact_kbd_none"
+     android:textSize="18dp"
+     android:visibility="gone" />
+
 </LinearLayout>
 </RelativeLayout>

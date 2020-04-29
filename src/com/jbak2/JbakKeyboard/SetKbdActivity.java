@@ -3,6 +3,7 @@ package com.jbak2.JbakKeyboard;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Vector;
 
 import com.jbak2.CustomGraphics.BitmapCachedGradBack;
@@ -23,6 +24,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.inputmethodservice.Keyboard;
+import android.inputmethodservice.Keyboard.Key;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
 import android.os.Build;
 import android.os.Bundle;
@@ -64,6 +66,7 @@ public class SetKbdActivity extends Activity {
 	ImageButton ibnext = null;
 	ImageButton ibprev = null;
 	TextView tv_name = null;
+	TextView tv_kbd_none = null;
 	/**
 	 * Текущий тип экрана, для которого выбирается клава. 0- оба типа, 1 - портрет,
 	 * 2 - ландшафт
@@ -95,6 +98,7 @@ public class SetKbdActivity extends Activity {
 		if (m_MainView == null)
 			finish();
 		tv_name = (TextView) m_MainView.findViewById(R.id.keyboard_name);
+		tv_kbd_none = (TextView) m_MainView.findViewById(R.id.keyboard_height_none_txt);
 		setBackColor();
 		// m_MainView.setBackgroundDrawable(st.getBack());
 		SharedPreferences pref = st.pref();
@@ -252,6 +256,7 @@ public class SetKbdActivity extends Activity {
 				}
 			});
 		}
+		isScrollKeyboard();
 		setContentView(m_MainView);
 		setContentView(m_MainView);
 	}
@@ -411,6 +416,7 @@ public class SetKbdActivity extends Activity {
 	void setKeyboard(Keybrd kbd) {
 		m_kbd.setKeyboard(st.loadKeyboard(kbd));
 		tv_name.setText(kbd.getName(this));
+		isScrollKeyboard();
 	}
 
 	OnKeyboardActionListener m_kbdListener = new OnKeyboardActionListener() {
@@ -695,6 +701,7 @@ public class SetKbdActivity extends Activity {
 		if (m_MainView == null)
 			return;
 		tv_name.setTextColor(Color.WHITE);
+		tv_kbd_none.setTextColor(Color.WHITE);
 		// при изменении не забыть в листенере
 		// кнопки указания фона менять максимальное значение
 		// этого свича
@@ -714,6 +721,7 @@ public class SetKbdActivity extends Activity {
 		case 4:
 			m_MainView.setBackgroundColor(Color.LTGRAY);
 			tv_name.setTextColor(Color.BLACK);
+			tv_kbd_none.setTextColor(Color.BLACK);
 			break;
 		case 5:
 			m_MainView.setBackgroundColor(Color.DKGRAY);
@@ -722,11 +730,13 @@ public class SetKbdActivity extends Activity {
 			m_MainView.setBackgroundDrawable(new GradBack(0xffFF8C00, 0xffaa0000).setCorners(0, 0).setGap(0)
 					.setDrawPressedBackground(false).getStateDrawable());
 			tv_name.setTextColor(Color.BLACK);
+			tv_kbd_none.setTextColor(Color.BLACK);
 			break;
 		case 7:
 			m_MainView.setBackgroundDrawable(new GradBack(0xff00ffee, 0xffaa0000).setCorners(0, 0).setGap(0)
 					.setDrawPressedBackground(false).getStateDrawable());
 			tv_name.setTextColor(Color.BLACK);
+			tv_kbd_none.setTextColor(Color.BLACK);
 			break;
 		case 8:
 			m_MainView.setBackgroundDrawable(new GradBack(0xff8B008B, 0xffaa0000).setCorners(0, 0).setGap(0)
@@ -873,5 +883,32 @@ public class SetKbdActivity extends Activity {
 			resId_et = res_id_et;
 		}
 	}
-
+	/** true - определяет и выводит надпись что это скроллящееся раскладка,  <br>
+	 * в зависимости от того, есть-ли кнопки клавиатуры на экране <br>
+	 * и клавиатура выше 10px */
+	boolean isScrollKeyboard()
+	{
+		if (m_kbd == null)
+			return false;
+		if (tv_kbd_none == null)
+			return false;
+		tv_kbd_none.setVisibility(View.GONE);
+		m_kbd.setVisibility(View.VISIBLE);
+		boolean vis = false;
+	    List<Key> ar = m_kbd.getKeyboard().getKeys();
+	    if (ar == null)
+	    	vis = true;
+	    else if (ar.size()<1)
+	    	vis = true;
+		m_kbd.measure(0, 0);
+		int bbb = m_kbd.getMeasuredHeight();
+		if (m_kbd.getMeasuredHeight() < 20) 
+			vis = true;
+		if (vis) {
+			m_kbd.setVisibility(View.GONE);
+			tv_kbd_none.setVisibility(View.VISIBLE);
+			return true;
+		}
+		return false;
+	}
 }

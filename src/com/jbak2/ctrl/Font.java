@@ -35,13 +35,19 @@ import android.widget.TextView;
  */
 public class Font {
 	public static Typeface tf = null;
-	public static final String TYPEFACE_DEFAULT_ASSETS_FILENAME = "jbak2key.ttf";
+	public static final String TYPEFACE_ASSETS_FILENAME = "jbak2key.ttf";
+
+	/** массив констант с перечислением какие буквы 
+	 *  какому символу соответствуют <br>
+	 * НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы и в методе <br>
+	createArraySymbolOfFont() */
 	public static char[] ar_symbol;
 
-	/**
-	 * просто массив констант с перечислением какие буквы <br>
-	 * какому символу соответствуют
-	 */
+	/** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
+	createArraySymbolOfFont() */
+
+	/** просто массив констант с перечислением какие буквы <br>
+	 *  какому символу соответствуют */
 	public static class FontArSymbol {
 		public static final char TO_START = 'A';
 		public static final char TO_END = 'B';
@@ -87,13 +93,79 @@ public class Font {
 		public static final char SELECT = 'o';
 		public static final char SHARE1 = 'p';
 		public static final char SHARE2 = 'q';
+		public static final char KORZINA = 'r';
+		public static final char SKIN = 's';
+		public static final char FLAG_DARK = 't';
+		public static final char FLAG_LIGHT = 'u';
+		public static final char SIZE_TEXT = 'v';
+		public static final char LANGUAGE = 'w';
+		public static final char MICROPHONE = 'x';
+		/** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
+		createArraySymbolOfFont() */
+	}
+	public static char[] createArraySymbolOfFont() {
+		Vector<String> vch = new Vector<String>();
+		vch.add(st.STR_NULL+FontArSymbol.TO_START);
+		vch.add(st.STR_NULL+FontArSymbol.TO_END);
+		vch.add(st.STR_NULL+FontArSymbol.HOME_STR);
+		vch.add(st.STR_NULL+FontArSymbol.END_STR);
+		vch.add(st.STR_NULL+FontArSymbol.BACKSPACE);
+		vch.add(st.STR_NULL+FontArSymbol.DELETE);
+		vch.add(st.STR_NULL+FontArSymbol.KEYBOARD);
+		vch.add(st.STR_NULL+FontArSymbol.SETTING);
+		vch.add(st.STR_NULL+FontArSymbol.UNDO);
+		vch.add(st.STR_NULL+FontArSymbol.REDO);
+		vch.add(st.STR_NULL+FontArSymbol.HOME);
+		vch.add(st.STR_NULL+FontArSymbol.MENU);
+		vch.add(st.STR_NULL+FontArSymbol.ENTER);
+		vch.add(st.STR_NULL+FontArSymbol.SPACE);
+		vch.add(st.STR_NULL+FontArSymbol.SCREPKA);
+		vch.add(st.STR_NULL+FontArSymbol.SMILE_CIRCLE);
+		vch.add(st.STR_NULL+FontArSymbol.SMILE_ULIBKA_HORIZONTAL);
+		vch.add(st.STR_NULL+FontArSymbol.SHIFT);
+		vch.add(st.STR_NULL+FontArSymbol.COPY);
+		vch.add(st.STR_NULL+FontArSymbol.PASTE);
+		vch.add(st.STR_NULL+FontArSymbol.KARANDASH);
+		vch.add(st.STR_NULL+FontArSymbol.NOZNICI);
+		vch.add(st.STR_NULL+FontArSymbol.CALCULATOR);
+		vch.add(st.STR_NULL+FontArSymbol.GALOCHKA);
+		vch.add(st.STR_NULL+FontArSymbol.BIG_TEXT);
+		vch.add(st.STR_NULL+FontArSymbol.SAVE);
+		vch.add(st.STR_NULL+FontArSymbol.OPEN);
+		vch.add(st.STR_NULL+FontArSymbol.GLOBUS);
+		vch.add(st.STR_NULL+FontArSymbol.TRANSLATE);
+		vch.add(st.STR_NULL+FontArSymbol.KEYBOARD_DONE);
+		vch.add(st.STR_NULL+FontArSymbol.SEARCH);
+		vch.add(st.STR_NULL+FontArSymbol.SORT_A_Z);
+		vch.add(st.STR_NULL+FontArSymbol.SORT_Z_A);
+		vch.add(st.STR_NULL+FontArSymbol.POWER_OFF);
+		vch.add(st.STR_NULL+FontArSymbol.POWER_ON);
+		vch.add(st.STR_NULL+FontArSymbol.PALETTE);
+		vch.add(st.STR_NULL+FontArSymbol.EXIT);
+		vch.add(st.STR_NULL+FontArSymbol.PGUP);
+		vch.add(st.STR_NULL+FontArSymbol.PGDN);
+		vch.add(st.STR_NULL+FontArSymbol.LEFT_RIGHT);
+		vch.add(st.STR_NULL+FontArSymbol.SELECT);
+		vch.add(st.STR_NULL+FontArSymbol.SHARE1);
+		vch.add(st.STR_NULL+FontArSymbol.SHARE2);
+		vch.add(st.STR_NULL+FontArSymbol.KORZINA);
+		vch.add(st.STR_NULL+FontArSymbol.SKIN);
+		vch.add(st.STR_NULL+FontArSymbol.FLAG_DARK);
+		vch.add(st.STR_NULL+FontArSymbol.FLAG_LIGHT);
+		vch.add(st.STR_NULL+FontArSymbol.SIZE_TEXT);
+		vch.add(st.STR_NULL+FontArSymbol.LANGUAGE);
+		vch.add(st.STR_NULL+FontArSymbol.MICROPHONE);
+
+		char[] ar = new char[vch.size()];
+		for (int i = 0; i < vch.size(); i++) {
+			ar[i] = vch.get(i).charAt(0);
+		}
+		Arrays.sort(ar);
+		return ar;
 	}
 
-	public Font(Context con, String filenameAssets) {
-		if (filenameAssets != null)
-			tf = Typeface.createFromAsset(con.getAssets(), filenameAssets);
-		else if (tf == null)
-			tf = Typeface.createFromAsset(con.getAssets(), TYPEFACE_DEFAULT_ASSETS_FILENAME);
+	public Font(Context con) {
+		tf = Typeface.createFromAsset(con.getAssets(), TYPEFACE_ASSETS_FILENAME);
 		ar_symbol = createArraySymbolOfFont();
 	}
 
@@ -105,7 +177,7 @@ public class Font {
 		public FontGridAdapt(Context context, st.UniObserver obs) {
 			super(context, 0);
 			m_c = context;
-			ar_symbol = createArraySymbolOfFont();
+			//ar_symbol = createArraySymbolOfFont();
 			m_MenuObserver = obs;
 			;
 
@@ -133,16 +205,29 @@ public class Font {
 		}
 
 		View newView(int pos, View vv) {
+			LinearLayout ll = null;
+			// символ из основного шрифта
+			TextView tvs = null;
+			// символ из шрифта клавиатуры
 			TextView tv = null;
 			if (vv == null) {
+				ll = new LinearLayout(m_c);
+				ll.setOrientation(LinearLayout.HORIZONTAL);
+				tvs = new TextView(m_c);
 				tv = new TextView(m_c);
 				// НЕ ЮЗАТЬ!!! Иначе вылет на андроидах < 5
 				// tv.setLayoutParams(new
 				// LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
 				// LinearLayout.LayoutParams.WRAP_CONTENT
 				// ));
-			} else
-				tv = (TextView) vv;
+			} else {
+				ll = (LinearLayout) vv;
+				tvs = (TextView) ll.getChildAt(0);
+				tv = (TextView) ll.getChildAt(1);
+				ll.removeAllViews();
+			}
+			tvs.setText(st.STR_NULL + ar_symbol[pos]+st.STR_POINT);
+			ll.addView(tvs);
 			tv.setId(pos);
 			tv.setOnClickListener(m_listener);
 			tv.setOnLongClickListener(m_longListener);
@@ -150,7 +235,8 @@ public class Font {
 			tv.setTypeface(tf);
 			// ch = st.STR_NULL+ar[pos];
 			tv.setText(st.STR_NULL + ar_symbol[pos]);
-			vv = tv;
+			ll.addView(tv);
+			vv = ll;
 			return vv;
 		}
 
@@ -229,28 +315,32 @@ public class Font {
 		}
 	}
 
-	public static char[] createArraySymbolOfFont() {
-		Field[] ff = Font.FontArSymbol.class.getDeclaredFields();
-		String nn = null;
-		Field fff = null;
-		Vector<String> vch = new Vector<String>();
-		for (int i = 0; i < ff.length; i++) {
-			fff = ff[i];
-			nn = fff.getType().toString();// .getName();
-			if (nn.compareToIgnoreCase("char") == 0) {
-				try {
-					vch.add("" + fff.getChar(i));
-				} catch (IllegalArgumentException | IllegalAccessException e1) {
-				}
-			}
-		}
-		char[] ar = new char[vch.size()];
-		for (int i = 0; i < vch.size(); i++) {
-			ar[i] = vch.get(i).charAt(0);
-		}
-		Arrays.sort(ar);
-		return ar;
-	}
+//	public static char[] createArraySymbolOfFont() {
+//		Field[] ff = Font.FontArSymbol.class.getDeclaredFields();
+//		String nn = null;
+//		Field fff = null;
+//		Vector<String> vch = new Vector<String>();
+//		for (int i = 0; i < ff.length; i++) {
+//			fff = ff[i];
+//			nn = fff.getType().toString();
+//			if (nn.compareToIgnoreCase("char") == 0) {
+//				try {
+//	                fff.setAccessible(true);
+//
+//					vch.add("" + fff.getChar(i));
+//				} catch (Throwable e) {
+//					st.log("jbak2. Font.createArraySymbolOfFont");
+//					st.logEx(e);
+//				}
+//			}
+//		}
+//		char[] ar = new char[vch.size()];
+//		for (int i = 0; i < vch.size(); i++) {
+//			ar[i] = vch.get(i).charAt(0);
+//		}
+//		Arrays.sort(ar);
+//		return ar;
+//	}
 
 	/** диалог выбора символа из списка типа gridLayout */
 	public static void showDialogGridSelectSymbolOfFont(Context con, st.UniObserver obs) {
@@ -263,6 +353,8 @@ public class Font {
 		}
 		if (wid >= 480)
 			wid = 5;
+		else if (wid >= 240&&wid < 480)
+			wid = 4;
 		else
 			wid = 3;
 		grid.setNumColumns(wid);

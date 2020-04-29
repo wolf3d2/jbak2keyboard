@@ -218,20 +218,20 @@ public class CandView extends RelativeLayout
     	display_width = st.getDisplayWidth(m_c);
     	m_ll = (LinearLayout)findViewById(R.id.completions);
    		m_defkey = ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey);
-   		if (st.type_ac_window != st.TYPE_AC_METHOD2) {
-   	   		m_keycode = ((TextView)findViewById(R.id.cand_keycode)); 
-   	    	m_counter = ((TextView)findViewById(R.id.cand_counter));
-   	    	m_forcibly = ((TextView)findViewById(R.id.cand_forcibly));
-   	    	m_calcind = ((TextView)findViewById(R.id.cand_calcind)); 
-   	    	m_calcmenu = ((TextView)findViewById(R.id.cand_calcmenu));
-   		} else {
-   	   		m_keycode = ((TextView)findViewById(R.id.cand2_keycode)); 
-   	    	m_counter = ((TextView)findViewById(R.id.cand2_counter));
-   	    	m_forcibly = ((TextView)findViewById(R.id.cand2_forcibly));
-   	    	m_calcind = ((TextView)findViewById(R.id.cand2_calcind)); 
-   	    	m_calcmenu = ((TextView)findViewById(R.id.cand2_calcmenu));
-   			
-   		}
+//   		if (st.type_ac_window != st.TYPE_AC_METHOD2) {
+//   	   		m_keycode = ((TextView)findViewById(R.id.cand_keycode)); 
+//   	    	m_counter = ((TextView)findViewById(R.id.cand_counter));
+//   	    	m_forcibly = ((TextView)findViewById(R.id.cand_forcibly));
+//   	    	m_calcind = ((TextView)findViewById(R.id.cand_calcind)); 
+//   	    	m_calcmenu = ((TextView)findViewById(R.id.cand_calcmenu));
+//   		} else {
+//   	   		m_keycode = ((TextView)findViewById(R.id.cand2_keycode)); 
+//   	    	m_counter = ((TextView)findViewById(R.id.cand2_counter));
+//   	    	m_forcibly = ((TextView)findViewById(R.id.cand2_forcibly));
+//   	    	m_calcind = ((TextView)findViewById(R.id.cand2_calcind)); 
+//   	    	m_calcmenu = ((TextView)findViewById(R.id.cand2_calcmenu));
+//   			
+//   		}
         
     	m_height = context.getResources().getDimensionPixelSize(R.dimen.cand_height);
         m_defaultFontSize = context.getResources().getDimensionPixelSize(R.dimen.candidate_font_height);
@@ -353,8 +353,9 @@ public class CandView extends RelativeLayout
 	@Override
     protected void onFinishInflate() 
     {
-        if (ServiceJbKbd.inst!=null&&ServiceJbKbd.inst.m_acPlace!=AC_PLACE_TITLE 
-        		&&st.type_ac_window == st.TYPE_AC_METHOD2) {
+        if (ServiceJbKbd.inst!=null&&st.type_ac_window == st.TYPE_AC_METHOD2
+        		&&ServiceJbKbd.inst.m_acPlace!=AC_PLACE_TITLE 
+        		) {
         	setInflatePopupPanelButton();
         	return;
         }
@@ -520,6 +521,7 @@ public class CandView extends RelativeLayout
     /** подсчитываем ширинц автодопа.<br>
      * Для метода setTexts чтобы не утекала память */
     int ac_width = 0;
+    CompletionInfo completion_info = null;
     public void setTexts(String words[],CompletionInfo[]completions)
     {
     	popupHideFullListView();
@@ -583,7 +585,12 @@ public class CandView extends RelativeLayout
             if(m_es!=null)
                 m_es.setToEditor(tv);
             setTexAndFuncKey(tv,ssss, pos);
-            tv.setTag(completions!=null?completions[pos]:null);
+            completion_info = null;
+            if (completions==null||pos<completions.length)
+            	completion_info = null;
+            // старая строка
+            //tv.setTag(completions!=null?completions[pos]:null);
+            tv.setTag(completion_info);
             pos++;
         }
         while(pos<cc)
@@ -1177,25 +1184,25 @@ public class CandView extends RelativeLayout
         {
         case AC_PLACE_KEYBOARD:
         	yPos = 0-st.kv().getHeight();
-        	if (st.debug_mode)
-        		st.toast(""+yPos);
         	break;
         case AC_PLACE_BOTTOM_KEYBOARD:
         	//yPos = 0-500;
-            //yPos = 0-st.kv().getHeight();
-            yPos = 0-300;
-            //yPos = +m_height;//-getContext().getResources().getDisplayMetrics().heightPixels+m_height+m_height;
-          int full_disp_h = getContext().getResources().getDisplayMetrics().heightPixels;
-          int heig = st.kv().getHeight();
-          int koorY = full_disp_h - hei;
-          int th = m_height;
-      	if (st.debug_mode)
-            st.toast("disp_full: "+full_disp_h
-                	  +"\nkbd_h    : "+hei
-                	  +"\nkoord_y  : "+koorY
-                	  +"\nheiAC    : "+th
-                	  +"\nypos     : "+yPos
-              	 );
+            //yPos = 0-(st.kv().getHeight()-m_height);
+            yPos = 0-m_height;
+//            yPos = (getContext().getResources().getDisplayMetrics().heightPixels
+//            		-m_height);
+//          int full_disp_h = getContext().getResources().getDisplayMetrics().heightPixels;
+//          int heig = st.kv().getHeight();
+//          int koorY = full_disp_h - hei;
+//          int th = m_height;
+//      	if (st.debug_mode) {
+//            st.toastLong("disp_full: "+full_disp_h
+//              	  +"\nkbd_h    : "+hei
+//              	  +"\nkbd_y  : "+koorY
+//              	  +"\nheiAC    : "+th
+//              	  +"\nypos     : "+yPos
+//              	 );
+//      	}
         	break;
         }
         try {
@@ -1495,6 +1502,7 @@ public class CandView extends RelativeLayout
         {
             m_lines = 1;
         }
+        
         TextView tv = createTextView(false);
         tv.setText("Tgd");
         tv.setPadding(0, st.ac_height, 0, st.ac_height);

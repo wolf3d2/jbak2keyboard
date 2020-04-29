@@ -11,7 +11,8 @@ $selword
 
 $selline 
 
-help to organize the processing of selected text, for example, to enclose selected text in quotes ("$select")
+help to organize the processing of selected text, for example, to enclose selected text in quotes ("$select").
+When using in the template and longTemplate tags instead of the line feed character, specify '\n'.
 
 
 
@@ -73,7 +74,7 @@ On different devices, this value can vary in any direction. This is an Android l
 
 Instruction format: 
 
-selToPos[0,0,0,.] 
+$selToPos[0,0,0,.] 
 
 (all parameters are separated by commas, except the fourth (a comma is allowed in it)). 
 
@@ -99,15 +100,15 @@ If it is less than 0, then we look for the entire string specified in the 4th pa
 
 Examples: 
 
-selToPos[0,0,0,.] : select text from the very beginning to the first point from the beginning.
+$selToPos[0,0,0,.] : select text from the very beginning to the first point from the beginning.
 
-selToPos[0,0,-1,.] : same thing, but select to the first point from the end of the text 
+$selToPos[0,0,-1,.] : same thing, but select to the first point from the end of the text 
 
-selToPos[10,0,0,.] : select text from the tenth position from the beginning and to the first point from the beginning. 
+$selToPos[10,0,0,.] : select text from the tenth position from the beginning and to the first point from the beginning. 
 
-selToPos[0,0,0,.!?] : select text from the very beginning until the moment when one of the these characters is encountered .!?
+$selToPos[0,0,0,.!?] : select text from the very beginning until the moment when one of the these characters is encountered .!?
 
-selToPos[0,-1,0,Hola] : select text from the very beginning to the word Hola.
+$selToPos[0,-1,0,Hola] : select text from the very beginning to the word Hola.
 
 
 

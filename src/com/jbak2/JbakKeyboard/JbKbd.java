@@ -402,7 +402,10 @@ public class JbKbd extends Keyboard {
 //            }
         	trueRepeat = repeatable;
             repeatable = false;
+            LatinKey lk = this;
             m_kd = new KeyDrw(this);
+//            if (lk.codes[0] == 10)
+//            	st.test();
             m_kd.m_bNoColorIcon = noColorIcon;
             m_kd.setSmallLabel(smallLabel);
             if((codes==null||codes.length>0&&codes[0]==0)&&m_kd.txtMain!=null)
@@ -410,7 +413,7 @@ public class JbKbd extends Keyboard {
                 if(m_kd.txtMain.length()==1&&mainText==null)
                     codes = new int[]{(int)m_kd.txtMain.charAt(0)};
                 else
-                    codes = new int[]{st.KeySymbol--};
+                    codes = new int[]{st.keySymbol--};
             }
             if(longCode==0&&getUpText()!=null)
             {
@@ -450,7 +453,8 @@ public class JbKbd extends Keyboard {
                 return true;
             else if(specKey==0)
                 return false;
-            if(codes==null)return false;
+            if(codes==null)
+            	return false;
             int c = codes[0];
             return c<0||c==10;
         }
@@ -467,13 +471,13 @@ public class JbKbd extends Keyboard {
         		return false;
         	if (Templates.template_processing)
         		return false;
-        	String t = longPress?longText:mainText;
+        	String ttt = longPress?longText:mainText;
         	if (Templates.inst == null) {
-        		new Templates(1,0,null).processTemplate(t);
+        		new Templates(1,0,null).processTemplate(ttt);
             	if (!Templates.template_processing)
             		Templates.destroy();
         	} else
-        		Templates.inst.processTemplate(t);
+        		Templates.inst.processTemplate(ttt);
         	return true;
         }
         final boolean processUserKeyboard(boolean longPress)

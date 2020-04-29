@@ -36,7 +36,7 @@ public class CustomKeyboard extends JbKbd
     public static final String KEYBOARD_FOLDER = "keyboards";
     public static final String A_ANDROID = "android:";
     public static final String TYPE_LAYOUT_CALC = "calculator";
-    public static final String TYPE_LAYOUT_SCROLL = "scroll_layout";
+    public static final String TYPE_LAYOUT_SCROLL = "scroll";
     public static final String TAG_KEYBOARD = "Keyboard";
     public static final String VAL_PERCENT = "%p";
     public static final String VAL_PIXELS = "px";
@@ -44,12 +44,18 @@ public class CustomKeyboard extends JbKbd
     public static final String TAG_KEY = "Key";
     public static final String TAG_REPLACE = "Replace";
     public static final String DRW_PREFIX = "@drawable/sym_keyboard_";
+    
     public static final String A_keyWidth = "keyWidth";
     public static final String A_keyHeight = "keyHeight";
     public static final String A_verticalGap = "verticalGap";
     public static final String A_horizontalGap = "horizontalGap";
     public static final String A_typeKeyboard = "typeKeyboard";
-    
+
+    // теги для скроллящейся раскладки
+    public static final String TAG_KEYS = "Keys";
+    public static final String A_arrayKeys = "arrayKeys";
+    public static final String A_arrayAnchors = "arrayAnchors";
+
     public static final String A_codes="codes";
     // реализация комбинаций клавиш по нажатию одной клавиши
     public static final String A_comboKeyCodes="comboKeyCodes";     
@@ -122,11 +128,16 @@ public class CustomKeyboard extends JbKbd
     public static final  byte B_comboKeyCodes=33;
     public static final  byte B_longComboKeyCode=34;
 
-    
+    // Для скроллящейся раскладки
+    public static final byte B_arrayKeys = 35;
+    public static final byte B_arrayAnchors = 36;
+    // ---
     public static final  byte BA_KBD=(byte)'|';
     public static final  byte BA_ROW=58;//(byte)':'
     public static final  byte BA_KEY=(byte)'k';
+    public static final  byte BA_KEYS=(byte)'s';
 
+    static CustomKbdScroll kbdscroll = null;
     String old_kbd = st.STR_NULL;
 // номер парсируемой клавиши
     int number_key = 0;
@@ -167,7 +178,7 @@ public class CustomKeyboard extends JbKbd
             if(kbd.kbdCode==st.KBD_COMPILED)
             {
                 AssetManager am = context.getResources().getAssets();
-                makeCompiledKeyboard(new DataInputStream(new BufferedInputStream(am.open(kbd.path))));
+                makeCompiledKeyboard(new DataInputStream(new BufferedInputStream(am.open(kbd.path))), kbd);
                 
             }
             else
@@ -175,7 +186,7 @@ public class CustomKeyboard extends JbKbd
                 XmlPullParser xp = Xml.newPullParser();
                 FileInputStream fs = new FileInputStream(kbd.path);
                 xp.setInput(new BufferedInputStream(fs), null);
-                makeKeyboard(xp);
+                makeKeyboard(xp, kbd);
             }
         }
         catch (Throwable e) 
@@ -183,7 +194,7 @@ public class CustomKeyboard extends JbKbd
             m_bBrokenLoad = true;
         }
     }
-    void makeCompiledKeyboard(DataInputStream is)
+    void makeCompiledKeyboard(DataInputStream is, Keybrd kbd)
     {
         try{
             byte b = is.readByte();
@@ -213,6 +224,10 @@ public class CustomKeyboard extends JbKbd
                         else
                         {
                             parseRow(null);
+                            if (st.type_keyboard.contains(TYPE_LAYOUT_SCROLL)) {
+                                b = is.readByte();
+                            	continue;
+                            }
                             float ff = 0;
                             String dim = st.STR_NULL;
                             byte bb = -1;
@@ -252,12 +267,19 @@ public class CustomKeyboard extends JbKbd
                                     m_row.verticalGap = getSize(String.valueOf(ff)+dim, m_displayHeight, m_row.verticalGap, B_verticalGap);
                                 }
                             }
-                            while (b!=BA_KEY&&b!=BA_ROW&&b!=BA_KBD);
+                            while (b!=BA_KEY&&b!=BA_KEYS&&b!=BA_ROW&&b!=BA_KBD);
                         }   
                     break;
                     case BA_KEY:
                         b = bConvert?parseKeyWithConvert(is):parseKey(is);
-                    break;
+                        break;
+                    case BA_KEYS:
+                    	if (kbdscroll == null)
+                            kbdscroll = new CustomKbdScroll(this);
+                        b = bConvert?parseKeysWithConvert(is):kbdscroll.loadKeyboard(is, b);
+                        b = is.readByte();
+
+                    	break;
                     default:
                         b = is.readByte();
                     break;
@@ -277,7 +299,7 @@ public class CustomKeyboard extends JbKbd
         }
         postProcessKeyboard();
     }
-    void makeKeyboard(XmlPullParser parser)
+    void makeKeyboard(XmlPullParser parser, Keybrd kbd )
     {
         try
         {
@@ -304,6 +326,12 @@ public class CustomKeyboard extends JbKbd
                         else if(name.equals(TAG_KEY)){
                             parseKey(parser, keys);
                         }
+                        else if(name.equals(TAG_KEYS)){
+                        	if (kbdscroll == null)
+                                kbdscroll = new CustomKbdScroll(this);
+                        	kbdscroll.loadKeyboard(parser);
+                        	//kbdscroll.inst = null;
+                        }
                         else if(name.equals(TAG_REPLACE)){
                             parseReplace(parser);
                         }
@@ -314,6 +342,13 @@ public class CustomKeyboard extends JbKbd
                         {
                             if(m_os!=null)
                                 m_os.writeByte(BA_KBD);
+                        }
+                        if(name.equals(TAG_KEYS))
+                        {
+                            if(m_os!=null) {
+                                m_os.writeByte(BA_KEYS);
+//                                m_os.writeByte(BA_ROW);
+                            }
                         }
                         if(name.equals(TAG_ROW))
                         {
@@ -631,6 +666,32 @@ public class CustomKeyboard extends JbKbd
         m_os.write(out.getBytes());
         return b;
     }
+    final byte parseKeysWithConvert(DataInputStream is) throws IOException
+    {
+        String out = "  <Keys\n       ";
+        byte b = 0;
+        try {
+            do{
+                b = is.readByte();
+                switch(b)
+                {
+            	case B_arrayKeys:
+            		out+=A_ANDROID+A_arrayKeys+"=\""+is.readUTF()+"\"\n       ";
+            		break;
+            	case B_arrayAnchors:
+            		out+=A_ANDROID+this.A_arrayAnchors+"=\""+is.readUTF()+"\"\n       ";
+            		break;
+                }
+            }
+            while(b<BA_ROW);
+			
+		} catch (Throwable e) {
+		}
+        out+="\n  />\n";//</Row>\n";
+//        processKey(k);
+        m_os.write(out.getBytes());
+        return b;
+    }
     final byte parseKey(DataInputStream is) throws IOException
     {
         LatinKey k = newKey();
@@ -779,9 +840,9 @@ public class CustomKeyboard extends JbKbd
     final boolean parseKey(XmlPullParser p, List<Key> keys) throws IOException
     {
     	if (st.type_keyboard.compareTo(TYPE_LAYOUT_SCROLL) == 0) {
-    		if (CustomKbdScroll.inst!=null)
-    			CustomKbdScroll.close();
-    		new CustomKbdScroll().showCalcHistory();//show(null, false);
+    		if (com_menu.inst!=null)
+    			com_menu.close();
+    		new com_menu().showCalcHistory();//show(null, false);
     		return true;
     	}
         LatinKey k = newKey();

@@ -942,17 +942,17 @@ public class Templates {
 		for (int i = 0; i < 3; i++)
 			ar[i] = null;
 		// позиции с которых начинаются строки параметров
-		int sel = repl.indexOf(Templates.Instructions[12]);
+		int sel = repl.indexOf(TPL_SPEC_CHAR+Templates.Instructions[12]);
 		int sea = repl.indexOf(Templates.STR_SEARCH);
 		int rep = repl.indexOf(Templates.STR_REPLACE);
-		// значение следующего тега
-		int ninl = -1;
 		String val = null;
 		if (sel > -1) {
 			if (sea < 0)
 				return null;
-			val = repl.substring(sel + Templates.Instructions[12].length(), sea);
-			if (val.length() > 0) {
+			val = repl.substring(sel, sea);
+			// старая строка
+			//val = repl.substring(sel + (TPL_SPEC_CHAR+Templates.Instructions[12]).length(), sea);
+			if (val!=null&&val.length() > 0) {
 				val = val.toUpperCase().trim();
 				if (val.length() > 0)
 					ar[0] = val;
@@ -1418,13 +1418,28 @@ public class Templates {
 	public static final int IB_LINE = 2;
 	public static final char TPL_SPEC_CHAR = '$';
 	public static final String SPEC_INSTR_PROGRAM = "program";
+	public static final String SPEC_INSTR_SELREPLACE = "selReplaсe";
 
 	/**
 	 * массв слов специнструкций. ПОРЯДОК НЕ МЕНЯТЬ! (используются в других местах)
 	 */
-	public static final String[] Instructions = { "select", "selword", "selline", "datetime", "sellowercase",
-			"selupcase", "selinsertword", "selDeleteWord", "seltranslit", "selVerseMode", "selAsInTheSentences",
-			"paste", "selReplaсe", "selToPos", SPEC_INSTR_PROGRAM, "codes" };
+	public static final String[] Instructions = { 
+			"select", 
+			"selword", 
+			"selline", 
+			"datetime", 
+			"sellowercase",
+			"selupcase", 
+			"selinsertword", 
+			"selDeleteWord", 
+			"seltranslit", 
+			"selVerseMode", 
+			"selAsInTheSentences",
+			"paste", 
+			SPEC_INSTR_SELREPLACE, 
+			"selToPos", 
+			SPEC_INSTR_PROGRAM, 
+			"codes" };
 	/** константа для специнструкции selReplace */
 	public static final String STR_SEARCH = "@SEARCH:";
 	/** константа для специнструкции selReplace */
