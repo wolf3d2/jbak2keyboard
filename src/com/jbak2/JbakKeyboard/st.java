@@ -66,7 +66,7 @@ import com.jbak2.words.WordsService;
 import com.jbak2.words.IWords.WordEntry;
 import com.jbak2.words.UserWords.WordArray;
 
-/** Основной статический класс футкций и переменных */
+/** Основной статический класс функций и переменных */
 public class st extends IKeyboard implements IKbdSettings
 {
 
@@ -1819,8 +1819,12 @@ public class st extends IKeyboard implements IKbdSettings
         }
         ped.commit();
     }
-    public static File[] getFilesByExt(File dir,final String ext)
+    /** возвращает массив File из папки dir с расширением ext. <br>
+     * Если ext = null, то возращаются все файлы  */
+    public static File[] getFilesFromDir(File dir,final String ext)
     {
+    	if (ext == null)
+    		return dir.listFiles();
         return dir.listFiles(new FilenameFilter()
         {
             @Override
@@ -1848,7 +1852,7 @@ public class st extends IKeyboard implements IKbdSettings
             return null;
         }
 
-        File keyb[] = st.getFilesByExt(f, st.EXT_XML);
+        File keyb[] = st.getFilesFromDir(f, st.EXT_XML);
         Vector arv= new Vector<WordEntry>();
         if(keyb!=null||keyb.length>0) {
             Arrays.sort(keyb);
@@ -2633,7 +2637,7 @@ public class st extends IKeyboard implements IKbdSettings
        	arGestures.add(new KbdGesture(R.string.user_hide_layout_menuname, CMD_SHOW_USER_HIDE_LAYOUT));
        	arGestures.add(new KbdGesture(R.string.addit_layout_menuname, CMD_SHOW_ADDITIONAL_HIDE_LAYOUT));
     }
-// запускает сервис синхронизации мультибуфера
+/** запускает сервис синхронизации мультибуфера */
     public static void startSyncServise()
     {
 		if (ClipbrdSyncService.inst!=null)
@@ -2642,7 +2646,7 @@ public class st extends IKeyboard implements IKbdSettings
 			new ClipbrdSyncService(ServiceJbKbd.inst);
 		st.fl_sync = true;
     }
-// останавливает сервис синхронизации мультибуфера
+/** останавливает сервис синхронизации мультибуфера */
     public static void stopSyncServise()
     {
 		if (ClipbrdSyncService.inst!=null)
@@ -2667,7 +2671,7 @@ public class st extends IKeyboard implements IKbdSettings
     		in = Character.toUpperCase(in.charAt(0))+in.substring(1);
     	return in;
     }
-    public static void setCreateDefaultFolderApp()
+    public static void createDefaultFolderApp()
     {
     	String pt = st.STR_NULL;
     	File f=null;
@@ -2703,6 +2707,12 @@ public class st extends IKeyboard implements IKbdSettings
                 f.mkdirs();
             }
         	pt = st.getSettingsPath()+WordsService.DEF_PATH;
+            f = new File(pt);
+            if(!f.exists())
+            {
+                f.mkdirs();
+            }
+        	pt = st.getSettingsPath()+CustomKbdScroll.FOLDER_LAYOUT_SETTING;
             f = new File(pt);
             if(!f.exists())
             {
@@ -3032,7 +3042,7 @@ public class st extends IKeyboard implements IKbdSettings
 
     	return out;
     }
-    /** сохраняем в файл fname телсе text*/
+    /** сохраняем в файл fname текст text*/
 	public static void savefile(String fname, String text) 
 	{
 		if (fname == null)
@@ -3051,14 +3061,14 @@ public class st extends IKeyboard implements IKbdSettings
     /** Возвращает текст из файла с именем filename или null, если произошла ошибка<br>
     *@return Содержимое файла или null
      */
-//    static String readFileString(String filename)
-//    {
-//   	 try{
-//   		File ff = new File(filename);
-//   		 return st.readFileString(ff);
-//   	 } catch(Throwable e){}
-//   	 return null;
-//   }
+    static String readFileString(String filename)
+    {
+   	 try{
+   		File ff = new File(filename);
+   		 return st.readFileString(ff);
+   	 } catch(Throwable e){}
+   	 return null;
+   }
     /** Возвращает текст из файла f или null, если произошла ошибка<br>
     *@param f Файл для чтения, текст должен быть в кодировке UTF-8
     *@return Содержимое файла или null
@@ -3133,8 +3143,8 @@ public class st extends IKeyboard implements IKbdSettings
 		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","Manufacture",
 				delim, st.STR_NULL,
 				Build.MANUFACTURER));
-		info.append(String.format(Locale.ENGLISH, "%s%s%s\n",
-				"Device", delim, Build.MODEL));
+		info.append(String.format(Locale.ENGLISH, "%s%s%s\n","Device",
+				delim, Build.MODEL));
 
 		String str = st.STR_NULL;
 		// размер диспленя

@@ -3,12 +3,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <TextView
+        android:id="@+id/ks_tv_favorite_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:padding="2dp"
+	    android:text="star"
+        />
+
     <ScrollView
         android:id="@+id/ks_scroll_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/ks_tv_favorite_key"
         android:padding="2dp" 
         >
   
@@ -29,19 +40,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-	    android:layout_toRightOf ="@+id/ks_scroll_left"
+	    android:layout_toRightOf ="@+id/ks_tv_favorite_key"
 	    android:layout_toLeftOf ="@+id/ks_scroll_right"
         android:padding="2dp" 
         >
-  
-        </GridView>>
+        </GridView>
+
+    <TextView
+        android:id="@+id/ks_tv_favorite_null_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/ks_tv_abc_key"
+        android:layout_toRightOf="@+id/ks_tv_favorite_key"
+        android:gravity="center"
+        android:padding="2dp"
+        android:visibility="gone" 
+	    android:textSize="16dp" 
+	    android:text="@string/ks_empty_favorite"
+        />
+
+    <TextView
+        android:id="@+id/ks_tv_abc_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:padding="2dp"
+	    android:text="ABC"
+        />
 
     <ScrollView
         android:id="@+id/ks_scroll_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/ks_tv_abc_key"
         android:padding="2dp" 
         >
   

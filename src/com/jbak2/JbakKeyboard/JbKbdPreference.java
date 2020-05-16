@@ -480,6 +480,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 //		 scurtime = scurtime;
 //		 spartime = sdf.format(dt);
 
+		
 		// curtime и initime сравнивать не нужно - мы только выводим тост
 		if (rate_app == 0&&Quick_setting_act.inst == null) {
 			st.toastLong(R.string.rate_toast);
@@ -550,9 +551,9 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		super.onResume();
 		if (review_time_start!=0) {
 			long cur = new Date().getTime();
-			// если вернулись в программу меньше, чем за 10сек., то НЕ записываем 
+			// если вернулись в программу меньше, чем за 20сек., то НЕ записываем 
 			// что оставили отзыв
-			if (cur >= review_time_start + 10000) {
+			if (cur >= review_time_start + 20000) {
 				if (ini!=null)
 					ini.setParam(ini.RATE_APP, st.STR_ONE);
 			} else {
@@ -824,6 +825,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 					@Override
 					public int OnObserver(Object param1, Object param2) {
+						SiteKbd.autocheck = true;
 						st.checkUpdate(inst, ini, true);
 						inst.recreate();
 						return 0;
@@ -2175,7 +2177,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			String appname = cont.getPackageName();
 			String path = getBackupPath();
 			String prefDir = cont.getFilesDir().getParent() + "/shared_prefs/";
-			File ar[] = st.getFilesByExt(new File(prefDir), st.EXT_XML);
+			File ar[] = st.getFilesFromDir(new File(prefDir), st.EXT_XML);
 			if (ar == null || ar.length == 0)
 				return 0;
 			File f = new File(path);

@@ -12,6 +12,11 @@
 	<string name="jbak2skin">Скины от пользователей</string>
 	<string name="jbak2skin_desc">Отдельное приложение, содержащее другие скины, там же находится и инструкция (на русском) как создать свой скин.</string>
 	<string name="other_app">(Ad) Другие приложения</string>
+	<string name="ks_empty_favorite">Долгое нажатие на клавише в общем списке, добавляет её в избранное.
+\n\nДля удаления из избранного - долгое нажатие на клавише в этом списке.
+\n---
+\nДолгое нажатие на клавишах избранного и ABC в общем списке, перемещает соответственные панели кнопок вниз.</string>
+	<string name="reboot">Загружено. Требуется перезагрузка устройства</string>
 	<string name="default_pref">Настройки по умолчанию</string>
 	<string name="msg_avtocorrect_and_addspace">Вы включили одновременно \"автоисправление\" и \"добавлять пробел после символов\" (в Автовводе).\n\nВместе они работают некорректно!</string>
     <string name="in_developing">В разработке</string>
@@ -244,8 +249,6 @@
     <string name="sc_msg31">Радиус скругления прямоугольника клавиши по оси Y, если не задано - 9</string>
     <string name="sc_msg32">Тип градиента клавиш в нажатом состоянии. 0 - линейный, 1 - радиальный</string>
     
-	<string name="reboot">Загружено. Требуется перезагрузка устройства</string>
-		
 <!-- сохранение строки дополнительных символов -->
 	<string name="pop2s_save">Сохранить строку</string>
 	<string name="pop2s_save_desc">Сохранить строку дополнительных символов (выше) в отдельный файл</string>
@@ -424,7 +427,7 @@
     <string name="rate_title">Оценка приложения</string>
     <string name="rate_about">Пожалуйста, оцените приложение.</string>
     <string name="rate_query">Пожалуйста оцените однократно приложение, нажав на кнопку Оценить </string>
-    <string name="rate_toast">Пожалуйста оцените приложение, выбрав пункт настроек Оценить приложение </string>
+    <string name="rate_toast">Пожалуйста оцените приложение, выбрав пункт настроек Оценить приложение и это сообщение перестанет появляться.</string>
     <string name="rate_not_toast">Что-то вы быстро написали отзыв...</string>
     <string name="rate_btn">Оценить</string>
     
@@ -793,6 +796,7 @@
     <string name="rewrite_question">Файл уже существует.\nПереписать?</string>
     <string name="settings_saved">Настройки сохранены!</string>
     <string name="add">Добавлено</string>
+    <string name="already_exist">Уже существует</string>
     <string name="data_changed">Данные изменены.\nСохранить?</string>
     <string name="selection">Выбрать</string>
 	<string name="are_you_sure">Вы уверены?</string>
@@ -911,7 +915,7 @@
     <string name="kbd_name_qwerty">Клавиатура Qwerty</string>    
     <string name="kbd_name_mwcorp">Клавиатура от MWcorp\n(недостающие символы - долгое нажатие на (если есть для данного языка)) add-маленькие, ADD-БОЛЬШИЕ.</string>    
     <string name="smiles_MWcorp">Смайлики от MWcorp</string>    
- 	<string name="smiles_android7">Смайлики Android 7</string>
+ 	<string name="smiles_android7">750+ смайликов из Android 7</string>
     <string name="smiles_MaxQwertyKeys">Смайлики от MaxQwertyKeys для Android 4.4 и выше</string>    
     <string name="kbd_psevdo_t9_mwcorp">Псевдо T9 от MWcorp</string>    
     <string name="kbd_landscape_mwcorp">Ландшафт от MWcorp v100\n(пример всех кнопок клавиатуры)</string>    

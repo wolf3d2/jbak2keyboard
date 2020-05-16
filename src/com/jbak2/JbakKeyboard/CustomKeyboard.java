@@ -276,7 +276,7 @@ public class CustomKeyboard extends JbKbd
                     case BA_KEYS:
                     	if (kbdscroll == null)
                             kbdscroll = new CustomKbdScroll(this);
-                        b = bConvert?parseKeysWithConvert(is):kbdscroll.loadKeyboard(is, b);
+                        b = bConvert?parseKeysWithConvert(is):kbdscroll.loadKeyboard(is, b, kbd);
                         b = is.readByte();
 
                     	break;
@@ -329,7 +329,7 @@ public class CustomKeyboard extends JbKbd
                         else if(name.equals(TAG_KEYS)){
                         	if (kbdscroll == null)
                                 kbdscroll = new CustomKbdScroll(this);
-                        	kbdscroll.loadKeyboard(parser);
+                        	kbdscroll.loadKeyboard(parser, kbd);
                         	//kbdscroll.inst = null;
                         }
                         else if(name.equals(TAG_REPLACE)){
@@ -1184,7 +1184,7 @@ public class CustomKeyboard extends JbKbd
                 f.mkdirs();
                 return null;
             }
-            File keyboards[] = st.getFilesByExt(f, st.EXT_XML);
+            File keyboards[] = st.getFilesFromDir(f, st.EXT_XML);
             Arrays.sort(keyboards);
             if(keyboards==null||keyboards.length==0)
                 return null;

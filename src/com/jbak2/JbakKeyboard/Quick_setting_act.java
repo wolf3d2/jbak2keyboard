@@ -302,7 +302,7 @@ public class Quick_setting_act extends Activity
     {
 		step = st.getRegisterKbd(inst);
 		if (step > 0){
-            st.setCreateDefaultFolderApp();
+            st.createDefaultFolderApp();
     		if (ini!=null){
     			if (!ini.isFileExist()){
         			ini.create(st.getSettingsPath(), ini.PAR_INI);

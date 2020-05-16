@@ -66,7 +66,7 @@ public class WordsService extends Service
     }
     public static final boolean hasAnyVocab()
     {
-        return st.getFilesByExt(new File(getVocabDir()), VocabFile.DEF_EXT)!=null;
+        return st.getFilesFromDir(new File(getVocabDir()), VocabFile.DEF_EXT)!=null;
     }
     public boolean hasVocabForLang(String lang)
     {

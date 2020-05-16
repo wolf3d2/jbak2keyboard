@@ -7,12 +7,15 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.jbak2.JbakKeyboard.CustomKbdScroll;
 import com.jbak2.JbakKeyboard.JbKbdPreference;
 import com.jbak2.JbakKeyboard.R;
 import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.IniFile;
 
 import android.content.Context;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 /** класс для проверки обновлений с сайта клавиатуры */
 public class SiteKbd {
@@ -42,6 +45,16 @@ public class SiteKbd {
 	public static final String CHECK_KEY = ";cjbak2";
 	public static final String SITE_KBD = "https://jbak2.ucoz.net";
 	public static final String PAGE_UPDATE = "/upd/act_ver_kbd.htm";
+	
+	/** массив ссылок для скачивания проверочного файла наличия новой версии. <br>
+	 * Нулевой индекс - прямая ссылка. ПОРЯДОК НЕ МЕНЯТЬ!*/
+	public static final String[] AR_PAGE_UPDATE =  new String[]
+			{
+				SITE_KBD+PAGE_UPDATE,
+				"https://is.gd/63ta6l",
+				"https://ur-l.ru/Jb2up"
+					
+			};
 	public static final String PAGE_OTHER_APP= "/index/vse_programmy/0-16";
 	/** дополнительные компоненты (jbak2layout, jbak2skin) */
 	public static final String PAGE_ADDITIONA_COMPONENT = "/load/dopolnitelno/21";
@@ -51,8 +64,13 @@ public class SiteKbd {
 	public static final String PAGE_REVIEW = "/gb";
 	public static final String CHECK_VERSION_NAME = "ver";
 
+	public static final String PAGE_UPD_CLICK = "/upd/cl_kbd.htm";
+
+	/** флаг, что проверка автоматическая (false), а не ручная (true) */
+	public static boolean autocheck = false;
     static SiteKbd inst = null;
-	Context m_c = null;
+	static Context m_c = null;
+	//static WebView ww = null;
 	
 	public SiteKbd(Context context)
 	{
@@ -112,6 +130,35 @@ public class SiteKbd {
 		if (JbKbdPreference.inst!=null) {
 			JbKbdPreference.inst.setCheckEntry(JbKbdPreference.inst, 2, ini);
 		}
+		// чекаем файлы параметров скролящихся раскладок
+		CustomKbdScroll.checkFileSettingLayout();
+		
+//		final WebView ww = new WebView(m_c);
+//		ww.getSettings().setAppCacheEnabled(false);
+//		ww.getSettings().setJavaScriptEnabled(true);
+//	    ww.setWebViewClient(new WebViewClient() {
+//	             public void onPageFinished(WebView view, String url) {
+//	                 st.test();
+//	             }
+//	         });
+//
+//		final String url = SITE_KBD+PAGE_UPD_CLICK;
+//		//clickCheckCopy(SITE_KBD+PAGE_UPD_CLICK);
+//		if (ww != null) {
+//			ww.loadUrl(url);
+//		
+////		ww.post(new Runnable() {
+////	          @Override
+////	          public void run() {
+////					ww.loadUrl(url);
+////	          }
+////	       });
+//		try {
+//			Thread.sleep(4000);
+//		} catch (Throwable e) {
+//		}
+////		ww.destroy();
+//		}
 		// чекаем в фоне
 		new Thread(new Runnable() {
 			public void run() {
@@ -145,22 +192,75 @@ public class SiteKbd {
 					}
 				}
 				// пытаемся чекнуть
+//				if (!autocheck) {
+//					
+//					final WebView ww = new WebView(m_c);
+//					ww.getSettings().setAppCacheEnabled(false);
+//				    ww.setWebViewClient(new WebViewClient() {
+//				             public void onPageFinished(WebView view, String url) {
+//				                 st.test();
+//				             }
+//				         });
+//
+//					final String url = SITE_KBD+PAGE_UPD_CLICK;
+//					//clickCheckCopy(SITE_KBD+PAGE_UPD_CLICK);
+//					if (ww == null)
+//						return;
+//					
+//					ww.post(new Runnable() {
+//				          @Override
+//				          public void run() {
+//								ww.loadUrl(url);
+//				          }
+//				       });
+//					try {
+//						Thread.sleep(4000);
+//					} catch (Throwable e) {
+//					}
+//					ww.destroy();
+
+//						String str = SITE_KBD+PAGE_UPD_CLICK;
+//					str += KEY_UPD_CHECK_KEYS+(st.STR_EQALLY+!autocheck).toUpperCase();
+//					str += "&"+KEY_UPD_CHECK_VER+st.STR_EQALLY+st.getAppVersionCode(m_c);
+//					str += "&"+KEY_UPD_CHECK_SUBMIT+st.STR_EQALLY+"Send";
+//					sc =  new Scanner(new URL(str).openStream(), "UTF-8");
+//				}
 				Scanner sc =  null;
 				info = null;
-				boolean fl = false;
-				try {
-					sc =  new Scanner(new URL(SITE_KBD+PAGE_UPDATE).openStream(), "UTF-8");
-					sc.useDelimiter("\\A");
-					info = sc.next();
-					sc.close();
-					fl = true;
-				} catch (Throwable e) {
-					// если словили исключение, то причин 3:
-					// 1. нет инета
-					// 2. разрешения на инет нету
-					// 3.закрыли доступ к сайту через hosts
+				if (!autocheck) {
+					for (int i=1;i<AR_PAGE_UPDATE.length;i++) {
+						try {
+							sc =  new Scanner(new URL(AR_PAGE_UPDATE[i]).openStream(), "UTF-8");
+							sc.useDelimiter("\\A");
+							info = sc.next();
+							sc.close();
+						} catch (Throwable e) {
+						}
+						if (info != null&&info.startsWith(CHECK_KEY)) {
+							break;
+						}
+						info = null;
+					}
+				}
+				autocheck = false;
+				if (info == null) {
+					try {
+						sc =  new Scanner(new URL(AR_PAGE_UPDATE[0]).openStream(), "UTF-8");
+						sc.useDelimiter("\\A");
+						info = sc.next();
+						sc.close();
+					} catch (Throwable e) {
+					}
+				}
+				// если до сих пор info = null, то причин 3:
+				// 1. нет инета
+				// 2. разрешения на инет нету
+				// 3.закрыли доступ к сайту через hosts
+				// а значит просто возврат
+				if (info == null) {
 					return;
 				}
+				boolean fl = false;
 				// обрабатываем результат
 				if (info==null) {
 					if (fl)
@@ -187,6 +287,7 @@ public class SiteKbd {
 							param_value = par.substring(par.indexOf("=") + 1);
 							if (param.compareToIgnoreCase(CHECK_VERSION_NAME)==0) {
 								ini.setParam(ini.LAST_CHECK_VERSION, param_value);
+								fl = true;
 							}
 						}
 					}
@@ -202,7 +303,7 @@ public class SiteKbd {
 				if (JbKbdPreference.inst!=null)
 					JbKbdPreference.inst.setCheckEntry(JbKbdPreference.inst, 1, ini);
 				bcheck_backgraund = false;
-				
+				m_c = null;
 			}
 		}).start();
 		return false;
@@ -289,5 +390,27 @@ public class SiteKbd {
 
 		return 0;
 	}
-
+	
+//	public void kclickCheckCopy(final String url) {
+//		// чекаем в третьем потоке
+//		new Thread(new Runnable() {
+//			public void run() {
+//				if (ww == null)
+//					return;
+//				
+//				ww.post(new Runnable() {
+//			          @Override
+//			          public void run() {
+//							ww.loadUrl(url);
+//			          }
+//			       });
+//				try {
+//					Thread.sleep(4000);
+//				} catch (Throwable e) {
+//				}
+//				ww.destroy();
+//				ww = null;
+//			}
+//		}).start();
+//	}
 }

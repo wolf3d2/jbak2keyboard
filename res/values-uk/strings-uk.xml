@@ -14,6 +14,10 @@
 	<string name="jbak2skin">Скіни від користувачів</string>
 	<string name="jbak2skin_desc">Окремий додаток, що містить інші скіни, також там є інструкція (російською), як створити власний скін.</string>
 	<string name="other_app">(Ad) Інші додатки</string>
+	<string name="ks_empty_favorite">Долгое нажатие на клавише в общем списке, добавляет её в избранное.
+\n\nДля удаления из избранного - долгое нажатие на клавише в этом списке.
+\n---
+\nДолгое нажатие на клавишах избранного и ABC в общем списке, перемещает соответственные панели кнопок вниз.</string>
 	<string name="reboot">Завантажено. Потрібне перезавантаження пристрою</string>
 	<string name="default_pref">Налаштування за замовчуванням</string>
 	<string name="msg_avtocorrect_and_addspace">Ви увімкнули  одночасно \"автовиправлення\" та \"додавати пробіл після символів\" (в Автовводі).\n\nРазом вони працюють некоректно!</string>
@@ -433,7 +437,7 @@
     <string name="rate_title">Оцінка додатку</string>
     <string name="rate_about">Будь ласка, оцініть додаток.</string>
     <string name="rate_query">Будь ласка оцініть однократно додаток, натиснувши на кнопку Оцінити </string>
-    <string name="rate_toast">Будь ласка оцініть додаток, обравши пункт налаштувань Оцінити додаток </string>
+    <string name="rate_toast">Пожалуйста оцените приложение, выбрав пункт настроек Оценить приложение и это сообщение перестанет появляться.</string>
     <string name="rate_not_toast">Что-то вы быстро написали отзыв...</string>
     <string name="rate_btn">Оцінити</string>
     
@@ -788,6 +792,7 @@
   <string name="rewrite_question">Файл вже існує.\nПерезаписати?</string>
   <string name="settings_saved">Налаштування збережені!</string>
   <string name="add">Додано</string>
+    <string name="already_exist">Уже существует</string>
   <string name="data_changed">Дані змінені.\nЗберегти?</string>
   <string name="selection">Вибрати</string>
   <string name="are_you_sure">Ви впевненні?</string>
@@ -901,7 +906,7 @@
   <string name="kbd_name_qwerty">Клавіатура Qwerty</string>
   <string name="kbd_name_mwcorp">Клавіатура вiд MWcorp</string>
   <string name="smiles_MWcorp">Смайлики від MWcorp</string>    
- 	<string name="smiles_android7">Смайлики Android 7</string>
+ 	<string name="smiles_android7">750+ cмайликов из Android 7</string>
   <string name="smiles_MaxQwertyKeys">Смайлики від MaxQwertyKeys для Android 4.4 і вище</string>    
   <string name="kbd_psevdo_t9_mwcorp">Псевдо T9 вiд MWcorp</string>    
   <string name="kbd_t9_mwcorp">T9 вiд MWcorp</string>    

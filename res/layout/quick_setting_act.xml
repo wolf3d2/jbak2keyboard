@@ -16,7 +16,8 @@
     android:layout_gravity="center"
     android:onClick="onClick"
     android:text="@string/ann"
-    android:textSize="12dp" />
+    android:textSize="12dp" 
+    />
     
 <ScrollView
     android:id="@+id/sq_scroll"

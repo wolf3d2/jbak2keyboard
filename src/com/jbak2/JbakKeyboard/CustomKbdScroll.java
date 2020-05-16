@@ -1,51 +1,36 @@
 package com.jbak2.JbakKeyboard;
 
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.Keyboard.Key;
-import android.inputmethodservice.Keyboard.Row;
-import android.text.TextUtils;
-import android.text.TextUtils.TruncateAt;
-import android.view.Gravity;
+import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.jbak2.CustomGraphics.GradBack;
 import com.jbak2.CustomGraphics.draw;
 import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
-import com.jbak2.JbakKeyboard.IKeyboard.Lang;
-import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
-import com.jbak2.JbakKeyboard.com_menu.MenuEntry;
 import com.jbak2.ctrl.Font;
-import com.jbak2.ctrl.GlobDialog;
 
 /** Раскладка с вертикальным скролом */
 public class CustomKbdScroll 
@@ -67,10 +52,23 @@ public class CustomKbdScroll
 	public static final int ID_TV_LEFT_BOTTOM= 1015;
 	public static final int ID_TV_RIGHT_TOP= 1016;
 	public static final int ID_TV_RIGHT_BOTTOM= 1017;
+	
 	/** Опорное значение ID для элементов якорей левого меню */
 	public static final int ID_TV_MAIN_VALUE_ANHCOR = 1100;
-
-    EditSet m_es = null;;
+	/** якорей может быть не более тысячи */
+	public static final int ID_TV_MAX_VALUE_ANHCOR = 2100;
+	
+/** папка для хранения настроек скроллящихся раскладок */
+	public static final String FOLDER_LAYOUT_SETTING = "layout_setting";
+	/** имя файла, если не определили название файла раскладки */
+	public static final String NOT_NAME_FILENAME = "_notName";
+	/** время до удаления файла параметров раскладки */
+	public static final long TIME_3MONTH = 3600l*24l*90l;
+	Keybrd mkbd = null;
+	LayoutSetting ls = null;
+	
+	EditSet es_main = null;
+	EditSet es_sec = null;
 	LinearLayout lll = null; 
 	LinearLayout llr = null; 
 	JbKbdView jkbview = null;
@@ -83,8 +81,12 @@ public class CustomKbdScroll
 	/** ширина правого лайота */
 	int llr_w = 0;
 	GridView gv = null;
-	String[] arKeys = null; 
+	
+	String[] arKeys = null;
+	/** массив для избранного */
+	String[] arFav = null;
 	String[] arAnhcor = null; 
+
 	static CustomKeyboard ck = null;
 	Adapt m_adapter;
 	static CustomKbdScroll inst;
@@ -106,21 +108,25 @@ public class CustomKbdScroll
 		inst = this;
 		m_MainView = ServiceJbKbd.inst.getLayoutInflater().inflate(R.layout.keyboard_scroll, null);
 		arKeys = null;
+		arFav = null;
 		arAnhcor = null;
 		jkbview = st.kv();
 		try {
 			max_tv_width = ck.getSize("12%p",ck.m_displayWidth,50,ck.B_keyWidth);
 		} catch (IOException e) {
 		}
-        m_es = new EditSet();
-        m_es.load(st.PREF_KEY_MAIN_FONT);
+        es_main = new EditSet();
+        es_main.load(st.PREF_KEY_MAIN_FONT);
+        es_sec = new EditSet();
+        es_sec.load(st.PREF_KEY_SECOND_FONT);
 
 	}
 	/** Создаёт и показывает раскладку */
-	void loadKeyboard(XmlPullParser parser) 
+	void loadKeyboard(XmlPullParser parser, Keybrd kbd) 
 	{
 		if (inst == null)
 			init();
+		mkbd = kbd;
 		try {
 			parseKeys(parser);
 		} catch (IOException e) {
@@ -129,10 +135,11 @@ public class CustomKbdScroll
         	show();
 	}
 	/** Создаёт и показывает раскладку */
-	final byte loadKeyboard(DataInputStream is,byte b) 
+	final byte loadKeyboard(DataInputStream is,byte b, Keybrd kbd) 
 	{
 		if (inst == null)
 			init();
+		mkbd = kbd;
 		try {
 			b = parseKeys(is, b);
 		} catch (IOException e) {
@@ -209,13 +216,47 @@ public class CustomKbdScroll
 		@Override 
 		public boolean onLongClick(View v)
 		{
-        	st.toast(R.string.in_developing);
+        	ScrollView sv = null;
+			int id = v.getId();
+        	switch (id)
+        	{
+            case R.id.ks_tv_favorite_key:
+            	sv = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_left);
+            	sv.scrollTo(0, sv.getHeight()+10000);
+            	return true;
+            case R.id.ks_tv_abc_key:
+            	sv = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_right);
+            	sv.scrollTo(0, sv.getHeight()+10000);
+            	return true;
+        	case ID_TV_FAVORITE:
+        	case ID_TV_ALL:
+        	case ID_TV_ABC:
+        	case ID_TV_BACKSPACE:
+        	case ID_TV_DELETE:
+        	case ID_TV_ENTER:
+        	case ID_TV_ARROW_LEFT:
+        	case ID_TV_ARROW_RIGHT:
+        	case ID_TV_VOSKLICATELNY_ZNAK:
+        	case ID_TV_VOPROSITELNY_ZNAK:
+        	case ID_TV_COMMA:
+        	case ID_TV_POINT:
+        	case ID_TV_SPACE:
+        	case ID_TV_LEFT_TOP:
+        	case ID_TV_LEFT_BOTTOM:
+        	case ID_TV_RIGHT_TOP:
+        	case ID_TV_RIGHT_BOTTOM:
+        		return false;
+        	}
+        	if (id>-1&&id < ID_TV_MAX_VALUE_ANHCOR)
+        		return false;
+        	updateFavoriteArray(((TextView)v).getText().toString());
 			return true;
 		}
 	};
 
 	static void close() 
 	{
+		inst.ls.saveLayoutSetting();
 		inst = null;
         if(ServiceJbKbd.inst!=null)
         {
@@ -237,35 +278,46 @@ public class CustomKbdScroll
         @Override
         public void onClick(View v)
         {
-        	ScrollView svl = null;
+            VibroThread vt = VibroThread.getInstance(st.c());
+            vt.runVibro(VibroThread.VIBRO_SHORT);
+        	ScrollView sv = null;
         	int id = v.getId();
             switch (id)
             {
             // левый лайот
-            case ID_TV_FAVORITE: 
-            	st.toast(R.string.in_developing);
+            case R.id.ks_tv_favorite_key:
+            case ID_TV_FAVORITE:
+            	ls.favorite = !ls.favorite;
+        		typeAdapter(ls.favorite);
+//            	if (gv!=null&&gv.getCount()>0) {
+//            		int iii = gv.getCount();
+//            		typeAdapter(ls.favorite);
+//            	}
+        		setTextFavoriteButton((TextView) v);
+
             	return;
             case ID_TV_ALL: 
             	st.toast(R.string.in_developing);
             	return;
             case ID_TV_LEFT_TOP:
-            	svl = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_left);
-            	svl.scrollTo(0, 0);
+            	sv = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_left);
+            	sv.scrollTo(0, 0);
             	return;
             case ID_TV_LEFT_BOTTOM: 
-            	svl = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_left);
-            	svl.scrollTo(0, svl.getHeight()+10000);
+            	sv = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_left);
+            	sv.scrollTo(0, sv.getHeight()+10000);
             	return;
             case ID_TV_RIGHT_TOP:
-            	svl = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_right);
-            	svl.scrollTo(0, 0);
+            	sv = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_right);
+            	sv.scrollTo(0, 0);
             	return;
             case ID_TV_RIGHT_BOTTOM: 
-            	svl = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_right);
-            	svl.scrollTo(0, svl.getHeight()+10000);
+            	sv = (ScrollView)m_MainView.findViewById(R.id.ks_scroll_right);
+            	sv.scrollTo(0, sv.getHeight()+10000);
             	return;
 
             // правый лайот
+           	case R.id.ks_tv_abc_key: 
            	case ID_TV_ABC: 
            		close();
            		return;
@@ -328,67 +380,91 @@ public class CustomKbdScroll
             ServiceJbKbd.inst.onText(((TextView)v).getText());
         }
     };
-    /** @param bspec - true = оформление спецклавиши */
     TextView newTextView(boolean bspec)
     {
-    	TextView tv = new TextView(ServiceJbKbd.inst);
+    	return newTextView(bspec, null);
+    }
+    /** создаёт новую кнопку. <br>
+     *  Если tv != null, то применяем оформление к указанному tv.  
+     * @param bspec - true = оформление спецклавиши */
+    TextView newTextView(boolean bspec, TextView tv)
+    {
+    	if (tv == null)
+    		tv = new TextView(ServiceJbKbd.inst);
         tv.setOnClickListener(m_listener);
         tv.setOnLongClickListener(m_longListener);
-        tv = (TextView) jkbview.getCurrentDesign(tv, bspec);
-    	tv.setMinWidth(70);
+        tv = (TextView) jkbview.getCurrentKeyDesign(tv, bspec);
+    	tv.setMinWidth(50);
     	if (max_tv_width!= 0)
         	tv.setMinWidth(max_tv_width);
-        if(m_es!=null) {
-            m_es.setToEditor(tv);
-        }
-    	
+    	if (bspec) {
+    		if (es_sec.fontSize== 0)
+    			tv.setTextSize(JbKbdView.DEF_MAIN_FONT_SIZE);
+    		else
+    			es_sec.setToEditor(tv);
+    	} else {
+    		if (es_main.fontSize== 0)
+    			tv.setTextSize(JbKbdView.DEF_MAIN_FONT_SIZE);
+    		else
+    			es_main.setToEditor(tv);
+    	}
+//    	es_main.setToEditor(tv);
     	return tv;
+    }
+    void setTextFavoriteButton(TextView tv)
+    {
+        if (ls.favorite)
+            tv.setText("All");
+        else
+            tv.setText("★");
+    	
     }
     void createLeftButton()
     {
         lll = (LinearLayout)m_MainView.findViewById(R.id.ks_ll_left);
         TextView tv = null;
-        tv = newTextView(true);
-        tv.setId(ID_TV_FAVORITE);
-        tv.setOnClickListener(m_listener);
-        tv.setText("★");
-        lll.addView(tv);
+
+        tv = (TextView)m_MainView.findViewById(R.id.ks_tv_favorite_key);
+        tv = newTextView(true, tv);
+        setTextFavoriteButton(tv);
+        tv.measure(0, 0);
+        int ww = tv.getMeasuredWidth();
         font_size = tv.getTextSize();
         
 //        tv = newTextView(true);
-//        tv.setId(ID_TV_ALL);
+//        tv.setId(ID_TV_FAVORITE);
 //        tv.setOnClickListener(m_listener);
-//        tv.setText("All");
+//        setTexFavoriteButton(tv);
 //        lll.addView(tv);
-
+//        font_size = tv.getTextSize();
+        
         Vector<Integer> ar = new Vector<Integer>();
         int ind = -1;
     	setIndexElementOnArray(ar);
 
-        if (ar.size() > 5) {
-            tv = newTextView(true);
-            tv.setId(inst.ID_TV_LEFT_BOTTOM);
-            tv.setOnClickListener(m_listener);
-            Font.setTextOnTypeface(tv, Font.FontArSymbol.PGDN);
-            lll.addView(tv);
-        }
+//        if (ar.size() > 5) {
+//            tv = newTextView(true);
+//            tv.setId(inst.ID_TV_LEFT_BOTTOM);
+//            Font.setTextOnTypeface(tv, Font.FontArSymbol.PGDN);
+//            lll.addView(tv);
+//        }
         for (int i=0;i<ar.size();i++) {
         	ind = ar.get(i);
             tv = newTextView(true);
             tv.setId(ID_TV_MAIN_VALUE_ANHCOR+ind);
-            tv.setOnClickListener(m_listener);
-            tv.setText(arAnhcor[i]);
+            tv.setText(arKeys[ind]);
             lll.addView(tv);
         }
         if (ar.size() > 5) {
             tv = newTextView(true);
             tv.setId(inst.ID_TV_LEFT_TOP);
-            tv.setOnClickListener(m_listener);
             Font.setTextOnTypeface(tv, Font.FontArSymbol.PGUP);
             lll.addView(tv);
         }
         lll.measure(0, 0);
         lll_w = lll.getMeasuredWidth();
+        if (ww > lll_w)
+        	lll_w = ww;
     }
     /** устанавливает массив доступных якорей в массиве arKeys */
     void setIndexElementOnArray(Vector<Integer> arIndex) {
@@ -396,7 +472,7 @@ public class CustomKbdScroll
     		return;
     	if (arAnhcor == null)
     		return;
-// просто для примера, если глиф символа не отображаетя (width = 0
+// просто для примера, если глиф символа не отображаетя (width = 0)
 // https://stackoverflow.com/questions/11815458/check-if-custom-font-can-display-character/41100873#41100873    	
 //    	Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 //    	Rect rtt = new Rect();
@@ -404,138 +480,144 @@ public class CustomKbdScroll
 //    	    if( rtt.width() == 0 ){
 //    	}
     	int i=0;
-    	int j =0;
-    	int pos = 0;
-    	for (i=0;i< arKeys.length;i++) {
-    		if (arKeys[i].length() < 1)
-    			continue;
-    		for (j = 0;j<arAnhcor.length;j++) {
-    			if(arAnhcor[j].length()>0 && arKeys[i].compareToIgnoreCase(arAnhcor[j])==0) {
-    				arIndex.add(i);
-    				pos++;
-    				break;
-    			}
-    		}
-    		if (pos-1 == arAnhcor.length)
-    			break;
-    	}
+    	int ind =0;
+		for (i=0;i<arAnhcor.length;i++) {
+			if(arAnhcor[i].length()>3 ) {
+				arAnhcor[i] = st.STR_NULL;
+				continue;
+			}
+			ind = Arrays.asList(arKeys).indexOf(arAnhcor[i]);
+			if (ind != -1) {
+				arIndex.add(ind);
+			}
+		}
     }
     void createRightButton()
     {
         llr = (LinearLayout)m_MainView.findViewById(R.id.ks_ll_right);
         TextView tv = null;
-        tv = newTextView(true);
-        tv.setId(ID_TV_ABC);
-//        Font.setTextOnTypeface(tv, Font.FontArSymbol);
-        tv.setOnClickListener(m_listener);
-        tv.setText("ABC");
-        llr.addView(tv);
+        tv = (TextView)m_MainView.findViewById(R.id.ks_tv_abc_key);
+        tv = newTextView(true, tv);
+        tv.measure(0, 0);
+        int ww = tv.getMeasuredWidth();
         
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_RIGHT_BOTTOM);
-        tv.setOnClickListener(m_listener);
-        Font.setTextOnTypeface(tv, Font.FontArSymbol.PGDN);
-        llr.addView(tv);
+//        tv = newTextView(true);
+//        tv.setId(ID_TV_ABC);
+//        tv.setOnClickListener(m_listener);
+//        tv.setText("ABC");
+//        llr.addView(tv);
+        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_RIGHT_BOTTOM);
+//        Font.setTextOnTypeface(tv, Font.FontArSymbol.PGDN);
+//        llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_DELETE);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText("del");
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_BACKSPACE);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         Font.setTextOnTypeface(tv, Font.FontArSymbol.BACKSPACE);
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_ENTER);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         Font.setTextOnTypeface(tv, Font.FontArSymbol.ENTER);
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_SPACE);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         Font.setTextOnTypeface(tv, Font.FontArSymbol.SPACE);
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_ARROW_LEFT);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText("←");
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_ARROW_RIGHT);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText("→");
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_VOSKLICATELNY_ZNAK);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText("!");
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_VOPROSITELNY_ZNAK);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText("?");
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_COMMA);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText(st.STR_COMMA);
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_POINT);
-        tv.setOnClickListener(m_listener);
+        tv.setSoundEffectsEnabled(false);
         tv.setText(st.STR_POINT);
         llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_RIGHT_TOP);
-        tv.setOnClickListener(m_listener);
         Font.setTextOnTypeface(tv, Font.FontArSymbol.PGUP);
         llr.addView(tv);
         
         llr.measure(0, 0);
         llr_w = llr.getMeasuredWidth();
+        if (ww > lll_w)
+        	lll_w = ww;
     }
 /** Показывает раскладку */    
 	@SuppressLint("NewApi")
 	void show()
     {
+		if (ls == null)
+			ls = new LayoutSetting();
+		ls.readLayoutSetting();
         createLeftButton();
         createRightButton();
         int colu = Math.max(lll_w,llr_w);
         int i = 0;
         try {
+        	((TextView)m_MainView.findViewById(R.id.ks_tv_favorite_key)).setMinimumWidth(colu);
+        	((TextView)m_MainView.findViewById(R.id.ks_tv_abc_key)).setMinimumWidth(colu);
             for(i=0;i<lll.getChildCount();i++)
             {
             	((TextView)lll.getChildAt(i)).setMinimumWidth(colu);
             }
             for(i=0;i<llr.getChildCount();i++)
             {
-            	((TextView)lll.getChildAt(i)).setMinimumWidth(colu);
+            	((TextView)llr.getChildAt(i)).setMinimumWidth(colu);
             }
 		} catch (Throwable e) {
 		}
         gv = (GridView)m_MainView.findViewById(R.id.ks_grid);
-        m_adapter = new Adapt(st.c(), arKeys);
-
         colu = ck.m_displayWidth-(colu*2);
-        colu = colu/(int)(font_size+30);
+        colu = colu/(int)(font_size+50);
         colu-=1;
         //colu = colu/120;
         if (colu < 1)
         	colu = 1;
         gv.setNumColumns(colu);
-        gv.setAdapter(m_adapter);
+        typeAdapter(ls.favorite);
+//        setVisibleGridView();
+        //m_adapter = new Adapt(st.c(), arKeys);
+        //gv.setAdapter(m_adapter);
         m_MainView.setBackground(jkbview.getBackground());
         ServiceJbKbd.inst.showCandView(false);
         ServiceJbKbd.inst.setInputView(m_MainView);
@@ -544,6 +626,50 @@ public class CustomKbdScroll
         lp.height = jkbview.getHeight();
         m_MainView.setLayoutParams(lp);
     }
+	/** устанавливаем какой грид выводить - избранное или общее <br>
+	 * и тут-же устанавливает адаптер в grid*/
+	public void typeAdapter(boolean favorite)
+	{
+//		if (m_adapter!=null)
+//			m_adapter.clear();
+		if (!favorite)
+			if (arKeys != null) {
+				m_adapter = new Adapt(st.c(), arKeys);
+			} else {
+				m_adapter = null;
+			}
+		else {
+			if (arFav != null) {
+				m_adapter = new Adapt(st.c(), arFav);
+			} else {
+				m_adapter = null;
+			}
+		}
+		setVisibleOficialButton(ls.favorite);
+		TextView tv = (TextView)m_MainView.findViewById(R.id.ks_tv_favorite_null_text);
+		tv.setMovementMethod(new ScrollingMovementMethod());
+		if (m_adapter == null) {
+    		gv.setVisibility(View.GONE);
+			if (ls.favorite) {
+	    		tv.setVisibility(View.GONE);
+	        	if (arFav == null) {
+	        		tv.setVisibility(View.VISIBLE);
+//	        		gv.setVisibility(View.GONE);
+	        	}				
+			}
+			return;
+		}
+		else if (m_adapter != null) {
+    		gv.setVisibility(View.VISIBLE);
+			if (!ls.favorite) {
+	    		tv.setVisibility(View.GONE);
+			}
+		}
+
+		if (gv != null)
+			gv.setAdapter(m_adapter);
+		
+	}
 
 	static class Adapt extends ArrayAdapter<List<Key>>
     {
@@ -584,5 +710,215 @@ public class CustomKbdScroll
 			return tv;
 		}
     }
+	String getFilenameFromKeybrd()
+	{
+		if (mkbd == null) {
+			return NOT_NAME_FILENAME;
+		}
+    	int ind = mkbd.path.lastIndexOf(st.STR_SLASH);
+    	if (ind == -1) {
+    		return mkbd.path;
+    	} else {
+    		return mkbd.path.substring(ind+1);
+    	}
+	}
+	
+	/** класс, для хранения настроек текущей скроллящейся раскладки */
+    public static class LayoutSetting
+    {
+    	/** время последнего запуска этой раскладки*/
+    	long lastStartTime = 0;
+    	/** какую панель открывать - избранное или общую */
+    	boolean favorite = false;
+    	
+        public LayoutSetting()
+        {
+        	lastStartTime = 0;
+        	favorite = false;
+        }
+    	/** записываем параметры текущей раскладки */
+    	public void saveLayoutSetting()
+    	{
+        	String pt = inst.getFilenameFromKeybrd();
+        	if (pt.compareTo(NOT_NAME_FILENAME)==0)
+        		return;
+        	pt = st.getSettingsPath()+CustomKbdScroll.FOLDER_LAYOUT_SETTING+st.STR_SLASH+pt;
+        	String delim = ";";
+    		lastStartTime = new Date().getTime();
+        	String out = lastStartTime+delim;
+        	if (favorite)
+        		out+= st.STR_ONE;
+        	else
+        		out+= st.STR_ZERO;
+        	out += delim;
+        	if (inst.arFav !=null) {
+            	for (int i=0;i<inst.arFav.length;i++) {
+            		out += inst.arFav[i]+st.STR_COMMA;
+            	}
+        	}
+        	st.savefile(pt, out);
+
+    	}
+    	/** загружаем параметры текущей раскладки */
+    	public boolean readLayoutSetting()
+    	{
+        	String pt = st.getSettingsPath()+CustomKbdScroll.FOLDER_LAYOUT_SETTING;
+            File ff = new File(pt);
+            if(!ff.exists())
+            {
+                ff.mkdirs();
+                inst.setDefaultSettingLayout();
+                return true;
+            }
+            pt += st.STR_SLASH+inst.getFilenameFromKeybrd();            
+            ff = new File(pt);
+            if(!ff.exists())
+            {
+                inst.setDefaultSettingLayout();
+                return true;
+            }
+            pt = st.readFileString(pt);
+            if (pt == null) {
+                inst.setDefaultSettingLayout();
+            	return true;
+            }
+            boolean ret = true;
+            String[] ar = pt.split(";");
+            try {
+        		lastStartTime = Long.parseLong(ar[0]);
+				
+			} catch (Throwable e) {
+				ret = false;
+	    		lastStartTime = new Date().getTime();
+			}
+    		favorite = ar[1].compareTo(st.STR_ZERO)!=0;
+    		if (ar.length>=3&&ar[2]!=null&&ar[2].length()>0) {
+    			inst.arFav = ar[2].split(st.STR_COMMA);
+    		}
+    		return ret;
+    	}
+    }
+	/** устанавливаем параметры текущей раскладки по умолчанию*/
+	public void setDefaultSettingLayout()
+	{
+		if (inst.mkbd == null)
+			return;
+		ls = new LayoutSetting();
+		ls.lastStartTime = new Date().getTime();
+	}
+	public void setVisibleOficialButton(boolean favorite)
+	{
+		int vis = favorite?View.GONE:View.VISIBLE;
+        TextView tv = null;
+        // левая панель кнопок
+        for (int i=0;i<lll.getChildCount();i++)
+        {
+        	try {
+				tv = (TextView)lll.getChildAt(i);
+			} catch (Throwable e) {
+				continue;
+			}
+        	switch (tv.getId())
+        	{
+        	case ID_TV_LEFT_TOP:
+        	case ID_TV_LEFT_BOTTOM:
+        		tv.setVisibility(vis);
+        		break;
+        	default:
+        		if (tv.getId() >= ID_TV_MAIN_VALUE_ANHCOR) {
+            		tv.setVisibility(vis);
+        			//gv.setSelection(tv.getId()-ID_TV_MAIN_VALUE_ANHCOR);
+        		}
+        	}
+        }
+	}
+	public void updateFavoriteArray(String text)
+	{
+		String[] art = null;
+		int i = 0;
+		int pos = 0;
+		// если активна панель избранного, значит элемент удаляем
+		if (ls.favorite) {
+			art = new String[arFav.length-1];
+			pos = 0;
+			if (art.length>0) {
+				for (i=0;i<arFav.length;i++) {
+					if (text.compareTo(arFav[i])==0)
+						continue;
+					art[pos]=arFav[i];
+					pos++;
+				}
+			}
+		} else {
+			// если панель избранного НЕ АКТИВНА, значит элемент добавляем
+			if (arFav!=null) {
+				for (i=0;i<arFav.length;i++) {
+					if (arFav[i].compareTo(text) == 0) {
+						st.toast(R.string.already_exist);
+						return;
+					}
+				}
+			}
+			if (arFav==null) {
+				pos = 1;
+				art = new String[pos];
+			} else {
+				for (i=0;i<arFav.length;i++) {
+					
+				}
+				pos = arFav.length+1;
+				art = new String[pos];
+		        System.arraycopy(arFav, 0, art, 0, pos-1);
+			}
+	        art[pos-1] = text;
+	        st.toast(R.string.add);
+	        
+		}
+		if (art.length < 1)
+			arFav = null;
+		else
+			arFav = new String[art.length];
+		for (i =0;i<art.length;i++)
+			arFav[i]=art[i];
+        if (ls.favorite)
+        	typeAdapter(ls.favorite);
+        ls.saveLayoutSetting();
+	}
+	/** удаляем файлы параметров раскладок, 
+	 * если они не запускались больше определённого периода */
+	public static void checkFileSettingLayout()
+	{
+	    new Handler().postDelayed(new Runnable() {
+			public void run() {
+				long time = 0;
+		    	String pt = st.getSettingsPath()+CustomKbdScroll.FOLDER_LAYOUT_SETTING;
+		        File ff = new File(pt);
+		        if(!ff.exists())
+		        {
+		            ff.mkdirs();
+		            return;
+		        }
+		        String[] ar = null;
+		        File[] arf = st.getFilesFromDir(ff, null);
+		        for (int i=0;i<arf.length;i++)
+		        {
+		        	if (ServiceJbKbd.inst!=null&&ServiceJbKbd.inst.isInputViewShown())
+		        		return;
+		        	pt = st.readFileString(arf[i]);
+		        	ar = pt.split(";");
+		        	try {
+						time = Long.parseLong(ar[0]);
+					} catch (Throwable e) {
+						arf[i].delete();
+						continue;
+					}
+		        	if (time > TIME_3MONTH)
+		        		arf[i].delete();
+		        }
+				
+	        }
+	    }, 50);
+		
+	}
 
 }

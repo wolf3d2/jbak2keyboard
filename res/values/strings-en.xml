@@ -12,6 +12,11 @@
 	<string name="jbak2skin">Custom skins</string>
 	<string name="jbak2skin_desc">This is an independent application that contains  different skins. There you can also find the instructions for creating your own skin.</string>
 	<string name="other_app">(Ad) Other applications </string>
+	<string name="ks_empty_favorite">Long press on a key from the general list will add it to your favorites.
+\n\nTo remove from favorites, long press on the key in this list.
+\n---
+\nLong press on the keys in Favorites and ABC (in the general list) will move the corresponding button panels down.</string>
+
 	<string name="reboot">Loaded. Device reboot required</string>
 	<string name="default_pref">Default settings</string>
 	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
@@ -434,7 +439,7 @@
     <string name="rate_title">Application rating</string>
     <string name="rate_about">Please, rate this app.</string>
 <string name="rate_query">Please, rate the app once by clicking the Rate button </string>
-    <string name="rate_toast">Please, rate the application by selecting the \“Rate the app\” setting item</string>
+    <string name="rate_toast">Please, rate the application by selecting the \“Rate the app\” setting item and this message will no longer appear.</string>
     <string name="rate_not_toast">You left your review too quickly</string>
     <string name="rate_btn">Rate</string>
 
@@ -807,6 +812,7 @@
     <string name="rewrite_question">File already exists.\nDo you want to replace it?</string>
     <string name="settings_saved">Settings have been saved!</string>
     <string name="add">Added</string>
+    <string name="already_exist">Already exists</string>
     <string name="data_changed">Data has been changed.\nDo you want to save changes?</string>
     <string name="selection">Selection</string>
 	<string name="are_you_sure">Are you sure?</string>
@@ -929,7 +935,7 @@
 	<string name="kbd_name_qwerty">Qwerty keyboard</string>
     <string name="kbd_name_mwcorp">MWcorp\'s keyboard</string>
  	<string name="smiles_MWcorp">Emoji MWcorp</string>
- 	<string name="smiles_android7">Emoji Android 7</string>
+ 	<string name="smiles_android7">750+ Emoji from Android 7</string>
  	<string name="smiles_MaxQwertyKeys">Emoji from MaxQwertyKeys for Android 4.4 and above</string>    
  	<string name="kbd_name_qwerty_hyastan64">Haystan64\'s keyboard</string>
     <string name="kbd_name_qwerty_rusrespect">from RusRespect</string>    

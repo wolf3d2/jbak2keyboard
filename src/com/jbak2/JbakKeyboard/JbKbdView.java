@@ -92,6 +92,8 @@ public class JbKbdView extends KeyboardView
     public static final int STATE_SOUNDS        = 0x0000004;
 /** НЕ ИСПОЛЬЗУЕТСЯ!!! Состояние - включены жесты при наборе текста */    
     //public static final int STATE_GESTURES      = 0x0000008;
+    public static final int DEF_MAIN_FONT_SIZE    = 20;
+    public static final int DEF_SECOND_FONT_SIZE    = 12;
     int m_previewType = 1;
     int m_state = 0;
     int m_PreviewHeight=0;
@@ -253,7 +255,7 @@ public class JbKbdView extends KeyboardView
             }
             else if(f.getName().equals(txtSz)&&m_KeyTextSz==0)
             {
-                m_KeyTextSz = getFieldInt(f, this, 20);
+                m_KeyTextSz = getFieldInt(f, this, DEF_MAIN_FONT_SIZE);
             }
             else if(f.getName().equals(prevTs))
             {
@@ -283,7 +285,7 @@ public class JbKbdView extends KeyboardView
             }
             else if(f.getName().equals(labSz)&&m_LabelTextSize==0)
             {
-                m_LabelTextSize = getFieldInt(f, this, 12);
+                m_LabelTextSize = getFieldInt(f, this, DEF_SECOND_FONT_SIZE);
             }
 //            else if(f.getName().equals(gd)&&st.has(m_state, STATE_GESTURES))
 //            {
@@ -355,7 +357,7 @@ public class JbKbdView extends KeyboardView
         {
             if(isUserInput())
                 ServiceJbKbd.inst.processKey(key.longCode);
-            return true;
+            return false;
         }
 // вызывает клавиатуру смайликов
         else if(key.codes[0] == 10)
@@ -1130,21 +1132,23 @@ public class JbKbdView extends KeyboardView
         catch (Throwable e) {
         }
     }
+	/** для getCurrentKeyDesign */
+	TextView mtv = null;
+	/** для getCurrentKeyDesign */
+	KbdDesign des = null;
     /** ставит на Button или TextView, оформление текущего скина
      * @param view - TextView или Button
      * @param bspec - как оформлять, как спецклавиша, или обычная */
-    public View getCurrentDesign(View view, boolean bspec)
+    public View getCurrentKeyDesign(View view, boolean bspec)
     {
     	if (inst == null)
     		return view;
-    	TextView tv = null;
     	try {
-        	tv = (TextView)view;
+        	mtv = (TextView)view;
 			
 		} catch (Throwable e) {
 			return view;
 		}
-    	KbdDesign des = null;
     	if (!bspec)
     		des = inst.m_curDesign;
     	else
@@ -1152,20 +1156,23 @@ public class JbKbdView extends KeyboardView
     	if (des == null)
     		des = inst.m_curDesign;
     		
-        tv.setGravity(Gravity.CENTER);
-        tv.setTextSize(inst.m_LabelTextSize);
-        tv.setHeight(m_KeyHeight);
-        tv.setTextColor(des.textColor);
+    	mtv.setGravity(Gravity.CENTER);
+        int tsize = m_LabelTextSize;
+        if(tsize==0)
+        	tsize = 12;
+        mtv.setTextSize(tsize);
+        mtv.setHeight(m_KeyHeight);
+        mtv.setTextColor(des.textColor);
         if (des.m_keyBackground!=null)
-        	tv.setBackground(des.m_keyBackground.getDrawable());
+        	mtv.setBackground(des.m_keyBackground.getDrawable());
         else
-        	tv.setBackground(inst.m_defDrawable);
+        	mtv.setBackground(inst.m_defDrawable);
     	
 		if (view instanceof Button) {
-			view = (Button) tv;
+			view = (Button) mtv;
 		} 
 		else if (view instanceof TextView) {
-			view = (TextView) tv;
+			view = (TextView) mtv;
 		} 
 
     	return view;

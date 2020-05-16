@@ -12,6 +12,10 @@
     <string name="jbak2skin">Temas personalizados</string>
     <string name="jbak2skin_desc">Es una aplicación independiente que contiene temas diferentes. Allí mismo se encuentra la instrucción (en ruso) para crear su propio tema.</string>
     <string name="other_app">(Ad) Otras aplicaciones </string>
+	<string name="ks_empty_favorite">Pulsación larga en una tecla de la lista general la agregará a sus favoritos.
+\n\nPara eliminar de favoritos, mantenga presionada la tecla en esta lista.
+\n---
+\nPulsación larga en las teclas en Favoritos y ABC (en la lista general) moverá los paneles de botones correspondientes hacia abajo.</string>
     <string name="reboot">Descargado. Se requiere el reinicio</string>
     <string name="default_pref">Ajustes predeterminados</string>
     <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
@@ -413,7 +417,7 @@
     <string name="rate_title">Evaluación de la aplicación</string>
     <string name="rate_about">Por favor, evalúa la aplicación</string>
     <string name="rate_query">Por favor, evalúa la aplicación presionando el botón Evaluar </string>
-    <string name="rate_toast">Por favor, califique la aplicación seleccionando el párrafo de configuración: Evaluar la aplicación</string>
+    <string name="rate_toast">Por favor, califique la aplicación seleccionando el párrafo de configuración: Evaluar la aplicación y este mensaje no volverá a aparecer.</string>
     <string name="rate_not_toast">Usted dejó su reseña demasiado rápido</string>
     <string name="rate_btn">Evaluar</string>
 
@@ -767,6 +771,7 @@
     <string name="rewrite_question">Archivo ya existe.\n¿Desea reemplazarlo?</string>
     <string name="settings_saved">¡Configuraciones se han guardado!</string>
     <string name="add">Añadido</string>
+    <string name="already_exist">Ya existe</string>
     <string name="data_changed">Datos han sido modificados.\n¿Guardar?</string>
     <string name="selection">Seleccionar</string>
     <string name="are_you_sure">¿Está seguro?</string>
@@ -883,7 +888,7 @@
     <string name="kbd_name_qwerty">Teclado Qwerty</string>
     <string name="kbd_name_mwcorp">Teclado de MWcorp\n(pulsación larga para insertar los símbolos que faltan (si hay para ese idioma)) ;add para las minúsculas, ADD para las mayúsculas.</string>
     <string name="smiles_MWcorp">Teclado de MWcorp</string>
- 	<string name="smiles_android7">Teclado Android 7</string>
+ 	<string name="smiles_android7">750+ teclado de Android 7</string>
     <string name="smiles_MaxQwertyKeys">Emoticones de MaxQwertyKeys para Android 4.4 y superior</string>
     <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 de MWcorp</string>
     <string name="kbd_t9_mwcorp">T9 de MWcorp\n(se debe activar el modo Shift 3 (Ajustes-Otros ajustes-Shift))</string>

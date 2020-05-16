@@ -98,6 +98,6 @@ public class VocabFile
     }
     public String processDir(String path, String lang)
     {
-        return processDir(lang, st.getFilesByExt(new File(path), DEF_EXT));
+        return processDir(lang, st.getFilesFromDir(new File(path), DEF_EXT));
     }
 }

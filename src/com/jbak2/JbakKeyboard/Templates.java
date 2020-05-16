@@ -676,6 +676,7 @@ public class Templates {
 
 						}
 						if (selst > -1 & selend > -1) {
+							mic.setSelection(selst, selend);
 							if (mci.isInited())
 								mic.endBatchEdit();
 						}

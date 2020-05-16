@@ -49,58 +49,100 @@ public class Font {
 	/** просто массив констант с перечислением какие буквы <br>
 	 *  какому символу соответствуют */
 	public static class FontArSymbol {
-		public static final char TO_START = 'A';
-		public static final char TO_END = 'B';
-		public static final char HOME_STR = 'C';
-		public static final char END_STR = 'D';
-		public static final char BACKSPACE = 'E';
-		public static final char DELETE = 'F';
-		public static final char KEYBOARD = 'G';
-		public static final char SETTING = 'H';
-		public static final char UNDO = 'I';
-		public static final char REDO = 'J';
-		public static final char HOME = 'K';
-		public static final char MENU = 'L';
-		public static final char ENTER = 'M';
-		public static final char SPACE = 'N';
-		public static final char SCREPKA = 'O';
-		public static final char SMILE_CIRCLE = 'P';
-		public static final char SMILE_ULIBKA_HORIZONTAL = 'Q';
-		public static final char SHIFT = 'R';
-		public static final char COPY = 'S';
-		public static final char PASTE = 'T';
-		public static final char KARANDASH = 'U';
+		public static final char TO_START = 'ɐ';
+		public static final char TO_END = 'ɑ';
+		public static final char HOME_STR = 'ɒ';
+		public static final char END_STR = 'ɓ';
+		public static final char BACKSPACE = 'ɔ';
+		public static final char DELETE = 'ɕ';
+		public static final char KEYBOARD = 'ɖ';
+		public static final char KEYBOARD_DONE = 'ɗ';
+		
+		public static final char UNDO = 'ɘ';
+		public static final char REDO = 'ə';
+		public static final char HOME = 'ɚ';
+		public static final char MENU = 'ɛ';
+		public static final char ENTER = 'ɜ';
+		public static final char SPACE = 'ɝ';
+		public static final char SCREPKA = 'ɞ';
+		public static final char SMILE_CIRCLE = 'ɟ';
+		
+		public static final char SMILE_ULIBKA_HORIZONTAL = 'ɠ';
+		public static final char SHIFT = 'ɡ';
+		public static final char COPY = 'ɢ';
+		public static final char PASTE = 'ɣ';
+		public static final char KARANDASH = 'ɤ';
 		/** вертикальные ножницы */
-		public static final char NOZNICI = 'V';
-		public static final char CALCULATOR = 'W';
-		public static final char GALOCHKA = 'X';
-		public static final char BIG_TEXT = 'Y';
-		public static final char SAVE = 'Z';
-		public static final char OPEN = 'a';
-		public static final char GLOBUS = 'b';
-		public static final char TRANSLATE = 'c';
-		public static final char KEYBOARD_DONE = 'd';
-		public static final char SEARCH = 'e';
-		public static final char SORT_A_Z = 'f';
-		public static final char SORT_Z_A = 'g';
-		public static final char POWER_OFF = 'h';
-		public static final char POWER_ON = 'i';
-		public static final char PALETTE = 'j';
-		public static final char EXIT = 'k';
-		public static final char PGUP = 'l';
-		public static final char PGDN = 'm';
-		public static final char LEFT_RIGHT = 'n';
-		public static final char SELECT = 'o';
-		public static final char SHARE1 = 'p';
-		public static final char SHARE2 = 'q';
-		public static final char KORZINA = 'r';
-		public static final char SKIN = 's';
-		public static final char FLAG_DARK = 't';
-		public static final char FLAG_LIGHT = 'u';
-		public static final char SIZE_TEXT = 'v';
-		public static final char LANGUAGE = 'w';
-		public static final char MICROPHONE = 'x';
-		/** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
+		public static final char NOZNICI = 'ɥ';
+		public static final char CALCULATOR = 'ɦ';
+		public static final char GALOCHKA = 'ɧ';
+		
+		public static final char BIG_TEXT = 'ɨ';
+		public static final char SAVE = 'ɩ';
+		public static final char OPEN = 'ɪ';
+		public static final char GLOBUS = 'ɫ';
+		public static final char LANGUAGE = 'ɬ';
+		public static final char TRANSLATE = 'ɭ';
+		public static final char SETTING = 'ɮ';
+		public static final char SEARCH = 'ɯ';
+		
+		public static final char SORT_A_Z = 'ɰ';
+		public static final char SORT_Z_A = 'ɱ';
+		public static final char POWER_OFF = 'ɲ';
+		public static final char POWER_ON = 'ɳ';
+		public static final char PALETTE = 'ɴ';
+		public static final char EXIT = 'ɵ';
+		public static final char PGUP = 'ɶ';
+		public static final char PGDN = 'ɷ';
+		
+		public static final char LEFT_RIGHT = 'ɸ';
+		public static final char SELECT = 'ɹ';
+		public static final char SHARE1 = 'ɺ';
+		public static final char SHARE2 = 'ɻ';
+		public static final char KORZINA = 'ɼ';
+		public static final char SKIN = 'ɽ';
+		public static final char FLAG_DARK = 'ɾ';
+		public static final char FLAG_LIGHT = 'ɿ';
+		
+		public static final char SIZE_TEXT = 'ʀ';
+		public static final char MICROPHONE = 'ʁ';
+		public static final char MICROPHONE_OFF = 'ʂ';
+		public static final char VIDEO = 'ʃ';
+		public static final char CAMERA = 'ʄ';
+		public static final char HELP_CIRCLE = 'ʅ';
+		public static final char EDIT = 'ʆ';
+		public static final char GRID = 'ʇ';
+
+		public static final char OK_ON = 'ʈ';
+		public static final char OK_OFF = 'ʉ';
+		public static final char CLOSE = 'ʊ';
+		public static final char CLOSE_CIPCLE = 'ʋ';
+		public static final char EYE_ON = 'ʌ';
+		public static final char EYE_OFF = 'ʍ';
+		public static final char PICT = 'ʎ';
+		public static final char PHONE = 'ʏ';
+
+		public static final char LOGIN = 'ʐ';
+		public static final char LOGOUT = 'ʑ';
+		public static final char BLOCK = 'ʒ';
+		public static final char APP_MAXIMIZE = 'ʓ';
+		public static final char APP_MINIMIZE = 'ʔ';
+		public static final char ZOOM_IN = 'ʕ';
+		public static final char ZOOM_OUT = 'ʖ';
+		public static final char FONT_BOLD = 'ʗ';
+/** Зачёркнутый */
+		public static final char FONT_STRIKED = 'ʘ';
+		public static final char FONT_UNDERLINED = 'ʙ';
+		public static final char GRAFIK_VERTICAL_LINE = 'ʚ';
+		public static final char GRAFIK_UP = 'ʛ';
+		public static final char DATABASE = 'ʜ';
+		public static final char ICON_MOVE = 'ʝ';
+		public static final char ICON_RESIZE = 'ʞ';
+		public static final char CODE = 'ʟ';
+
+		public static final char CURSOR = 'ʠ';
+		public static final char CLOUD = 'ʡ';
+/** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
 		createArraySymbolOfFont() */
 	}
 	public static char[] createArraySymbolOfFont() {
@@ -156,6 +198,38 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.LANGUAGE);
 		vch.add(st.STR_NULL+FontArSymbol.MICROPHONE);
 
+		vch.add(st.STR_NULL+FontArSymbol.MICROPHONE_OFF);
+		vch.add(st.STR_NULL+FontArSymbol.VIDEO);
+		vch.add(st.STR_NULL+FontArSymbol.CAMERA);
+		vch.add(st.STR_NULL+FontArSymbol.HELP_CIRCLE);
+		vch.add(st.STR_NULL+FontArSymbol.EDIT);
+		vch.add(st.STR_NULL+FontArSymbol.GRID);
+		vch.add(st.STR_NULL+FontArSymbol.OK_ON);
+		vch.add(st.STR_NULL+FontArSymbol.OK_OFF);
+		vch.add(st.STR_NULL+FontArSymbol.CLOSE);
+		vch.add(st.STR_NULL+FontArSymbol.CLOSE_CIPCLE);
+		vch.add(st.STR_NULL+FontArSymbol.EYE_ON);
+		vch.add(st.STR_NULL+FontArSymbol.EYE_OFF);
+		vch.add(st.STR_NULL+FontArSymbol.PICT);
+		vch.add(st.STR_NULL+FontArSymbol.PHONE);
+		vch.add(st.STR_NULL+FontArSymbol.LOGIN);
+		vch.add(st.STR_NULL+FontArSymbol.LOGOUT);
+		vch.add(st.STR_NULL+FontArSymbol.BLOCK);
+		vch.add(st.STR_NULL+FontArSymbol.APP_MAXIMIZE);
+		vch.add(st.STR_NULL+FontArSymbol.APP_MINIMIZE);
+		vch.add(st.STR_NULL+FontArSymbol.ZOOM_IN);
+		vch.add(st.STR_NULL+FontArSymbol.ZOOM_OUT);
+		vch.add(st.STR_NULL+FontArSymbol.FONT_BOLD);
+		vch.add(st.STR_NULL+FontArSymbol.FONT_STRIKED);
+		vch.add(st.STR_NULL+FontArSymbol.FONT_UNDERLINED);
+		vch.add(st.STR_NULL+FontArSymbol.GRAFIK_VERTICAL_LINE);
+		vch.add(st.STR_NULL+FontArSymbol.GRAFIK_UP);
+		vch.add(st.STR_NULL+FontArSymbol.DATABASE);
+		vch.add(st.STR_NULL+FontArSymbol.ICON_MOVE);
+		vch.add(st.STR_NULL+FontArSymbol.ICON_RESIZE);
+		vch.add(st.STR_NULL+FontArSymbol.CODE);
+		vch.add(st.STR_NULL+FontArSymbol.CURSOR);
+		vch.add(st.STR_NULL+FontArSymbol.CLOUD);
 		char[] ar = new char[vch.size()];
 		for (int i = 0; i < vch.size(); i++) {
 			ar[i] = vch.get(i).charAt(0);
@@ -177,7 +251,6 @@ public class Font {
 		public FontGridAdapt(Context context, st.UniObserver obs) {
 			super(context, 0);
 			m_c = context;
-			//ar_symbol = createArraySymbolOfFont();
 			m_MenuObserver = obs;
 			;
 
@@ -193,11 +266,6 @@ public class Font {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView != null) {
 				convertView = newView(position, convertView);
-				// Button b = (Button)convertView;
-				// b.setTag(me);
-				// b.setId(me.id);
-				// b.setText(me.text);
-				// b.setTransformationMethod(null);
 			} else {
 				convertView = newView(position, null);
 			}
@@ -233,23 +301,12 @@ public class Font {
 			tv.setOnLongClickListener(m_longListener);
 			tv.setTextSize(40);
 			tv.setTypeface(tf);
-			// ch = st.STR_NULL+ar[pos];
 			tv.setText(st.STR_NULL + ar_symbol[pos]);
 			ll.addView(tv);
 			vv = ll;
 			return vv;
 		}
 
-//		st.UniObserver gridObserver = new st.UniObserver() {
-//			@Override
-//			public int OnObserver(Object param1, Object param2) {
-//				if (m_MenuObserver == null)
-//					return 0;
-//				m_MenuObserver.m_param1 = param1;
-//				m_MenuObserver.Observ();
-//				return 0;
-//			}
-//		};
 		/** Обработчик короткого нажатия кнопок меню */
 		View.OnClickListener m_listener = new View.OnClickListener() {
 
@@ -264,9 +321,6 @@ public class Font {
 				if (m_MenuObserver != null) {
 					try {
 						m_MenuObserver.OnObserver(pos, new Boolean(false));
-						// if (close_menu)
-						// close();
-
 					} catch (Throwable e) {
 					}
 				}
@@ -287,9 +341,6 @@ public class Font {
 				if (m_MenuObserver != null) {
 					try {
 						m_MenuObserver.OnObserver(pos, new Boolean(true));
-						// if (close_menu)
-						// close();
-
 					} catch (Throwable e) {
 					}
 				}
@@ -314,33 +365,6 @@ public class Font {
 			((CheckBox) view).setText(str);
 		}
 	}
-
-//	public static char[] createArraySymbolOfFont() {
-//		Field[] ff = Font.FontArSymbol.class.getDeclaredFields();
-//		String nn = null;
-//		Field fff = null;
-//		Vector<String> vch = new Vector<String>();
-//		for (int i = 0; i < ff.length; i++) {
-//			fff = ff[i];
-//			nn = fff.getType().toString();
-//			if (nn.compareToIgnoreCase("char") == 0) {
-//				try {
-//	                fff.setAccessible(true);
-//
-//					vch.add("" + fff.getChar(i));
-//				} catch (Throwable e) {
-//					st.log("jbak2. Font.createArraySymbolOfFont");
-//					st.logEx(e);
-//				}
-//			}
-//		}
-//		char[] ar = new char[vch.size()];
-//		for (int i = 0; i < vch.size(); i++) {
-//			ar[i] = vch.get(i).charAt(0);
-//		}
-//		Arrays.sort(ar);
-//		return ar;
-//	}
 
 	/** диалог выбора символа из списка типа gridLayout */
 	public static void showDialogGridSelectSymbolOfFont(Context con, st.UniObserver obs) {
