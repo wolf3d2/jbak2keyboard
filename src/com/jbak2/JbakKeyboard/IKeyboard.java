@@ -812,7 +812,9 @@ public class IKeyboard {
 				new KbdDesign(R.string.design_glamor, "glamor.skin"),
 				new KbdDesign(R.string.design_nad1, "Blue_and_gray.skin"),
 				new KbdDesign(R.string.design_nad2, "Brown&pink&yellow.skin"),
-				new KbdDesign(R.string.design_BOGDANPRIME1, "Gray_Soft_Keys_by_BOGDANPRIME.skin"), };
+				new KbdDesign(R.string.design_BOGDANPRIME1, "Gray_Soft_Keys_by_BOGDANPRIME.skin"), 
+				new KbdDesign(R.string.design_Proctocrator1, "PaleOrangeAndTwilightGreen_v2.skin"), 
+			};
 	}
 	public static void setDefaultKeybrd() {
 		arKbd = null;

@@ -75,5 +75,13 @@
         <item>@string/ac_color_type1</item>
         <item>@string/ac_color_type2</item>
         </string-array>
+    <string-array name="ie_list">
+        <item>1. ?-123+</item>
+        <item>2. ?-+123</item>
+        <item>3. ?123-+</item>
+        <item>4. -123+?</item>
+        <item>5. -+123?</item>
+        <item>6. 123-+?</item>
+        </string-array>
     
 </resources>

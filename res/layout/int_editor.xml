@@ -4,11 +4,22 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
+<LinearLayout 
+	android:id="@+id/mainll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+<TextView
+	android:id="@+id/help"
+	style="@style/label_help"
+	    />
+    
 <Button
     android:id="@+id/minus"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
+    android:layout_marginLeft="10dp"
     android:text="  -  "
     android:textStyle="bold" />
 
@@ -31,4 +42,5 @@
     />
 
 
+</LinearLayout>
 </LinearLayout>

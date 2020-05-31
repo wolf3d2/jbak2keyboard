@@ -23,6 +23,11 @@
 	<string name="msg_avtocorrect_and_addspace">Ви увімкнули  одночасно \"автовиправлення\" та \"додавати пробіл після символів\" (в Автовводі).\n\nРазом вони працюють некоректно!</string>
     <string name="in_developing">В розробці</string>
 	
+    <string name="ie_help">Внешний вид элемента настраивается в Прочие настройки-Дизайн элемента -/+</string>
+    <string name="ie_">Элемент -/+</string>
+    <string name="ie_design">Дизайн элемента -/+</string>
+    <string name="ie_design_desc">Порядок положения кнопок</string>
+    	
 <!-- Title for update preferences -->
 	<string name="upd_screen">Обновления</string>
 	<string name="upd_screen_desc">Проверка обновлений программы и другое</string>
@@ -676,7 +681,6 @@
     <string name="interval_min_repeat">Затримка між натисканням клавіш (мс)</string>
     <string name="intervals_keys_title_def_value">Стандартні значення:</string>
   
-        
 	<string-array name="array_type_ac_place">
         <item>Метод 1</item>
         <item>Метод 2</item>

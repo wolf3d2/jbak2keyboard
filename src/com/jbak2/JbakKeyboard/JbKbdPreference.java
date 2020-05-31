@@ -180,6 +180,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		setShiftState();
 		setACtype();
 		setEnterPict();
+		setDesignElemMinusPlus();
 		// p = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// p = st.pref(this);
@@ -208,6 +209,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				strVal(p.getString(st.PREF_AC_DEFKEY, st.AC_DEF_WORD)));
 		setSummary(st.PREF_AC_HEIGHT, R.string.set_key_ac_height_desc,
 				strVal(p.getString(st.PREF_AC_HEIGHT, st.STR_ZERO)));
+//		setSummary(st.PREF_KEY_IE_DESIGN, R.string.ie_design_desc,
+//				strVal(p.getString(st.PREF_KEY_IE_DESIGN, st.STR_ZERO)));
 		// setSummary(st.PREF_KEY_CHECK_UPD_APP, R.string.upd_check_desc,
 		// strVal(p.getString(st.PREF_AC_HEIGHT,"bbb" )));
 
@@ -1161,6 +1164,11 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		}
 	}
 
+	void setDesignElemMinusPlus() {
+		int v = Integer.decode(st.pref(this).getString(st.PREF_KEY_IE_DESIGN, st.STR_ZERO));
+		setSummary(st.PREF_KEY_IE_DESIGN, R.string.ie_design_desc, getResources().getStringArray(R.array.ie_list)[v]);
+	}
+
 	void setShiftState() {
 		int v = Integer.decode(st.pref(this).getString(st.PREF_KEY_SHIFT_STATE, st.STR_ZERO));
 		setSummary(st.PREF_KEY_SHIFT_STATE, 0, getResources().getStringArray(R.array.array_shift_vars)[v]);
@@ -1190,6 +1198,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		}
 		if (st.PREF_KEY_USE_GESTURES.equals(key))
 			JbKbdView.inst = null;
+		if (st.PREF_KEY_IE_DESIGN.equals(key))
+			setDesignElemMinusPlus();
 		if (st.PREF_KEY_SHIFT_STATE.equals(key))
 			setShiftState();
 		if (st.PREF_AC_WINDOW_TYPE.equals(key)) {

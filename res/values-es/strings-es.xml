@@ -21,6 +21,11 @@
     <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
     <string name="in_developing">En desarrollo</string>
     
+    <string name="ie_help">Внешний вид элемента настраивается в Прочие настройки-Дизайн элемента -/+</string>
+    <string name="ie_">Элемент -/+</string>
+    <string name="ie_design">Дизайн элемента -/+</string>
+    <string name="ie_design_desc">Порядок положения кнопок</string>
+    	
     <!-- Title for update preferences -->
     <string name="upd_screen">Actualizaciones</string>
     <string name="upd_screen_desc">Revisión de actualizaciones y más</string>

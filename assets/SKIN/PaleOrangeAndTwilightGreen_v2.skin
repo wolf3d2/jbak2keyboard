@@ -1,0 +1,24 @@
+
+// PaleOrange&TwilightGreen_v2
+// made by Proctocrator
+KeyboardBackgroundStartColor=0xff000000
+KeyBackStartColor=0xfff7ebd6
+KeyBackEndColor=0xffc5baa4
+KeyBackGradientType=0
+SpecKeyBackPressedStartColor=0xff003500
+SpecKeyBackStartColor=0xff086530
+SpecKeyBackEndColor=0xff003500
+SpecKeyBackGradientType=0
+KeyBackPressedStartColor=0xffc5baa4
+KeyTextColor=0xff000000
+KeySymbolColor=0xffff5521
+SpecKeyTextColor=0xffffffff
+SpecKeySymbolColor=0xffff8a00
+KeyStrokeStartColor=0xff81796b
+KeyStrokeEndColor=0xff000000
+SpecKeyPressedStrokeStartColor=0xffff5521
+SpecKeyStrokeStartColor=0xff000000
+KeyPressedStrokeStartColor=0xffff5521
+KeyGapSize=2
+KeyBackCornerX=8
+KeyBackCornerY=8

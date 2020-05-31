@@ -22,6 +22,11 @@
 	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
     <string name="in_developing">In developing</string>
 	
+    <string name="ie_help">Внешний вид элемента настраивается в Прочие настройки-Дизайн элемента -/+</string>
+    <string name="ie_">Element -/+</string>
+    <string name="ie_design">Design element -/+</string>
+    <string name="ie_design_desc">Порядок положения кнопок</string>
+    
 <!-- Title for update preferences -->
 	<string name="upd_screen">Updates</string>
 	<string name="upd_screen_desc">Check for app updates and more</string>
@@ -988,7 +993,8 @@
 	<string name="design_nad1">Blue_and_gray by Надежда Ф</string>    
 	<string name="design_nad2">Brown_pink_yellow by Надежда Ф</string>    
 	<string name="design_BOGDANPRIME1">Gray_Soft_Keys_by_BOGDANPRIME</string>    
-							
+	<string name="design_Proctocrator1">PaleOrangeAndTwilightGreen_v2 by Proctocrator</string>    
+								
 <!-- Names for languages -->
  	<string name="lang_symbol">Character keyboard</string>
  	<string name="lang_symbol_shift">Special character keyboard</string>

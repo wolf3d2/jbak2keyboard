@@ -7,6 +7,9 @@ import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CoderResult;
+
+import com.jbak2.JbakKeyboard.st;
+
 /** Класс для построчного чтения файла 
  * */
 /** TODO: Некорректно работает со строками, если длина одной строки в байтах > m_blockSize*/
@@ -44,7 +47,7 @@ public class LineFileReader
             m_file = new RandomAccessFile(path, accessType);
             m_fc = m_file.getChannel();
             m_fileSize = m_file.length();
-            m_decoder = Charset.forName("UTF-8").newDecoder();
+            m_decoder = Charset.forName(st.STR_UTF8).newDecoder();
             m_decBuffer = CharBuffer.allocate(100);
             return true;
         }

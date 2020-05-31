@@ -1,10 +1,12 @@
 package com.jbak2.web;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Random;
 import java.util.Scanner;
 
 import com.jbak2.JbakKeyboard.CustomKbdScroll;
@@ -14,8 +16,6 @@ import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.IniFile;
 
 import android.content.Context;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 /** класс для проверки обновлений с сайта клавиатуры */
 public class SiteKbd {
@@ -45,12 +45,15 @@ public class SiteKbd {
 	public static final String CHECK_KEY = ";cjbak2";
 	public static final String SITE_KBD = "https://jbak2.ucoz.net";
 	public static final String PAGE_UPDATE = "/upd/act_ver_kbd.htm";
+	public static final String PAGE_ADD_STAT = "http://vhost-33881.cloudpark.tech";
+	//public static final String PAGE_ADD_STAT = "http://m445438c.beget.tech";
 	
 	/** массив ссылок для скачивания проверочного файла наличия новой версии. <br>
 	 * Нулевой индекс - прямая ссылка. ПОРЯДОК НЕ МЕНЯТЬ!*/
 	public static final String[] AR_PAGE_UPDATE =  new String[]
 			{
 				SITE_KBD+PAGE_UPDATE,
+				PAGE_ADD_STAT,
 				"https://is.gd/63ta6l",
 				"https://ur-l.ru/Jb2up"
 					
@@ -228,23 +231,34 @@ public class SiteKbd {
 				Scanner sc =  null;
 				info = null;
 				if (!autocheck) {
+					//URL url = null
+					String param = null;
 					for (int i=1;i<AR_PAGE_UPDATE.length;i++) {
 						try {
-							sc =  new Scanner(new URL(AR_PAGE_UPDATE[i]).openStream(), "UTF-8");
-							sc.useDelimiter("\\A");
-							info = sc.next();
-							sc.close();
+							if (AR_PAGE_UPDATE[i].compareTo(AR_PAGE_UPDATE[1]) == 0) {
+								//param = "act=1";
+								AR_PAGE_UPDATE[i] = AR_PAGE_UPDATE[i]+"/index.php?act=1&v="+st.getAppVersionCode(m_c);
+							}
+							info = readUrl(AR_PAGE_UPDATE[i], param);
+//							} else {
+//								sc =  new Scanner(new URL(AR_PAGE_UPDATE[i]).openStream(), "UTF-8");
+//								sc.useDelimiter("\\A");
+//								info = sc.next();
+//								sc.close();
+//							}
 						} catch (Throwable e) {
 						}
 						if (info != null&&info.startsWith(CHECK_KEY)) {
 							break;
 						}
 						info = null;
+						param = null;
 					}
 				}
 				autocheck = false;
 				if (info == null) {
 					try {
+						// прямая ссылка
 						sc =  new Scanner(new URL(AR_PAGE_UPDATE[0]).openStream(), "UTF-8");
 						sc.useDelimiter("\\A");
 						info = sc.next();
@@ -391,26 +405,45 @@ public class SiteKbd {
 		return 0;
 	}
 	
-//	public void kclickCheckCopy(final String url) {
-//		// чекаем в третьем потоке
-//		new Thread(new Runnable() {
-//			public void run() {
-//				if (ww == null)
-//					return;
-//				
-//				ww.post(new Runnable() {
-//			          @Override
-//			          public void run() {
-//							ww.loadUrl(url);
-//			          }
-//			       });
-//				try {
-//					Thread.sleep(4000);
-//				} catch (Throwable e) {
-//				}
-//				ww.destroy();
-//				ww = null;
+	public String readUrl(String url, String param) {
+		String str = null;
+		// local url variable
+		URL lurl = null;
+		HttpURLConnection urlConnection = null;
+		try {
+			lurl = new URL(url);
+			urlConnection = (HttpURLConnection) lurl.openConnection();
+			urlConnection.setRequestMethod("POST");
+			urlConnection.setDoOutput(true);
+			urlConnection.setRequestProperty("act", "1");
+
+		    //Send request
+//			if (param!=null) {
+//			    DataOutputStream wr = new DataOutputStream (
+//			    		urlConnection.getOutputStream());
+//			    wr.writeBytes(param);
+//			    wr.close();
 //			}
-//		}).start();
-//	}
+		    OutputStreamWriter request = new OutputStreamWriter(urlConnection.getOutputStream());
+		    request.write("act=1");
+		    request.flush();
+		    request.close();
+		    
+		    urlConnection.setConnectTimeout(10000);
+			urlConnection.setReadTimeout(10000);
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(urlConnection.getInputStream()));
+	   		char buf[] = new char[200];
+	   		in.read(buf);
+			in.close();
+			str = new String(buf).trim();
+			if (str.length() == 0)
+				str = null;
+		} catch (Throwable e) {
+		} finally {
+			urlConnection.disconnect();
+		}
+		return str;
+	}
+	
 }

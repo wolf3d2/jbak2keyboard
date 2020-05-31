@@ -736,6 +736,18 @@
                 android:summary="@string/cs_pref_desc"
                 android:title="@string/mm_synchronize" />
         </PreferenceCategory>
+
+		<!-- дизайн элемента IntEditor -->
+        <PreferenceCategory android:title="@string/ie_" >
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/ie_list"
+            android:entryValues="@array/integer_vals"
+            android:key="ie_design"
+            android:summary="@string/ie_design_desc"
+            android:title="@string/ie_design" />
+
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/about" >
 
             <!-- Показывать путь к текущей папке в шаблонах -->

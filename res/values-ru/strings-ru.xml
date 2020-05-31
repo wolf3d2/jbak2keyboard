@@ -20,7 +20,12 @@
 	<string name="default_pref">Настройки по умолчанию</string>
 	<string name="msg_avtocorrect_and_addspace">Вы включили одновременно \"автоисправление\" и \"добавлять пробел после символов\" (в Автовводе).\n\nВместе они работают некорректно!</string>
     <string name="in_developing">В разработке</string>
-	
+
+    <string name="ie_help">Внешний вид элемента настраивается в Прочие настройки-Дизайн элемента -/+</string>
+    <string name="ie_">Элемент -/+</string>
+    <string name="ie_design">Дизайн элемента -/+</string>
+    <string name="ie_design_desc">Порядок положения кнопок</string>
+    
 <!-- отзыв -->
 	<string name="review">Оценить приложение</string>
 	<string name="review_desc">Оставьте пожалуйста свой отзыв на сайте программы.</string>
@@ -684,10 +689,6 @@
     <string name="interval_min_repeat">Задержка между нажатиями клавиш (ms)</string>
     <string name="intervals_keys_title_def_value">Стандартные значения:</string>
     
-	<string name="type_ac_window0">Метод 1</string>
-	<string name="type_ac_window1">Метод 2</string>
-	<string name="type_ac_window2">Метод 3</string>
-
 	<string-array name="array_type_ac_place">
         <item>Метод 1</item>
         <item>Метод 2</item>

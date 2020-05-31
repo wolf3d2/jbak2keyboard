@@ -3,6 +3,8 @@ package com.jbak2.JbakKeyboard;
 /** Константы для настроек клавиатуры */
 public interface IKbdSettings
 {
+	/** Ключ, дизайн элемента минус/плюс */
+	public static final String PREF_KEY_IE_DESIGN = "ie_design";
 	/** Ключ, тип пикера - круг или линейный */
 	public static final String PREF_KEY_TYPE_COLOR_PICKER = "type_color_picker";
 	/** Ключ, режим отладки */
@@ -345,6 +347,7 @@ public interface IKbdSettings
 /** Тэг для записи в logcat*/
     public static final String TAG = "JBK2";
 // строковые константы для уменьшения объёма занимаемой памяти
+    public static final String STR_UTF8 = "UTF-8";
     public static final String STR_NULL = "";
     public static final String STR_SPACE = " ";
     public static final String STR_ZERO = "0";

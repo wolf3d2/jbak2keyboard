@@ -757,6 +757,16 @@ public class st extends IKeyboard implements IKbdSettings
     	if(val1>val2)return val1;
     	return val2;
     }
+    public static void logErrorString()
+    {
+        if(DEBUG)
+            log("ERROR");
+    }
+    public static void log(String txt)
+    {
+        if(DEBUG)
+            Log.w(TAG, txt);
+    }
     public static final void logEx(Throwable e)
     {
         if(DEBUG)
@@ -764,11 +774,6 @@ public class st extends IKeyboard implements IKbdSettings
         if(e.getMessage()!=null)
         Log.e(TAG, Log.getStackTraceString(e));
         }
-    }
-    public static void log(String txt)
-    {
-        if(DEBUG)
-            Log.w(TAG, txt);
     }
 /** Возвращает клавиатуру для языка с именем langName */    
     public static Keybrd getKeybrdForLangName(String langName)
@@ -3188,7 +3193,7 @@ public class st extends IKeyboard implements IKbdSettings
 		info.append(st.STR_LF);
 		return info;
     }
-    /** Возвращает дату в указаннов format формате
+    /** Возвращает дату в указанном в format формате
      * @param time - время в long
      * @param format - одно из значений: <br>
      * - просто формат

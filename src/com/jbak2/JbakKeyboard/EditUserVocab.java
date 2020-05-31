@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.st.UniObserver;
+import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.ProgressOperation;
 import com.jbak2.words.UserWords;
@@ -80,8 +81,14 @@ public class EditUserVocab extends Activity
     	cb_noquery.setVisibility(View.GONE);
         btn_sellang =(Button)findViewById(R.id.euv_sellang);
         btn_sellang.setOnLongClickListener(m_clkLongListener);
+
+        // первоначальная обработка кнопки Закрыть
+        btn_search =(Button)findViewById(R.id.euv_close);
+        Font.setTextOnTypeface(btn_search, Font.FontArSymbol.KEYBOARD_DONE);
+
         btn_search =(Button)findViewById(R.id.euv_search);
         btn_search.setVisibility(View.GONE);
+        Font.setTextOnTypeface(btn_search, Font.FontArSymbol.SEARCH);
         ((TextView)findViewById(R.id.euv_txtlang)).setText(getString(R.string.euv_lang_text)+st.STR_COLON);
         tv_cnt_word =(TextView)findViewById(R.id.euv_allword);
         tv_cnt_word.setVisibility(View.GONE);
@@ -160,6 +167,9 @@ public class EditUserVocab extends Activity
     		return;
         switch (view.getId())
         {
+        case R.id.euv_close:
+        	onBackPressed();
+        	return;
         case R.id.euv_search:
             final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
     		((TextView) v.findViewById(R.id.eadw_title)).setText(R.string.search);
@@ -630,6 +640,9 @@ public class EditUserVocab extends Activity
     		super.onBackPressed();
     	if (fl_changed_lang)
     		st.exitApp();
+    	else
+        	st.showkbd();
+
     }
     void save(String lang, WordArray wa)
     {

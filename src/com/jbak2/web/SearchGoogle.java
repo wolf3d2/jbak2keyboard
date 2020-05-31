@@ -33,7 +33,7 @@ public class SearchGoogle
     		return;
     	String enc;
 		try {
-			enc = URLEncoder.encode(sel.toString(),"UTF-8");
+			enc = URLEncoder.encode(sel.toString(),st.STR_UTF8);
 		} catch (Throwable e) {
 			enc = null;
 		}
