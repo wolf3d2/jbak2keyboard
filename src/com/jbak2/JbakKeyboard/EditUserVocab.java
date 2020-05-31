@@ -640,8 +640,9 @@ public class EditUserVocab extends Activity
     		super.onBackPressed();
     	if (fl_changed_lang)
     		st.exitApp();
-    	else
-        	st.showkbd();
+// АВТОМАТОМ КЛАВУ НЕ ВЫЗЫВАТЬ!!! - вылазит где полпало    	
+//    	else
+//        	st.showkbd();
 
     }
     void save(String lang, WordArray wa)

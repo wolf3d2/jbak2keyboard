@@ -2,7 +2,7 @@
         package="com.jbak2.JbakKeyboard"
         
         android:versionName="2.34.09"
-        android:versionCode="281"
+        android:versionCode="282"
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>
