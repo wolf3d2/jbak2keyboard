@@ -162,6 +162,10 @@ public class SiteKbd {
 //		}
 ////		ww.destroy();
 //		}
+		
+		if (st.debug_mode)
+			st.toastLong("Проверка выхода новой версии");
+		
 		// чекаем в фоне
 		new Thread(new Runnable() {
 			public void run() {
@@ -429,8 +433,8 @@ public class SiteKbd {
 		    request.flush();
 		    request.close();
 		    
-		    urlConnection.setConnectTimeout(10000);
-			urlConnection.setReadTimeout(10000);
+//		    urlConnection.setConnectTimeout(10000);
+//			urlConnection.setReadTimeout(10000);
 			BufferedReader in = new BufferedReader(
 					new InputStreamReader(urlConnection.getInputStream()));
 	   		char buf[] = new char[200];

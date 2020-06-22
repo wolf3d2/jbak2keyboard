@@ -2857,13 +2857,16 @@ public class st extends IKeyboard implements IKbdSettings
 			st.toast(R.string.empty);
       		return;
       	}
-      	Intent sendIntent = new Intent();
-      	sendIntent.setAction(Intent.ACTION_SEND);
-      	sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      	sendIntent.putExtra(Intent.EXTRA_TEXT, txt);
-      	sendIntent.setType("text/plain");
-      	c.startActivity(sendIntent);
-      	ServiceJbKbd.inst.stickyOff(st.TXT_ED_SELECT);
+      	try {
+          	Intent sendIntent = new Intent();
+          	sendIntent.setAction(Intent.ACTION_SEND);
+          	sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+          	sendIntent.putExtra(Intent.EXTRA_TEXT, txt);
+          	sendIntent.setType("text/plain");
+          	c.startActivity(sendIntent);
+          	ServiceJbKbd.inst.stickyOff(st.TXT_ED_SELECT);
+		} catch (Throwable e) {
+		}
       	st.toast(R.string.send_share_create_list);
      }
 /** возвращает исходное число в форматированном виде (b, kb, mb, gb и tb) */

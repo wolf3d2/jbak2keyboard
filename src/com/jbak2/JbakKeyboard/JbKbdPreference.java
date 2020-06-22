@@ -279,6 +279,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		String vini = ini.getParamValue(ini.LAST_CHECK_VERSION);
 		if (ver == null | vini == null)
 			return;
+		boolean check_new_version = false;
 		switch (type) {
 		case 1:
 			boolean err = false;
@@ -294,8 +295,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				ver = con.getString(R.string.upd_check_desc_no);
 			else if (ver.compareToIgnoreCase(vini) == 0)
 				ver = con.getString(R.string.upd_check_desc_no);
-			else
+			else {
 				ver = con.getString(R.string.upd_check_desc_yes);
+				check_new_version = true;
+			}
 			vini = ini.getParamValue(ini.LAST_CHECK_TIME);
 			if (vini != null) {
 				try {
@@ -316,8 +319,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 					} catch (NumberFormatException e) {
 					}
 				}
-				// режим отладки включен
-				if (st.debug_mode)
+				// режим отладки включен и есть новая версия
+				if (st.debug_mode&&check_new_version)
 					ver += st.STR_LF + "След. напом.: " + st.getDatetime(time + SiteKbd.TOAST_NOT_UPDATE, "1");
 				// ---
 			}

@@ -488,7 +488,8 @@
 \n\n¡ICONOS DE LA FUENTE INCORPORADA SE VISUALIZARÁN SOLO EN EL TECLADO!
 \n\nSe insertará el símbolo de la fuente estándar en el campo de entrada, si hay uno en la fuente.
 \nPor lo tanto, esta función solo tiene sentido al crear botones, para su mejor percepción</string>
-
+    <string name="set_ac_defkey_help_buttons2">\n\nTambién se admite una combinación especial: $l# : inserta una línea de separación en la lista.</string>
+    
     <string name="set_ac_new_defkey">La cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
     <string name="set_ac_space">Insertar espacio</string>
     <string name="set_ac_space_desc">Insertar espacio después de una palabra seleccionada del Autocompletado</string>
@@ -874,7 +875,7 @@
     <string name="about_author">Desarrollador:</string>
     <string name="about_author_desc">Michail Wyazenki\n(MWcorp, 4pda - wolf3d2)\nDesarrollador antiguo (hasta 0.97.7): Yuri Bakunin</string>
     <string name="about_other">Otro:</string>
-    <string name="about_other_desc">Traducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
+    <string name="about_other_desc">Traducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: zdrweb, Stealth3001, TealcJaffa, EricSonicsson.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
 
     <!-- переводить только то, что есть на русском и именно так, как указано здесь -->
     <!-- для каждой локали своя строка! -->
@@ -893,7 +894,7 @@
     <string name="kbd_name_qwerty">Teclado Qwerty</string>
     <string name="kbd_name_mwcorp">Teclado de MWcorp\n(pulsación larga para insertar los símbolos que faltan (si hay para ese idioma)) ;add para las minúsculas, ADD para las mayúsculas.</string>
     <string name="smiles_MWcorp">Teclado de MWcorp</string>
- 	<string name="smiles_android7">750+ teclado de Android 7</string>
+ 	<string name="smiles_android7">1000+ teclado de Android 7</string>
     <string name="smiles_MaxQwertyKeys">Emoticones de MaxQwertyKeys para Android 4.4 y superior</string>
     <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 de MWcorp</string>
     <string name="kbd_t9_mwcorp">T9 de MWcorp\n(se debe activar el modo Shift 3 (Ajustes-Otros ajustes-Shift))</string>

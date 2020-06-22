@@ -506,7 +506,8 @@
 \n\nBUILT-IN FONT ICONS WILL BE SHOWN ONLY IN THE KEYBOARD!
 \n\nA standard font character will be inserted in the input field, if there is one in the font. 
 \nTherefore, this feature makes sense only when you create buttons and for their better perception</string>
-
+    <string name="set_ac_defkey_help_buttons2">\n\nA special combination is also supported : $l# : inserts a separator line into the list.</string>
+	
 	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>
     <string name="set_ac_space_desc">Insert space after a word selected from Autocomplete</string>
@@ -678,7 +679,7 @@
     <string name="vk_use_2">- to the left, + to the right</string>
 
     <string name="preview_show_0">Not show</string>
-	<string name="preview_show_1">Show under keys</string>
+	<string name="preview_show_1">Above pressed keys</string>
 	<string name="preview_show_2">Show on center</string>
 
 	<string name="preview_size_win">Preview pop-up size</string>
@@ -923,7 +924,7 @@
 
 	<string name="about_author_desc">Michail Wyazenkin (MWcorp, 4pda - wolf3d2)\n Previous developer (until 0.97.7)\nJuriy Bakunin</string>
 	<string name="about_other">Other:</string>
-	<string name="about_other_desc">Translations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
+	<string name="about_other_desc">Translations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa, EricSonicsson.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
     <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
 	<string name="about_color_picker_btn">Color picker</string>
     <string name="diary">List of changes</string>
@@ -940,7 +941,7 @@
 	<string name="kbd_name_qwerty">Qwerty keyboard</string>
     <string name="kbd_name_mwcorp">MWcorp\'s keyboard</string>
  	<string name="smiles_MWcorp">Emoji MWcorp</string>
- 	<string name="smiles_android7">750+ Emoji from Android 7</string>
+ 	<string name="smiles_android7">1000+ Emoji from Android 7</string>
  	<string name="smiles_MaxQwertyKeys">Emoji from MaxQwertyKeys for Android 4.4 and above</string>    
  	<string name="kbd_name_qwerty_hyastan64">Haystan64\'s keyboard</string>
     <string name="kbd_name_qwerty_rusrespect">from RusRespect</string>    

@@ -235,6 +235,7 @@ public class Popup2act extends Activity
             	String txt = inst.getString(R.string.pc2act_str_help1); 
             	txt += inst.getString(R.string.set_ac_defkey_help_buttons);
             	txt += inst.getString(R.string.set_ac_defkey_help_button_font);
+            	txt += inst.getString(R.string.set_ac_defkey_help_buttons2);
 				Dlg.helpDialog(inst, txt);
             	return;
             case R.id.pc2act_plus_btn_font:

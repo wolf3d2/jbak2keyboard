@@ -494,7 +494,8 @@
 \n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
 \n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
 \nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
-
+    <string name="set_ac_defkey_help_buttons2">\n\nА также, поддерживается специальное сочетание - $l# - вставляет в выводимый список разделяющую линию.</string>
+	
 	<string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
     <string name="set_ac_space">Вставка пробела</string>
     <string name="set_ac_space_desc">Вставлять пробел после ввода слова из автодополнения</string>
@@ -896,7 +897,7 @@
 	<string name="about_author">Автор:</string>
 	<string name="about_author_desc">Михаил Вязенкин\n(MWcorp, 4pda - wolf3d2)\nПервый автор (до 0.97.7): Юрий Бакунин</string>
 	<string name="about_other">Прочее:</string>
-	<string name="about_other_desc">Переводы:\nИспанский: Луиза Валеева (4pda.ru: Luiza_Va)\nАнглийский: Луиза Валеева\nУкраинский: Денис Манжос (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nАвтор иконки приложения - myha781 (4pda.ru)\n Просто помощь - elizz69, yergnoor</string>
+	<string name="about_other_desc">Переводы:\nИспанский: Луиза Валеева (4pda.ru: Luiza_Va)\nАнглийский: Луиза Валеева\nУкраинский: zdrweb, Stealth3001, TealcJaffa, EricSonicsson.\nАвтор иконки приложения - myha781 (4pda.ru)\n Просто помощь - elizz69, yergnoor</string>
 
 <!-- В других локалях этот текст не переводить! Какой там тест есть, тот и переводить -->
 	<string name="about_web">(Пролистайте до конца)\n\nСайт программы: http://jbak2.ucoz.net\n\nТема обсуждения: http://4pda.ru/forum/index.php?showtopic=638021\n\nГруппа на одноклассниках:\nhttps://ok.ru/jbak2keyboard\n\nДелается на основе jbak keyboard версии 0.97.7</string>
@@ -916,7 +917,7 @@
     <string name="kbd_name_qwerty">Клавиатура Qwerty</string>    
     <string name="kbd_name_mwcorp">Клавиатура от MWcorp\n(недостающие символы - долгое нажатие на (если есть для данного языка)) add-маленькие, ADD-БОЛЬШИЕ.</string>    
     <string name="smiles_MWcorp">Смайлики от MWcorp</string>    
- 	<string name="smiles_android7">750+ смайликов из Android 7</string>
+ 	<string name="smiles_android7">1000+ смайликов из Android 7</string>
     <string name="smiles_MaxQwertyKeys">Смайлики от MaxQwertyKeys для Android 4.4 и выше</string>    
     <string name="kbd_psevdo_t9_mwcorp">Псевдо T9 от MWcorp</string>    
     <string name="kbd_landscape_mwcorp">Ландшафт от MWcorp v100\n(пример всех кнопок клавиатуры)</string>    

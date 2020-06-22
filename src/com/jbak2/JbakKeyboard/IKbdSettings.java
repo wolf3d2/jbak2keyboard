@@ -361,6 +361,7 @@ public interface IKbdSettings
     public static final String STR_EQALLY = "=";
     public static final String STR_ERROR = "error";
     public static final String STR_PREFIX = "$[";
+    public static final String STR_PREFIX_LINE = "$l#";
     public static final String STR_PREFIX_FONT = "$f#";
     public static final String STR_COMMA = ",";
     public static final String STR_POINT = ".";
