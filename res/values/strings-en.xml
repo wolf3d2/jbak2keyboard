@@ -509,9 +509,13 @@
 \n\nBUILT-IN FONT ICONS WILL BE SHOWN ONLY IN THE KEYBOARD!
 \n\nA standard font character will be inserted in the input field, if there is one in the font. 
 \nTherefore, this feature makes sense only when you create buttons and for their better perception</string>
+<<<<<<< HEAD
     <string name="set_ac_defkey_help_buttons2">\n\nSpecial combinations are also supported :
 \n$l# :inserts a separator line into the displayed list.
 \n$el# :forcibly terminates the current string.</string>
+=======
+    <string name="set_ac_defkey_help_buttons2">\n\nA special combination is also supported : $l# : inserts a separator line into the list.</string>
+>>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
 	
 	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>

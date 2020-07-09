@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.jbak2.JbakKeyboard"
         
+<<<<<<< HEAD
         android:versionName="2.35"
         android:versionCode="284"
+=======
+        android:versionName="2.34.10"
+        android:versionCode="283"
+>>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>

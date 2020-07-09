@@ -491,10 +491,14 @@
 \n\n¡ICONOS DE LA FUENTE INCORPORADA SE VISUALIZARÁN SOLO EN EL TECLADO!
 \n\nSe insertará el símbolo de la fuente estándar en el campo de entrada, si hay uno en la fuente.
 \nPor lo tanto, esta función solo tiene sentido al crear botones, para su mejor percepción</string>
+<<<<<<< HEAD
     <string name="set_ac_defkey_help_buttons2">\n\nTambién se admiten combinaciones especiales: 
 \n$l# : inserta una línea de separación en la lista mostrada.
 \n$el# :termina forzadamente la cadena actual.</string>
 
+=======
+    <string name="set_ac_defkey_help_buttons2">\n\nTambién se admite una combinación especial: $l# : inserta una línea de separación en la lista.</string>
+>>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
     
     <string name="set_ac_new_defkey">La cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
     <string name="set_ac_space">Insertar espacio</string>
