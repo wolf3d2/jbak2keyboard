@@ -1419,7 +1419,7 @@ public class Templates {
 	public static final int IB_LINE = 2;
 	public static final char TPL_SPEC_CHAR = '$';
 	public static final String SPEC_INSTR_PROGRAM = "program";
-	public static final String SPEC_INSTR_SELREPLACE = "selReplaсe";
+	public static final String SPEC_INSTR_SELREPLACE = "selReplace";
 
 	/**
 	 * массв слов специнструкций. ПОРЯДОК НЕ МЕНЯТЬ! (используются в других местах)

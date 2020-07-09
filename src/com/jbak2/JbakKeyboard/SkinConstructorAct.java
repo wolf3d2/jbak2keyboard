@@ -36,7 +36,6 @@ public class SkinConstructorAct extends Activity {
 	static int value = 0;
 	int counter_id = -1;
 	static DataOutputStream fout = null;
-	public static String COMM = "//";
 	public static ArrayList<String> arskinname = new ArrayList<String>();
 	public static Vector<IntEntry> arval = new Vector<IntEntry>();
 	String feditname = st.STR_NULL;
@@ -139,7 +138,7 @@ public class SkinConstructorAct extends Activity {
 		s = s.trim();
 		if (s.length() == 0)
 			return index;
-		int fff = s.indexOf(COMM);
+		int fff = s.indexOf(st.STR_COMMENT);
 		if (fff >= 0) {
 			s = s.substring(0, fff).trim();
 		} else {
@@ -700,11 +699,11 @@ public class SkinConstructorAct extends Activity {
 		String out2 = st.STR_NULL;
 		if (id_res_category != 0) {
 			out2 += st.STR_LF + "//----------\n";
-			out2 += COMM + getString(id_res_category) + st.STR_LF;
+			out2 += st.STR_COMMENT + getString(id_res_category) + st.STR_LF;
 			out2 += "//----------\n";
 			return out2;
 		}
-		out2 += COMM + getString(id_text) + st.STR_LF;
+		out2 += st.STR_COMMENT + getString(id_text) + st.STR_LF;
 		int cnt = llskin.getChildCount();
 		int ind = -1;
 		String key = st.STR_NULL;

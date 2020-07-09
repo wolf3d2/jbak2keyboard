@@ -56,8 +56,10 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.KeyboardGesture.GestureHisList;
+import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
+import com.jbak2.ctrl.Mainmenu;
 import com.jbak2.perm.Perm;
 import com.jbak2.receiver.ClipbrdSyncService;
 import com.jbak2.web.SearchGoogle;
@@ -69,7 +71,20 @@ import com.jbak2.words.UserWords.WordArray;
 /** Основной статический класс функций и переменных */
 public class st extends IKeyboard implements IKbdSettings
 {
-
+	/** true - использовать шрифт клавиатуры на клавишах  */
+	public static boolean font_keyboard = true;
+	/** дефолтное значение для установки настройки Шрифт клавиатуры,<br>
+	 *  если андроид >= версии 5.0 */
+	public static final int FONT_KEYBOARD_DEF_UP_ANDR50 = 0;
+	/** дефолтное значение для установки настройки Шрифт клавиатуры,<br>
+	 *  если андроид < версии 5.0 */
+	public static final int FONT_KEYBOARD_DEF_LOWER_ANDR50 = 1;
+	/** дефолтное значение для установки настройки Шрифт клавиатуры,<br>
+	 *  если юзер указал true */
+	public static final int FONT_KEYBOARD_USER_TRUE = 2;
+	/** дефолтное значение для установки настройки Шрифт клавиатуры,<br>
+	 *  если юзер указал false */
+	public static final int FONT_KEYBOARD_USER_FALSE = 3;
 	/** переменная временного хранения текущего открытого языка. <br>
 	 * Используется для возврата из раскладки hide на раскладку <br>
 	 * из которой была запущена hide. 
@@ -123,7 +138,7 @@ public class st extends IKeyboard implements IKbdSettings
     public static String lang_desckbd = STR_3TIRE;
 	/** на каком языке выводить помощь по специнструкциям */
     public static String lang_help_specinstruction = STR_3TIRE;
-	// менять ли изображение на ентер в зависимости от контекста 
+	/** менять ли изображение на ентер в зависимости от контекста */ 
     public static boolean fl_enter_state = false;
 	/** мастер быстрых настроек. Значения (1 или 0).<br>
 	 * Элементы:<br>
@@ -680,7 +695,7 @@ public class st extends IKeyboard implements IKbdSettings
         {
         	return OnObserver(m_param1, m_param2);
         }
-        /** Основная функция обработчика */ 
+        /** Основная функция обработчика. */ 
         public abstract int OnObserver(Object param1,Object param2);
         /** Пользовательский параметр 1 */  
         public Object m_param1;
@@ -894,8 +909,8 @@ public class st extends IKeyboard implements IKbdSettings
             return ServiceJbKbd.inst;
         if(LangSetActivity.inst!=null)
             return LangSetActivity.inst;
-        if(EditSetActivity.inst!=null)
-            return EditSetActivity.inst;
+        if(EditSetFontActivity.inst!=null)
+            return EditSetFontActivity.inst;
         if(MainmenuAct.inst!=null)
             return MainmenuAct.inst;
         return JbKbdPreference.inst;
@@ -1268,6 +1283,23 @@ public class st extends IKeyboard implements IKbdSettings
     	int qwerty_kbd = isQwertyKeyboard();
         switch(action)
         {
+    	case st.CMD_SHOW_FONT_KEYBOARD_DIALOG: // быстрая смена скина
+        	com_menu.close();
+    		Font.showDialogOnKeyboardGridSelectSymbolOfFont(c, new st.UniObserver() {
+				
+				@Override
+				public int OnObserver(Object param1, Object param2) {
+					if (param1 != null&&ServiceJbKbd.inst!=null) {
+						int pos = (Integer) param1;
+						if (pos != AlertDialog.BUTTON_NEUTRAL)
+							ServiceJbKbd.inst.onText(st.STR_NULL+st.STR_PREFIX_FONT+Font.ar_symbol[pos]);
+						else
+							return 0;
+					}
+					return 1;
+				}
+			});
+    		return true;
     	case st.TXT_SELECT_PARAGRAPF: // выделение
     	case st.TXT_SELECT_LINE: // выделение
     	case st.TXT_SELECT_SENTENCE: // выделение
@@ -1940,6 +1972,7 @@ public class st extends IKeyboard implements IKbdSettings
        		char c= label.charAt(i);
             switch (c)
             {
+            case 0: out += st.STR_PREFIX_FONT;break;
             case '\n': out += "\\"+"n";break;
             case '\t': out += "\\"+"t";break;
             case '&': out+="&amp;";break;
@@ -2641,6 +2674,7 @@ public class st extends IKeyboard implements IKbdSettings
        	arGestures.add(new KbdGesture(R.string.menu_sel_skin, CMD_MENU_QUICK_SELECT_SKIN));
        	arGestures.add(new KbdGesture(R.string.user_hide_layout_menuname, CMD_SHOW_USER_HIDE_LAYOUT));
        	arGestures.add(new KbdGesture(R.string.addit_layout_menuname, CMD_SHOW_ADDITIONAL_HIDE_LAYOUT));
+       	arGestures.add(new KbdGesture(R.string.mm_font_kbd, CMD_SHOW_FONT_KEYBOARD_DIALOG));
     }
 /** запускает сервис синхронизации мультибуфера */
     public static void startSyncServise()
@@ -2857,13 +2891,16 @@ public class st extends IKeyboard implements IKbdSettings
 			st.toast(R.string.empty);
       		return;
       	}
-      	Intent sendIntent = new Intent();
-      	sendIntent.setAction(Intent.ACTION_SEND);
-      	sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      	sendIntent.putExtra(Intent.EXTRA_TEXT, txt);
-      	sendIntent.setType("text/plain");
-      	c.startActivity(sendIntent);
-      	ServiceJbKbd.inst.stickyOff(st.TXT_ED_SELECT);
+      	try {
+          	Intent sendIntent = new Intent();
+          	sendIntent.setAction(Intent.ACTION_SEND);
+          	sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+          	sendIntent.putExtra(Intent.EXTRA_TEXT, txt);
+          	sendIntent.setType("text/plain");
+          	c.startActivity(sendIntent);
+          	ServiceJbKbd.inst.stickyOff(st.TXT_ED_SELECT);
+		} catch (Throwable e) {
+		}
       	st.toast(R.string.send_share_create_list);
      }
 /** возвращает исходное число в форматированном виде (b, kb, mb, gb и tb) */

@@ -79,19 +79,32 @@ public class AboutActivity extends Activity
         	}
     		break;
     	case R.id.about_btn_copy_info:
+    		final String info = st.STR_NULL+ st.getDeviceInfo(inst);
     		st.UniObserver obs = new st.UniObserver() {
 				
 				@Override
 				public int OnObserver(Object param1, Object param2) {
-                    if(((Integer)param1).intValue()==AlertDialog.BUTTON_POSITIVE)
-                    	st.copyText(inst, st.getDeviceInfo(inst).toString());
+					switch (((Integer)param1).intValue())
+					{
+					// share
+					case AlertDialog.BUTTON_POSITIVE:
+						st.sendShareTextIntent(inst, info);
+						break;
+					// copy
+					case AlertDialog.BUTTON_NEUTRAL:
+                    	st.copyText(inst, info);
+						break;
+					// ok
+					case AlertDialog.BUTTON_NEGATIVE:
+						break;
+					}
 					return 0;
 				}
 			};
-    		String info = inst.getString(R.string.device_info)+st.STR_LF+st.STR_LF;
-    		info += st.getDeviceInfo(inst).toString();
+    		String txt = inst.getString(R.string.device_info)+st.STR_LF+st.STR_LF;
+    		txt += st.getDeviceInfo(inst).toString();
     		//Dlg.helpDialog(inst, info, R.string.gesture_copy, obs);
-    		Dlg.yesNoDialog(inst, info, R.string.gesture_copy, R.string.ok, obs);
+    		Dlg.yesNoCancelDialog(inst, txt, R.string.share, R.string.gesture_copy, R.string.ok, obs);
     		break;
         case R.id.about_btn_mail:
     		Mail.sendFeedback(inst);

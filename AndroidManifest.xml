@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.jbak2.JbakKeyboard"
         
-        android:versionName="2.34.09"
-        android:versionCode="282"
+        android:versionName="2.35"
+        android:versionCode="284"
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>
@@ -184,7 +184,7 @@
 					android:windowSoftInputMode="adjustResize"
 					/>
 <!-- ============================================================================== -->
-		<activity android:name="EditSetActivity" 
+		<activity android:name="EditSetFontActivity" 
 					android:label="@string/es_title"
 					android:configChanges="orientation|locale"
 					/>

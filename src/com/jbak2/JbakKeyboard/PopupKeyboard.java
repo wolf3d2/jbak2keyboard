@@ -72,7 +72,7 @@ public class PopupKeyboard
 			return false;
 		if (key.popupCharacters.toString().startsWith(V2)
 			||key.popupCharacters.toString().startsWith(V2))
-			return createFullPopupWindow((key.popupCharacters.toString()));
+			return createFullPopupWindow(key.popupCharacters.toString(),0,false,false);
 		else 
 			return createMiniPopupKbd(key);
 		//return false;
@@ -81,7 +81,7 @@ public class PopupKeyboard
 	{
 		if (str.startsWith(V2)
 		  ||str.startsWith(V2))
-			return createFullPopupWindow(str);
+			return createFullPopupWindow(str,0,false,false);
 		return false;
 	}
 	@SuppressLint("NewApi")
@@ -465,8 +465,13 @@ public class PopupKeyboard
 //    	fl_popupcharacter_window = true;
 //    	return true;
 //    }
-	/** создаем полноразмерную миниклавиатуру */
-    boolean createFullPopupWindow(String popupstr)
+	/** создаем полноразмерную миниклавиатуру 
+	 * @param popupstr - строка для вывода (с "v2" в начале строки)
+	 * @param height - если больше 0, то выставляем высоту окна height, иначе высчитываем из пп
+	 * @param zamok - имеет смысл только когда true - замок принудительно закрыт
+	 * и в настройки не записывается
+	 * @param noedit - если true, то все правые кнопки скрываются */
+    boolean createFullPopupWindow(String popupstr,int height, boolean zamok, boolean noedit)
     {
     	kvh = -1;
     	if (st.ar_asg.size()>0)
@@ -517,10 +522,15 @@ public class PopupKeyboard
     	CustomKeyboard kbd = (CustomKeyboard)st.kv().getCurKeyboard();
         int ypos = m_c.getResources().getDisplayMetrics().heightPixels;
         int xpos = m_c.getResources().getDisplayMetrics().widthPixels;
-        ypos -= kbd.getHeight();
+        if (height > 0) {
+        	ypos -= height;
+            lp.height =  height-20;
+        } else {
+        	ypos -= kbd.getHeight();
+            lp.height =  kbd.getHeight()-ServiceJbKbd.inst.m_candView.getHeight();
+        }
         lp.y = ypos;
         lp.x = DEFAULT_X-DEFAULT_X;
-        lp.height =  kbd.getHeight()-ServiceJbKbd.inst.m_candView.getHeight();
         lp.width = xpos-DEFAULT_X;
 
         
@@ -532,7 +542,6 @@ public class PopupKeyboard
                 |WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                 ;
         lp.dimAmount = (float) 0.2;
-		pc2_block = false;
 
 		close = ((TextView) v.findViewById(R.id.pc2close));
         close.setTextSize(st.btnoff_size);
@@ -549,9 +558,7 @@ public class PopupKeyboard
         set.setTextSize(st.btnoff_size);
     	set.setBackgroundColor(st.btnoff_bg);
     	set.setTextColor(st.btnoff_tc);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        	set.setText("⚙");
-        }
+    	Font.setTextOnTypeface(set, Font.FontArSymbol.SETTING);
     	set.setOnClickListener(new OnClickListener() {
     	@Override
     		public void onClick(View v) 
@@ -565,7 +572,8 @@ public class PopupKeyboard
     	block.setBackgroundColor(st.btnoff_bg);
     	block.setTextColor(st.btnoff_tc);
     	block.setText(st.returnZamok(false));
-    	if(st.win_fix){
+		pc2_block = false;
+    	if(st.win_fix|zamok){
     		pc2_block = true;
     		block.setText(st.returnZamok(true));
     	}
@@ -586,11 +594,7 @@ public class PopupKeyboard
     	back.setTextSize(st.btnoff_size);
     	back.setBackgroundColor(st.btnoff_bg);
     	back.setTextColor(st.btnoff_tc);
-        if (Build.VERSION.SDK_INT < 23) {
-        	back.setText("❮❎");
-    	} else {
-        	back.setText("⌫");
-    	}
+    	Font.setTextOnTypeface(back, Font.FontArSymbol.BACKSPACE);
 		back.setOnClickListener(new OnClickListener() {
     	@Override
     		public void onClick(View v) 
@@ -622,10 +626,20 @@ public class PopupKeyboard
         set.setMinWidth(wid);
         back.setMinWidth(wid);
         block.setMinWidth(wid);
-
+        if (noedit) {
+            set.setVisibility(View.GONE);
+            back.setVisibility(View.GONE);
+            block.setVisibility(View.GONE);
+        }
         int ll_btn_width = lp.width-MARGIN-MARGIN-wid;
-
+        int llmain_width = ll_btn_width;
+        // устанавливаем высоту кнопок у ряда
+        int max_h = 0;
+        // высота текущего nv
+        int tv_h =0;
         int id =1;
+        
+        
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
         for (int i=0;i<txt.length;i++) {
         	if (txt[i].trim().length() == 0){
@@ -637,6 +651,46 @@ public class PopupKeyboard
         		id++;
             	tv.measure(0, 0);
             	ll.addView(tv, llpar);
+            	continue;
+        	}
+        	else if (txt[i].trim().compareToIgnoreCase(st.STR_PREFIX_LINE) == 0){
+        		TextView tv = new TextView(m_c);
+        		tv.setBackgroundColor(st.btn_tc);
+        		tv.setLayoutParams(new LinearLayout.LayoutParams(
+	    		  llmain_width, 2));
+        		tv.setPadding(30, 10, 30, 10);
+        		tv.setId(id);
+
+        		id++;
+        		llrow.addView(ll, llrowpar);
+                ll = new LinearLayout(m_c);
+                ll.setLayoutParams(new LinearLayout.LayoutParams(
+	    		  LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                ll.setOrientation(LinearLayout.HORIZONTAL);
+            	ll.addView(tv);
+        		llrow.addView(ll, llrowpar);
+                ll = new LinearLayout(m_c);
+                ll.setOrientation(LinearLayout.HORIZONTAL);
+            	continue;
+        	}
+        	else if (txt[i].trim().compareToIgnoreCase(st.STR_PREFIX_END_LINE) == 0){
+//        		TextView tv = new TextView(m_c);
+//        		tv.setBackgroundColor(st.btn_tc);
+//        		tv.setLayoutParams(new LinearLayout.LayoutParams(
+//	    		  llmain_width, 2));
+//        		tv.setPadding(30, 10, 30, 10);
+//        		tv.setId(id);
+//
+//        		id++;
+//        		llrow.addView(ll, llrowpar);
+//                ll = new LinearLayout(m_c);
+//                ll.setLayoutParams(new LinearLayout.LayoutParams(
+//	    		  LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+//                ll.setOrientation(LinearLayout.HORIZONTAL);
+//            	ll.addView(tv);
+        		llrow.addView(ll, llrowpar);
+                ll = new LinearLayout(m_c);
+                ll.setOrientation(LinearLayout.HORIZONTAL);
             	continue;
         	}
         	
@@ -721,13 +775,23 @@ public class PopupKeyboard
         	tv.setLayoutParams(btnpar);
         	
         	tv.measure(0, 0);
+        	tv_h = tv.getMeasuredHeight();
+        	if (tv_h > max_h)
+        		max_h = tv_h;
             close.measure(0, 0);
             ll.measure(0, 0);
             int llcnt = ll.getMeasuredWidth();
             if (llcnt+tv.getMeasuredWidth()+MARGIN>ll_btn_width){
+            	for (int i1 = 0;i1< ll.getChildCount();i1++) {
+            		try {
+						ll.getChildAt(i1).setMinimumHeight(max_h);
+					} catch (Throwable e) {
+					}
+            	}
         		llrow.addView(ll, llrowpar);
         		int ww = llrow.getWidth();
         		llrow.setMinimumWidth(ww+100);
+        		max_h = 0;
                 ll = new LinearLayout(m_c);
                 ll.setOrientation(LinearLayout.HORIZONTAL);
         	}

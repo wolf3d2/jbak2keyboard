@@ -331,7 +331,7 @@ public class JbKbdView extends KeyboardView
             }
         }
         draw.paint().setDefault(m_curDesign, clr);
-        draw.paint().createFromSettings();
+        draw.paint().createFontFromSettings();
         setVerticalCorrection(m_vertCorr);
         m_popup = new PopupKeyWindow(getContext(),m_PreviewHeight,m_PreviewHeight);
         m_popup.m_bShowUnderKey = m_previewType==1;

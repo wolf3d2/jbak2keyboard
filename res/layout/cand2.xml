@@ -75,7 +75,6 @@
     android:layout_toRightOf ="@+id/cand2_counter"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:visibility="gone"
     android:text="-&gt;D"
     />
 

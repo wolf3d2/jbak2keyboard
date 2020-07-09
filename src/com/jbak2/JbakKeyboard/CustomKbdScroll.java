@@ -28,7 +28,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jbak2.CustomGraphics.draw;
-import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
+import com.jbak2.JbakKeyboard.EditSetFontActivity.EditSet;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.ctrl.Font;
 
@@ -52,6 +52,7 @@ public class CustomKbdScroll
 	public static final int ID_TV_LEFT_BOTTOM= 1015;
 	public static final int ID_TV_RIGHT_TOP= 1016;
 	public static final int ID_TV_RIGHT_BOTTOM= 1017;
+	public static final int ID_TV_POPUP_KEYBOARD = 1018;
 	
 	/** Опорное значение ID для элементов якорей левого меню */
 	public static final int ID_TV_MAIN_VALUE_ANHCOR = 1100;
@@ -63,7 +64,7 @@ public class CustomKbdScroll
 	/** имя файла, если не определили название файла раскладки */
 	public static final String NOT_NAME_FILENAME = "_notName";
 	/** время до удаления файла параметров раскладки */
-	public static final long TIME_3MONTH = 3600l*24l*90l;
+	public static final long TIME_3MONTH = 3600l*24l*90l*1000l;
 	Keybrd mkbd = null;
 	LayoutSetting ls = null;
 	
@@ -85,7 +86,9 @@ public class CustomKbdScroll
 	String[] arKeys = null;
 	/** массив для избранного */
 	String[] arFav = null;
-	String[] arAnhcor = null; 
+	String[] arAnhcor = null;
+	/** строка пользовательской popupCharacters v2 */
+	String arPopCh= null; 
 
 	static CustomKeyboard ck = null;
 	Adapt m_adapter;
@@ -110,6 +113,7 @@ public class CustomKbdScroll
 		arKeys = null;
 		arFav = null;
 		arAnhcor = null;
+		arPopCh = null;
 		jkbview = st.kv();
 		try {
 			max_tv_width = ck.getSize("12%p",ck.m_displayWidth,50,ck.B_keyWidth);
@@ -179,6 +183,14 @@ public class CustomKbdScroll
                     ck.m_os.writeUTF(str);//.write(str.getBytes());
                 }
             }
+            else if(name.equals(ck.A_popupCharacters)) {
+            	arPopCh = p.getAttributeValue(i);
+                if(ck.m_os!=null)
+                {
+                    ck.m_os.writeByte(ck.B_popupCharacters);
+                    ck.m_os.writeUTF(arPopCh);//.write(str.getBytes());
+                }
+            }
         }
         //ck.processKey(k);
         //m_keys.add(k);
@@ -205,6 +217,14 @@ public class CustomKbdScroll
                 {
                     ck.m_os.writeByte(ck.B_arrayAnchors);
                     ck.m_os.writeUTF(str);//.write(str.getBytes());
+                }
+            }
+            else if (b == ck.B_popupCharacters) {
+            	arPopCh = is.readUTF();
+                if(ck.m_os!=null)
+                {
+                    ck.m_os.writeByte(ck.B_popupCharacters);
+                    ck.m_os.writeUTF(arPopCh);//.write(str.getBytes());
                 }
             }
             b = is.readByte();
@@ -256,7 +276,8 @@ public class CustomKbdScroll
 
 	static void close() 
 	{
-		inst.ls.saveLayoutSetting();
+		if (inst.ls!=null)
+			inst.ls.saveLayoutSetting();
 		inst = null;
         if(ServiceJbKbd.inst!=null)
         {
@@ -321,11 +342,26 @@ public class CustomKbdScroll
            	case ID_TV_ABC: 
            		close();
            		return;
-           	case ID_TV_DELETE:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey(st.TXT_ED_DEL);
-           		Templates.template_processing= false;
-           		return;
+            case ID_TV_POPUP_KEYBOARD:
+            	if (ServiceJbKbd.inst == null)
+            		return;
+            	int hh = m_MainView.getHeight();
+            	String pop = "v2 $[-303,$f#ɐ] $[-304,$f#ɑ] $[-328,$f#ɒ] $[-329,$f#ɓ] $[19,↑] "
+            			+ "$[20,↓] $[21,←] $[22,→] $[-323,sAll] $[-320,$f#ɢ] $[-321,$f#ɣ] "
+            			+ "$[-601,$f#ɕ] $[-5,$f#ɔ] $[10,$f#ɜ] $[32,$f#ɝ] ! ? , .";
+            	if (arPopCh!=null) {
+            		if (arPopCh.startsWith("v2 ")||arPopCh.startsWith("V2 "))
+            			arPopCh = arPopCh.substring(3);
+            		pop += st.STR_SPACE+st.STR_PREFIX_LINE+st.STR_SPACE+arPopCh;
+            	}
+            	PopupKeyboard pk = new PopupKeyboard(m_MainView.getContext());
+            	pk.createFullPopupWindow(pop, hh,true, true);
+            	return;
+//           	case ID_TV_DELETE:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey(st.TXT_ED_DEL);
+//           		Templates.template_processing= false;
+//           		return;
            	case ID_TV_BACKSPACE:
            		Templates.template_processing= true;
                 ServiceJbKbd.inst.processKey(Keyboard.KEYCODE_DELETE);
@@ -341,36 +377,36 @@ public class CustomKbdScroll
                 ServiceJbKbd.inst.processKey(' ');
            		Templates.template_processing= false;
            		return;
-           	case ID_TV_ARROW_LEFT:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey(21);
-           		Templates.template_processing= false;
-           		return;
-           	case ID_TV_ARROW_RIGHT:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey(22);
-           		Templates.template_processing= false;
-           		return;
-           	case ID_TV_VOSKLICATELNY_ZNAK:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey('!');
-           		Templates.template_processing= false;
-           		return;
-           	case ID_TV_VOPROSITELNY_ZNAK:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey('?');
-           		Templates.template_processing= false;
-           		return;
-           	case ID_TV_COMMA:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey(',');
-           		Templates.template_processing= false;
-           		return;
-           	case ID_TV_POINT:
-           		Templates.template_processing= true;
-                ServiceJbKbd.inst.processKey('.');
-           		Templates.template_processing= false;
-           		return;
+//           	case ID_TV_ARROW_LEFT:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey(21);
+//           		Templates.template_processing= false;
+//           		return;
+//           	case ID_TV_ARROW_RIGHT:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey(22);
+//           		Templates.template_processing= false;
+//           		return;
+//           	case ID_TV_VOSKLICATELNY_ZNAK:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey('!');
+//           		Templates.template_processing= false;
+//           		return;
+//           	case ID_TV_VOPROSITELNY_ZNAK:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey('?');
+//           		Templates.template_processing= false;
+//           		return;
+//           	case ID_TV_COMMA:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey(',');
+//           		Templates.template_processing= false;
+//           		return;
+//           	case ID_TV_POINT:
+//           		Templates.template_processing= true;
+//                ServiceJbKbd.inst.processKey('.');
+//           		Templates.template_processing= false;
+//           		return;
             }
             // обработка якорей
             if (id >= ID_TV_MAIN_VALUE_ANHCOR) {
@@ -513,10 +549,16 @@ public class CustomKbdScroll
 //        llr.addView(tv);
         
         tv = newTextView(true);
-        tv.setId(inst.ID_TV_DELETE);
+        tv.setId(inst.ID_TV_POPUP_KEYBOARD);
         tv.setSoundEffectsEnabled(false);
-        tv.setText("del");
+        Font.setTextOnTypeface(tv, Font.FontArSymbol.KEYBOARD);
         llr.addView(tv);
+        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_DELETE);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText("del");
+//        llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_BACKSPACE);
@@ -536,41 +578,41 @@ public class CustomKbdScroll
         Font.setTextOnTypeface(tv, Font.FontArSymbol.SPACE);
         llr.addView(tv);
         
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_ARROW_LEFT);
-        tv.setSoundEffectsEnabled(false);
-        tv.setText("←");
-        llr.addView(tv);
-        
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_ARROW_RIGHT);
-        tv.setSoundEffectsEnabled(false);
-        tv.setText("→");
-        llr.addView(tv);
-        
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_VOSKLICATELNY_ZNAK);
-        tv.setSoundEffectsEnabled(false);
-        tv.setText("!");
-        llr.addView(tv);
-        
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_VOPROSITELNY_ZNAK);
-        tv.setSoundEffectsEnabled(false);
-        tv.setText("?");
-        llr.addView(tv);
-        
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_COMMA);
-        tv.setSoundEffectsEnabled(false);
-        tv.setText(st.STR_COMMA);
-        llr.addView(tv);
-        
-        tv = newTextView(true);
-        tv.setId(inst.ID_TV_POINT);
-        tv.setSoundEffectsEnabled(false);
-        tv.setText(st.STR_POINT);
-        llr.addView(tv);
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_ARROW_LEFT);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText("←");
+//        llr.addView(tv);
+//        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_ARROW_RIGHT);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText("→");
+//        llr.addView(tv);
+//        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_VOSKLICATELNY_ZNAK);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText("!");
+//        llr.addView(tv);
+//        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_VOPROSITELNY_ZNAK);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText("?");
+//        llr.addView(tv);
+//        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_COMMA);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText(st.STR_COMMA);
+//        llr.addView(tv);
+//        
+//        tv = newTextView(true);
+//        tv.setId(inst.ID_TV_POINT);
+//        tv.setSoundEffectsEnabled(false);
+//        tv.setText(st.STR_POINT);
+//        llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_RIGHT_TOP);

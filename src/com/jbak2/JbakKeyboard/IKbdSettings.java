@@ -3,6 +3,10 @@ package com.jbak2.JbakKeyboard;
 /** Константы для настроек клавиатуры */
 public interface IKbdSettings
 {
+	/** Ключ, (основная настройка) включить шрифт клавиатуры на клавишах*/
+	public static final String PREF_KEY_FONT_KBD_ON_KEY = "set_font_kbd";
+	/** Ключ что показывать в настройках, на настройке Шрифт клавиатуры*/
+	public static final String PREF_KEY_VIEW_FONT_KBD_ON_KEY = "pref_set_font_kbd";
 	/** Ключ, дизайн элемента минус/плюс */
 	public static final String PREF_KEY_IE_DESIGN = "ie_design";
 	/** Ключ, тип пикера - круг или линейный */
@@ -361,11 +365,14 @@ public interface IKbdSettings
     public static final String STR_EQALLY = "=";
     public static final String STR_ERROR = "error";
     public static final String STR_PREFIX = "$[";
+    public static final String STR_PREFIX_LINE = "$l#";
+    public static final String STR_PREFIX_END_LINE = "$el#";
     public static final String STR_PREFIX_FONT = "$f#";
     public static final String STR_COMMA = ",";
     public static final String STR_POINT = ".";
     public static final String STR_SLASH= "/";
     public static final String STR_COLON= ":";
+	public static final String STR_COMMENT = "//";
     /** символы конца предложения */
     public static final String STR_END_SENTENCE= ".!?";
 
@@ -584,6 +591,9 @@ public interface IKbdSettings
     /** внутренняя команда - выводит меню дополнительных раскладок встроенных в клавиатуру <br>
      *  типа hide*/    
     public static final int CMD_SHOW_ADDITIONAL_HIDE_LAYOUT = -629;
+    /** внутренняя команда - выводит меню дополнительных раскладок встроенных в клавиатуру <br>
+     *  типа hide*/    
+    public static final int CMD_SHOW_FONT_KEYBOARD_DIALOG = -630;
 
     /** стартовое число для посылки кейкодов клавиш по формуле 0-KEYCODE_CODE-посылаемый_код 
      * (занимает промежуток кодов -5000 - -7000) */

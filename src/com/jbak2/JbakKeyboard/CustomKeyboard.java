@@ -17,6 +17,7 @@ import org.xmlpull.v1.XmlPullParser;
 import com.jbak2.CustomGraphics.draw;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.JbakKeyboard.IKeyboard.Lang;
+import com.jbak2.ctrl.Font;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -1016,13 +1017,20 @@ public class CustomKeyboard extends JbKbd
         processKey(k);
         return true;
     }
+    int lt = -1;
     public String processLabel(String label) throws IOException
     {
     	label = st.compileText(label);
+    	lt = label.indexOf(st.STR_PREFIX_FONT);
+    	while(lt > -1)
+    	{
+    		label = label.replace(st.STR_PREFIX_FONT, st.STR_NULL+Font.NULL_CODE);
+        	lt = label.indexOf(st.STR_PREFIX_FONT);
+    	}
         if(m_os!=null)
         {
             m_os.writeByte(B_keyLabel);
-            m_os.writeUTF(label);
+            m_os.writeUTF(st.decompileText(label));
         }
         return label;
     }
@@ -1126,17 +1134,34 @@ public class CustomKeyboard extends JbKbd
             m_os.writeByte(B_keyIcon);
             m_os.writeUTF(att);
         }
-        if(att.equals("delete")) return draw.paint().getBitmap(R.drawable.sym_keyboard_delete);
-        if(att.equals("forward_del")) return draw.paint().getBitmap(R.drawable.sym_keyboard_forward_del);
-        if(att.equals("done")) return draw.paint().getBitmap(R.drawable.sym_keyboard_done);
+        if(att.equals("delete")) {
+        	key.iconRes = R.drawable.sym_keyboard_delete;
+        	return draw.paint().getBitmap(R.drawable.sym_keyboard_delete);
+        }
+        if(att.equals("forward_del")) {
+        	key.iconRes = R.drawable.sym_keyboard_forward_del; 
+        	return draw.paint().getBitmap(R.drawable.sym_keyboard_forward_del);
+        }
+        if(att.equals("done")) {
+        	key.iconRes = R.drawable.sym_keyboard_done;
+        	return draw.paint().getBitmap(R.drawable.sym_keyboard_done);
+        }
         if(att.equals("return")) {
         	if (key!=null)
         		key.iconRes = R.drawable.sym_keyboard_return;
         	return draw.paint().getBitmap(R.drawable.sym_keyboard_return);
         }
-        if(att.equals("shift")) return draw.paint().getBitmap(R.drawable.sym_keyboard_shift);
-        if(att.equals("space")) return draw.paint().getBitmap(R.drawable.sym_keyboard_space);    
-        if(att.equals("search")) return draw.paint().getBitmap(R.drawable.sym_keyboard_search);    
+        if(att.equals("shift")) {
+        	return draw.paint().getBitmap(R.drawable.sym_keyboard_shift);
+        }
+        if(att.equals("space")) {
+        	key.iconRes = R.drawable.sym_keyboard_space;
+        	return draw.paint().getBitmap(R.drawable.sym_keyboard_space);    
+        }
+        if(att.equals("search")) {
+        	key.iconRes = R.drawable.sym_keyboard_search;
+        	return draw.paint().getBitmap(R.drawable.sym_keyboard_search);    
+        }
         return null;
     }
     final String getStringDraw(String att) throws IOException

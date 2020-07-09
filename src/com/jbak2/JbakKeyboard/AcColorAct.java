@@ -169,7 +169,7 @@ public class AcColorAct extends Activity
                         return 0;
                     }
                 });
-        		dpw.show(0);
+        		dpw.show(0, null);
         		st.showkbd();
                 //gd.showAlert();
     			

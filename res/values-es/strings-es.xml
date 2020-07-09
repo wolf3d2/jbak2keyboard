@@ -3,8 +3,6 @@
     <!-- Title for Latin keyboard -->
     <string name="ime_name">Teclado Jbak2</string>
     <string name="ime_settings">Ajustes del teclado Jbak2</string>
-    <string name="pref_keys">Configuración de teclas</string>
-    <string name="pref_keys_desc">Altura, desplazamiento horizontal del teclado y corrección vertical de las teclas</string>
     <string name="msg_begin">NO mostrar más este mensaje</string>
     <string name="kbd_warning">¡Primero, inicia y activa el teclado!\n(el primer párrafo de Ajustes)</string>
     <string name="jbak2layout">Disposiciones personalizadas</string>
@@ -17,7 +15,6 @@
 \n---
 \nPulsación larga en las teclas en Favoritos y ABC (en la lista general) moverá los paneles de botones correspondientes hacia abajo.</string>
     <string name="reboot">Descargado. Se requiere el reinicio</string>
-    <string name="default_pref">Ajustes predeterminados</string>
     <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
     <string name="in_developing">En desarrollo</string>
     
@@ -26,6 +23,10 @@
     <string name="ie_design">Дизайн элемента -/+</string>
     <string name="ie_design_desc">Порядок положения кнопок</string>
     	
+    <string name="pref_keys">Configuración de teclas</string>
+    <string name="pref_keys_desc">Altura, desplazamiento horizontal del teclado, corrección vertical de las teclas y ajustes de teclas separadas</string>
+	<string name="pref_keys_cat">Настройки отдельных клавиш</string>    
+    
     <!-- Title for update preferences -->
     <string name="upd_screen">Actualizaciones</string>
     <string name="upd_screen_desc">Revisión de actualizaciones y más</string>
@@ -88,7 +89,9 @@
     <string name="set_kbd_background_alpha">Transparencia del teclado</string>
     <string name="set_kbd_background_alpha_desc">0: totalmente transparente, 10: transparencia del tema de teclado. Tiene sentido solamente si se usa una imagen de fondo</string>
     <string name="cancel_kbd_background">Fondo del tema</string>
-
+	<string name="set_font_keyboard">Fuente del teclado</string>
+	<string name="set_font_keyboard_desc">Habilitar caracteres de fuente interna del teclado en teclas</string>
+    
     <!-- Title for show keyboard notification -->
     <string name="set_show_kbd_notif">Habilitar desde el panel de notificaciones</string>
     <string name="set_show_kbd_notif_desc">Habilitar el teclado desde el panel de notificaciones. Es necesario de vez en cuando</string>
@@ -488,7 +491,11 @@
 \n\n¡ICONOS DE LA FUENTE INCORPORADA SE VISUALIZARÁN SOLO EN EL TECLADO!
 \n\nSe insertará el símbolo de la fuente estándar en el campo de entrada, si hay uno en la fuente.
 \nPor lo tanto, esta función solo tiene sentido al crear botones, para su mejor percepción</string>
+    <string name="set_ac_defkey_help_buttons2">\n\nTambién se admiten combinaciones especiales: 
+\n$l# : inserta una línea de separación en la lista mostrada.
+\n$el# :termina forzadamente la cadena actual.</string>
 
+    
     <string name="set_ac_new_defkey">La cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
     <string name="set_ac_space">Insertar espacio</string>
     <string name="set_ac_space_desc">Insertar espacio después de una palabra seleccionada del Autocompletado</string>
@@ -611,10 +618,14 @@
     <string name="set_key_intervals_desc">Retención y repetición de las teclas</string>
     <string name="set_key_tpl_path">Ruta en Plantillas</string>
     <string name="set_key_tpl_path_desc">Si está marcado, la ruta a la carpeta actual se mostrará en el menú de plantillas y otros menús</string>
+
+    <string name="backup_setting">Резервирование настроек</string>
+    <string name="default_pref">Ajustes predeterminados</string>
     <string name="set_key_save_pref">Guardar las configuraciones</string>
     <string name="set_key_save_pref_desc">En el archivo:</string>
     <string name="set_key_load_pref">Descargar las configuraciones</string>
     <string name="set_key_load_pref_desc">Del archivo:</string>
+
     <string name="set_key_ac">Autocompletado</string>
     <string name="set_key_ac_desc">Ajustes del Autocompletado</string>
     <string name="set_key_ac_place_sub_panel">Método de renderizado de Autocompletado</string>
@@ -684,7 +695,8 @@
     </string-array>
 
     <string name="enter_pict">Imagen en la tecla Enter</string>
-
+    <string name="enter_pict_desc">Si la configuración de Fuente del teclado está habilitada en Apariencia, esta configuración no estará disponible</string>
+    
     <string-array name="array_enter_pict">
         <item>Antiguo Enter+smile</item>
         <item>Antiguo Enter+emoticón</item>
@@ -715,6 +727,8 @@
     <string name="es_font_bold">Negrita</string>
     <string name="es_font_italic">Cursiva</string>
     <string name="es_def_font">Tamaño estándar</string>
+    <string name="es_font_tv_desc">En las versiones de Android anteriores a 5.0, cuando la configuración de Fuente del teclado está activada en Apariencia, la configuración de las fuentes en negrita y cursiva no funcionará</string>
+    
     <string name="mm_setting">Menú</string>
     <string name="mm">Menú principal</string>
     <string name="mm_path">Ruta actual:</string>
@@ -747,7 +761,8 @@
     <string name="mm_stop_dict0">Deshabilitación temporal del diccionario (solo se muestra la cadena predeterminada)</string>
     <string name="mm_stop_dict1">Diccionario: habilitado</string>
     <string name="mm_stop_dict2">Diccionario: deshabilitado</string>
-
+	<string name="mm_font_kbd">Значки встроенного в клавиатуру шрифта (удобно при создании раскладки)</string>
+    
     <!-- notation number -->
     <string name="notation_name">¿Cuál es la notación de base del número?</string>
     <string name="notation_not_number">Texto en el portapapeles debe especificarse como un número, y el número debe ser entero, positivo y menos de 10 caracteres (decimal)</string>
@@ -821,7 +836,7 @@
         <item><b>$selVerseMode</b> - modo verso: cada letra de la cadena en la selección estará en mayúscula</item>
         <item><b>$selAsInTheSentences</b> - tamaño de letras en la selección como en las sentencias</item>
         <item><b>$paste</b> - insertar el valor actual del portapapeles</item>
-        <item><b>$selReplaсe</b> -  buscar y reemplazar en el texto seleccionado</item>
+        <item><b>$selReplace</b> -  buscar y reemplazar en el texto seleccionado</item>
         <item><b>$selToPos</b> - seleccionar hasta la posición especificada según los parámetros establecidos</item>
         <item><b>$program</b> - ejecución de la secuencia de plantillas</item>
         <item><b>$codes</b> - ejecuta los códigos especificados de forma secuencial </item>
@@ -874,7 +889,7 @@
     <string name="about_author">Desarrollador:</string>
     <string name="about_author_desc">Michail Wyazenki\n(MWcorp, 4pda - wolf3d2)\nDesarrollador antiguo (hasta 0.97.7): Yuri Bakunin</string>
     <string name="about_other">Otro:</string>
-    <string name="about_other_desc">Traducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
+    <string name="about_other_desc">Traducciones:\n al español: Luiza Valeeva (4pda.ru: Luiza_Va)\nal inglés: Luiza Valeeva\nal ucraniano: zdrweb, Stealth3001, TealcJaffa, EricSonicsson.\nCreador del icono de aplicación: myha781 (4pda.ru)</string>
 
     <!-- переводить только то, что есть на русском и именно так, как указано здесь -->
     <!-- для каждой локали своя строка! -->
@@ -893,7 +908,7 @@
     <string name="kbd_name_qwerty">Teclado Qwerty</string>
     <string name="kbd_name_mwcorp">Teclado de MWcorp\n(pulsación larga para insertar los símbolos que faltan (si hay para ese idioma)) ;add para las minúsculas, ADD para las mayúsculas.</string>
     <string name="smiles_MWcorp">Teclado de MWcorp</string>
- 	<string name="smiles_android7">750+ teclado de Android 7</string>
+ 	<string name="smiles_android7">1000+ teclado de Android 7</string>
     <string name="smiles_MaxQwertyKeys">Emoticones de MaxQwertyKeys para Android 4.4 y superior</string>
     <string name="kbd_psevdo_t9_mwcorp">Pseudo T9 de MWcorp</string>
     <string name="kbd_t9_mwcorp">T9 de MWcorp\n(se debe activar el modo Shift 3 (Ajustes-Otros ajustes-Shift))</string>

@@ -62,7 +62,7 @@ import com.jbak2.JbakKeyboard.st;
 import com.jbak2.JbakKeyboard.st.IntEntry;
 import com.jbak2.CustomGraphics.BitmapCachedGradBack;
 import com.jbak2.Dialog.DlgPopupWnd;
-import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
+import com.jbak2.JbakKeyboard.EditSetFontActivity.EditSet;
 import com.jbak2.JbakKeyboard.IKeyboard.KbdDesign;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
@@ -257,7 +257,6 @@ public class ServiceJbKbd extends InputMethodService
 			JbKbdPreference.inst.onStartService();
 		if (Quick_setting_act.inst != null)
 			Quick_setting_act.inst.showHintButton();
-//		 старая проверка буфера обмена через ресивер каждые 5 секунд
 		new ClipbrdService(this);
 		
 		if (st.fl_sync && ClipbrdSyncService.inst == null) {
@@ -544,7 +543,7 @@ public class ServiceJbKbd extends InputMethodService
 					return 0;
 				}
 			});
-			dpw.show(0);
+			dpw.show(0, null);
 			cnt_isnewversion++;
 			if (cnt_isnewversion < 2)
 				return;
@@ -649,7 +648,7 @@ public class ServiceJbKbd extends InputMethodService
 				return 0;
 			}
 		});
-		dpw.show(0);
+		dpw.show(0, null);
 	}
 
 	// показывает автодополнение
@@ -1750,7 +1749,8 @@ public class ServiceJbKbd extends InputMethodService
 		}
 		return ret;
 	}
-
+	String temp_str_on_text = st.STR_NULL;
+	int temp_int_on_text = -1;
 	public void onText(CharSequence text) {
 		if (text == null)
 			return;
@@ -1761,6 +1761,18 @@ public class ServiceJbKbd extends InputMethodService
 			if (isWordSeparator(pc)) {
 				handleWordSeparator(pc);
 			}
+		}
+		else if (text.length()>1&&text.toString().contains(st.STR_NULL+Font.NULL_CODE)) {
+			temp_str_on_text = text.toString();
+			temp_int_on_text = temp_str_on_text.indexOf(Font.NULL_CODE);
+	    	while(temp_int_on_text > -1)
+	    	{
+	    		temp_str_on_text = temp_str_on_text.replace(st.STR_NULL+Font.NULL_CODE,st.STR_NULL);
+	    		temp_int_on_text = temp_str_on_text.indexOf(st.STR_PREFIX_FONT);
+	    	}
+	    	text = temp_str_on_text;
+	    	if (text.length() == 1&&st.fl_keycode)
+				m_candView.setKeycode(text.charAt(0));
 		}
 		InputConnection ic = getCurrentInputConnection();
 		if (ic == null)
@@ -2528,7 +2540,8 @@ public class ServiceJbKbd extends InputMethodService
 	public void removeSharedPreferences() {
 		st.pref().edit().remove("ac_view");
 	}
-
+	
+	boolean start_value_font_keyboard = true;
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		removeSharedPreferences();
@@ -2555,6 +2568,37 @@ public class ServiceJbKbd extends InputMethodService
 		} catch (Throwable e) {
 			st.enter_pict = 0;
 		}
+		// шрифт клавиатуры
+		int it = st.FONT_KEYBOARD_DEF_UP_ANDR50;
+		String def = st.STR_NULL;
+		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP)
+			it = st.FONT_KEYBOARD_DEF_LOWER_ANDR50;
+		def += it;
+//		if (st.PREF_KEY_FONT_KBD_ON_KEY.equals(key) || key == null) {
+			try {
+				it = Integer.decode(sharedPreferences.getString(st.PREF_KEY_FONT_KBD_ON_KEY, def));
+				
+			} catch (Throwable e) {
+			}
+//		}
+		start_value_font_keyboard = st.font_keyboard;
+		switch (it)
+		{
+		case st.FONT_KEYBOARD_DEF_UP_ANDR50:
+		case st.FONT_KEYBOARD_USER_TRUE:
+			st.font_keyboard = true;
+			break;
+		case st.FONT_KEYBOARD_DEF_LOWER_ANDR50:
+		case st.FONT_KEYBOARD_USER_FALSE:
+			st.font_keyboard = false;
+			break;
+		}
+		if (start_value_font_keyboard != st.font_keyboard) {
+			inst.reinitKeyboardView();
+//			st.toast(""+st.font_keyboard);
+		}
+		// ---
+		
         st.min_interval_press_key =  (long)sharedPreferences.getInt(st.PREF_KEY_MINIMAL_PRESS_INTERVAL, 1);
 
 		if (st.PREF_KEYBOARD_POS_PORT.equals(key) || key == null) {

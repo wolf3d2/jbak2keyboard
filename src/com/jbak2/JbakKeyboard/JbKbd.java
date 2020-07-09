@@ -28,7 +28,9 @@ import android.media.AudioManager;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 
+import com.jbak2.CustomGraphics.draw;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
+import com.jbak2.ctrl.Font;
 
 /** наследник класса Keyboard. Тут же и класс LatinKey (extends Keyboard.Key)
  *  и Replacement */
@@ -185,45 +187,79 @@ public class JbKbd extends Keyboard {
         if (mEnterKey == null) {
             return;
         }
-    	if (!st.fl_enter_state) {
+		if (st.font_keyboard&&mEnterKey.iconRes==R.drawable.sym_keyboard_return
+				&mEnterKey.longCode == 0
+				&mEnterKey.label==null) {
+			setEnterDefaultTextIsFontKeyboard(mEnterKey);
+			if (!st.fl_enter_state)
+				return;
+		}
+		else if (!st.fl_enter_state) {
             setEnterDrawable(res);
     		return;
     	}
         
         switch (options&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) {
             case EditorInfo.IME_ACTION_GO:
-                mEnterKey.iconPreview = null;
-                mEnterKey.icon = null;
-                mEnterKey.label = res.getText(R.string.label_go_key);
+                    mEnterKey.iconPreview = null;
+                    mEnterKey.icon = null;
+                    mEnterKey.label = res.getText(R.string.label_go_key);
                 break;
             case EditorInfo.IME_ACTION_NEXT:
-                mEnterKey.iconPreview = null;
-                mEnterKey.icon = null;
-                mEnterKey.label = res.getText(R.string.label_next_key);
+                    mEnterKey.iconPreview = null;
+                    mEnterKey.icon = null;
+                    mEnterKey.label = res.getText(R.string.label_next_key);
                 break;
             case EditorInfo.IME_ACTION_SEARCH:
-                mEnterKey.icon = res.getDrawable(
-                        R.drawable.sym_keyboard_search);
-                mEnterKey.label = null;
+            	if (st.font_keyboard) {
+//                    String sss = mEnterKey.getMainText();
+//                    sss = mEnterKey.getUpText();
+                    mEnterKey.iconPreview = null;
+                    mEnterKey.icon = null;
+                    mEnterKey.label = st.STR_NULL+Font.NULL_CODE+Font.FontArSymbol.SEARCH;
+            		
+            	} else {
+                    mEnterKey.icon = res.getDrawable(
+                            R.drawable.sym_keyboard_search);
+                    mEnterKey.label = null;
+            	}
                 break;
             case EditorInfo.IME_ACTION_SEND:
-                mEnterKey.iconPreview = null;
-                mEnterKey.icon = null;
-                mEnterKey.label = res.getText(R.string.label_send_key);
+                    mEnterKey.iconPreview = null;
+                    mEnterKey.icon = null;
+                    mEnterKey.label = res.getText(R.string.label_send_key);
                 break;
             default:
-                setEnterDrawable(res);
-                // старая строка
-                //mEnterKey.icon = res.getDrawable(R.drawable.sym_keyboard_return);
-                mEnterKey.label = null;
-                break;
+            	if (st.fl_enter_state) {
+            		
+            	} else {
+                    setEnterDrawable(res);
+                    // старая строка
+                    //mEnterKey.icon = res.getDrawable(R.drawable.sym_keyboard_return);
+                    mEnterKey.label = null;
+            	}
+            	break;
         }
         
-        mEnterKey.m_kd = new KeyDrw(mEnterKey);
+      mEnterKey.m_kd = new KeyDrw(mEnterKey);
       //if (mEnterKey.specKey==1)
-    	mEnterKey.m_kd.setFuncKey(true);
+      mEnterKey.m_kd.setFuncKey(true);
       mEnterKey.icon = mEnterKey.m_kd.getDrawable();
       mEnterKey.label = null;
+    }
+    /** рисуем дефолтные метки на ентере, если испольуется шрифт клавиатуры */
+    private void setEnterDefaultTextIsFontKeyboard(LatinKey key)
+    {
+		mEnterKey.label = Font.FontArSymbol.SMILE_CIRCLE+st.STR_LF
+				+Font.NULL_CODE+Font.FontArSymbol.ENTER;
+		
+		mEnterKey.icon = null;
+		mEnterKey.iconPreview = null;
+		mEnterKey.m_kd = new KeyDrw(mEnterKey);
+		mEnterKey.m_kd.setFuncKey(true);
+		mEnterKey.icon = mEnterKey.m_kd.getDrawable();
+		mEnterKey.label = null;
+    	
     }
     public final boolean resetPressed()
     {
@@ -402,10 +438,8 @@ public class JbKbd extends Keyboard {
 //            }
         	trueRepeat = repeatable;
             repeatable = false;
-            LatinKey lk = this;
+//            LatinKey lk = this;
             m_kd = new KeyDrw(this);
-//            if (lk.codes[0] == 10)
-//            	st.test();
             m_kd.m_bNoColorIcon = noColorIcon;
             m_kd.setSmallLabel(smallLabel);
             if((codes==null||codes.length>0&&codes[0]==0)&&m_kd.txtMain!=null)
@@ -420,9 +454,85 @@ public class JbKbd extends Keyboard {
                 longCode = st.getCmdByLabel(getUpText());
             }
             m_kd.setFuncKey(isFuncKey());
+            // положение не менять!!! 
+            // Наружается отображение шрифта клавы
+            setPostProcessTextOnKey(this);
             icon = m_kd.getDrawable();
             label = null;
             iconPreview = icon;
+            
+        }
+        /** пост обработка дефолтных изображений текста на определённых клавишах */
+        private boolean setPostProcessTextOnKey(LatinKey lk)
+        {
+        	if (!st.font_keyboard)
+        		return true;
+        	if (lk.codes == null| lk.codes.length < 1)
+        		return false;
+        	switch (lk.codes[0])
+        	{
+        	// backspace
+        	case -5:
+        	// shift
+        	case -1:
+//        	// enter - обработка ниже в setImeOptions()
+//        	case 10:
+        	// space
+        	case 32:
+    	        draw.paint().createFontFromSettings();
+        		break;
+        	}
+        	boolean newdrw = false;
+        	switch (lk.codes[0])
+        	{
+        	case -5:
+        		if (lk.iconRes == R.drawable.sym_keyboard_delete) {
+        			label = st.compileText(st.STR_NULL
+        					+Font.NULL_CODE+Font.FontArSymbol.BACKSPACE);
+        			icon = null;
+        			iconPreview = null;
+        			newdrw = true;
+        		}
+        		break;
+        	case -1:
+        		if (longCode == 0&label==null) {
+        			label = st.compileText(Font.FontArSymbol.KARANDASH+st.STR_LF
+        					+Font.NULL_CODE+Font.FontArSymbol.SHIFT);
+        			icon = null;
+        			iconPreview = null;
+        			newdrw = true;
+        		}
+        		break;
+        		// enter - обработка ниже в setImeOptions()
+//        	case 10: 
+//        		if (lk.iconRes==R.drawable.sym_keyboard_return&lk.longCode == 0&lk.label==null) {
+//        			lk.label = Font.FontArSymbol.SMILE_ULIBKA_HORIZONTAL+st.STR_LF
+//        					+Font.FontArSymbol.ENTER;
+//        			
+//        			lk.icon = null;
+//        			lk.iconPreview = null;
+//        			lk.m_kd = new KeyDrw(lk);
+//        			lk.m_kd.setFuncKey(isFuncKey());
+//        			lk.icon = lk.m_kd.getDrawable();
+//        		}
+//        		break;
+        	case 32:
+        		if (lk.iconRes == R.drawable.sym_keyboard_space) {
+        			label = st.compileText(st.STR_NULL+Font.NULL_CODE+Font.FontArSymbol.SPACE);
+        			icon = null;
+        			iconPreview = null;
+        			newdrw = true;
+        		}
+        		break;
+        	}
+        	if (newdrw) {
+    			m_kd = new KeyDrw(lk);
+    			m_kd.setFuncKey(isFuncKey());
+                //lk.m_kd.setSmallLabel(false);
+    			icon = m_kd.getDrawable();
+                iconPreview = icon;
+        	}
+        	return true;
         }
         public final void setGoQwerty(boolean go)
         {

@@ -15,12 +15,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.IntEditor;
 import com.jbak2.ctrl.IntEditor.OnChangeValue;
 
-public class EditSetActivity extends Activity
+public class EditSetFontActivity extends Activity
 {
-    public static EditSetActivity inst;
+    public static EditSetFontActivity inst;
     public static final String EXTRA_PREF_KEY = "pref_key";
     public static final String EXTRA_DEFAULT_EDIT_SET = "def_edit_set";
     EditText m_edit;
@@ -160,6 +161,11 @@ public class EditSetActivity extends Activity
             tv.setTypeface(typeface, style);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontSize>0?fontSize:df);
         }
+        TextPaint getTextPaint()
+        {
+            return getTextPaint(false);
+        }
+        /** @param bKeyboardFont - true, значит использовать шрифт клавиатуры */
         TextPaint getTextPaint(boolean bOwnBoldAndItalic)
         {
             TextPaint tp = new TextPaint();
@@ -173,14 +179,24 @@ public class EditSetActivity extends Activity
                 if(st.has(style, Typeface.ITALIC))
                     tp.setTextSkewX((float) -0.25);
             }
-            tp.setTypeface(Typeface.create(typeface, style));
+            if (st.font_keyboard&Font.tf!=null)
+                tp.setTypeface(Typeface.create(Font.tf, style));
+            else
+                tp.setTypeface(Typeface.create(typeface, style));
+//        	if (!Font.setTypeface(tp)) 
+//                tp.setTypeface(Typeface.create(typeface, style));
+        	
+//            if (bKeyboardFont) {
+//            	if (!Font.setTypeface(tp)) {
+//                    tp.setTypeface(Typeface.create(typeface, style));
+//            	}
+//
+//            } else
+//                tp.setTypeface(Typeface.create(typeface, style));
+
             if(fontSize!=0)
                 tp.setTextSize(fontSize);
             return tp;
-        }
-        TextPaint getTextPaint()
-        {
-            return getTextPaint(false);
         }
         boolean load(String prefKey)
         {

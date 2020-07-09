@@ -28,7 +28,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
+import com.jbak2.JbakKeyboard.EditSetFontActivity.EditSet;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.JbakKeyboard.st.ArrayFuncAddSymbolsGest;
 import com.jbak2.ctrl.Font;
@@ -196,7 +196,7 @@ public class CandView extends RelativeLayout
 //        ":(",
 //    };
     
-    int m_height;
+    public int m_height;
     WindowManager wm;
     LinearLayout m_ll;
     /** подложка для задания цвета, чтобы менял его на лету */
@@ -1163,6 +1163,8 @@ public class CandView extends RelativeLayout
         	return;
         // переназначает кнопки из cand2
         setInflatePopupPanelButton(vv);
+        // Будет вылетать на некоторых устройствах (сяоми та точно)
+        // потому как вызывается из ServiceJbKbd.onCreate
         pw = new PopupWindow(vv,
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         pw.setAnimationStyle(0);

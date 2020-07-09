@@ -54,5 +54,14 @@
 	    android:text="@string/es_font_italic" 
 	    android:id="@+id/es_font_italic"/>
 	</LinearLayout>
+	
+	<TextView 
+	    style="@style/label_set" 
+	    android:drawableLeft="@drawable/help"
+    	android:drawablePadding="2dp"
+	    android:text="@string/es_font_tv_desc"
+	    />	
+		
 	</LinearLayout>
+	
 </ScrollView>

@@ -11,6 +11,7 @@ import android.graphics.drawable.shapes.RectShape;
 import android.inputmethodservice.Keyboard.Key;
 
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
+import com.jbak2.ctrl.Font;
 import com.jbak2.CustomGraphics.draw;
 
 /** Собственная картинка для клавиш. Генерируется на основе {@link Key#label}*/    
@@ -122,7 +123,7 @@ class KeyDrw extends RectShape
                 txtMain = st.STR_NULL+(char)primaryCode;
         }
         if(m_bPreview)
-            rb = new Rect(0, 0, /*st.kv().m_PreviewHeight*/PopupKeyWindow.m_w, /*st.kv().m_PreviewHeight*/PopupKeyWindow.m_h);
+            rb = new Rect(0, 0, PopupKeyWindow.m_w, PopupKeyWindow.m_h);
         else    
             rb = new Rect(0,0,key.width,key.height);
     }
@@ -312,6 +313,7 @@ class KeyDrw extends RectShape
             }
             return;
         }
+        // рисуем картинку для окна нажатых клавиш
         if(m_bPreview)
         {
             String text = m_bLongPreview?txtSmall:txtMain;
@@ -319,6 +321,8 @@ class KeyDrw extends RectShape
             if(text!=null)
             {
                 p1 = JbKbdView.inst.m_tpPreview;
+                if (Font.tf!=null)
+                	p1.setTypeface(Font.tf);
                 p1.setColor(ServiceJbKbd.inst.m_popup_color_text);
                 if(text.length()>1)
                 {

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Vector;
 
 import com.jbak2.Dialog.Dlg;
+import com.jbak2.Dialog.DlgPopupWnd;
 import com.jbak2.JbakKeyboard.ClipbrdSyncAct;
 import com.jbak2.JbakKeyboard.R;
 import com.jbak2.JbakKeyboard.ServiceJbKbd;
@@ -18,9 +19,12 @@ import com.jbak2.JbakKeyboard.com_menu.MenuEntry;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.TextPaint;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,6 +40,9 @@ import android.widget.TextView;
 public class Font {
 	public static Typeface tf = null;
 	public static final String TYPEFACE_ASSETS_FILENAME = "jbak2key.ttf";
+	static DlgPopupWnd dpw = null;
+	/** пустой код (для вставки в key.label), чтобы не менялся значёк из шрифта клавы */
+	public static final char NULL_CODE= (char) 0x0000;
 
 	/** массив констант с перечислением какие буквы 
 	 *  какому символу соответствуют <br>
@@ -104,44 +111,51 @@ public class Font {
 		public static final char FLAG_DARK = 'ɾ';
 		public static final char FLAG_LIGHT = 'ɿ';
 		
-		public static final char SIZE_TEXT = 'ʀ';
-		public static final char MICROPHONE = 'ʁ';
-		public static final char MICROPHONE_OFF = 'ʂ';
-		public static final char VIDEO = 'ʃ';
-		public static final char CAMERA = 'ʄ';
-		public static final char HELP_CIRCLE = 'ʅ';
-		public static final char EDIT = 'ʆ';
-		public static final char GRID = 'ʇ';
+		public static final char SIZE_TEXT_HEIGHT = 'ʀ';
+		public static final char SIZE_TEXT_WIDTH = 'ʁ';
+		public static final char MICROPHONE = 'ʂ';
+		public static final char MICROPHONE_OFF = 'ʃ';
+		public static final char VIDEO = 'ʄ';
+		public static final char CAMERA = 'ʅ';
+		public static final char HELP_CIRCLE = 'ʆ';
+		public static final char EDIT = 'ʇ';
+		public static final char GRID = 'ʈ';
 
-		public static final char OK_ON = 'ʈ';
-		public static final char OK_OFF = 'ʉ';
-		public static final char CLOSE = 'ʊ';
-		public static final char CLOSE_CIPCLE = 'ʋ';
-		public static final char EYE_ON = 'ʌ';
-		public static final char EYE_OFF = 'ʍ';
-		public static final char PICT = 'ʎ';
-		public static final char PHONE = 'ʏ';
+		public static final char OK_ON = 'ʉ';
+		public static final char OK_OFF = 'ʊ';
+		public static final char CLOSE = 'ʋ';
+		public static final char CLOSE_CIPCLE = 'ʌ';
+		public static final char EYE_ON = 'ʍ';
+		public static final char EYE_OFF = 'ʎ';
+		public static final char PICT = 'ʏ';
+		public static final char PHONE = 'ʐ';
 
-		public static final char LOGIN = 'ʐ';
-		public static final char LOGOUT = 'ʑ';
-		public static final char BLOCK = 'ʒ';
-		public static final char APP_MAXIMIZE = 'ʓ';
-		public static final char APP_MINIMIZE = 'ʔ';
-		public static final char ZOOM_IN = 'ʕ';
-		public static final char ZOOM_OUT = 'ʖ';
-		public static final char FONT_BOLD = 'ʗ';
+		public static final char LOGIN = 'ʑ';
+		public static final char LOGOUT = 'ʒ';
+		public static final char BLOCK = 'ʓ';
+		public static final char APP_MAXIMIZE = 'ʔ';
+		public static final char APP_MINIMIZE = 'ʕ';
+		public static final char ZOOM_IN = 'ʖ';
+		public static final char ZOOM_OUT = 'ʗ';
+		public static final char FONT_BOLD = 'ʘ';
 /** Зачёркнутый */
-		public static final char FONT_STRIKED = 'ʘ';
-		public static final char FONT_UNDERLINED = 'ʙ';
-		public static final char GRAFIK_VERTICAL_LINE = 'ʚ';
-		public static final char GRAFIK_UP = 'ʛ';
-		public static final char DATABASE = 'ʜ';
-		public static final char ICON_MOVE = 'ʝ';
-		public static final char ICON_RESIZE = 'ʞ';
-		public static final char CODE = 'ʟ';
+		public static final char FONT_STRIKED = 'ʙ';
+		public static final char FONT_UNDERLINED = 'ʚ';
+		public static final char GRAFIK_VERTICAL_LINE = 'ʛ';
+		public static final char GRAFIK_UP = 'ʜ';
+		public static final char DATABASE = 'ʝ';
+		public static final char ICON_MOVE = 'ʞ';
+		public static final char ICON_RESIZE = 'ʟ';
+		public static final char CODE = 'ʠ';
 
-		public static final char CURSOR = 'ʠ';
-		public static final char CLOUD = 'ʡ';
+		public static final char CURSOR = 'ʡ';
+		public static final char CLOUD = 'ʢ';
+		public static final char SPIN1 = 'ʣ';
+		public static final char SPIN2 = 'ʤ';
+		public static final char SPIN3 = 'ʥ';
+		public static final char SPIN4 = 'ʦ';
+
+//		public static final char  = '';
 /** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
 		createArraySymbolOfFont() */
 	}
@@ -175,6 +189,7 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.SAVE);
 		vch.add(st.STR_NULL+FontArSymbol.OPEN);
 		vch.add(st.STR_NULL+FontArSymbol.GLOBUS);
+		vch.add(st.STR_NULL+FontArSymbol.LANGUAGE);
 		vch.add(st.STR_NULL+FontArSymbol.TRANSLATE);
 		vch.add(st.STR_NULL+FontArSymbol.KEYBOARD_DONE);
 		vch.add(st.STR_NULL+FontArSymbol.SEARCH);
@@ -194,8 +209,8 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.SKIN);
 		vch.add(st.STR_NULL+FontArSymbol.FLAG_DARK);
 		vch.add(st.STR_NULL+FontArSymbol.FLAG_LIGHT);
-		vch.add(st.STR_NULL+FontArSymbol.SIZE_TEXT);
-		vch.add(st.STR_NULL+FontArSymbol.LANGUAGE);
+		vch.add(st.STR_NULL+FontArSymbol.SIZE_TEXT_HEIGHT);
+		vch.add(st.STR_NULL+FontArSymbol.SIZE_TEXT_WIDTH);
 		vch.add(st.STR_NULL+FontArSymbol.MICROPHONE);
 
 		vch.add(st.STR_NULL+FontArSymbol.MICROPHONE_OFF);
@@ -230,6 +245,11 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.CODE);
 		vch.add(st.STR_NULL+FontArSymbol.CURSOR);
 		vch.add(st.STR_NULL+FontArSymbol.CLOUD);
+		vch.add(st.STR_NULL+FontArSymbol.SPIN1);
+		vch.add(st.STR_NULL+FontArSymbol.SPIN2);
+		vch.add(st.STR_NULL+FontArSymbol.SPIN3);
+		vch.add(st.STR_NULL+FontArSymbol.SPIN4);
+
 		char[] ar = new char[vch.size()];
 		for (int i = 0; i < vch.size(); i++) {
 			ar[i] = vch.get(i).charAt(0);
@@ -294,6 +314,7 @@ public class Font {
 				tv = (TextView) ll.getChildAt(1);
 				ll.removeAllViews();
 			}
+			tvs.setTextColor(Color.WHITE);
 			tvs.setText(st.STR_NULL + ar_symbol[pos]+st.STR_POINT);
 			ll.addView(tvs);
 			tv.setId(pos);
@@ -301,6 +322,7 @@ public class Font {
 			tv.setOnLongClickListener(m_longListener);
 			tv.setTextSize(40);
 			tv.setTypeface(tf);
+			tv.setTextColor(Color.WHITE);
 			tv.setText(st.STR_NULL + ar_symbol[pos]);
 			ll.addView(tv);
 			vv = ll;
@@ -320,7 +342,11 @@ public class Font {
 				}
 				if (m_MenuObserver != null) {
 					try {
-						m_MenuObserver.OnObserver(pos, new Boolean(false));
+						int ret = m_MenuObserver.OnObserver(pos, new Boolean(false));
+						if (ret==0&&dpw!=null) {
+							dpw.dismiss();
+							dpw = null;
+						}
 					} catch (Throwable e) {
 					}
 				}
@@ -341,6 +367,10 @@ public class Font {
 				if (m_MenuObserver != null) {
 					try {
 						m_MenuObserver.OnObserver(pos, new Boolean(true));
+						if (dpw!=null) {
+							dpw.dismiss();
+							dpw = null;
+						}
 					} catch (Throwable e) {
 					}
 				}
@@ -365,6 +395,14 @@ public class Font {
 			((CheckBox) view).setText(str);
 		}
 	}
+	/** устанавливаем шрифт на объект tp <br>
+	 * false - установка не удалась (шрифт клавиатуры не инициализирован) */
+	public static boolean setTypeface(TextPaint tp) {
+		if (tf == null)
+			return false;
+		tp.setTypeface(tf);
+		return true;
+	}
 
 	/** диалог выбора символа из списка типа gridLayout */
 	public static void showDialogGridSelectSymbolOfFont(Context con, st.UniObserver obs) {
@@ -385,6 +423,32 @@ public class Font {
 		FontGridAdapt adapt = new FontGridAdapt(con, obs);
 		grid.setAdapter(adapt);
 		Dlg.customDialog(con, grid, con.getString(R.string.cancel), null, null, obs);
+	}
+	/** диалог поверх клавиатуры, выбор символа из списка типа gridLayout */
+	public static void showDialogOnKeyboardGridSelectSymbolOfFont(Context con, st.UniObserver obs) {
+		GridView grid = new GridView(con);
+		grid.setBackgroundResource(android.R.drawable.dialog_frame);
+		int wid = 600;
+		try {
+			wid = st.getDisplayWidth(con);
+			
+		} catch (Throwable e) {
+		}
+		if (wid >= 480)
+			wid = 5;
+		else if (wid >= 240&&wid < 480)
+			wid = 4;
+		else
+			wid = 3;
+		grid.setNumColumns(wid);
+		FontGridAdapt adapt = new FontGridAdapt(con, obs);
+		grid.setAdapter(adapt);
+		
+		dpw = new DlgPopupWnd(st.c());
+		dpw.setObserver(obs);
+		dpw.set(null, 0, R.string.mm_close);
+		dpw.setWidthAndHeight(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		dpw.show(0, grid);
 	}
 
 }

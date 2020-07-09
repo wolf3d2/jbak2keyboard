@@ -15,8 +15,9 @@ import android.graphics.drawable.StateListDrawable;
 import android.util.DisplayMetrics;
 
 import com.jbak2.CustomGraphics.CustomButtonDrawable;
-import com.jbak2.JbakKeyboard.EditSetActivity.EditSet;
+import com.jbak2.JbakKeyboard.EditSetFontActivity.EditSet;
 import com.jbak2.JbakKeyboard.IKeyboard.KbdDesign;
+import com.jbak2.ctrl.Font;
 
 public class KeyboardPaints
 {
@@ -183,7 +184,7 @@ public class KeyboardPaints
          es.style=Typeface.BOLD;
          return es;
     }
-    final void createFromSettings()
+    final void createFontFromSettings()
     {
         EditSet es = new EditSet();
         if(!es.load(st.PREF_KEY_MAIN_FONT)||es.isDefault())

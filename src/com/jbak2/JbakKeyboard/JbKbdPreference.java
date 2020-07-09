@@ -27,6 +27,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -216,7 +217,6 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 		// Последняя редакция Как пользоваться клавиатурой для выбранного перевода
 		showLastEditDeskKbdText();
-
 		// через обращение к апк как к архиву, дату создания файла
 		// выдает временем компиляции апк
 		// try {
@@ -253,6 +253,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		}
 
 		st.pref(this).registerOnSharedPreferenceChangeListener(this);
+		//setFontKbdOnKey(false);
 
 		// выводить экран истории версий, или "как пользоваться клавиатурой"
 		postOper();
@@ -279,6 +280,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		String vini = ini.getParamValue(ini.LAST_CHECK_VERSION);
 		if (ver == null | vini == null)
 			return;
+		boolean check_new_version = false;
 		switch (type) {
 		case 1:
 			boolean err = false;
@@ -294,8 +296,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				ver = con.getString(R.string.upd_check_desc_no);
 			else if (ver.compareToIgnoreCase(vini) == 0)
 				ver = con.getString(R.string.upd_check_desc_no);
-			else
+			else {
 				ver = con.getString(R.string.upd_check_desc_yes);
+				check_new_version = true;
+			}
 			vini = ini.getParamValue(ini.LAST_CHECK_TIME);
 			if (vini != null) {
 				try {
@@ -316,8 +320,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 					} catch (NumberFormatException e) {
 					}
 				}
-				// режим отладки включен
-				if (st.debug_mode)
+				// режим отладки включен и есть новая версия
+				if (st.debug_mode&&check_new_version)
 					ver += st.STR_LF + "След. напом.: " + st.getDatetime(time + SiteKbd.TOAST_NOT_UPDATE, "1");
 				// ---
 			}
@@ -803,26 +807,52 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		// showCalcHeightCorrInd();
 		// return true;
 		// }
+		
+		// устанавливаем/снимаем галку в настройке шрифта
+		else if ("screen_appearance".equals(k)) {
+			setFontKbdOnKey(false);
+			return true;
+		} 
+		// установка доступности настройки выбора картинки на ентере
+		else if ("screen_pref_keys".equals(k)) {
+			PreferenceScreen ps = getPreferenceScreen();
+			ListPreference pr = (ListPreference) ps.findPreference(st.PREF_ENTER_PICT);
+			if (st.font_keyboard)
+				pr.setEnabled(false);
+			else
+				pr.setEnabled(true);
+//			k
+			return true;
+		} 
+		else if ("pref_set_font_kbd".equals(k)) {
+			setFontKbdOnKey(true);
+			return true;
+		} 
 		else if ("gesture_clear".equals(k)) {
 			showGestureClear();
 			return true;
-		} else if ("show_picker".equals(k)) {
+		} 
+		else if ("show_picker".equals(k)) {
 			showPicker();
 			return true;
-		} else if ("mini_keyboard_help".equals(k)) {
+		} 
+		else if ("mini_keyboard_help".equals(k)) {
 			Dlg.helpDialog(inst, R.string.pref_mini_kbd_help);
 			return true;
-		} else if ("empty_dict".equals(k)) {
+		} 
+		else if ("empty_dict".equals(k)) {
 			showEmptyDict();
 			return true;
-		} else if ("system_setting_unknown_source".equals(k)) {
+		} 
+		else if ("system_setting_unknown_source".equals(k)) {
 			try {
 				Intent intent = new Intent();
 				intent.setAction(Settings.ACTION_SECURITY_SETTINGS);
 				startActivity(intent);
 			} catch (Throwable e) {
 			}
-		} else if ("check_upd_app".equals(k)) {
+		} 
+		else if ("check_upd_app".equals(k)) {
 			if (!SiteKbd.bcheck_backgraund) {
 				Dlg.helpDialog(inst, inst.getString(R.string.upd_checking_before_dlg), new st.UniObserver() {
 
@@ -835,14 +865,16 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 					}
 				});
 			}
-		} else if ("review_application".equals(k)) {
+		} 
+		else if ("review_application".equals(k)) {
 			Intent in = new Intent(Intent.ACTION_VIEW);
 			in.setData(Uri.parse(SiteKbd.SITE_KBD + SiteKbd.PAGE_REVIEW));
 			startActivity(in);
 			// записываем что отзыв оставил в onResume
 			review_time_start = new Date().getTime();
 
-		} else if ("go_on_site".equals(k)) {
+		} 
+		else if ("go_on_site".equals(k)) {
 			Intent in = new Intent(Intent.ACTION_VIEW);
 			in.setData(Uri.parse(SiteKbd.SITE_KBD));
 			startActivity(in);
@@ -866,10 +898,12 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				st.toast(inst, R.string.honeycomb);
 				return false;
 			}
-		} else if ("kbd_background_alpha".equals(k)) {
+		} 
+		else if ("kbd_background_alpha".equals(k)) {
 			showAlpha();
 			return true;
-		} else if ("kbd_background_pict".equals(k)) {
+		} 
+		else if ("kbd_background_pict".equals(k)) {
 			String txt = null;
 			if (st.kbd_back_pict != null && st.kbd_back_pict.length() > 0)
 				txt = inst.getString(R.string.cancel_kbd_background);
@@ -891,43 +925,58 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				}
 			}.show();
 			return true;
-		} else if ("rate_application".equals(k)) {
+		} 
+		else if ("rate_application".equals(k)) {
 			rateDialog();
 			return true;
-		} else if ("clipbrd_sync".equals(k)) {
+		} 
+		else if ("clipbrd_sync".equals(k)) {
 			st.runAct(ClipbrdSyncAct.class, c);
 			return true;
-		} else if ("clipboard_size".equals(k)) {
+		} 
+		else if ("clipboard_size".equals(k)) {
 			showClipboardSize();
 			return true;
-		} else if ("ac_defkey".equals(k)) {
+		} 
+		else if ("ac_defkey".equals(k)) {
 			showACDefaultWord();
 			return true;
-		} else if ("g_str_additional1".equals(k)) {
+		} 
+		else if ("g_str_additional1".equals(k)) {
 			showAdditionalString();
 			return true;
-		} else if ("ac_list_value".equals(k)) {
+		} 
+		else if ("ac_list_value".equals(k)) {
 			showAcCountWord();
 			return true;
-		} else if ("quick_setting".equals(k)) {
+		} 
+		else if ("quick_setting".equals(k)) {
 			st.runAct(Quick_setting_act.class, c);
 			return true;
-		} else if ("skin_constructor".equals(k)) {
+		} 
+		else if ("skin_constructor".equals(k)) {
 			st.runAct(SkinConstructorAct.class, c);
 			return true;
-		} else if ("set_sound".equals(k)) {
+		} 
+		else if ("set_sound".equals(k)) {
 			st.runAct(SetSound.class, c);
-		} else if ("ac_load_vocab".equals(k)) {
+		} 
+		else if ("ac_load_vocab".equals(k)) {
 			st.runAct(UpdVocabActivity.class, c);
-		} else if ("vibro_durations".equals(k)) {
+		} 
+		else if ("vibro_durations".equals(k)) {
 			showVibroDuration();
-		} else if ("intervals".equals(k)) {
+		} 
+		else if ("intervals".equals(k)) {
 			showIntervalsEditor();
-		} else if ("pop_txt_color".equals(k)) {
+		} 
+		else if ("pop_txt_color".equals(k)) {
 			showTextColorPopupWindowValsEditor();
-		} else if ("pop_back_color".equals(k)) {
+		} 
+		else if ("pop_back_color".equals(k)) {
 			showBackColorPopupWindowValsEditor();
-		} else if ("default_setting".equals(k)) {
+		} 
+		else if ("default_setting".equals(k)) {
 			Dlg.yesNoDialog(inst, getString(R.string.are_you_sure), new st.UniObserver() {
 				@Override
 				public int OnObserver(Object param1, Object param2) {
@@ -956,36 +1005,44 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			// }
 			// });
 			// gd.showAlert();
-		} else if (st.PREF_KEY_LOAD.equals(k)) {
+		} 
+		else if (st.PREF_KEY_LOAD.equals(k)) {
 			if (st.getRegisterKbd(inst) < 2)
 				st.toast(getString(R.string.kbd_warning));
 			else
 				backup(inst, false);
-		} else if (st.PREF_KEY_SAVE.equals(k)) {
+		} 
+		else if (st.PREF_KEY_SAVE.equals(k)) {
 			if (st.getRegisterKbd(inst) < 2)
 				st.toast(getString(R.string.kbd_warning));
 			else
 				backup(inst, true);
-		} else if ("set_skins".equals(k)) {
+		} 
+		else if ("set_skins".equals(k)) {
 			String err = CustomKbdDesign.updateArraySkins();
 			if (err.length() > 0) {
 				Toast.makeText(this, err, 1000).show();
 			}
 			st.runSetKbd(inst, st.SET_SELECT_SKIN);
 			return true;
-		} else if ("pref_calib_portrait".equals(k)) {
+		} 
+		else if ("pref_calib_portrait".equals(k)) {
 			st.runSetKbd(inst, st.SET_KEY_CALIBRATE_PORTRAIT);
 			return true;
-		} else if ("pref_calib_landscape".equals(k)) {
+		} 
+		else if ("pref_calib_landscape".equals(k)) {
 			st.runSetKbd(inst, st.SET_KEY_CALIBRATE_LANDSCAPE);
 			return true;
-		} else if ("pref_port_key_height".equals(k)) {
+		} 
+		else if ("pref_port_key_height".equals(k)) {
 			st.runSetKbd(inst, st.SET_KEY_HEIGHT_PORTRAIT);
 			return true;
-		} else if ("pref_land_key_height".equals(k)) {
+		} 
+		else if ("pref_land_key_height".equals(k)) {
 			st.runSetKbd(inst, st.SET_KEY_HEIGHT_LANDSCAPE);
 			return true;
-		} else if ("save_pop2_str".equals(k)) {
+		} 
+		else if ("save_pop2_str".equals(k)) {
 			File f = new File(st.getSettingsPath() + "/gesture_string.txt");
 			if (f.exists()) {
 				GlobDialog gd = new GlobDialog(st.c());
@@ -1003,7 +1060,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			} else
 				savePop2str();
 			return true;
-		} else if ("load_pop2_str".equals(k)) {
+		} 
+		else if ("load_pop2_str".equals(k)) {
 
 			if (st.gesture_str.length() > 0) {
 				GlobDialog gd = new GlobDialog(st.c());
@@ -1056,7 +1114,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			// Intent intent = new Intent(Intent.ACTION_VIEW);
 			// intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.jbak2.layout"));
 			// startActivity(intent);
-		} else if ("jbak2skin_app".equals(k)) {
+		} 
+		else if ("jbak2skin_app".equals(k)) {
 			Intent in = new Intent(Intent.ACTION_VIEW);
 			in.setData(Uri.parse(SiteKbd.SITE_KBD + SiteKbd.PAGE_ADDITIONA_COMPONENT));
 			startActivity(in);
@@ -1065,22 +1124,26 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			// Intent intent = new Intent(Intent.ACTION_VIEW);
 			// intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.jbak2.skin"));
 			// startActivity(intent);
-		} else if ("set_key_main_font".equals(k)) {
-			c.startActivity(new Intent(c, EditSetActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-					.putExtra(EditSetActivity.EXTRA_PREF_KEY, st.PREF_KEY_MAIN_FONT)
-					.putExtra(EditSetActivity.EXTRA_DEFAULT_EDIT_SET, draw.paint().getDefaultMain().toString()));
+		} 
+		else if ("set_key_main_font".equals(k)) {
+			c.startActivity(new Intent(c, EditSetFontActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+					.putExtra(EditSetFontActivity.EXTRA_PREF_KEY, st.PREF_KEY_MAIN_FONT)
+					.putExtra(EditSetFontActivity.EXTRA_DEFAULT_EDIT_SET, draw.paint().getDefaultMain().toString()));
 
-		} else if ("set_key_second_font".equals(k)) {
-			c.startActivity(new Intent(c, EditSetActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-					.putExtra(EditSetActivity.EXTRA_PREF_KEY, st.PREF_KEY_SECOND_FONT)
-					.putExtra(EditSetActivity.EXTRA_DEFAULT_EDIT_SET, draw.paint().getDefaultSecond().toString()));
+		} 
+		else if ("set_key_second_font".equals(k)) {
+			c.startActivity(new Intent(c, EditSetFontActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+					.putExtra(EditSetFontActivity.EXTRA_PREF_KEY, st.PREF_KEY_SECOND_FONT)
+					.putExtra(EditSetFontActivity.EXTRA_DEFAULT_EDIT_SET, draw.paint().getDefaultSecond().toString()));
 
-		} else if ("set_key_label_font".equals(k)) {
-			c.startActivity(new Intent(c, EditSetActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-					.putExtra(EditSetActivity.EXTRA_PREF_KEY, st.PREF_KEY_LABEL_FONT)
-					.putExtra(EditSetActivity.EXTRA_DEFAULT_EDIT_SET, draw.paint().getDefaultLabel().toString()));
+		} 
+		else if ("set_key_label_font".equals(k)) {
+			c.startActivity(new Intent(c, EditSetFontActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+					.putExtra(EditSetFontActivity.EXTRA_PREF_KEY, st.PREF_KEY_LABEL_FONT)
+					.putExtra(EditSetFontActivity.EXTRA_DEFAULT_EDIT_SET, draw.paint().getDefaultLabel().toString()));
 
-		} else if ("pref_languages".equals(k)) {
+		} 
+		else if ("pref_languages".equals(k)) {
 			return st.startSetLangActivity(inst);
 			// старый код. Закоментил 04.10.19
 			// if (!isKbdRegister()) {
@@ -1088,26 +1151,31 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			// }
 			// st.runAct(LangSetActivity.class,c);
 			// return true;
-		} else if ("fs_editor_set".equals(k)) {
+		} 
+		else if ("fs_editor_set".equals(k)) {
 			getApplicationContext().startActivity(
-					new Intent(getApplicationContext(), EditSetActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-							.putExtra(EditSetActivity.EXTRA_PREF_KEY, st.PREF_KEY_EDIT_SETTINGS));
+					new Intent(getApplicationContext(), EditSetFontActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+							.putExtra(EditSetFontActivity.EXTRA_PREF_KEY, st.PREF_KEY_EDIT_SETTINGS));
 			return true;
-		} else if ("ac_font".equals(k)) {
-			getApplicationContext().startActivity(new Intent(getApplicationContext(), EditSetActivity.class)
+		} 
+		else if ("ac_font".equals(k)) {
+			getApplicationContext().startActivity(new Intent(getApplicationContext(), EditSetFontActivity.class)
 					.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-					.putExtra(EditSetActivity.EXTRA_PREF_KEY, st.PREF_KEY_FONT_PANEL_AUTOCOMPLETE)
-					.putExtra(EditSetActivity.EXTRA_DEFAULT_EDIT_SET, CandView.getDefaultEditSet(this).toString()));
+					.putExtra(EditSetFontActivity.EXTRA_PREF_KEY, st.PREF_KEY_FONT_PANEL_AUTOCOMPLETE)
+					.putExtra(EditSetFontActivity.EXTRA_DEFAULT_EDIT_SET, CandView.getDefaultEditSet(this).toString()));
 			return true;
-		} else if ("edit_user_vocab".equals(k)) {
+		} 
+		else if ("edit_user_vocab".equals(k)) {
 			vocabTest();
 			st.runAct(EditUserVocab.class, c);
 			return true;
-		} else if ("annotation".equals(k)) {
+		} 
+		else if ("annotation".equals(k)) {
 			vocabTest();
 			st.runActShowText(c, R.string.ann, st.STA_FILENAME_DESC_KBD, ShowTextAct.FLAG_MULTI_LANG);
 			return true;
-		} else if ("dict_app".equals(k)) {
+		} 
+		else if ("dict_app".equals(k)) {
 			vocabTest();
 			st.runApp(inst, st.APP_PACKAGE_DICTIONARY, SiteKbd.SITE_KBD + SiteKbd.PAGE_DICT);
 			return true;
@@ -1123,18 +1191,21 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			vocabTest();
 			st.runAct(AboutActivity.class, c);
 			return true;
-		} else if ("mainmenu_setting".equals(k)) {
+		} 
+		else if ("mainmenu_setting".equals(k)) {
 			if (!isKbdRegister()) {
 				return false;
 			}
 			vocabTest();
 			st.runAct(MainmenuAct.class, c);
 			return true;
-		} else if ("gesture_create".equals(k)) {
+		} 
+		else if ("gesture_create".equals(k)) {
 			vocabTest();
 			st.runAct(GestureCreateAct.class, c);
 			return true;
-		} else if ("ac_key_color".equals(k)) {
+		} 
+		else if ("ac_key_color".equals(k)) {
 			if (!isKbdRegister()) {
 				return false;
 			}
@@ -1184,11 +1255,12 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	/** устанавливаем подпись под пунктом меню про изображение на ентере */
 	void setEnterPict() {
 		int v = Integer.decode(st.pref(this).getString(st.PREF_ENTER_PICT, st.STR_ZERO));
-		setSummary(st.PREF_ENTER_PICT, 0, getResources().getStringArray(R.array.array_enter_pict)[v]);
+		setSummary(st.PREF_ENTER_PICT, R.string.enter_pict_desc, strVal(getResources().getStringArray(R.array.array_enter_pict)[v]));
 	}
 
 	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) 
+	{
 		if (st.PREF_KEY_GESTURE_LEFT.equals(key) || st.PREF_KEY_GESTURE_RIGHT.equals(key)
 				|| st.PREF_KEY_GESTURE_UP.equals(key) || st.PREF_KEY_GESTURE_DOWN.equals(key)
 				|| st.PREF_KEY_GESTURE_SPACE_LEFT.equals(key) || st.PREF_KEY_GESTURE_SPACE_RIGHT.equals(key)
@@ -1861,6 +1933,32 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		} catch (IOException e) {
 		}
 
+	}
+	/** проверка и установка галки на настройке set_font_kbd, <br>
+	 * для андроидов меньше или больше 5.0 <br>
+	 * Установка делается если change = true
+	 * */
+	public void setFontKbdOnKey(boolean change) 
+	{
+		SharedPreferences p = st.pref(st.c());
+		PreferenceScreen ps = getPreferenceScreen();
+		CheckBoxPreference pr = (CheckBoxPreference) ps.findPreference(st.PREF_KEY_VIEW_FONT_KBD_ON_KEY);
+		boolean ch = pr.isChecked();
+		if (change) {
+			
+			int cng = ch==true?st.FONT_KEYBOARD_USER_TRUE:st.FONT_KEYBOARD_USER_FALSE;
+			Editor e = p.edit();
+			e.putString(st.PREF_KEY_FONT_KBD_ON_KEY, st.STR_NULL+cng);
+			e.commit();
+			
+		} else
+			ch = st.font_keyboard;
+		pr.setChecked(ch);
+		
+//		Editor e = p.edit();
+//		e.putBoolean(st.PREF_KEY_FONT_KBD_ON_KEY, false);
+//		e.commit();
+		//pr.setSummary(pr.getSummary().toString() + '\n' + getBackupPath());
 	}
 
 	void showClipboardSize() {

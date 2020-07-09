@@ -133,6 +133,7 @@
     <!-- MAIN_ITEM Внешний вид -->
 
     <PreferenceScreen
+        android:key="screen_appearance"
         android:summary="@string/set_key_appearance_desc"
         android:title="@string/set_key_appearance" >
 
@@ -166,6 +167,13 @@
             android:key="kbd_background_alpha"
             android:summary="@string/set_kbd_background_alpha_desc"
             android:title="@string/set_kbd_background_alpha" />
+
+        <!-- шрифт клавиатуры-->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_set_font_kbd"
+            android:summary="@string/set_font_keyboard_desc"
+            android:title="@string/set_font_keyboard" />
 
         <!-- Шрифты -->
 
@@ -239,8 +247,9 @@
         </PreferenceCategory>
     </PreferenceScreen>
 
-    <!-- MAIN_ITEM настройка клавиш -->
+    <!-- MAIN_ITEM настройки клавиш -->
     <PreferenceScreen
+        android:key="screen_pref_keys"
         android:summary="@string/pref_keys_desc"
         android:title="@string/pref_keys" >
         <Preference
@@ -259,6 +268,35 @@
             android:key="pref_calib_landscape"
             android:summary="@string/calibr_desc"
             android:title="@string/calibr_landscape" />
+        
+        <PreferenceCategory android:title="@string/pref_keys_cat" >
+
+        <!-- Поведение контекстный enter -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enter_state"
+            android:summary="@string/set_enter_state_desc"
+            android:title="@string/set_enter_state" />
+        
+<!-- 	изображение на ентере -->
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_enter_pict"
+            android:entryValues="@array/integer_vals"
+            android:key="enter_pict"
+            android:summary="@string/enter_pict_desc"
+            android:title="@string/enter_pict" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_shift_vars"
+            android:entryValues="@array/integer_vals"
+            android:key="shift_state"
+            android:title="@string/set_key_shift" />
+
+            
+        </PreferenceCategory>
+        
     </PreferenceScreen>
 
     <!-- MAIN_ITEM - языки -->
@@ -694,28 +732,6 @@
         android:summary="@string/set_key_misc_desc"
         android:title="@string/set_key_misc" >
 
-        <!-- Поведение контекстный enter -->
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="enter_state"
-            android:summary="@string/set_enter_state_desc"
-            android:title="@string/set_enter_state" />
-        
-<!-- 	изображение на ентере -->
-        <ListPreference
-            android:defaultValue="0"
-            android:entries="@array/array_enter_pict"
-            android:entryValues="@array/integer_vals"
-            android:key="enter_pict"
-            android:title="@string/enter_pict" />
-
-        <ListPreference
-            android:defaultValue="0"
-            android:entries="@array/array_shift_vars"
-            android:entryValues="@array/integer_vals"
-            android:key="shift_state"
-            android:title="@string/set_key_shift" />
-
         <PreferenceCategory android:title="@string/mm_multiclipboard" >
             <Preference
                 android:defaultValue="20"
@@ -811,6 +827,13 @@
             <!-- android:summary="@string/set_key_symb_delay_desc" -->
             <!-- android:title="@string/set_key_symb_delay" /> -->
 
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- MAIN ITEM Резервирование настроек -->
+    <PreferenceScreen
+        android:title="@string/backup_setting" >
+        
             <Preference
                 android:key="default_setting"
                 android:title="@string/default_pref" />
@@ -822,7 +845,7 @@
                 android:key="load"
                 android:summary="@string/set_key_load_pref_desc"
                 android:title="@string/set_key_load_pref" />
-        </PreferenceCategory>
+        
     </PreferenceScreen>
 
     <!-- MAIN_ITEM о программе (прочее) -->

@@ -103,6 +103,7 @@ public class Mainmenu {
     	ar.add(new Mainmenu(R.string.ss_name, st.CMD_INSERT_SPEC_SYMBOL));
     	ar.add(new Mainmenu(R.string.user_hide_layout_menuname, st.CMD_SHOW_USER_HIDE_LAYOUT));
     	ar.add(new Mainmenu(R.string.addit_layout_menuname, st.CMD_SHOW_ADDITIONAL_HIDE_LAYOUT));
+    	ar.add(new Mainmenu(R.string.mm_font_kbd, st.CMD_SHOW_FONT_KEYBOARD_DIALOG));
 
     	return ar;
     }

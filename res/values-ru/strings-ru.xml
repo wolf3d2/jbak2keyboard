@@ -3,8 +3,6 @@
 <!-- Title for Latin keyboard  -->
     <string name="ime_name">jbak2 Keyboard</string>
     <string name="ime_settings">Настройки</string>
-    <string name="pref_keys">Настройки клавиш</string>    
-	<string name="pref_keys_desc">Высота, горизонтальное смещение клавиатуры и вертикальная коррекция клавиш</string>    
     <string name="msg_begin">Больше не выводить</string>   
 	<string name="kbd_warning">Сперва включите и активируйте клавиатуру!\n(первый пункт настроек)</string>
 	<string name="jbak2layout">Раскладки от пользователей</string>
@@ -17,7 +15,6 @@
 \n---
 \nДолгое нажатие на клавишах избранного и ABC в общем списке, перемещает соответственные панели кнопок вниз.</string>
 	<string name="reboot">Загружено. Требуется перезагрузка устройства</string>
-	<string name="default_pref">Настройки по умолчанию</string>
 	<string name="msg_avtocorrect_and_addspace">Вы включили одновременно \"автоисправление\" и \"добавлять пробел после символов\" (в Автовводе).\n\nВместе они работают некорректно!</string>
     <string name="in_developing">В разработке</string>
 
@@ -26,6 +23,10 @@
     <string name="ie_design">Дизайн элемента -/+</string>
     <string name="ie_design_desc">Порядок положения кнопок</string>
     
+	<string name="pref_keys">Настройки клавиш</string>    
+	<string name="pref_keys_desc">Высота, горизонтальное смещение клавиатуры, вертикальная коррекция и настройки отдельных клавиш</string>
+	<string name="pref_keys_cat">Настройки отдельных клавиш</string>    
+		    
 <!-- отзыв -->
 	<string name="review">Оценить приложение</string>
 	<string name="review_desc">Оставьте пожалуйста свой отзыв на сайте программы.</string>
@@ -90,7 +91,9 @@
 	<string name="set_kbd_background_alpha">Прозрачность клавиатуры</string>
 	<string name="set_kbd_background_alpha_desc">0 - полностью прозрачна, 10 - прозрачность из скина. Имеет смысл только при использовании фоновой картинки</string>
 	<string name="cancel_kbd_background">Фон из скина</string>
-			
+	<string name="set_font_keyboard">Шрифт клавиатуры</string>
+	<string name="set_font_keyboard_desc">Включить на клавишах символы внутреннего шрифта клавиатуры</string>
+					
 <!-- Title for show keyboard notification-->
 	<string name="set_show_kbd_notif">Вызов из шторки</string>
 	<string name="set_show_kbd_notif_desc">Вызов клавиатуры через уведомление в  шторке. Иногда необходимо</string>
@@ -494,7 +497,10 @@
 \n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
 \n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
 \nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
-
+    <string name="set_ac_defkey_help_buttons2">\n\nА также, поддерживаются специальные сочетания:
+\n$l# - вставляет в выводимый список разделяющую линию.
+\n$el# - принудительно оканчивает текущую строку.</string>
+	
 	<string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
     <string name="set_ac_space">Вставка пробела</string>
     <string name="set_ac_space_desc">Вставлять пробел после ввода слова из автодополнения</string>
@@ -627,7 +633,9 @@
 	<string name="set_key_tpl_path">Путь в шаблонах</string>
 	<string name="set_key_tpl_path_desc">Если отмечено, то в меню шаблонов и в некоторых других меню, показывается путь к текущей папке</string>
 	
-    <string name="set_key_save_pref">Сохранить настройки</string>
+    <string name="backup_setting">Резервирование настроек</string>
+	<string name="default_pref">Настройки по умолчанию</string>
+	<string name="set_key_save_pref">Сохранить настройки</string>
     <string name="set_key_save_pref_desc">В файл:</string>
     <string name="set_key_load_pref">Загрузить настройки</string>
     <string name="set_key_load_pref_desc">Из файла:</string>
@@ -706,6 +714,7 @@
         <item>В ландшафтном режиме</item>
     </string-array>
     <string name="enter_pict">Изображение на Eнтер</string>
+    <string name="enter_pict_desc">Если включена настройка Шрифт клавиатуры во Внешнем виде, то данная настройка недоступна</string>
     <string-array name="array_enter_pict">
         <item>Старый enter+улыбка</item>
         <item>Старый enter+смайлик</item>
@@ -734,7 +743,8 @@
     <string name="es_font_bold">Жирный</string>
     <string name="es_font_italic">Курсив</string>
     <string name="es_def_font">Стандартный размер</string>
-            
+    <string name="es_font_tv_desc">На версиях андроид меньше 5.0, при включенной настройке Шрифт клавиатуры во Внешнем виде, не будут работать настройки жирности и курсива шрифтов</string>
+    
     <string name="mm_setting">Меню</string>
     <string name="mm">Главное меню</string>
 	<string name="mm_path">Текущий путь:</string>
@@ -767,7 +777,8 @@
 	<string name="mm_stop_dict0">Временное отключение словаря (показывается только строка по умолчанию)</string>
 	<string name="mm_stop_dict1">Словарь: Работает</string>
 	<string name="mm_stop_dict2">Словарь: Отключен</string>
-			
+	<string name="mm_font_kbd">Значки встроенного в клавиатуру шрифта (удобно при создании раскладки)</string>
+				
 <!-- notation number  -->
 	<string name="notation_name">Какая базовая система счисления у числа</string>
 	<string name="notation_not_number">Текст в буфере должен быть числом, число должно быть целым, положительным и меньше 10 знаков (десятичн.)</string>
@@ -846,7 +857,7 @@
         <item><b>$selVerseMode</b> - режим стихов - каждый первый символ строки в выделении в верхнем регистре</item>
         <item><b>$selAsInTheSentences</b> - регистр букв в выделении как в предложениях</item>
         <item><b>$paste</b> - вставить текущее значение из буфера обмена</item>
-        <item><b>$selReplaсe</b> - поиск и замена в выделенном</item>
+        <item><b>$selReplace</b> - поиск и замена в выделенном</item>
         <item><b>$selToPos</b> - выделение до указанной позиции по заданным параметрам</item>
         <item><b>$program</b> - выполнение последовательности шаблонов</item>
         <item><b>$codes</b> - выполняет последовательно указанные коды</item>
@@ -896,7 +907,7 @@
 	<string name="about_author">Автор:</string>
 	<string name="about_author_desc">Михаил Вязенкин\n(MWcorp, 4pda - wolf3d2)\nПервый автор (до 0.97.7): Юрий Бакунин</string>
 	<string name="about_other">Прочее:</string>
-	<string name="about_other_desc">Переводы:\nИспанский: Луиза Валеева (4pda.ru: Luiza_Va)\nАнглийский: Луиза Валеева\nУкраинский: Денис Манжос (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nАвтор иконки приложения - myha781 (4pda.ru)\n Просто помощь - elizz69, yergnoor</string>
+	<string name="about_other_desc">Переводы:\nИспанский: Луиза Валеева (4pda.ru: Luiza_Va)\nАнглийский: Луиза Валеева\nУкраинский: zdrweb, Stealth3001, TealcJaffa, EricSonicsson.\nАвтор иконки приложения - myha781 (4pda.ru)\n Просто помощь - elizz69, yergnoor</string>
 
 <!-- В других локалях этот текст не переводить! Какой там тест есть, тот и переводить -->
 	<string name="about_web">(Пролистайте до конца)\n\nСайт программы: http://jbak2.ucoz.net\n\nТема обсуждения: http://4pda.ru/forum/index.php?showtopic=638021\n\nГруппа на одноклассниках:\nhttps://ok.ru/jbak2keyboard\n\nДелается на основе jbak keyboard версии 0.97.7</string>
@@ -916,7 +927,7 @@
     <string name="kbd_name_qwerty">Клавиатура Qwerty</string>    
     <string name="kbd_name_mwcorp">Клавиатура от MWcorp\n(недостающие символы - долгое нажатие на (если есть для данного языка)) add-маленькие, ADD-БОЛЬШИЕ.</string>    
     <string name="smiles_MWcorp">Смайлики от MWcorp</string>    
- 	<string name="smiles_android7">750+ смайликов из Android 7</string>
+ 	<string name="smiles_android7">1000+ смайликов из Android 7</string>
     <string name="smiles_MaxQwertyKeys">Смайлики от MaxQwertyKeys для Android 4.4 и выше</string>    
     <string name="kbd_psevdo_t9_mwcorp">Псевдо T9 от MWcorp</string>    
     <string name="kbd_landscape_mwcorp">Ландшафт от MWcorp v100\n(пример всех кнопок клавиатуры)</string>    

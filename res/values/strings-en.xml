@@ -3,8 +3,6 @@
     <!-- Title for Latin keyboard  -->
     <string name="ime_name">Jbak2 Keyboard </string>
     <string name="ime_settings">Settings</string>
-    <string name="pref_keys">Key settings</string>
-	<string name="pref_keys_desc">Keyboard height, horizontal offset and vertical correction of keys</string>    
     <string name="msg_begin">Do not show this again</string>   
 	<string name="kbd_warning">First turn on and activate the keyboard!\n(the first paragraph of Settings)</string>
 	<string name="jbak2layout">Custom layouts and languages</string>
@@ -18,7 +16,6 @@
 \nLong press on the keys in Favorites and ABC (in the general list) will move the corresponding button panels down.</string>
 
 	<string name="reboot">Loaded. Device reboot required</string>
-	<string name="default_pref">Default settings</string>
 	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
     <string name="in_developing">In developing</string>
 	
@@ -27,6 +24,10 @@
     <string name="ie_design">Design element -/+</string>
     <string name="ie_design_desc">Порядок положения кнопок</string>
     
+    <string name="pref_keys">Key settings</string>
+	<string name="pref_keys_desc">Keyboard height, horizontal offset, vertical correction of keys and settings of separate keys</string>     
+	<string name="pref_keys_cat">Настройки отдельных клавиш</string>    
+	
 <!-- Title for update preferences -->
 	<string name="upd_screen">Updates</string>
 	<string name="upd_screen_desc">Check for app updates and more</string>
@@ -90,7 +91,9 @@
 	<string name="set_kbd_background_alpha">Keyboard transparency</string>
 	<string name="set_kbd_background_alpha_desc">0: fully transparent, 10: transparency of skin. It only makes sense if you use a background image</string>
 	<string name="cancel_kbd_background">Background of skin</string>
-	
+	<string name="set_font_keyboard">Keyboard font</string>
+ 	<string name="set_font_keyboard_desc">Enable keyboard internal font characters on keys</string>
+ 			
 <!-- Title for show keyboard notification-->
 	<string name="set_show_kbd_notif">Enable from the notification panel</string>
 	<string name="set_show_kbd_notif_desc">Enable the keyboard via the notification panel. Sometimes it is necessary</string>
@@ -506,7 +509,10 @@
 \n\nBUILT-IN FONT ICONS WILL BE SHOWN ONLY IN THE KEYBOARD!
 \n\nA standard font character will be inserted in the input field, if there is one in the font. 
 \nTherefore, this feature makes sense only when you create buttons and for their better perception</string>
-
+    <string name="set_ac_defkey_help_buttons2">\n\nSpecial combinations are also supported :
+\n$l# :inserts a separator line into the displayed list.
+\n$el# :forcibly terminates the current string.</string>
+	
 	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>
     <string name="set_ac_space_desc">Insert space after a word selected from Autocomplete</string>
@@ -633,7 +639,10 @@
     <string name="set_key_intervals_desc">Delays for long-press and repeats</string>
 	<string name="set_key_tpl_path">Path in Templates</string>
 	<string name="set_key_tpl_path_desc">If checked, the path to the current folder will be displayed in the menu of Templates and other menus</string>
-    <string name="set_key_save_pref">Save settings</string>
+
+    <string name="backup_setting">Backup settings</string>
+	<string name="default_pref">Default settings</string>
+	<string name="set_key_save_pref">Save settings</string>
     <string name="set_key_save_pref_desc">Into file:</string>
     <string name="set_key_load_pref">Load settings</string>
     <string name="set_key_load_pref_desc">From file:</string>
@@ -678,7 +687,7 @@
     <string name="vk_use_2">- to the left, + to the right</string>
 
     <string name="preview_show_0">Not show</string>
-	<string name="preview_show_1">Show under keys</string>
+	<string name="preview_show_1">Above pressed keys</string>
 	<string name="preview_show_2">Show on center</string>
 
 	<string name="preview_size_win">Preview pop-up size</string>
@@ -708,6 +717,7 @@
         <item>2 modes (normal,shift (double click = capslock mode))</item>
     </string-array>
     <string name="enter_pict">Picture on Enter key</string>
+    <string name="enter_pict_desc">If the Keyboard Font setting is enabled in Appearance, this setting will not be available</string>
     <string-array name="array_enter_pict">
         <item>Old Enter+smile</item>
         <item>Old Enter+emoji</item>
@@ -742,6 +752,7 @@
     <string name="es_font_bold">Bold</string>
     <string name="es_font_italic">Italic</string>
     <string name="es_def_font">Default font size</string>
+    <string name="es_font_tv_desc">On Android versions older than 5.0, when the Keyboard Font setting is enabled in Appearance, the bold and italic font settings will not work</string>
     <string-array name="array_fonts">
         <item>Default</item>
         <item>Droid serif</item>
@@ -786,7 +797,8 @@
 	<string name="mm_stop_dict0">Dictionary temporary disabling (only the default string is displaying)</string>
 	<string name="mm_stop_dict1">Dictionary: on</string>
 	<string name="mm_stop_dict2">Dictionary: off</string>
-	
+	<string name="mm_font_kbd">Значки встроенного в клавиатуру шрифта (удобно при создании раскладки)</string>
+		
 <!-- notation number  -->
 	<string name="notation_name">What is the base notation of the number</string>
 	<string name="notation_not_number">Clipboard text must be specified as a number, and the number must be an integer, positive and less than 10 characters (decimal)</string>
@@ -866,7 +878,7 @@
 		<item><b>$selVerseMode</b> - verse mode: each first character of the string in the selection will be capitalized</item>
         <item><b>$selAsInTheSentences</b> - letter case in the selection like in the sentences</item>
         <item><b>$paste</b> - pastes the current value from the clipboard</item>
-        <item><b>$selReplaсe</b> - search and replace in selected text</item>
+        <item><b>$selReplace</b> - search and replace in selected text</item>
         <item><b>$selToPos</b> - selection to the specified position according to set parameters</item>
         <item><b>$program</b> - execution of template sequence</item>
         <item><b>$codes</b> - executes sequentially specified codes</item>
@@ -923,7 +935,7 @@
 
 	<string name="about_author_desc">Michail Wyazenkin (MWcorp, 4pda - wolf3d2)\n Previous developer (until 0.97.7)\nJuriy Bakunin</string>
 	<string name="about_other">Other:</string>
-	<string name="about_other_desc">Translations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
+	<string name="about_other_desc">Translations:\ninto Spanish: Luiza Valeeva (4pda.ru: Luiza_Va)\ninto English: Luiza Valeeva\ninto Ukrainian: Denis Manzhos (4pda.ru: zdrweb), Stealth3001, TealcJaffa, EricSonicsson.\nCreator of the app icon: myha781 (4pda.ru)\nHelp: elizz69, yergnoor</string>
     <string name="about_keycode_button">Character code (useful for creating your own layout \n(Unicode Pad application)</string>
 	<string name="about_color_picker_btn">Color picker</string>
     <string name="diary">List of changes</string>
@@ -940,7 +952,7 @@
 	<string name="kbd_name_qwerty">Qwerty keyboard</string>
     <string name="kbd_name_mwcorp">MWcorp\'s keyboard</string>
  	<string name="smiles_MWcorp">Emoji MWcorp</string>
- 	<string name="smiles_android7">750+ Emoji from Android 7</string>
+ 	<string name="smiles_android7">1000+ Emoji from Android 7</string>
  	<string name="smiles_MaxQwertyKeys">Emoji from MaxQwertyKeys for Android 4.4 and above</string>    
  	<string name="kbd_name_qwerty_hyastan64">Haystan64\'s keyboard</string>
     <string name="kbd_name_qwerty_rusrespect">from RusRespect</string>    
