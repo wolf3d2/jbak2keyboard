@@ -41,6 +41,21 @@
     android:layout_above="@id/llad_pref"
     android:layout_alignParentLeft="true"
     android:layout_alignParentRight="true"
-    android:layout_below="@+id/text_about" />
+    android:layout_below="@+id/text_about" 
+    />
+
+<Button
+    android:id="@+id/pref_btn_unload_kbd"
+    style="@style/round_button_blue"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="80dp"
+    android:layout_marginRight="30dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:textSize="12sp" 
+    android:text="@string/unload" 
+ 	android:scrollbars="none"
+    />
 
 </RelativeLayout>

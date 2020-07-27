@@ -503,14 +503,9 @@
 \n\nЗНАЧКИ ВБУДОВАНОГО ШРИФТА, БУДУТЬ ВІДОБРАЖАТИСЬ ТІЛЬКІ В КЛАВІАТУРІ!
 \n\nУ полі вводі буде вставлено символ стандартного шрифта, якщо він є в шрифті.
 \nТому, дана можливість має сенс виключно під час створення кнопок, для кращого їх сприйняття</string>
-<<<<<<< HEAD
     <string name="set_ac_defkey_help_buttons2">\n\nА також, підтримуються спеціальні сполучення:
 \n$l# - вставляє у список, що виводиться, розподілюючу лінію.
-\n$el# - примусово закінчує поточний рядок.
-</string>
-=======
-    <string name="set_ac_defkey_help_buttons2">\n\nА також, підтримується спеціальне сполучення - $l# - вставляє у список, що виводиться, розподілюючу лінію</string>
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
+\n$el# - примусово закінчує поточний рядок.</string>
 	
     <string name="set_ac_new_defkey">Рядок автодоповнення за замовчуванням змінився. Ви бажаєте її змінити на новий (відмінити зміни неможливо)?</string>
     <string name="set_market1">Оцініть додаток</string>
@@ -728,6 +723,10 @@
 \nОбравши її, не забудьте натиснути кнопку Зберегти.</string>
     <string name="kbdact_toast1">Довге натискання на кнопки праворуч/ліворуч відкриває список</string>
     <string name="kbdact_error_open">Ще не все підготовлено. Спробуйте трохи пізніше</string>
+    <string name="kbdact_help">Для сохранения выбора, нажать на кнопку Сохранить
+\n\nДля листания, можно воспользоваться:
+\n- кнопками влево/вправо
+\n- жестами - провести пальцем в области от панели инструментальных кнопок до верха клавиатуры справа-налево, или наоборот</string>
     <string-array name="vibro_short_type">
         <item>Без вібрації</item>
         <item>При відпусканні клавіші</item>
@@ -787,20 +786,24 @@
 <!-- notation number  -->
 	<string name="notation_name">Яка базова система числення у числа</string>
 	<string name="notation_not_number">Текст в буфері повинен бути числом, воно повинно бути цілим, додатним і менше 10 знаків (десяткових.)</string>
-	
+	<string name="notation_insert_num_on_char">Вставить как символ utf8</string>
+		
 	<string name="search">Пошук</string>
   <string name="ok">Добре</string>
   <string name="cancel">Скасувати</string>
   <string name="yes">Так</string>
   <string name="no">Ні</string>
 	<string name="later">Пізніше</string>
+  	<string name="error">Помилка</string>
   <string name="empty">Порожньо</string>
 	<string name="unload">Вивантажити</string>
-  	<string name="create">Створено</string>
+	<string name="from_memory">пам\'яті</string>
+		<string name="create">Створено</string>
   <string name="save">Зберегти</string>
   <string name="decompil_skin">Декомпліювати скін</string>
   <string name="delete">Видалити</string>
   <string name="delete_q">Видалити?</string>
+	<string name="edit">Редактировать</string>
   <string name="def">Стандарт</string>
   <string name="skin_not_found">Помилка.\nНе знайдено встановлений скін\nВикористовую скін за замовчуванням</string>
   <string name="clear">Очистити</string>
@@ -809,7 +812,8 @@
     <string name="not_work">Поки що не працює. </string>
 	<string name="out_of_memory">Недостатньо оперативної пам\'яті!</string>
     <string name="by_def">За замовчуванням</string>
-	
+    <string name="open_with">Відкрити з допомогою</string>
+    	
   	<string name="sel_del">Видалити вибірково</string>
   <string name="rewrite_question">Файл вже існує.\nПерезаписати?</string>
   <string name="settings_saved">Налаштування збережені!</string>

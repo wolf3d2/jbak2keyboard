@@ -497,13 +497,9 @@
 \n\nЗНАЧКИ ВСТРОЕННОГО ШРИФТА, БУДУТ ПОКАЗЫВАТЬСЯ ТОЛЬКО В КЛАВИАТУРЕ!
 \n\nВ поле ввода будет вставлен символ стандартного шрифта, если он в шрифте есть.
 \nПоэтому, данная возможность имеет смысл, исключительно при создании кнопок, для лучшего их восприятия</string>
-<<<<<<< HEAD
     <string name="set_ac_defkey_help_buttons2">\n\nА также, поддерживаются специальные сочетания:
 \n$l# - вставляет в выводимый список разделяющую линию.
 \n$el# - принудительно оканчивает текущую строку.</string>
-=======
-    <string name="set_ac_defkey_help_buttons2">\n\nА также, поддерживается специальное сочетание - $l# - вставляет в выводимый список разделяющую линию.</string>
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
 	
 	<string name="set_ac_new_defkey">Cтрока автодополнения по умолчанию изменилась. Вы хотите её изменить на новую (отменить изменение невозможно)?</string>
     <string name="set_ac_space">Вставка пробела</string>
@@ -733,6 +729,10 @@
 \nПри её выборе, не забудьте нажать кнопку Сохранить.</string>
     <string name="kbdact_toast1">Долгое нажатие на кнопки вправо/влево, открывают список</string>
     <string name="kbdact_error_open">Пока не всё подготовлено. Попробуйте немного позже</string>
+    <string name="kbdact_help">Для сохранения выбора, нажать на кнопку Сохранить
+\n\nДля листания, можно воспользоваться:
+\n- кнопками влево/вправо
+\n- жестами - провести пальцем в области от панели инструментальных кнопок до верха клавиатуры справа-налево, или наоборот</string>
     <string-array name="vibro_short_type">
         <item>Нет вибрации</item>
         <item>При отпускании клавиши</item>
@@ -786,20 +786,24 @@
 <!-- notation number  -->
 	<string name="notation_name">Какая базовая система счисления у числа</string>
 	<string name="notation_not_number">Текст в буфере должен быть числом, число должно быть целым, положительным и меньше 10 знаков (десятичн.)</string>
-								
+	<string name="notation_insert_num_on_char">Вставить как символ utf8</string>
+									
 	<string name="search">Поиск</string>
 	<string name="ok">Ok</string>
 	<string name="cancel">Отмена</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 	<string name="later">Позже</string>
-    <string name="empty">Пусто</string>
+	<string name="error">Ошибка</string>
+	<string name="empty">Пусто</string>
 	<string name="unload">Выгрузить</string>
+	<string name="from_memory">из памяти</string>
 	<string name="create">Создано</string>
 	<string name="save">Сохранить</string>
 	<string name="decompil_skin">Декомпилировать скин</string>
 	<string name="delete">Удалить</string>
     <string name="delete_q">Удалить?</string>
+	<string name="edit">Редактировать</string>
     <string name="def">Стандарт</string>
     <string name="skin_not_found">Ошибка.\nНе найден установленный скин\nИспользую скин по умолчанию</string>
     <string name="clear">Очистить</string>
@@ -807,6 +811,7 @@
     <string name="honeycomb">Не поддерживается на вашей версии андроид</string>
     <string name="not_work">Пока не работает.</string>
     <string name="by_def">По умолчанию</string>
+    <string name="open_with">Открыть с помощью</string>
     
  	<string name="sel_del">Удалить выборочно</string>
     <string name="rewrite_question">Файл уже существует.\nПереписать?</string>

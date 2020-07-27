@@ -113,13 +113,23 @@
 	  android:layout_alignParentRight="true"
     android:layout_below="@+id/prew"
 />
+
+	<TextView
+	    android:id="@+id/set_kbd_help"
+	    style="@style/label_help"
+	    android:layout_alignParentLeft="true"
+     android:layout_marginBottom="10px"
+     android:layout_marginTop="10px"
+	    />
+    
  <TextView 
      android:id="@+id/keyboard_name"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_alignParentLeft="true"
+	 android:layout_alignParentLeft="true"
      android:layout_marginBottom="10px"
      android:layout_marginTop="10px"
+     android:layout_toRightOf="@id/help"
      android:layout_toLeftOf="@id/prew"
      android:gravity="center"
      android:textStyle="bold" 
@@ -145,14 +155,32 @@
 	  android:layout_marginRight="15dp"
 	  android:layout_alignBottom="@id/save"
 />
+
+<HorizontalScrollView
+    android:id="@+id/hsv_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:layout_alignParentLeft="true"
+	android:layout_marginTop="5dp"
+	android:layout_marginLeft="15dp"
+	android:layout_marginRight="15dp"
+    android:layout_below="@id/next"
+ 	android:scrollbars="none"
+    >
+    
+<LinearLayout 
+    android:id="@+id/ll_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="horizontal"
+	android:gravity="left"
+    >
+    
 <Button
 	  android:id="@+id/back_col"
 	  android:textSize="12dp"	
 	  android:layout_width="wrap_content"
 	  android:layout_height="wrap_content" 
-	  android:layout_below="@id/next"
-	  android:layout_alignParentLeft="true"
-	  android:layout_marginRight="15dp"
 	  android:text="@string/kbdact_back"
 />
 <Button
@@ -160,11 +188,28 @@
 	  android:textSize="12dp"	
 	  android:layout_width="wrap_content"
 	  android:layout_height="wrap_content" 
-	  android:layout_below="@id/next"
-	  android:layout_toRightOf="@id/back_col"
-	  android:layout_marginRight="15dp"
 	  android:text="@string/decompil_skin"
 />
+
+<Button
+	  android:id="@+id/delete"
+	  android:textSize="12dp"	
+	  android:layout_width="wrap_content"
+	  android:layout_height="wrap_content" 
+	  android:text="@string/delete"
+/>
+
+<Button
+	  android:id="@+id/edit"
+	  android:textSize="12dp"	
+	  android:layout_width="wrap_content"
+	  android:layout_height="wrap_content" 
+	  android:text="@string/edit"
+/>
+
+</LinearLayout>    
+</HorizontalScrollView>
+
 </RelativeLayout>
 </LinearLayout>
 <LinearLayout

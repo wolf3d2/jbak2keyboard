@@ -509,13 +509,9 @@
 \n\nBUILT-IN FONT ICONS WILL BE SHOWN ONLY IN THE KEYBOARD!
 \n\nA standard font character will be inserted in the input field, if there is one in the font. 
 \nTherefore, this feature makes sense only when you create buttons and for their better perception</string>
-<<<<<<< HEAD
     <string name="set_ac_defkey_help_buttons2">\n\nSpecial combinations are also supported :
 \n$l# :inserts a separator line into the displayed list.
 \n$el# :forcibly terminates the current string.</string>
-=======
-    <string name="set_ac_defkey_help_buttons2">\n\nA special combination is also supported : $l# : inserts a separator line into the list.</string>
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
 	
 	<string name="set_ac_new_defkey">Default Autocomplete string  has changed. Do you want to change it to a new one (cannot undo changes)?</string>
     <string name="set_ac_space">Insert space</string>
@@ -736,6 +732,10 @@
 \nWhen selecting it, do not forget to click the Save button.</string>
     <string name="kbdact_toast1">Long press on the buttons to the right/left to open the list</string>
     <string name="kbdact_error_open">Not fully ready yet. Try later</string>
+    <string name="kbdact_help">Для сохранения выбора, нажать на кнопку Сохранить
+\n\nДля листания, можно воспользоваться:
+\n- кнопками влево/вправо
+\n- жестами - провести пальцем в области от панели инструментальных кнопок до верха клавиатуры справа-налево, или наоборот</string>
     <string-array name="vibro_short_type">
         <item>No vibration</item>
         <item>On key release</item>
@@ -806,20 +806,24 @@
 <!-- notation number  -->
 	<string name="notation_name">What is the base notation of the number</string>
 	<string name="notation_not_number">Clipboard text must be specified as a number, and the number must be an integer, positive and less than 10 characters (decimal)</string>
-			
+	<string name="notation_insert_num_on_char">Вставить как символ utf8</string>
+				
 	<string name="search">Search</string>
 	<string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 	<string name="later">Later</string>
-    <string name="empty">Empty</string>
+	<string name="error">Error</string>
+	<string name="empty">Empty</string>
 	<string name="unload">Unload</string>
+	<string name="from_memory">from memory</string>
 	<string name="create">Created</string>
 	<string name="save">Save</string>
 	<string name="decompil_skin">Decompile skin</string>
 	<string name="delete">Delete</string>
     <string name="delete_q">Delete?</string>
+	<string name="edit">Edit</string>
     <string name="def">Default</string>
     <string name="skin_not_found">Error.\nSkin not found.\nLoad default skin</string>
     <string name="clear">Clear</string>
@@ -828,6 +832,7 @@
     <string name="not_work">Does not work yet</string>
     <string name="by_def">By default</string>
     <string name="out_of_memory">Out of memory!</string>
+    <string name="open_with">To open with</string>
     
     <string name="sel_del">Delete selectively</string>
     <string name="rewrite_question">File already exists.\nDo you want to replace it?</string>
@@ -998,7 +1003,8 @@
 	<string name="design_eliz8">Grey_2 by elizz69</string>    
 	<string name="design_eliz9">MD_blue by elizz69</string>    
 	<string name="design_eliz10">Black robo by elizz69</string>    
-		<string name="design_schenee">Chocolate by Schnee-Leopard</string>    
+	<string name="design_eliz11">Plum by elizz69</string>    
+			<string name="design_schenee">Chocolate by Schnee-Leopard</string>    
 	<string name="design_thepop3250_1">Light</string>    
 	<string name="design_thepop3250_2">Blue</string>    
 	<string name="design_thepop3250_3">Neon</string>    
@@ -1010,7 +1016,8 @@
 	<string name="design_nad2">Brown_pink_yellow by Надежда Ф</string>    
 	<string name="design_BOGDANPRIME1">Gray_Soft_Keys_by_BOGDANPRIME</string>    
 	<string name="design_Proctocrator1">PaleOrangeAndTwilightGreen_v2 by Proctocrator</string>    
-								
+	<string name="design_unknown1">Cherry2 (author unknown)</string>    
+
 <!-- Names for languages -->
  	<string name="lang_symbol">Character keyboard</string>
  	<string name="lang_symbol_shift">Special character keyboard</string>

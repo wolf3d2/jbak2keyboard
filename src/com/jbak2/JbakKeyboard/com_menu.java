@@ -1010,7 +1010,6 @@ public class com_menu
     				ss = ss.substring(1);
     				regex = 16;
     			}
-    			int iii = Integer.parseInt(ss,regex);
     		} catch (Throwable e){
         		st.toast(R.string.notation_not_number);
     			return;
@@ -1055,16 +1054,24 @@ public class com_menu
 		};
     	menu.show(obs, false);
     }
-    
+    static int nnnum = 0;
     /** показывает введённый код символа в разных системах счисления */
-    public static void showNotationNumber(final Context c, String dexnum)
+    public static void showNotationNumber(final Context c, final String dexnum)
     {
     	st.help = c.getString(R.string.set_longtap_keycode_help);
-    	final String str[] = new String[4];
-    	str[0]= " 2x: "+st.num2str(dexnum, 2);
-    	str[1]= " 8x: "+st.num2str(dexnum, 8);
-    	str[2]= "10x: "+st.num2str(dexnum, 10);
-    	str[3]= "16x: "+st.num2str(dexnum, 16);
+    	nnnum = 0;
+    	try {
+    		nnnum = Integer.parseInt(dexnum);
+		} catch (Throwable e) {
+		}
+    	final String str[] = new String[5];
+    	str[0]= c.getString(R.string.notation_insert_num_on_char);
+    	if (nnnum>0)
+    		str[0]+=" ("+((char)nnnum)+")";
+    	str[1]= " 2x: "+st.num2str(dexnum, 2);
+    	str[2]= " 8x: "+st.num2str(dexnum, 8);
+    	str[3]= "10x: "+st.num2str(dexnum, 10);
+    	str[4]= "16x: "+st.num2str(dexnum, 16);
     	final com_menu menu = new com_menu();
         menu.m_state = STAT_KEYCODE_NOTATION;
     	menu.setMenuname(st.getStr(R.string.mm_notation));
@@ -1076,10 +1083,10 @@ public class com_menu
 			
 			@Override
 			public int OnObserver(Object param1, Object param2) {
+                int pos = ((Integer)param1).intValue();
 				// длинное нажатие на элемент
                 if(((Boolean)param2).booleanValue())
                 {
-                    int pos = ((Integer)param1).intValue();
                     if (pos > -1){
                     	try {
                     		String s = menu.m_arItems.get(pos).text;
@@ -1091,13 +1098,21 @@ public class com_menu
     				com_menu.close();
                     return 0;
                 }
-
-				String out = str[(Integer)param1];
-				out = out.substring(out.indexOf(st.STR_COLON)+1).trim();
-        		if (ServiceJbKbd.inst!=null){
-            		ServiceJbKbd.inst.onText(out);
-            		ServiceJbKbd.inst.processCaseAndCandidates();
-        		}
+                if (pos == 0) {
+            		if (ServiceJbKbd.inst!=null){
+                		ServiceJbKbd.inst.processKey(nnnum);
+                		ServiceJbKbd.inst.processCaseAndCandidates();
+            		}
+                }
+                else if (pos > -1) {
+    				String out = str[pos];
+    				out = out.substring(out.indexOf(st.STR_COLON)+1).trim();
+            		if (ServiceJbKbd.inst!=null){
+                		ServiceJbKbd.inst.onText(out);
+                		ServiceJbKbd.inst.processCaseAndCandidates();
+            		}
+                	
+                }
 
 				com_menu.close();
 				return 0;

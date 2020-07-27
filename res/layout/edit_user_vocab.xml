@@ -33,7 +33,8 @@
     android:minWidth="50dp"
     android:onClick="onClickXml"
     android:text="@string/search"
-    android:textSize="20sp" />
+    android:textSize="20sp" 
+    />
     
     
 <CheckBox

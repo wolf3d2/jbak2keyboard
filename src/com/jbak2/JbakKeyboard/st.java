@@ -1996,6 +1996,11 @@ public class st extends IKeyboard implements IKbdSettings
     	}
     	calc_history[0] = txt;
    	}
+    /** ДЛЯ ТЕСТОВ! вывод сообщения bbb, длительностью 700мс */
+    public static void toaBbb()
+    {
+    	st.toast("bbb");
+   	}
     // вывод сообщения длительностью 700мс
     public static void toast(String txt)
     {

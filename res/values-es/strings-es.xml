@@ -491,14 +491,9 @@
 \n\n¡ICONOS DE LA FUENTE INCORPORADA SE VISUALIZARÁN SOLO EN EL TECLADO!
 \n\nSe insertará el símbolo de la fuente estándar en el campo de entrada, si hay uno en la fuente.
 \nPor lo tanto, esta función solo tiene sentido al crear botones, para su mejor percepción</string>
-<<<<<<< HEAD
     <string name="set_ac_defkey_help_buttons2">\n\nTambién se admiten combinaciones especiales: 
 \n$l# : inserta una línea de separación en la lista mostrada.
 \n$el# :termina forzadamente la cadena actual.</string>
-
-=======
-    <string name="set_ac_defkey_help_buttons2">\n\nTambién se admite una combinación especial: $l# : inserta una línea de separación en la lista.</string>
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
     
     <string name="set_ac_new_defkey">La cadena del Autocompletado predeterminada ha cambiado. ¿Desea cambiarla por una nueva (no se puede deshacer los cambios)?</string>
     <string name="set_ac_space">Insertar espacio</string>
@@ -716,7 +711,11 @@
 \nAl seleccionarlo, no olvide hacer clic en el botón Guardar.</string>
     <string name="kbdact_toast1">Pulsación larga en las teclas hacia derecha/izquierda para abrir la lista</string>
     <string name="kbdact_error_open">Aún no está listo. Inténtelo más tarde</string>
-
+    <string name="kbdact_help">Для сохранения выбора, нажать на кнопку Сохранить
+\n\nДля листания, можно воспользоваться:
+\n- кнопками влево/вправо
+\n- жестами - провести пальцем в области от панели инструментальных кнопок до верха клавиатуры справа-налево, или наоборот</string>
+    
     <string-array name="vibro_short_type">
         <item>No vibrar</item>
         <item>Cuando se suelta la tecla</item>
@@ -770,19 +769,24 @@
     <!-- notation number -->
     <string name="notation_name">¿Cuál es la notación de base del número?</string>
     <string name="notation_not_number">Texto en el portapapeles debe especificarse como un número, y el número debe ser entero, positivo y menos de 10 caracteres (decimal)</string>
+	<string name="notation_insert_num_on_char">Вставить как символ utf8</string>
+    
     <string name="search">Búsqueda</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="later">Más tarde</string>
+	<string name="error">Error</string>
     <string name="empty">Vacío</string>
     <string name="unload">Detener</string>
+	<string name="from_memory">de memoria</string>
     <string name="create">Creado</string>
     <string name="save">Guardar</string>
     <string name="decompil_skin">Descompilar el archivo del tema</string>
     <string name="delete">Borrar</string>
     <string name="delete_q">Borrar?</string>
+	<string name="edit">Редактировать</string>
     <string name="def">Por defecto</string>
     <string name="skin_not_found">Error.\nTema no encontrado\nSe usa el tema por defecto</string>
     <string name="clear">Limpiar</string>
@@ -791,6 +795,7 @@
     <string name="not_work">No funciona aún</string>
     <string name="out_of_memory">¡Sin memoria!</string>
     <string name="by_def">Por defecto</string>
+    <string name="open_with">para abrir con</string>
     <string name="sel_del">Borrar de forma selectiva</string>
     <string name="rewrite_question">Archivo ya existe.\n¿Desea reemplazarlo?</string>
     <string name="settings_saved">¡Configuraciones se han guardado!</string>

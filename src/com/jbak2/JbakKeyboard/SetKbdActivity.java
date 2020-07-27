@@ -1,8 +1,10 @@
 package com.jbak2.JbakKeyboard;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -19,6 +21,7 @@ import com.jbak2.perm.Perm;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -26,17 +29,20 @@ import android.graphics.Color;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.Keyboard.Key;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +57,8 @@ import android.widget.Toast;
  * qwerty-слоя
  */
 public class SetKbdActivity extends Activity {
+	/** адфп, что раскладка или скин открыты в редактировании */
+	boolean on_user_leave_hint = false;
 	static boolean show_kbd_land= false;
 	/** Текущий экземпляр класса */
 	static SetKbdActivity inst;
@@ -62,6 +70,8 @@ public class SetKbdActivity extends Activity {
 	int m_curSkin;
 	Button btn_back = null;
 	Button decompil_skin = null;
+	Button del = null;
+	Button edit = null;
 	boolean m_calibrateAuto = true;
 	ImageButton ibnext = null;
 	ImageButton ibprev = null;
@@ -72,7 +82,86 @@ public class SetKbdActivity extends Activity {
 	 * 2 - ландшафт
 	 */
 	int m_screenType = -1;
-	
+
+	GestureDetector gestureDetector = null; 
+   SimpleOnGestureListener simpleongesturelistener = new SimpleOnGestureListener() {
+			@Override
+			public boolean onDoubleTap(MotionEvent e) {
+				return super.onDoubleTap(e);
+			}
+
+			@Override
+			public boolean onFling(MotionEvent e1, MotionEvent e2, float velX,
+					float velY) {
+				// процент области экрана справа и лева для горизонтальных жестов
+				int AREAL_LENGTH_PROC = 50;
+				// области от края экрана в процентах - если жест в их пределат, то обрабатывать
+				int ar_l= (int)((st.getDisplayWidth(inst)/100)*AREAL_LENGTH_PROC);
+				int ar_r= (int)st.getDisplayWidth(inst)-((st.getDisplayWidth(inst)/100)*AREAL_LENGTH_PROC);
+	        	
+				int begX = (int)e1.getX();
+	            int begY = (int)e1.getY();
+	            float dx = e2.getX()-e1.getX();
+	            float dy = e2.getY()-e1.getY();
+	            float mdx = Math.abs(dx);
+	            float mdy = Math.abs(dy);
+	            
+//	            st.toastLong("velX= "+velX
+//	            		  +"\nvelY= "+velY
+//	            		  +"\nmdX= "+mdx
+//	            		  +"\nmdY= "+mdy
+//	            		  );
+	            // жесты:
+	            // от левого края экрана к правому
+	            if (begX < ar_l&&mdy<150&&Math.abs(velX)>700) {//&&!page_boundary){
+	            	setNextLayout(true);
+	            }
+	            // от правого к левому
+	            else if (begX > ar_r&&mdy<150&&Math.abs(velX)>700) {//&&!page_boundary){
+	            	setNextLayout(false);
+	            	
+	            }
+//         	page_boundary=false;
+	            return super.onFling(e1, e2, velX, velY);
+			}
+
+			@Override
+			public void onLongPress(MotionEvent e) {
+				super.onLongPress(e);
+			}
+
+			@Override
+			public boolean onSingleTapConfirmed(MotionEvent e) {
+				return super.onSingleTapConfirmed(e);
+			}
+		};
+	void setNextLayout(boolean bNext)
+	{
+//		CustomKeyboard.updateArrayKeyboards(false);
+//		CustomKbdDesign.updateArraySkins();
+		switch (m_curAction) {
+		case st.SET_SELECT_KEYBOARD:
+			CustomKeyboard.updateArrayKeyboards(false);
+			if (bNext)
+				changeKbd(1);
+			else
+				changeKbd(0);
+			break;
+		case st.SET_SELECT_SKIN:
+			CustomKbdDesign.updateArraySkins();
+			changeSkin(bNext);
+			break;
+		}
+
+//		switch (m_curAction)
+//		{
+//		case st.SET_SELECT_KEYBOARD:
+//			break;
+//		case st.SET_SELECT_SKIN:
+//			break;
+//		}
+		setShowToolsButton();
+	}
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +171,8 @@ public class SetKbdActivity extends Activity {
    			finish();
    			st.runAct(Quick_setting_act.class,inst);
         }
-        
+
+        gestureDetector = null;
 		m_curAction = getIntent().getIntExtra(st.SET_INTENT_ACTION, st.SET_KEY_HEIGHT_PORTRAIT);
 		if (m_curAction == st.SET_KEY_CALIBRATE_PORTRAIT || m_curAction == st.SET_KEY_CALIBRATE_LANDSCAPE) {
 			initCalibrate();
@@ -104,11 +194,19 @@ public class SetKbdActivity extends Activity {
 		SharedPreferences pref = st.pref();
 		m_kbd = (JbKbdView) m_MainView.findViewById(R.id.keyboard);
 		m_MainView.findViewById(R.id.back_col).setOnClickListener(m_clkListener);
+		m_MainView.findViewById(R.id.set_kbd_help).setOnClickListener(m_clkListener);
 		decompil_skin = (Button) m_MainView.findViewById(R.id.decompile_skin);
-		if (decompil_skin != null) {
-			decompil_skin.setOnClickListener(m_clkListener);
-			decompil_skin.setVisibility(View.GONE);
-		}
+		decompil_skin.setOnClickListener(m_clkListener);
+		decompil_skin.setVisibility(View.GONE);
+
+		del = (Button) m_MainView.findViewById(R.id.delete);
+		del.setOnClickListener(m_clkListener);
+		del.setVisibility(View.GONE);
+		
+		edit= (Button) m_MainView.findViewById(R.id.edit);
+		edit.setOnClickListener(m_clkListener);
+		edit.setVisibility(View.GONE);
+		
 		ibnext = (ImageButton) m_MainView.findViewById(R.id.next);
 		ibprev = (ImageButton) m_MainView.findViewById(R.id.prew);
 		ibnext.setOnClickListener(m_clkNextPrevListener);
@@ -148,9 +246,7 @@ public class SetKbdActivity extends Activity {
 				m_curSkin = st.KBD_DESIGN_STANDARD;
 				st.toast(R.string.skin_not_found);
 			}
-			if (m_kbd.m_curDesign.path != null && m_kbd.m_curDesign.path.startsWith(CustomKbdDesign.ASSETS)
-					&& decompil_skin != null)
-				decompil_skin.setVisibility(View.VISIBLE);
+			setShowToolsButton();
 
 			String name = st.arDesign[m_curSkin].getName(this);
 			tv_name.setText(name);
@@ -167,6 +263,8 @@ public class SetKbdActivity extends Activity {
 				}
 			});
 			m_kbd.reload();
+			gestureDetector =  new GestureDetector(inst, simpleongesturelistener);
+
 			st.toast(R.string.kbdact_toast1);
 		} else if (m_curAction == st.SET_SELECT_KEYBOARD) {
 			CustomKeyboard.updateArrayKeyboards(false);
@@ -196,6 +294,9 @@ public class SetKbdActivity extends Activity {
 			if (m_screenType > -1)
 				setScreenType(m_screenType);
 			changeKbd(1);
+			setShowToolsButton();
+			gestureDetector =  new GestureDetector(inst, simpleongesturelistener);
+
 			st.toast(R.string.kbdact_toast1);
 		}
 		int flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
@@ -261,6 +362,14 @@ public class SetKbdActivity extends Activity {
 		setContentView(m_MainView);
 	}
 
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if (gestureDetector!=null&&gestureDetector.onTouchEvent(event))
+			return true;
+//    	page_boundary=false;
+		boolean ret = super.onTouchEvent(event);
+		return ret;
+	}
 	void showScreenTypes() {
 		st.UniObserver obs = new st.UniObserver() {
 			@Override
@@ -355,9 +464,10 @@ public class SetKbdActivity extends Activity {
 		KbdDesign kd = st.arDesign[m_curKbd];
 		tv_name.setText(kd.getName(inst));
 		st.pref().edit().putString(st.PREF_KEY_KBD_SKIN_PATH, st.getSkinPath(kd)).commit();
-		decompil_skin.setVisibility(View.GONE);
-		if (kd.path != null && kd.path.startsWith(CustomKbdDesign.ASSETS))
-			decompil_skin.setVisibility(View.VISIBLE);
+//		decompil_skin.setVisibility(View.GONE);
+//		if (kd.path != null && kd.path.startsWith(CustomKbdDesign.ASSETS))
+//			decompil_skin.setVisibility(View.VISIBLE);
+		setShowToolsButton();
 		m_kbd.reload();
 		m_kbd.reloadSkin();
 	}
@@ -365,7 +475,7 @@ public class SetKbdActivity extends Activity {
 	/**
 	 * Устанавливает в просмотр следующую клавиатуру в массиве
 	 * {@link IKeyboard#arKbd}
-	 * bNext - 0-пред. клава, 1 - след., 2- из m_curKbd
+	 * @param bNext - 0-пред. клава, 1 - след., 2- из m_curKbd
 	 */
 	void changeKbd(int bNext) {
 		Vector<Keybrd> ar = st.getKeybrdArrayByLang(m_LangName);
@@ -480,6 +590,8 @@ public class SetKbdActivity extends Activity {
 				changeSkin(bNext);
 				break;
 			}
+			setShowToolsButton();
+
 		}
 	};
 
@@ -753,7 +865,14 @@ public class SetKbdActivity extends Activity {
 	View.OnClickListener m_clkListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
+//			String str = ar.get(m_curKbd).path.trim();
+//			str = st.readFileString(ff);
+//	    	Intent in = new Intent(Intent.ACTION_SEND, uri);
+	    	
 			switch (v.getId()) {
+			case R.id.set_kbd_help:
+				Dlg.helpDialog(inst, R.string.kbdact_help);
+				break;
 			case R.id.back_col:
 				st.set_kbdact_backcol++;
 				if (st.set_kbdact_backcol > 8)
@@ -762,6 +881,107 @@ public class SetKbdActivity extends Activity {
 				break;
 			case R.id.decompile_skin:
 				saveSkinOnDisk();
+				break;
+			case R.id.delete:
+				switch (m_curAction)
+				{
+				case st.SET_SELECT_SKIN:
+					Dlg.yesNoDialog(inst, inst.getString(R.string.delete_q), new st.UniObserver() {
+						
+						@Override
+						public int OnObserver(Object param1, Object param2) {
+							if (((Integer) param1).intValue() == DialogInterface.BUTTON_POSITIVE) {
+								if (m_kbd.m_curDesign.path!=null
+									&&m_kbd.m_curDesign.path.length()>0) {
+										File ff = new File(m_kbd.m_curDesign.path);
+										ff.delete();
+										IKeyboard.setDefaultDesign();
+										CustomKbdDesign.updateArraySkins();
+										if (m_curKbd > st.arDesign.length-1) {
+											m_curKbd = 0;
+											m_curSkin = m_curKbd;
+										}
+										setCurSkin();
+								}
+							}
+
+							return 0;
+						}
+					});
+					break;
+				case st.SET_SELECT_KEYBOARD:
+					Dlg.yesNoDialog(inst, inst.getString(R.string.delete_q), new st.UniObserver() {
+						
+						@Override
+						public int OnObserver(Object param1, Object param2) {
+							if (((Integer) param1).intValue() == DialogInterface.BUTTON_POSITIVE) {
+								Vector<Keybrd> ar = st.getKeybrdArrayByLang(m_LangName);
+								if (ar.get(m_curKbd).path!=null
+									&&ar.get(m_curKbd).path.length()>0) {
+										File ff = new File(ar.get(m_curKbd).path);
+										ff.delete();
+										IKeyboard.setDefaultKeybrd();
+										CustomKeyboard.updateArrayKeyboards(false);
+										ar = st.getKeybrdArrayByLang(m_LangName);
+										if (m_curKbd > ar.size()-1) {
+											m_curKbd = 0;
+										}
+										changeKbd(2);
+								}
+							}
+							return 0;
+						}
+					});
+					break;
+				}
+				break;
+			case R.id.edit:
+				switch (m_curAction)
+				{
+				case st.SET_SELECT_KEYBOARD:
+					Vector<Keybrd> ar = st.getKeybrdArrayByLang(m_LangName);
+					if (ar.get(m_curKbd).path!=null
+						&&ar.get(m_curKbd).path.length()>0) {
+							File ff = new File(ar.get(m_curKbd).path);
+							Intent intent = new Intent(Intent.ACTION_VIEW);
+					        intent.setDataAndType(Uri.parse("file://".concat(ff.toString())), "text/plain");
+					        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+// на андроид 7+ startActivity не пашет со схемой file://, только с content:// 					        
+//					        startActivity(intent);
+					        startActivity(Intent.createChooser(intent, inst.getString(R.string.open_with)));
+//							try {
+//						        startActivity(intent);
+//							} catch (Throwable e) {
+//								st.toast(R.string.error);
+//							}
+					        
+//							m_kbd.setOnKeyboardActionListener(null);
+//							if (ServiceJbKbd.inst != null)
+//								ServiceJbKbd.inst.reinitKeyboardView();
+//							BitmapCachedGradBack.clearAllCache();
+					}
+			      	st.toast(R.string.send_share_create_list);
+					break;
+				case st.SET_SELECT_SKIN:
+					
+					if (m_kbd.m_curDesign.path!=null
+						&&m_kbd.m_curDesign.path.length()>0) {
+							File ff = new File(m_kbd.m_curDesign.path);
+							Intent intent = new Intent(Intent.ACTION_VIEW);
+					        intent.setDataAndType(Uri.parse("file://".concat(ff.toString())), "text/plain");
+					        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					        startActivity(Intent.createChooser(intent, inst.getString(R.string.open_with)));
+					        
+//							m_kbd.setOnKeyboardActionListener(null);
+//							if (ServiceJbKbd.inst != null)
+//								ServiceJbKbd.inst.reinitKeyboardView();
+//							BitmapCachedGradBack.clearAllCache();
+
+					        
+					}
+			      	st.toast(R.string.send_share_create_list);
+					break;
+				}
 				break;
 			}
 		}
@@ -821,6 +1041,7 @@ public class SetKbdActivity extends Activity {
 						setCurSkin();
 						break;
 					}
+					setShowToolsButton();
 				}
 				return 0;
 			}
@@ -911,4 +1132,90 @@ public class SetKbdActivity extends Activity {
 		}
 		return false;
 	}
+	/** установка показа кнопок инструментов <br>
+	 * @param layout - тип окна  */
+	void setShowToolsButton()
+	{
+		if (decompil_skin!=null)
+			decompil_skin.setVisibility(View.GONE);
+		if (del!=null)
+			del.setVisibility(View.GONE);
+		if (edit!=null)
+			edit.setVisibility(View.GONE);
+		switch (m_curAction)
+		{
+		case st.SET_SELECT_SKIN:
+			if (m_kbd.m_curDesign.path != null 
+				&&m_kbd.m_curDesign.path.startsWith(CustomKbdDesign.ASSETS)
+				&&decompil_skin != null)
+					decompil_skin.setVisibility(View.VISIBLE);
+			if (m_kbd.m_curDesign.path != null 
+					&& m_kbd.m_curDesign.path.startsWith(st.STR_SLASH)
+					&& del != null)
+				del.setVisibility(View.VISIBLE);
+			if (m_kbd.m_curDesign.path != null 
+				&& m_kbd.m_curDesign.path.startsWith(st.STR_SLASH)
+				&& edit != null)
+					edit.setVisibility(View.VISIBLE);
+			break;
+		case st.SET_SELECT_KEYBOARD:
+			if (m_curKbd<0&m_curKbd>st.arKbd.length-1)
+				return;
+			Vector<Keybrd> ar = st.getKeybrdArrayByLang(m_LangName);
+			if (ar.get(m_curKbd).path.startsWith(st.STR_SLASH)) {
+				if (del != null)
+					del.setVisibility(View.VISIBLE);
+				if (edit != null)
+					edit.setVisibility(View.VISIBLE);
+			}
+				
+			break;
+		}
+		
+	}
+	/** вызывается когда активность перекрывается другой */
+	@Override
+	public void onUserLeaveHint() {
+		super.onUserLeaveHint();
+		switch (m_curAction)
+		{
+		case st.SET_SELECT_KEYBOARD:
+		case st.SET_SELECT_SKIN:
+			m_kbd.setOnKeyboardActionListener(null);
+			if (ServiceJbKbd.inst != null)
+				ServiceJbKbd.inst.reinitKeyboardView();
+			BitmapCachedGradBack.clearAllCache();
+			on_user_leave_hint = true;
+			break;
+		}
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (on_user_leave_hint) {
+			on_user_leave_hint = false;
+			switch (m_curAction)
+			{
+			case st.SET_SELECT_SKIN:
+				BitmapCachedGradBack.clearAllCache();
+				m_kbd.reload();
+				m_kbd.reloadSkin();
+				break;
+			case st.SET_SELECT_KEYBOARD:
+//				if (ServiceJbKbd.inst != null)
+//					ServiceJbKbd.inst.reinitKeyboardView();
+				BitmapCachedGradBack.clearAllCache();
+				m_kbd.reload();
+				m_kbd.reloadSkin();
+				changeKbd(2);
+//				m_kbd.setOnKeyboardActionListener(m_kbdListener);
+				break;
+			}
+			m_kbd.setOnKeyboardActionListener(m_kbdListener);
+
+		}
+		
+	}
+
+
 }

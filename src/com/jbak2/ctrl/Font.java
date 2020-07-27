@@ -154,7 +154,14 @@ public class Font {
 		public static final char SPIN2 = 'ʤ';
 		public static final char SPIN3 = 'ʥ';
 		public static final char SPIN4 = 'ʦ';
+		public static final char TEXT_LEFT = 'ʧ';
+		public static final char TEXT_CENTER = 'ʨ';
 
+		public static final char TEXT_RIGHT = 'ʩ';
+		public static final char TEXT_LEFT_RIGHT = 'ʪ';
+		public static final char LIST_POINT = 'ʫ';
+		public static final char LIST_NUMBER = 'ʬ';
+		public static final char VESI = 'ʭ';
 //		public static final char  = '';
 /** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
 		createArraySymbolOfFont() */
@@ -249,6 +256,14 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.SPIN2);
 		vch.add(st.STR_NULL+FontArSymbol.SPIN3);
 		vch.add(st.STR_NULL+FontArSymbol.SPIN4);
+
+		vch.add(st.STR_NULL+FontArSymbol.TEXT_LEFT);
+		vch.add(st.STR_NULL+FontArSymbol.TEXT_CENTER);
+		vch.add(st.STR_NULL+FontArSymbol.TEXT_RIGHT);
+		vch.add(st.STR_NULL+FontArSymbol.TEXT_LEFT_RIGHT);
+		vch.add(st.STR_NULL+FontArSymbol.LIST_POINT);
+		vch.add(st.STR_NULL+FontArSymbol.LIST_NUMBER);
+		vch.add(st.STR_NULL+FontArSymbol.VESI);
 
 		char[] ar = new char[vch.size()];
 		for (int i = 0; i < vch.size(); i++) {

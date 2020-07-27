@@ -241,7 +241,8 @@ public class SiteKbd {
 						try {
 							if (AR_PAGE_UPDATE[i].compareTo(AR_PAGE_UPDATE[1]) == 0) {
 								//param = "act=1";
-								AR_PAGE_UPDATE[i] = AR_PAGE_UPDATE[i]+"/index.php?act=1&v="+st.getAppVersionCode(m_c);
+								AR_PAGE_UPDATE[i] = AR_PAGE_UPDATE[i]+"/index.php?act=1&v="+st.getAppVersionCode(m_c)
+									+"&s="+st.STR_NULL+android.os.Build.VERSION.SDK_INT;
 							}
 							info = readUrl(AR_PAGE_UPDATE[i], param);
 //							} else {

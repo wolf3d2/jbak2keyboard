@@ -56,6 +56,7 @@ import com.jbak2.ctrl.IntEditor;
 import com.jbak2.perm.Perm;
 import com.jbak2.web.Mail;
 import com.jbak2.web.SiteKbd;
+import com.jbak2.words.UserWords;
 import com.jbak2.words.Words;
 import com.jbak2.words.WordsService;
 
@@ -66,6 +67,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	// long rateLen = 0;
 	// String rateapp = null;
 
+	Button mUnload = null;
 /** время старта на оставление отзыва. <br>
  * Записываем значение что оценили  в onResume, если отсутствовали в программе <br>
  * более какого-то времени */
@@ -110,6 +112,19 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	public static String path = st.STR_NULL;
 	private Thread.UncaughtExceptionHandler androidDefaultUEH;
 
+    View.OnClickListener m_ClickListenerBtn = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            switch (v.getId())
+            {
+            case R.id.pref_btn_unload_kbd:
+            	st.exitApp();
+                return;
+            }
+        }
+    };
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -257,7 +272,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 		// выводить экран истории версий, или "как пользоваться клавиатурой"
 		postOper();
-
+		mUnload = (Button)inst.findViewById(R.id.pref_btn_unload_kbd);
+		mUnload.setOnClickListener(m_ClickListenerBtn);
+		mUnload.setText(inst.getString(R.string.unload)+st.STR_LF+inst.getString(R.string.from_memory));
+		//mUnload.setVisibility(View.VISIBLE);
 		Ads.count_failed_load = 0;
 		Ads.show(this, 1);
 	}
@@ -763,6 +781,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		if (JbKbdView.inst != null)
 			JbKbdView.inst.setPreferences();
 		Ads.destroy();
+		
 		super.onDestroy();
 		st.sleep(100);
 	}

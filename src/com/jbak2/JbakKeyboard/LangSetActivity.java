@@ -66,6 +66,9 @@ public class LangSetActivity extends Activity
         }
         
         View v = getLayoutInflater().inflate(R.layout.pref_view, null);
+        Button mUnload = (Button)v.findViewById(R.id.pref_btn_unload_kbd);
+		mUnload.setVisibility(View.GONE);
+
         m_list = (ListView)v.findViewById(android.R.id.list);
         m_list.setPadding(2, 10, 2, 0);
         m_list.setAdapter(m_adapt);

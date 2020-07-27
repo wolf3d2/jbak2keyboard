@@ -563,6 +563,7 @@ public class PopupKeyboard
     	@Override
     		public void onClick(View v) 
     		{
+    		runVibro();
     		st.runAct(Popup2act.class);
     		}
 		});
@@ -581,6 +582,7 @@ public class PopupKeyboard
     	@Override
     		public void onClick(View v) 
     		{
+    			runVibro();
     			if (pc2_block) {
     				pc2_block = false;
     	    		((TextView)v).setText(st.returnZamok(false));
@@ -599,6 +601,7 @@ public class PopupKeyboard
     	@Override
     		public void onClick(View v) 
     		{
+    		runVibro();
 			if (ServiceJbKbd.inst!=null)
 				ServiceJbKbd.inst.processKey(Keyboard.KEYCODE_DELETE);
     		}
@@ -632,10 +635,7 @@ public class PopupKeyboard
             block.setVisibility(View.GONE);
         }
         int ll_btn_width = lp.width-MARGIN-MARGIN-wid;
-<<<<<<< HEAD
         int llmain_width = ll_btn_width;
-=======
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
         // устанавливаем высоту кнопок у ряда
         int max_h = 0;
         // высота текущего nv
@@ -660,8 +660,7 @@ public class PopupKeyboard
         		TextView tv = new TextView(m_c);
         		tv.setBackgroundColor(st.btn_tc);
         		tv.setLayoutParams(new LinearLayout.LayoutParams(
-<<<<<<< HEAD
-	    		  llmain_width, 2));
+        				llmain_width, 2));
         		tv.setPadding(30, 10, 30, 10);
         		tv.setId(id);
 
@@ -670,8 +669,6 @@ public class PopupKeyboard
                 ll = new LinearLayout(m_c);
                 ll.setLayoutParams(new LinearLayout.LayoutParams(
 	    		  LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-=======
-	    		  LayoutParams.MATCH_PARENT, 2));
         		llrow.measure(0, 0);
         		tv.setMinimumWidth(llrow.getMeasuredWidth());
         		//tv.setText("    "+st.STR_SPACE);
@@ -681,7 +678,6 @@ public class PopupKeyboard
             	tv.measure(0, 0);
         		llrow.addView(ll, llrowpar);
                 ll = new LinearLayout(m_c);
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
                 ll.setOrientation(LinearLayout.HORIZONTAL);
             	ll.addView(tv);
         		llrow.addView(ll, llrowpar);
@@ -689,7 +685,6 @@ public class PopupKeyboard
                 ll.setOrientation(LinearLayout.HORIZONTAL);
             	continue;
         	}
-<<<<<<< HEAD
         	else if (txt[i].trim().compareToIgnoreCase(st.STR_PREFIX_END_LINE) == 0){
 //        		TextView tv = new TextView(m_c);
 //        		tv.setBackgroundColor(st.btn_tc);
@@ -710,8 +705,6 @@ public class PopupKeyboard
                 ll.setOrientation(LinearLayout.HORIZONTAL);
             	continue;
         	}
-=======
->>>>>>> b6573e318dc7eb7cf859600520a20a32912cab94
         	
         	TextView tv = new TextView(m_c);
         	tv.setTextSize(st.btn_size);
@@ -737,6 +730,7 @@ public class PopupKeyboard
         	@Override
         		public void onClick(View v) 
         		{
+        		runVibro();
         		String txt = ((TextView)v).getText().toString().trim();
 				ArrayFuncAddSymbolsGest el = st.getElementSpecFormatSymbol(st.ar_asg, v.getId());
     			if (!pc2_block) 
@@ -822,6 +816,12 @@ public class PopupKeyboard
     	m_wm.addView(llmain, lp);
     	fl_popupcharacter_window = true;
     	return true;
+    }
+    public void runVibro()
+    {
+        VibroThread vt = VibroThread.getInstance(st.c());
+        vt.runVibro(VibroThread.VIBRO_SHORT);
+
     }
     public void setBackgroundOnTouch(View v)
     {

@@ -807,6 +807,7 @@ public class IKeyboard {
 				new KbdDesign(R.string.design_eliz8, "grey_2.skin"),
 				new KbdDesign(R.string.design_eliz9, "md_blue.skin"),
 				new KbdDesign(R.string.design_eliz10, "black_robo.skin"),
+				new KbdDesign(R.string.design_eliz11, "plum.skin"),
 				new KbdDesign(R.string.design_schenee, "Chocolate_by_Schnee-Leopard.skin"),
 				new KbdDesign(R.string.design_newportstyle, "NewPortStyle.skin"),
 				new KbdDesign(R.string.design_glamor, "glamor.skin"),
@@ -814,6 +815,7 @@ public class IKeyboard {
 				new KbdDesign(R.string.design_nad2, "Brown&pink&yellow.skin"),
 				new KbdDesign(R.string.design_BOGDANPRIME1, "Gray_Soft_Keys_by_BOGDANPRIME.skin"), 
 				new KbdDesign(R.string.design_Proctocrator1, "PaleOrangeAndTwilightGreen_v2.skin"), 
+				new KbdDesign(R.string.design_unknown1, "cherry2.skin"), 
 			};
 	}
 	public static void setDefaultKeybrd() {
