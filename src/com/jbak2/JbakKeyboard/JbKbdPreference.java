@@ -1266,7 +1266,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 	void setACtype() {
 		st.type_ac_window = Integer
-				.decode(st.pref(this).getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL + st.TYPE_AC_METHOD2));
+				.decode(st.pref(this).getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL + st.TYPE_AC_METHOD3_POPUP));
 		setSummary(st.PREF_AC_WINDOW_TYPE, R.string.set_key_ac_place_sub_panel_desc,
 				strVal(getResources().getStringArray(R.array.array_type_ac_place)[st.type_ac_window]));
 	}

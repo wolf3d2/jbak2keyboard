@@ -218,7 +218,7 @@ public class CandView extends RelativeLayout
     	display_width = st.getDisplayWidth(m_c);
     	m_ll = (LinearLayout)findViewById(R.id.completions);
    		m_defkey = ArrayFuncAddSymbolsGest.getSplitArrayElements(ServiceJbKbd.inst.m_ac_defkey);
-//   		if (st.type_ac_window != st.TYPE_AC_METHOD2) {
+//   		if (st.type_ac_window != st.TYPE_AC_METHOD3_POPUP) {
 //   	   		m_keycode = ((TextView)findViewById(R.id.cand_keycode)); 
 //   	    	m_counter = ((TextView)findViewById(R.id.cand_counter));
 //   	    	m_forcibly = ((TextView)findViewById(R.id.cand_forcibly));
@@ -230,7 +230,6 @@ public class CandView extends RelativeLayout
 //   	    	m_forcibly = ((TextView)findViewById(R.id.cand2_forcibly));
 //   	    	m_calcind = ((TextView)findViewById(R.id.cand2_calcind)); 
 //   	    	m_calcmenu = ((TextView)findViewById(R.id.cand2_calcmenu));
-//   			
 //   		}
         
     	m_height = context.getResources().getDimensionPixelSize(R.dimen.cand_height);
@@ -353,7 +352,7 @@ public class CandView extends RelativeLayout
 	@Override
     protected void onFinishInflate() 
     {
-        if (ServiceJbKbd.inst!=null&&st.type_ac_window == st.TYPE_AC_METHOD2
+        if (ServiceJbKbd.inst!=null&&st.type_ac_window == st.TYPE_AC_METHOD3_POPUP
         		&&ServiceJbKbd.inst.m_acPlace!=AC_PLACE_TITLE 
         		) {
         	setInflatePopupPanelButton();
@@ -899,7 +898,7 @@ public class CandView extends RelativeLayout
          *   */
         int width = 0;
         int global_width = 0;
-        if (st.type_ac_window >= st.TYPE_AC_METHOD0) 
+        if (st.type_ac_window >= st.TYPE_AC_METHOD1_OVERLAY) 
         	width = getContext().getResources().getDisplayMetrics().widthPixels;
         else
         	width = getWidth();
@@ -1057,11 +1056,11 @@ public class CandView extends RelativeLayout
             } else {
                 switch (st.type_ac_window)
                 {
-                case st.TYPE_AC_METHOD0:
-                case st.TYPE_AC_METHOD1:
+                case st.TYPE_AC_METHOD1_OVERLAY:
+                case st.TYPE_AC_METHOD2_SUB_PANEL:
                     wm.removeViewImmediate(this);
                     break;
-                case st.TYPE_AC_METHOD2:
+                case st.TYPE_AC_METHOD3_POPUP:
                 	if (pw!=null) {
                 		pw.dismiss();
                 		pw = null;
@@ -1389,13 +1388,15 @@ public class CandView extends RelativeLayout
 //        	remove();
         if(!ServiceJbKbd.inst.isInputViewShown())
             return;
+        if (kv == null)
+        	return;
         if (place!=AC_PLACE_TITLE) {
             switch (st.type_ac_window)
             {
-            case st.TYPE_AC_METHOD1:
+            case st.TYPE_AC_METHOD2_SUB_PANEL:
             	showSubPanel(kv, place);
             	return;
-            case st.TYPE_AC_METHOD2:
+            case st.TYPE_AC_METHOD3_POPUP:
             	showPopupPanel(kv, place);
             	return;
             }

@@ -1298,17 +1298,19 @@ public class Templates {
 	}
 
 	void initHot(String dir) {
-		File myFolder = new File(dir);
-		String[] fn = myFolder.list();
+		File ff = new File(dir);
+		String[] fn = ff.list();
+		if (fn == null)
+			return;
 		int ii = 0;
 		for (int i = 0; i < fn.length; i++) {
-			File f = new File(dir + st.STR_SLASH + fn[i]);
-			if (f.isFile()) {
+			ff = new File(dir + st.STR_SLASH + fn[i]);
+			if (ff.isFile()) {
 				if (fn[i].startsWith("#[")) {
 					fn[i] = fn[i].toUpperCase();
 					if (fn[i].contains("]")) {
 						ServiceJbKbd.inst.m_hot_str[ii] = fn[i].substring(2, fn[i].indexOf("]"));
-						ServiceJbKbd.inst.m_hot_tpl[ii] = st.readFileString(f);
+						ServiceJbKbd.inst.m_hot_tpl[ii] = st.readFileString(ff);
 						ii++;
 					} else
 						st.toast("Error format (not \"]\") in\n" + fn[i]);

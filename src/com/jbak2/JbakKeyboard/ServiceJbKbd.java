@@ -2557,7 +2557,7 @@ public class ServiceJbKbd extends InputMethodService
 		st.color_picker_type= sharedPreferences.getBoolean(st.PREF_KEY_TYPE_COLOR_PICKER, false);
 		//st.ac_sub_panel = sharedPreferences.getBoolean(st.PREF_AC_SUB_PANEL, false);
 		if (st.PREF_AC_WINDOW_TYPE.equals(key) || key == null) {
-			st.type_ac_window = Integer.decode(sharedPreferences.getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL+st.TYPE_AC_METHOD2));
+			st.type_ac_window = Integer.decode(sharedPreferences.getString(st.PREF_AC_WINDOW_TYPE, st.STR_NULL+st.TYPE_AC_METHOD3_POPUP));
 			//sharedPreferences.getInt(st.PREF_AC_WINDOW_TYPE, st.TYPE_AC_METHOD2);
 			m_candView = null;
 			m_candView = createNewCandView();
@@ -2800,6 +2800,13 @@ public class ServiceJbKbd extends InputMethodService
 		m_hotkey_dir = sharedPreferences.getString(st.PREF_KEY_HOT_DIR, st.STR_NULL);
 		if (m_hotkey_dir.isEmpty())
 			m_hot_count = -1;
+		else
+			if (Templates.inst == null) {
+				new Templates(1, 0,null);
+				Templates.inst.initHot(m_hotkey_dir);
+				Templates.inst = null;
+			} else
+				Templates.inst.initHot(m_hotkey_dir);
 		// }
 		if (st.PREF_KEY_CLIPBRD_SYNC.equals(key) || key == null)
 			st.fl_sync = sharedPreferences.getBoolean(st.PREF_KEY_CLIPBRD_SYNC, false);

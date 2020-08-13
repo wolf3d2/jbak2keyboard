@@ -14,6 +14,7 @@ import android.graphics.drawable.shapes.RectShape;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
@@ -156,6 +157,23 @@ public class com_menu
             btn.setLongClickable(false);
         	break;
         }
+        btn.setOnTouchListener(new View.OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+	        	switch (event.getAction())
+	        	{
+	        	case MotionEvent.ACTION_DOWN:
+	                ((Button)v).setTextColor(draw.paint().mainColors[2]);
+	        		break;
+	        	case MotionEvent.ACTION_CANCEL:
+	        	case MotionEvent.ACTION_UP:
+	                ((Button)v).setTextColor(draw.paint().mainColors[0]);
+	        		break;
+	        	}
+	            return false;
+			}
+		});
 // старый код        
 //        if(st.has(m_state, STAT_TEMPLATES)||st.has(m_state, STAT_CLIPBOARD))
 //        {

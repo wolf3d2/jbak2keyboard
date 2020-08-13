@@ -265,13 +265,13 @@ public class st extends IKeyboard implements IKbdSettings
 // количество слов в списке автодополнения 	
 	public static int ac_list_value = 20;
 	/** TYPE_APPLICATION_OVERLAY */
-	public static final int TYPE_AC_METHOD0 = 0;
+	public static final int TYPE_AC_METHOD1_OVERLAY = 0;
 	/** TYPE_APPLICATION_SUB_PANEL */
-	public static final int TYPE_AC_METHOD1 = 1;
+	public static final int TYPE_AC_METHOD2_SUB_PANEL = 1;
 	/** popupWindow */
-	public static final int TYPE_AC_METHOD2 = 2;
+	public static final int TYPE_AC_METHOD3_POPUP = 2;
 	/** тип отрисовки окна автодопа */	
-	public static int type_ac_window = TYPE_AC_METHOD2;
+	public static int type_ac_window = TYPE_AC_METHOD3_POPUP;
 // высота окна автодополнения	
 	public static int ac_height = 0;
 

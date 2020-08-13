@@ -162,6 +162,7 @@ public class Font {
 		public static final char LIST_POINT = 'ʫ';
 		public static final char LIST_NUMBER = 'ʬ';
 		public static final char VESI = 'ʭ';
+		public static final char URL = 'ʮ';
 //		public static final char  = '';
 /** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
 		createArraySymbolOfFont() */
@@ -264,6 +265,8 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.LIST_POINT);
 		vch.add(st.STR_NULL+FontArSymbol.LIST_NUMBER);
 		vch.add(st.STR_NULL+FontArSymbol.VESI);
+
+		vch.add(st.STR_NULL+FontArSymbol.URL);
 
 		char[] ar = new char[vch.size()];
 		for (int i = 0; i < vch.size(); i++) {

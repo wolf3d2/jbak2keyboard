@@ -348,7 +348,7 @@ public class CustomKbdScroll
             	int hh = m_MainView.getHeight();
             	String pop = "v2 $[-303,$f#ɐ] $[-304,$f#ɑ] $[-328,$f#ɒ] $[-329,$f#ɓ] $[19,↑] "
             			+ "$[20,↓] $[21,←] $[22,→] $[-323,sAll] $[-320,$f#ɢ] $[-321,$f#ɣ] "
-            			+ "$[-601,$f#ɕ] $[-5,$f#ɔ] $[10,$f#ɜ] $[32,$f#ɝ] ! ? , .";
+            			+ "$[-601,$f#ɕ] $[-5,$f#ɔ] $[10,$f#ɜ] ! ?";
             	if (arPopCh!=null) {
             		if (arPopCh.startsWith("v2 ")||arPopCh.startsWith("V2 "))
             			arPopCh = arPopCh.substring(3);
@@ -602,17 +602,17 @@ public class CustomKbdScroll
 //        tv.setText("?");
 //        llr.addView(tv);
 //        
-//        tv = newTextView(true);
-//        tv.setId(inst.ID_TV_COMMA);
-//        tv.setSoundEffectsEnabled(false);
-//        tv.setText(st.STR_COMMA);
-//        llr.addView(tv);
-//        
-//        tv = newTextView(true);
-//        tv.setId(inst.ID_TV_POINT);
-//        tv.setSoundEffectsEnabled(false);
-//        tv.setText(st.STR_POINT);
-//        llr.addView(tv);
+        tv = newTextView(true);
+        tv.setId(inst.ID_TV_COMMA);
+        tv.setSoundEffectsEnabled(false);
+        tv.setText(st.STR_COMMA);
+        llr.addView(tv);
+        
+        tv = newTextView(true);
+        tv.setId(inst.ID_TV_POINT);
+        tv.setSoundEffectsEnabled(false);
+        tv.setText(st.STR_POINT);
+        llr.addView(tv);
         
         tv = newTextView(true);
         tv.setId(inst.ID_TV_RIGHT_TOP);
@@ -940,6 +940,7 @@ public class CustomKbdScroll
 		            ff.mkdirs();
 		            return;
 		        }
+				long curtime = new Date().getTime();
 		        String[] ar = null;
 		        File[] arf = st.getFilesFromDir(ff, null);
 		        for (int i=0;i<arf.length;i++)
@@ -954,7 +955,7 @@ public class CustomKbdScroll
 						arf[i].delete();
 						continue;
 					}
-		        	if (time > TIME_3MONTH)
+		        	if (time + TIME_3MONTH < curtime)
 		        		arf[i].delete();
 		        }
 				

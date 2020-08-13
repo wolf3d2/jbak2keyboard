@@ -865,9 +865,6 @@ public class SetKbdActivity extends Activity {
 	View.OnClickListener m_clkListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-//			String str = ar.get(m_curKbd).path.trim();
-//			str = st.readFileString(ff);
-//	    	Intent in = new Intent(Intent.ACTION_SEND, uri);
 	    	
 			switch (v.getId()) {
 			case R.id.set_kbd_help:
@@ -943,22 +940,20 @@ public class SetKbdActivity extends Activity {
 					if (ar.get(m_curKbd).path!=null
 						&&ar.get(m_curKbd).path.length()>0) {
 							File ff = new File(ar.get(m_curKbd).path);
-							Intent intent = new Intent(Intent.ACTION_VIEW);
-					        intent.setDataAndType(Uri.parse("file://".concat(ff.toString())), "text/plain");
-					        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-// на андроид 7+ startActivity не пашет со схемой file://, только с content:// 					        
-//					        startActivity(intent);
-					        startActivity(Intent.createChooser(intent, inst.getString(R.string.open_with)));
-//							try {
-//						        startActivity(intent);
-//							} catch (Throwable e) {
+							
+							try {
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+						        intent.setDataAndType(Uri.parse("file://".concat(ff.toString())), "text/plain");
+						        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+// на андроид 7+ startActivity не пашет со схемой file://, только с content://
+// поэтому нужно юзать только с createChooser						        
+						        startActivity(Intent.createChooser(intent, inst.getString(R.string.open_with)));
+								
+							} catch (Throwable e) {
+								showInternalEdit(ff.getAbsolutePath());
 //								st.toast(R.string.error);
-//							}
-					        
-//							m_kbd.setOnKeyboardActionListener(null);
-//							if (ServiceJbKbd.inst != null)
-//								ServiceJbKbd.inst.reinitKeyboardView();
-//							BitmapCachedGradBack.clearAllCache();
+								return;
+							}
 					}
 			      	st.toast(R.string.send_share_create_list);
 					break;
@@ -967,10 +962,17 @@ public class SetKbdActivity extends Activity {
 					if (m_kbd.m_curDesign.path!=null
 						&&m_kbd.m_curDesign.path.length()>0) {
 							File ff = new File(m_kbd.m_curDesign.path);
-							Intent intent = new Intent(Intent.ACTION_VIEW);
-					        intent.setDataAndType(Uri.parse("file://".concat(ff.toString())), "text/plain");
-					        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-					        startActivity(Intent.createChooser(intent, inst.getString(R.string.open_with)));
+							try {
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+						        intent.setDataAndType(Uri.parse("file://".concat(ff.toString())), "text/plain");
+						        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						        startActivity(Intent.createChooser(intent, inst.getString(R.string.open_with)));
+								
+							} catch (Throwable e) {
+								showInternalEdit(ff.getAbsolutePath());
+//								st.toast(R.string.error);
+								return;
+							}
 					        
 //							m_kbd.setOnKeyboardActionListener(null);
 //							if (ServiceJbKbd.inst != null)
@@ -1000,6 +1002,14 @@ public class SetKbdActivity extends Activity {
 		}
 	};
 
+	void showInternalEdit(String path)
+	{
+		st.runActShowText(inst, R.string.tpl_full_edit, path,
+				ShowTextAct.FLAG_EXTERNAL_FILE_EDIT | ShowTextAct.FLAG_HIDE_BTN_LANG
+
+		);
+
+	}
 	void viewListMenu() {
 		String tit = null;
 		String[] arn = null;
