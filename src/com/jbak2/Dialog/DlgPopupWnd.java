@@ -274,7 +274,8 @@ public class DlgPopupWnd
 		});
         try {
             //pw.showAsDropDown(st.kv(), 0, yoff);
-            pw.showAtLocation(st.kv(), wnd_gravity, 0, 0);    
+        	if (st.kv()!=null)
+        		pw.showAtLocation(st.kv(), wnd_gravity, 0, 0);    
 		} catch (Throwable e) {
 			dismiss();
 		}

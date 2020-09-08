@@ -380,9 +380,10 @@ public class JbKbdView extends KeyboardView
             String t = key.getUpText();
             if(t!=null)
             {
-                if(isUserInput()&&t.length()==1)
+                if(isUserInput()&&t.length()==1) {
                     ServiceJbKbd.inst.processKey(t.charAt(0));
-                else
+                    ServiceJbKbd.inst.isMacro(t.charAt(0));
+                } else
                     m_actionListener.onText(t);
                 if (key.isGoQwerty()){
 // возврат на qwerty клавиатуру при долгом нажатии (если установлено)

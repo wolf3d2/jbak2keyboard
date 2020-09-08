@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android" android:keyWidth="12.5%p" >
+ <Row>
+  <Key android:keyLabel="1\nŝ" />
+  <Key android:keyLabel="2\ne" />
+  <Key android:keyLabel="3\nt" />
+  <Key android:keyLabel="*\nu" />
+  <Key android:keyLabel="/\no" />
+  <Key android:keyLabel="+\nĝ" />
+  <Key android:keyLabel="-\nr" />
+  <Key android:keyLabel="=\nŭ" />
+ </Row>
+ <Row>
+  <Key android:keyLabel="4\ng" />
+  <Key android:keyLabel="5\nj" />
+  <Key android:keyLabel="6\nl" />
+  <Key android:keyLabel="&amp;\ns" />
+  <Key android:keyLabel="_\nf" />
+  <Key android:keyLabel="@\nh" />
+  <Key android:keyLabel="\\\nk" />
+  <Key android:keyLabel="#\nĵ" />
+ </Row>
+ <Row>
+  <Key android:keyLabel="7\nĉ" />
+  <Key android:keyLabel="8\nv" />
+  <Key android:keyLabel="9\nn" />
+  <Key android:keyLabel="\'\nĥ" />
+  <Key android:keyLabel="&quot;\ni" />
+  <Key android:keyLabel="(\np" />
+  <Key android:keyLabel=")\na" />
+  <Key android:keyLabel="tab\nd" />
+ </Row>
+ <Row>
+  <Key android:codes="-1" android:keyIcon="@drawable/sym_keyboard_shift" android:isSticky="true" />
+  <Key android:keyLabel="0\nz" />
+  <Key android:keyLabel="%\nc" />
+  <Key android:keyLabel="$\nb" />
+  <Key android:keyLabel=";\nm" />
+  <Key android:keyLabel=":\n." />
+  <Key android:keyLabel="^\n," />
+  <Key android:codes="-5" android:keyIcon="@drawable/sym_keyboard_delete" android:isRepeatable="true" />
+ </Row>
+ <Row>
+  <Key android:codes="-2" android:keyLabel="opt\n123" />
+  <Key android:codes="-20" android:keyLabel="d_vr\nEo" />
+  <Key android:codes="21" android:keyLabel="←" android:specKey="true" android:isRepeatable="true" />
+  <Key android:codes="32" android:keyIcon="@drawable/sym_keyboard_space" android:keyWidth="25.0%p" android:isRepeatable="true" />
+  <Key android:codes="-310" android:isSticky="true" android:keyLabel="sel" />
+  <Key android:codes="22" android:keyLabel="→" android:specKey="true" android:isRepeatable="true" />
+  <Key android:codes="10" android:keyIcon="@drawable/sym_keyboard_return" />
+ </Row>
+</Keyboard>

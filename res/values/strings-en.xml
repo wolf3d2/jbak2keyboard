@@ -18,7 +18,10 @@
 	<string name="reboot">Loaded. Device reboot required</string>
 	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
     <string name="in_developing">In developing</string>
-	
+
+    <string name="kbd_scroll_not_select">Ничего не выделено</string>
+    <string name="kbd_scroll_not_work">В данном месте, эта команда не работает</string>
+    
     <string name="ie_help">Внешний вид элемента настраивается в Прочие настройки-Дизайн элемента -/+</string>
     <string name="ie_">Element -/+</string>
     <string name="ie_design">Design element -/+</string>

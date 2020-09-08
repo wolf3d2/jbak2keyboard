@@ -17,6 +17,9 @@
     <string name="reboot">Descargado. Se requiere el reinicio</string>
     <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
     <string name="in_developing">En desarrollo</string>
+
+    <string name="kbd_scroll_not_select">Ничего не выделено</string>
+    <string name="kbd_scroll_not_work">В данном месте, эта команда не работает</string>
     
     <string name="ie_help">Внешний вид элемента настраивается в Прочие настройки-Дизайн элемента -/+</string>
     <string name="ie_">Элемент -/+</string>

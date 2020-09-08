@@ -2,9 +2,12 @@ package com.jbak2.JbakKeyboard;
 
 import java.util.Locale;
 
+import com.jbak2.web.SiteKbd;
+
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 public class App extends Application {
@@ -29,6 +32,7 @@ public class App extends Application {
 		Configuration config = new Configuration();
 		config.locale = locale;
 		getBaseContext().getResources().updateConfiguration(config, null);
+
 	}
 	
 	@Override
@@ -47,5 +51,5 @@ public class App extends Application {
 		Configuration config = new Configuration();
 		config.locale = locale;
 		getBaseContext().getResources().updateConfiguration(config, null);     
-    }	
+    }
 }

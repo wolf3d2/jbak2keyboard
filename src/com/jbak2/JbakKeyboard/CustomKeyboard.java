@@ -1030,7 +1030,9 @@ public class CustomKeyboard extends JbKbd
         if(m_os!=null)
         {
             m_os.writeByte(B_keyLabel);
-            m_os.writeUTF(st.decompileText(label));
+            m_os.writeUTF(label);
+            // исправил в 2.35.03, иначе неправильно компилирует 
+            // m_os.writeUTF(st.decompileText(label));
         }
         return label;
     }

@@ -873,6 +873,9 @@ public class IKeyboard {
 				new Keybrd("es_wide", R.string.kbd_name_wide),
 				new Keybrd("es_psevdoT9_MWcorp_v100", R.string.kbd_psevdo_t9_mwcorp),
 
+				new Keybrd("eo_wide", R.string.kbd_name_wide),
+				new Keybrd("eo_psevdoT9_MWcorp_v100", R.string.kbd_psevdo_t9_mwcorp),
+
 				new Keybrd("et_wide", R.string.kbd_name_wide),
 				new Keybrd("et_psevdoT9_MWcorp_v100", R.string.kbd_psevdo_t9_mwcorp),
 

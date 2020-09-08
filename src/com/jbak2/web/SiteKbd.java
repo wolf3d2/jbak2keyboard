@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
+import com.jbak2.JbakKeyboard.App;
 import com.jbak2.JbakKeyboard.CustomKbdScroll;
 import com.jbak2.JbakKeyboard.JbKbdPreference;
 import com.jbak2.JbakKeyboard.R;
@@ -16,6 +17,7 @@ import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.IniFile;
 
 import android.content.Context;
+import android.os.Build;
 
 /** класс для проверки обновлений с сайта клавиатуры */
 public class SiteKbd {
@@ -66,6 +68,7 @@ public class SiteKbd {
 	/** страница отзывов */
 	public static final String PAGE_REVIEW = "/gb";
 	public static final String CHECK_VERSION_NAME = "ver";
+	public static final String CHECK_MIN_SDK = "msd";
 
 	public static final String PAGE_UPD_CLICK = "/upd/cl_kbd.htm";
 
@@ -308,6 +311,10 @@ public class SiteKbd {
 								ini.setParam(ini.LAST_CHECK_VERSION, param_value);
 								fl = true;
 							}
+							else if (param.compareToIgnoreCase(ini.MIN_SDK)==0) {
+								ini.setParam(ini.MIN_SDK, param_value);
+								fl = true;
+							}
 						}
 					}
 				} catch (Throwable e) {
@@ -344,9 +351,24 @@ public class SiteKbd {
 		try {
 			vapp = Integer.parseInt(ver);
 		} catch (NumberFormatException e) {
+			vapp = 0;
 		}
-		ver = ini.getParamValue(ini.LAST_CHECK_VERSION);
+		// чекаем мин сдк
+		ver = ini.getParamValue(ini.MIN_SDK);
 		int vlini = 0;
+		if (ver == null)
+			vlini = Build.VERSION.SDK_INT;
+		else {
+			try {
+				vlini = Integer.parseInt(ver);
+			} catch (NumberFormatException e) {
+				return 0;
+			}
+		}
+		if (Build.VERSION.SDK_INT < vlini)
+			return 0;
+		ver = ini.getParamValue(ini.LAST_CHECK_VERSION);
+		vlini = 0;
 		try {
 			vlini = Integer.parseInt(ver);
 		} catch (NumberFormatException e) {

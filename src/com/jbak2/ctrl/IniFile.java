@@ -31,6 +31,8 @@ public class IniFile {
 	public final String RATE_APP = "rate_app";
 	public final String VERSION_CODE = "version_code";
 	public final String DESC_BEGIN = "desc_begin";
+	/** минимальный сдк установленный в актуальной версии программы */
+	public final String MIN_SDK = "msd";
 	public final String QUICK_SETTING = "quick_setting";
 	
 	

@@ -787,7 +787,7 @@ public class CustomKbdScroll
         	pt = st.getSettingsPath()+CustomKbdScroll.FOLDER_LAYOUT_SETTING+st.STR_SLASH+pt;
         	String delim = ";";
     		lastStartTime = new Date().getTime();
-        	String out = lastStartTime+delim;
+        	String out = st.STR_NULL+lastStartTime+delim;
         	if (favorite)
         		out+= st.STR_ONE;
         	else

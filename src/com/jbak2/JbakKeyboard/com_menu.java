@@ -261,7 +261,7 @@ public class com_menu
     {
         add(st.c().getString(tid),id, date);
     }
-    static void closeTplAndTrans()
+    static void closeTplAndTranslate()
     {
     	if (Templates.inst!=null)
     		Templates.inst = null;
@@ -398,7 +398,7 @@ public class com_menu
                 	st.fl_fiks_tpl = true;
                 	st.fl_fiks_calc = true;
                     close();
-                    closeTplAndTrans();
+                    closeTplAndTranslate();
                 	return;
                 case R.id.help:
                		st.help += st.STR_LF+st.STR_3TIRE+st.STR_LF+st.c().getString(R.string.mm_info);
@@ -702,6 +702,10 @@ public class com_menu
     /** функции копирования */
     public static void showFuncCopy(final Context c)
         {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_select);
+    		return;
+    	}
     	st.help = st.STR_NULL;
     	final CurInput ci = new CurInput();
     	if(!ci.init(ServiceJbKbd.inst.getCurrentInputConnection()))
@@ -751,6 +755,10 @@ public class com_menu
     /** быстрый выбор раскладки языка */
     public static void showQuickSelectLangLayout(final Context c)
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
 	st.help = st.STR_NULL;
 	final com_menu menu = new com_menu();
 	CustomKeyboard.updateArrayKeyboards(false);
@@ -788,6 +796,10 @@ public class com_menu
     /** быстрый выбор смены скина*/
     public static void showQuickSelectSkin(final Context c)
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
 	st.help = st.STR_NULL;
 	final com_menu menu = new com_menu();
 	CustomKbdDesign.updateArraySkins();
@@ -816,6 +828,10 @@ public class com_menu
 }
     public static void showFuncSelect(final Context c)
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
     	st.help = st.STR_NULL;
     	final CurInput ci = new CurInput();
     	if(!ci.init(ServiceJbKbd.inst.getCurrentInputConnection()))
@@ -868,6 +884,10 @@ public class com_menu
     }
     public static void showLangs(Context с)
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
     	st.help = st.STR_NULL;
     	final String lang[] = st.getLangsArray(с);
     	final com_menu menu = new com_menu();
@@ -889,6 +909,10 @@ public class com_menu
     }
     public static void showUserHideLayout()
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
         String path = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER;
         final Vector<File> arf = st.getFilesByStartText(IKeyboard.LANG_HIDE_LAYOUT+st.STR_UNDERSCORING, path, st.EXT_XML);
 
@@ -938,6 +962,11 @@ public class com_menu
     /** выводим менюшку для выбора дополнительных раскладок типа hide */
     public static void showAdditionalLayout(Context c)
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
+
     	final Keybrd[] arKbd = {
     			new Keybrd("hide_arrow1", R.string.addit_layout0),
     			new Keybrd("hide_arrow2", R.string.addit_layout1),
@@ -999,6 +1028,10 @@ public class com_menu
     /** пытается определить исходную систему счисления и выдать варианты в клаве*/
     public static void showNotationNumber()
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
     	if (ServiceJbKbd.inst==null)
     		return;
     	CharSequence cs = st.getClipboardCharSequence();
@@ -1076,6 +1109,10 @@ public class com_menu
     /** показывает введённый код символа в разных системах счисления */
     public static void showNotationNumber(final Context c, final String dexnum)
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
     	st.help = c.getString(R.string.set_longtap_keycode_help);
     	nnnum = 0;
     	try {
@@ -1151,6 +1188,10 @@ public class com_menu
     /** вводим спец символы в поле ввода */
     public static void showFuncSpecSymbolInsert()
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return;
+    	}
     	if (ServiceJbKbd.inst == null)
     		return;
     	Context c = ServiceJbKbd.inst;
@@ -1242,12 +1283,10 @@ public class com_menu
     /** Функция создаёт меню для мультибуфера обмена */    
     public static boolean showClipboard(boolean fl_closemenu)
     {
-    	// !!!уже не используется
-    	// чекаем системный буфер перед показом мультибуфера чтобы 
-    	// отображалось все скопированные тексты (без 5 секундной задержки
-    	// если откоментить, то в буфере записи отображаются неверно                    
-//    	                  	if(ClipbrdService.inst!=null)
-//    	                      	ClipbrdService.inst.checkClipboardString();//.checkString(cp);
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return false;
+    	}
     	Cursor c = st.stor().getClipboardCursor();
         if(c==null) {
         	st.toast((R.string.clipboard_empty));
@@ -1357,6 +1396,10 @@ public class com_menu
     }
     public static boolean showCalcHistory()
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return true;
+    	}
     	st.help = st.STR_NULL;
         com_menu menu = new com_menu();
     	menu.setMenuname(ServiceJbKbd.inst.textMenuName(st.CMD_CALC_HISTORY));
@@ -1397,6 +1440,10 @@ public class com_menu
     }
     public static boolean showCalcList()
     {
+    	if (CustomKbdScroll.inst!=null) {
+    		st.toast(R.string.kbd_scroll_not_work);
+    		return true;
+    	}
     	st.help = st.STR_NULL;
     	boolean fl = false;
     	String out = st.STR_LF;

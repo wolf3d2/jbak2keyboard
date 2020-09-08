@@ -1035,7 +1035,7 @@ public class ServiceJbKbd extends InputMethodService
 
 			if (com_menu.inst != null) {
 				com_menu.inst.close();
-				com_menu.inst.closeTplAndTrans();
+				com_menu.inst.closeTplAndTranslate();
 				return true;
 			}
 			forceHide();
@@ -1102,6 +1102,9 @@ public class ServiceJbKbd extends InputMethodService
     		return true;
     	}
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (CustomKbdScroll.inst != null) {
+				CustomKbdScroll.close();
+			}
 			if (JbKbdView.inst != null && JbKbdView.inst.m_pk.fl_popupcharacter_window) {
 				JbKbdView.inst.m_pk.close();
 				return true;
@@ -3750,6 +3753,7 @@ public class ServiceJbKbd extends InputMethodService
 			if (primaryCode == st.RUN_MACRO2)
 				return true;
 		} else if (primaryCode == st.RUN_MACRO1 && st.fl_macro1 == false && st.fl_macro2 == false) {
+			Templates.template_processing = true;
 			for (int i = 0; i < st.macro1.size(); i++) {
 				if (st.macro1.get(i) == st.RUN_MACRO2) {
 					for (int i2 = 0; i2 < st.macro2.size(); i2++) {
@@ -3759,6 +3763,7 @@ public class ServiceJbKbd extends InputMethodService
 					processKey(st.macro1.get(i));
 				}
 			}
+			Templates.template_processing = false;
 			return true;
 		}
 		if (primaryCode == st.REC_MACRO2) {
@@ -3777,6 +3782,7 @@ public class ServiceJbKbd extends InputMethodService
 			if (primaryCode == st.RUN_MACRO1)
 				return true;
 		} else if (primaryCode == st.RUN_MACRO2 && st.fl_macro1 == false && st.fl_macro2 == false) {
+			Templates.template_processing = true;
 			for (int i = 0; i < st.macro2.size(); i++) {
 				if (st.macro2.get(i) == st.RUN_MACRO1) {
 					for (int i2 = 0; i2 < st.macro1.size(); i2++) {
@@ -3786,6 +3792,7 @@ public class ServiceJbKbd extends InputMethodService
 					processKey(st.macro2.get(i));
 				}
 			}
+			Templates.template_processing = false;
 			return true;
 		}
 		return false;
