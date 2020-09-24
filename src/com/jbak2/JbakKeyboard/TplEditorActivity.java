@@ -740,6 +740,9 @@ public class TplEditorActivity extends Activity
                     case 16: // вставляем текст инструкции codes
                     	txt += "[]";
                     	break;
+                    case 17: // вставляем текст инструкции selToUrl
+                    	txt += "["+st.STR_PREFIX_SELECTED_TEXT+"]";
+                    	break;
                     }
                     int s = m_edText.getSelectionStart();
                     int e = m_edText.getSelectionEnd();
@@ -763,6 +766,7 @@ public class TplEditorActivity extends Activity
 						break;
                     case 14:
                     case 16:
+                    case 17:
 						// устанавливаем курсор за [
 						pos = m_edText.getText().toString().indexOf("[");
 						if (pos>-1)
@@ -777,31 +781,6 @@ public class TplEditorActivity extends Activity
             	ServiceJbKbd.inst.forceShow();
                 return 0;
                 
-//					if (which == 4 )
-//						datetimeFormat();
-//					else if (which == 7 )
-//						insertOrDeleteSymbol();
-//					else if (which == 8 )
-//						insertOrDeleteSymbol();
-//					else if (which == 13) { // selReplace
-//						// устанавливаем курсор за @SEARCH
-//						int pos = m_edText.getText().toString().indexOf(Templates.STR_SEARCH);
-//						if (pos>-1)
-//							m_edText.setSelection(pos+Templates.STR_SEARCH.length());
-//					}
-//					else if (which == 14) { // selToPos
-//						// устанавливаем курсор за [
-//						int pos = m_edText.getText().toString().indexOf("[");
-//						if (pos>-1)
-//							m_edText.setSelection(pos+1);
-//					}
-//                    else
-//                    	// показываем клавиатуру
-//                    	ServiceJbKbd.inst.forceShow();
-//					m_edText.setSelection(m_edText.getText().toString().length());
-//					m_edText.requestFocus();
-//                }
-//                return 0;
             }
         });
         

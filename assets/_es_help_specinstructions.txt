@@ -186,3 +186,20 @@ Se puede usar combinaciones de teclas solo especificando los caracteres KeyEvent
 
 Todos los códigos disponibles en el teclado se enumeran en la aplicación jbak2layout, en la Instrucción para crear su propia disposición. 
 Busque la información sobre KeyEvent en Internet.
+
+$selToUrl
+Abre en el navegador la dirección del sitio web indicada entre paréntesis.
+En algunos casos es necesario indicar la forma completa de la dirección: http://my_site.com
+Se admiten varios valores especiales:
+ - $st# - (selected text) en lugar de ese valor, se insertará el texto seleccionado, si lo hubiera.
+ - $ct# - (copy text) en lugar de ese valor, se insertará el texto copiado, si lo hubiera.
+
+Ejemplos:
+Búsqueda en Google del texto copiado:
+$selToUrl[google.com/search?q=$ct#]
+Traducción del texto seleccionado en Yandex.Translate en → ru y con una interfaz en ruso:
+$selToUrl[https://translate.yandex.by/?ui=ru&lang=en-ru&text=$st#]
+
+NOTA
+Para buscar en Google, puede utilizar la forma abreviada de la instrucción especial (Google se utiliza como el motor de búsqueda predeterminado):
+$selToUrl[$ct#]

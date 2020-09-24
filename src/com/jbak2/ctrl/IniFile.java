@@ -27,7 +27,14 @@ public class IniFile {
 	public final String LAST_TIME_TOAST_NOT_UPDATE = "last_time_toast_not_update";
 
 	// имена параметров в par.ini
+	/** НЕ МЕНЯТЬ! Время установки программы. */
 	public final String START_TIME = "start_time";
+	/** Оценка приложения: <br>
+	 * НЕ ЗАБЫТЬ ПЕРЕДЕЛАТЬ ПРОЦЕДУРЫ ОЦЕНКИ ДЛЯ МАРКЕТА! <br>
+	 * 0 - нет <br>
+	 * 1 - да <br>
+	 * число - время последней просьбы об оценке
+	 */
 	public final String RATE_APP = "rate_app";
 	public final String VERSION_CODE = "version_code";
 	public final String DESC_BEGIN = "desc_begin";
@@ -35,14 +42,19 @@ public class IniFile {
 	public final String MIN_SDK = "msd";
 	public final String QUICK_SETTING = "quick_setting";
 	
+    /** срок (14 суток) перед тостом просьбы написать отзыв */
+	public long RATE_PERIOD_SHORT_TIME= 1000l*3600l*24l*14l;
+    /** срок (30 суток) перед диалогом просьбы написать отзыв */
+	public long RATE_PERIOD_LONGT_TIME= 1000l*3600l*24l*30l;
 	
-    // срок (2 недели) перед первым выскакиванием просьбы оценить
-	public long RATE_FIRST_TIME= 1000l*3600l*24l*14l;
+//    /** срок (30 суток) перед первым выскакиванием просьбы оценить <br>
+//     * (для маркета сменить на 14 суток) */
+//	public long RATE_FIRST_TIME= 1000l*3600l*24l*30l;
     // срок (4 часа) ДЛЯ ТЕСТИРОВАНИЯ! перед первым выскакиванием просьбы оценить
 //	public long RATE_FIRST_TIME= 1000l*3600l*4l;
 	// для тестирования
 //	public long RATE_FIRST_TIME= 1000l*300l;
-    // время ожидания до повторной просьбы оценить, если юзер нажал Нет на просьбе
+    /** время ожидания до повторной просьбы оценить, если юзер нажал Нет на просьбе */
 	public long RATE_NEGATIVE_TIME= 1000l*3600l*24l*2l;
 	// для тестирования
 //	public long RATE_NEGATIVE_TIME= 1000l*120l;

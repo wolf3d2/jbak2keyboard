@@ -368,6 +368,8 @@ public interface IKbdSettings
     public static final String STR_PREFIX_LINE = "$l#";
     public static final String STR_PREFIX_END_LINE = "$el#";
     public static final String STR_PREFIX_FONT = "$f#";
+    public static final String STR_PREFIX_SELECTED_TEXT = "$st#";
+    public static final String STR_PREFIX_COPY_TEXT = "$ct#";
     public static final String STR_COMMA = ",";
     public static final String STR_POINT = ".";
     public static final String STR_SLASH= "/";

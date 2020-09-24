@@ -26,6 +26,9 @@ public class UserWords {
 	public static int WORD_FREQ_LIMIT = 10000000;
 	/** значение частоты по умолчанию для слов добавленных пользователем */
 	public static int FREQ_USER_WORD = 500000;
+	/** значение на сколько увеличивать частоту слова, <br>
+	 * если включено расширенное обучение словаря */
+	public static int FREQ_STUDENT_EXTENDED_VALUE = 5;
 	public static long fr = 0;
 	public static String delword = st.STR_NULL;
 	public static final String C_WORD = "word";
@@ -254,6 +257,12 @@ public class UserWords {
 		// проверки, если включено быстрое обучение
 		if (st.student_dict & st.student_dict_ext) {
 			long count = 0;
+			count = cv.getAsLong(C_FREQ);
+			// если у слова частота уже больше 2 и меньше (лимит частоты-10000),
+			// то увеливаем её с порогом на 5
+			if (count > 2&count < WORD_FREQ_LIMIT-1000)
+				cv.put(C_FREQ, count+FREQ_STUDENT_EXTENDED_VALUE);
+			count = 0;
 			try {
 				count = DatabaseUtils.queryNumEntries(m_db, lang);
 				if (count > MIN_COUNT_WORD || count >= LIMIT_WORD 

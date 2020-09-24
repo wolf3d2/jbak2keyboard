@@ -12,8 +12,11 @@ import android.view.inputmethod.InputConnection;
 public class SearchGoogle 
 {
 	public static String SEARCH_PREFICS_URL = "http://www.google.com/search?q=";
-	// type = 0 - поиск выделенного
-	// type = 1 - поиск скопированного
+	/** поиск в гугле (с интентом)
+	 * @param type
+	 type = 0 - поиск выделенного <br>
+	 type = 1 - поиск скопированного <br>
+	 */
 	@SuppressLint("NewApi")
 	public static void search(int type){
     	CharSequence sel = null;
@@ -43,6 +46,15 @@ public class SearchGoogle
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(SEARCH_PREFICS_URL+enc));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ServiceJbKbd.inst.startActivity(intent);
+	}
+	/** возвращает поисковый url из строки text */
+	public static String getSearchUrl(String text){
+		try {
+			text = URLEncoder.encode(text,st.STR_UTF8);
+		} catch (Throwable e) {
+    		return text;
+		}
+		return SEARCH_PREFICS_URL+text;
 	}
 
 }

@@ -17,8 +17,11 @@ import com.jbak2.JbakKeyboard.Translit;
 import com.jbak2.JbakKeyboard.R;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.SearchRegex;
+import com.jbak2.web.WebUtils;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.inputmethod.InputConnection;
 
 /** Класс для операций с шаблонами - создание, листинг, обработка */
@@ -272,12 +275,12 @@ public class Templates {
 	 * Выполняет шаблон s в текущем сервисе (тут же обрабатываются и специнструкции)
 	 */
 	@SuppressWarnings("deprecation")
-	void processTemplate(String mstr) {
-		if (mstr == null)
+	void processTemplate(String instr) {
+		if (instr == null)
 			return;
 		int del = 0;
 		int pos = 0;
-		int len = mstr.length();
+		int len = instr.length();
 		mci = new CurInput();
 		mic = ServiceJbKbd.inst.getCurrentInputConnection();
 		String ss = st.STR_NULL;
@@ -290,10 +293,10 @@ public class Templates {
 		int ff = -1;
 		boolean bFound = false;
 		while (true) {
-			int f = mstr.indexOf(TPL_SPEC_CHAR, pos);
+			int f = instr.indexOf(TPL_SPEC_CHAR, pos);
 			if (f < 0 || f == len - 1)
 				break;
-			if (mstr.charAt(f + 1) == TPL_SPEC_CHAR) {
+			if (instr.charAt(f + 1) == TPL_SPEC_CHAR) {
 				pos = f + 2;
 				continue;
 			}
@@ -301,7 +304,7 @@ public class Templates {
 			bFound = false;
 			for (int i = 0; i < Instructions.length; i++) {
 				ss = Instructions[i];
-				ff = mstr.indexOf(ss, f + 1);
+				ff = instr.indexOf(ss, f + 1);
 				if (ff == f + 1) {
 					bFound = true;
 					if (!mci.isInited()) {
@@ -324,8 +327,8 @@ public class Templates {
 					sy = st.STR_NULL;
 					ch = 0;
 					switch (i) {
-					case 0:
-						break; // select
+					case 0: // select
+						break; 
 					case 1: // selword
 						if (mrepl.length() == 0) {
 							if (del == 0)
@@ -342,7 +345,7 @@ public class Templates {
 						break;
 					case 3: // datetime
 						String repl2 = st.STR_NULL;
-						String sub = mstr.substring(mstr.indexOf(Instructions[i]) + Instructions[i].length());
+						String sub = instr.substring(instr.indexOf(Instructions[i]) + Instructions[i].length());
 						if (sub.startsWith("[")) {
 							int pos_skob = sub.indexOf("]");
 							if (pos_skob > 1) {
@@ -356,9 +359,9 @@ public class Templates {
 										mic.endBatchEdit();
 									return;
 								}
-								int pp = mstr.indexOf("[" + strformat + "]");
-								mstr = mstr.substring(0, pp)
-										+ mstr.substring(pp + ("[" + strformat + "]").length(), mstr.length());
+								int pp = instr.indexOf("[" + strformat + "]");
+								instr = instr.substring(0, pp)
+										+ instr.substring(pp + ("[" + strformat + "]").length(), instr.length());
 							} else
 								repl2 = java.util.Calendar.getInstance().getTime().toLocaleString().toString();
 						} else {
@@ -381,7 +384,7 @@ public class Templates {
 					case 6: // selinsertword
 						if (mrepl != null && mrepl.length() > 0) {
 
-							String str = st.rowInParentheses(mstr);
+							String str = st.rowInParentheses(instr);
 							if (str.isEmpty()) {
 								if (mci.isInited())
 									mic.endBatchEdit();
@@ -396,7 +399,7 @@ public class Templates {
 						break;
 					case 7: // selDeleteWord
 						if (mrepl != null && mrepl.length() > 0) {
-							String str = st.rowInParentheses(mstr);
+							String str = st.rowInParentheses(instr);
 							if (str.isEmpty()) {
 								if (mci.isInited())
 									mic.endBatchEdit();
@@ -436,8 +439,7 @@ public class Templates {
 						}
 						mrepl = out;
 						break;
-					// selAsInTheSentences как в предложениях
-					case 10:
+					case 10: // selAsInTheSentences как в предложениях
 						if (ServiceJbKbd.inst == null) {
 							if (mci.isInited())
 								mic.endBatchEdit();
@@ -493,7 +495,7 @@ public class Templates {
 								mic.endBatchEdit();
 							return;
 						}
-						String[] ar = getDecodeSelReplaceInstruction(mstr);
+						String[] ar = getDecodeSelReplaceInstruction(instr);
 						if (ar == null) {
 							if (mci.isInited())
 								mic.endBatchEdit();
@@ -539,7 +541,7 @@ public class Templates {
 						} else {
 							mrepl = mrepl.replace(ar[1], ar[2]);
 						}
-						mstr = "$" + Instructions[12];
+						instr = "$" + Instructions[12];
 
 						break;
 					case 13: // selToPos
@@ -568,7 +570,7 @@ public class Templates {
 						// ЗАПЯТОЙ!
 						int selst = -1;
 						int selend = -1;
-						String[] ar1 = getDecodeSelToPosInstruction(mstr);
+						String[] ar1 = getDecodeSelToPosInstruction(instr);
 						if (ar1 == null) {
 							if (mci.isInited())
 								mic.endBatchEdit();
@@ -697,9 +699,9 @@ public class Templates {
 						// текущая строка до '\n'
 						String curstr = null;
 						while (poz > -1) {
-							poz = mstr.indexOf(st.STR_LF, tp);
+							poz = instr.indexOf(st.STR_LF, tp);
 							if (poz > -1) {
-								curstr = mstr.substring(tp, poz);
+								curstr = instr.substring(tp, poz);
 								if (first_program
 										&& curstr.compareToIgnoreCase(TPL_SPEC_CHAR + SPEC_INSTR_PROGRAM) == 0) {
 									first_program = false;
@@ -712,7 +714,7 @@ public class Templates {
 								}
 								tp = poz + 1;
 							} else {
-								curstr = mstr.substring(tp);
+								curstr = instr.substring(tp);
 								if (curstr.length() > 0) {
 									curstr = getDecodeStringProgramInstruction(curstr);
 									if(curstr.startsWith(STR_TPL_FOLDER)) {
@@ -734,11 +736,11 @@ public class Templates {
 						if (ServiceJbKbd.inst == null) {
 							return;
 						}
-						int pb = mstr.indexOf("[");
-						int pe = mstr.indexOf("]");
+						int pb = instr.indexOf("[");
+						int pe = instr.indexOf("]");
 						out = null;
 						if (pb > -1 && pe > -1)
-							out = mstr.substring(pb + 1, pe);
+							out = instr.substring(pb + 1, pe);
 						if (out != null) {
 							String[] ar3 = out.split(st.STR_COMMA);
 							String[] ar4 = null;
@@ -798,23 +800,69 @@ public class Templates {
 						// st.toast(mstr);
 						// mic.endBatchEdit();
 						return;
-					}
+					case 16: // selToUrl
+						if (mci.isInited())
+							mic.endBatchEdit();
+						int is = instr.indexOf("[");
+						if (is > -1) {
+							int es = instr.indexOf("]", is);
+							if (es < 0)
+								instr = instr.substring(is+1);
+							else if (es > -1)
+								instr = instr.substring(is+1, es);
+							if (instr.length() > 0) {
+								String out1 = st.STR_NULL;
+								is = instr.indexOf(st.STR_PREFIX_SELECTED_TEXT);
+								if (is > -1) {
+									if(instr.compareTo(st.STR_PREFIX_SELECTED_TEXT)==0) {
+										out1 = WebUtils.createUrl(mrepl);
+									} else {
+										out1 = instr.substring(0, is);
+										out1 += Uri.encode(mrepl);
+										out1 += instr.substring(is+st.STR_PREFIX_SELECTED_TEXT.length());
+									}
+									instr = out1;
+								}
+								is = instr.indexOf(st.STR_PREFIX_COPY_TEXT);
+								if (is > -1) {
+									if(instr.compareTo(st.STR_PREFIX_COPY_TEXT)==0) {
+										out1 = WebUtils.createUrl(st.getClipboardCharSequence().toString());
+									} else {
+										out1 = instr.substring(0, is);
+										out1 += Uri.encode(st.getClipboardCharSequence().toString());
+										out1 += instr.substring(is+st.STR_PREFIX_COPY_TEXT.length());
+									}
+									instr = out1;
+								}
+								try {
+									Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(instr));
+					                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					                ServiceJbKbd.inst.startActivity(intent);
+								} catch (Throwable e) {
+									st.toast(R.string.runapp_error_start);
+								}
+								
+							}
+						}
+						instr = Instructions[16];
+						return;
+					} 
 					if (mrepl == null) {
-						pos = mstr.length() - 1;
+						pos = instr.length() - 1;
 						break;
 					}
 					// s = s.substring(0,f)+mrepl+s.substring(f+ss.length()+1);
 					String sss = st.STR_NULL;
 					int l = 0;
-					if (mstr.indexOf(ss) != 0) {
-						sss = mstr.substring(f + ss.length() + 1);
+					if (instr.indexOf(ss) != 0) {
+						sss = instr.substring(f + ss.length() + 1);
 						if (sss.startsWith("="))
 							if (sss.indexOf("]") > 0) {
 								l = sss.indexOf("]") + 1;
 							}
 					}
 
-					mstr = mstr.substring(0, f) + mrepl + mstr.substring(f + ss.length() + 1 + l);
+					instr = instr.substring(0, f) + mrepl + instr.substring(f + ss.length() + 1 + l);
 					pos = f + mrepl.length();
 					break;
 				}
@@ -823,11 +871,11 @@ public class Templates {
 				pos++;
 		}
 		if (del == IB_WORD)
-			mci.replaceCurWord(mic, mstr);
+			mci.replaceCurWord(mic, instr);
 		else if (del == IB_LINE)
-			mci.replaceCurParagraph(mic, mstr);
+			mci.replaceCurParagraph(mic, instr);
 		else {
-			ServiceJbKbd.inst.onText(mstr);
+			ServiceJbKbd.inst.onText(instr);
 		}
 		if (mci.isInited())
 			mic.endBatchEdit();
@@ -1442,7 +1490,9 @@ public class Templates {
 			SPEC_INSTR_SELREPLACE, 
 			"selToPos", 
 			SPEC_INSTR_PROGRAM, 
-			"codes" };
+			"codes",
+			"selToUrl"
+			};
 	/** константа для специнструкции selReplace */
 	public static final String STR_SEARCH = "@SEARCH:";
 	/** константа для специнструкции selReplace */

@@ -184,3 +184,20 @@ You can use keyboard shortcuts only by specifying the KeyEvent characters (-5xxx
 
 All codes available in the keyboard are listed in the jbak2layout application, in the Instruction for creating your own layout. 
 Look for the KeyEvent information on the internet.
+
+$selToUrl
+Opens in the browser the website address indicated in parentheses. 
+In some cases, it is necessary to indicate the complete form of the address: http://my_site.com
+Several special values are supported:
+ - $st# - (selected text) instead of this value, the selected text will be inserted, if any.
+ - $ct# - (copy text) instead of this value, the copied text will be pasted, if any.
+
+Examples:
+Search on Google the text you copied:
+$selToUrl[google.com/search?q=$ct#]
+Translate the selected text with Yandex translate  en→ru and with a Russian-language interface:
+$selToUrl[https://translate.yandex.by/?ui=ru&lang=en-ru&text=$st#]
+
+NOTE
+To search on Google, you can use the shortened form of the special  instruction (Google is used as the default search engine):
+$selToUrl[$ct#]

@@ -96,12 +96,16 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 	// текущая версия
 	String vers = null;
-	// дата и время из par.ini
+	/** дата и время из par.ini */
 	long timeini = 0;
-	// текущее время
+	/** текущее время */
 	long cur_time = 0;
-	// оценивалось приложение или нет
-	int rate_app = 0;
+	/** оценивалось приложение или нет */
+	long rate_app = 0;
+	/** выводить тост "что-то вы быстро вернулись, если юзер нажал на "Написать отзыв" <br>
+	 * БЕЗ" предварительного вывода тоста/диалога с просьбой оставить отзыв */
+	static boolean rate_toast_after_show_rate_dialog = false;
+	
 	// первая установленная версия
 	String rate_start_version = st.STR_ZERO;
 	// String rate_start_time="1";
@@ -159,6 +163,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		// проверяем был ли послан текст для записи в буфер
 		checkStartIntent();
 		cur_time = new Date().getTime();
+		rate_toast_after_show_rate_dialog = false;
 		ini = null;
 		// старое место
 		// preOper();
@@ -401,7 +406,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		par = ini.getParamValue(ini.RATE_APP);
 		if (par != null) {
 			try {
-				rate_app = Integer.parseInt(par);
+				rate_app = Long.parseLong(par);
 			} catch (NumberFormatException e) {
 				rate_app = 0;
 			}
@@ -481,11 +486,12 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	/** просьба оставить отзыв на сайте программы, если не оставляли */
 	public boolean rateCheckSiteKbd() {
 		// если оценивали - выходим
-		if (rate_app != 0)
+		if (rate_app == 1)
 			return true;
 		if (ini == null)
 			return true;
-		long curtime = new Date().getTime();
+		// создаётся в onCreate
+		//cur_time = new Date().getTime();
 		String param = ini.getParamValue(ini.RATE_APP);
 		if (param == null) {
 			ini.setParam(ini.RATE_APP, st.STR_ZERO);
@@ -504,18 +510,53 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 //		 sdf = new SimpleDateFormat(spartime);
 //		 scurtime = scurtime;
 //		 spartime = sdf.format(dt);
-
+//
 		
-		// curtime и initime сравнивать не нужно - мы только выводим тост
-		if (rate_app == 0&&Quick_setting_act.inst == null) {
-			st.toastLong(R.string.rate_toast);
+		if (rate_app != 1&&Quick_setting_act.inst == null) {
+			 long initime = 0;
+			 param = ini.getParamValue(ini.START_TIME);
+			 if (param == null) {
+				 ini.setParam(ini.START_TIME, st.STR_NULL + (long) (cur_time));
+				 initime = cur_time;
+			 } else {
+				 try {
+					 initime = Long.parseLong(param);
+				 } catch (NumberFormatException e) {
+					 ini.setParam(ini.START_TIME, st.STR_NULL + (long) (cur_time));
+					 initime = cur_time;
+				 }
+			 }
+//			 String scurtime = "dd.MM.yyyy HH:mm:ss";
+//			 Date dt = new Date();
+//			 dt.setTime(cur_time);
+//			 SimpleDateFormat sdf = new SimpleDateFormat(scurtime);
+//			 scurtime = sdf.format(dt);
+//			 String spartime = "dd.MM.yyyy HH:mm:ss";
+//			 dt = new Date();
+//			 dt.setTime((long) (initime));
+//			 sdf = new SimpleDateFormat(spartime);
+//			 scurtime = scurtime;
+//			 spartime = sdf.format(dt);
+
+			rate_toast_after_show_rate_dialog = true;
+			// выводить тост или диалог?
+			if ((initime+ini.RATE_PERIOD_LONGT_TIME) < cur_time) {
+				Dlg.helpDialog(inst, R.string.rate_toast);
+			} 
+			else if ((initime+ini.RATE_PERIOD_SHORT_TIME) < cur_time) {
+				st.toastLong(R.string.rate_toast);
+			}
+			else {
+				rate_toast_after_show_rate_dialog = false;
+
+			}
 		}
 		return rate_app == 1;
 	}
 
 	public boolean rateCheck() {
 		// если оценивали - выходим
-		if (rate_app != 0)
+		if (rate_app == 1)
 			return true;
 		if (ini == null)
 			return true;
@@ -582,7 +623,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				if (ini!=null)
 					ini.setParam(ini.RATE_APP, st.STR_ONE);
 			} else {
-				st.toastLong(R.string.rate_not_toast);
+				if (rate_toast_after_show_rate_dialog) 
+					st.toastLong(R.string.rate_not_toast);
 			}
 			review_time_start = 0;
 		}

@@ -47,8 +47,14 @@
 	<string name="upd_unknown_source_desc_">Before installing the program, do not forget to allow installation of apps from unknown sources</string>
 
 <!-- отзыв -->
-	<string name="review">Rate the app</string>
-	<string name="review_desc">Please write a review on the program website so that other people can make an initial opinion about the program.</string>
+	<string name="review">Leave feedback </string>
+	<string name="review_desc">Please leave your feedback one the program site.</string>
+	<string name="rate_toast">Please leave your feedback about the application, be sure to select the \"Leave feedback\" option, and this message will never appear.</string>
+    <string name="rate_not_toast">You left your review too quickly...</string>
+<!-- 	ДЛЯ МАРКЕТА -->
+<!-- 	<string name="review">Rate the app</string> -->
+<!-- 	<string name="review_desc">Please write a review on the program website so that other people can make an initial opinion about the program.</string> -->
+<!--     <string name="rate_toast">Please, rate the application by selecting the \“Rate the app\” setting item and this message will no longer appear.</string> -->
 
 <!-- Title for new version check site-->
 	<string name="chk_new_version">A new version of the program has been released\nDownload the keyboard update from the program website.</string>
@@ -450,8 +456,6 @@
     <string name="rate_title">Application rating</string>
     <string name="rate_about">Please, rate this app.</string>
 <string name="rate_query">Please, rate the app once by clicking the Rate button </string>
-    <string name="rate_toast">Please, rate the application by selecting the \“Rate the app\” setting item and this message will no longer appear.</string>
-    <string name="rate_not_toast">You left your review too quickly</string>
     <string name="rate_btn">Rate</string>
 
 <!-- Как пользоваться клавиатурой -->
@@ -894,6 +898,7 @@
         <item><b>$selToPos</b> - selection to the specified position according to set parameters</item>
         <item><b>$program</b> - execution of template sequence</item>
         <item><b>$codes</b> - executes sequentially specified codes</item>
+		<item><b>$selToUrl</b> - abre en el navegador la dirección URL indicada entre paréntesis y pasa el texto seleccionado y/o copiado a la barra de direcciones (si están indicadas)</item>
         </string-array>
 
 <!-- список символов разделения для специнструкции $insertsymbol -->

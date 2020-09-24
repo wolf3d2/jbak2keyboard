@@ -20,7 +20,7 @@ public class Translate
     File dir = null;
     public static com_menu menu = null;
     public String[] ar = null;
-    public String FILENAME = "translate.txt";
+    public static final String FILENAME = "translate.txt";
     public static final String RECORD = "record";
     public static int mtype = 0;
     // переменная для хранения первоначальной записи при редактировании записи :)
@@ -87,9 +87,12 @@ public class Translate
                 	if (ar1.length<1)
                 		return 0;
                 	st.hidekbd();
-                	String interface_lang= st.pref().getString(st.PREF_TRANSLATE_INTERFACE, st.getSystemLangApp(false));
+                	String interface_lang= st.pref().getString(st.PREF_TRANSLATE_INTERFACE, 
+                			st.getSystemLangApp(false));
 //                	String txt = "https://translate.google.com/?hl="+interface_lang+"&tab=TT#"+ar1[0]+st.STR_SLASH+ar1[1]+st.STR_SLASH+sel;
-                	String txt = "https://translate.google.com/?hl="+interface_lang+"&tab=TT#"+ar1[0]+st.STR_SLASH+ar1[1]+st.STR_SLASH+Uri.encode(sel.toString());
+                	String txt = "https://translate.google.com/?hl="
+                			+interface_lang+"&tab=TT#"+ar1[0]+st.STR_SLASH+ar1[1]+st.STR_SLASH
+                			+Uri.encode(sel.toString());
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(txt));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     ServiceJbKbd.inst.startActivity(intent);

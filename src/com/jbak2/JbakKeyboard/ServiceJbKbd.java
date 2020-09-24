@@ -507,7 +507,7 @@ public class ServiceJbKbd extends InputMethodService
 	int cnt_isnewversion = 0;
 	String param = st.STR_NULL;
 
-	/** если версия новая, то выводит change log */
+	/** если версия новая, то выводит диалог Что нового */
 	public void isNewVersion() {
 		if (ini == null) {
 			ini = new IniFile(inst);
@@ -563,52 +563,55 @@ public class ServiceJbKbd extends InputMethodService
 		}
 	}
 
-	public void rateCheck() {
-		rate_dialog = false;
-		if (ini == null)
-			return;
-		curtime = new Date().getTime();
-		param = ini.getParamValue(ini.RATE_APP);
-		if (param == null) {
-			ini.setParam(ini.RATE_APP, st.STR_ZERO);
-			return;
-		}
-		if (param.compareToIgnoreCase(st.STR_ZERO) == 0) {
-			initime = 0;
-			param = ini.getParamValue(ini.START_TIME);
-			if (param == null) {
-				ini.setParam(ini.START_TIME, st.STR_NULL + (long) (curtime + ini.RATE_FIRST_TIME));
-				initime = curtime;
-			} else {
-				try {
-					initime = Long.parseLong(param);
-				} catch (NumberFormatException e) {
-					initime = curtime;
-					;
-				}
-			}
-//			String scurtime = "dd.MM.yyyy HH:mm:ss";
-//			Date dt = new Date();
-//			dt.setTime(curtime);
-//			SimpleDateFormat sdf = new SimpleDateFormat(scurtime);
-//			scurtime = sdf.format(dt);
-//			String spartime = "dd.MM.yyyy HH:mm:ss";
-//			dt = new Date();
-//			dt.setTime((long) (initime));
-//			sdf = new SimpleDateFormat(spartime);
-//			scurtime = scurtime;
-//			spartime = sdf.format(dt);
-			if ((initime) <= curtime) {
-				if (googleplayexist) {
-					rateDialog(ini);
-					// st.toastLong(R.string.rate_toast);
-					// ini.setParam(ini.START_TIME, st.STR_NULL + (long) (curtime +
-					// ini.RATE_NEGATIVE_TIME));
-
-				}
-			}
-		}
-	}
+	/** УЖЕ НЕ ИСПОЛЬЗУЕТСЯ.<BR>
+	 * Оценка для маркета 
+	 */
+//	public void rateCheck() {
+//		rate_dialog = false;
+//		if (ini == null)
+//			return;
+//		curtime = new Date().getTime();
+//		param = ini.getParamValue(ini.RATE_APP);
+//		if (param == null) {
+//			ini.setParam(ini.RATE_APP, st.STR_ZERO);
+//			return;
+//		}
+//		if (param.compareToIgnoreCase(st.STR_ZERO) == 0) {
+//			initime = 0;
+//			param = ini.getParamValue(ini.START_TIME);
+//			if (param == null) {
+//				ini.setParam(ini.START_TIME, st.STR_NULL + (long) (curtime + ini.RATE_FIRST_TIME));
+//				initime = curtime;
+//			} else {
+//				try {
+//					initime = Long.parseLong(param);
+//				} catch (NumberFormatException e) {
+//					initime = curtime;
+//					;
+//				}
+//			}
+////			String scurtime = "dd.MM.yyyy HH:mm:ss";
+////			Date dt = new Date();
+////			dt.setTime(curtime);
+////			SimpleDateFormat sdf = new SimpleDateFormat(scurtime);
+////			scurtime = sdf.format(dt);
+////			String spartime = "dd.MM.yyyy HH:mm:ss";
+////			dt = new Date();
+////			dt.setTime((long) (initime));
+////			sdf = new SimpleDateFormat(spartime);
+////			scurtime = scurtime;
+////			spartime = sdf.format(dt);
+//			if ((initime) <= curtime) {
+//				if (googleplayexist) {
+//					rateDialog(ini);
+//					// st.toastLong(R.string.rate_toast);
+//					// ini.setParam(ini.START_TIME, st.STR_NULL + (long) (curtime +
+//					// ini.RATE_NEGATIVE_TIME));
+//
+//				}
+//			}
+//		}
+//	}
 	/** флаг, что диалог оценки на экране */
 	boolean rate_dialog = false;
 	public void rateDialog(final IniFile inifile) {
@@ -1625,7 +1628,8 @@ public class ServiceJbKbd extends InputMethodService
 			if (firstkey_upper&&firstsymb) {
 				primaryCode = Character.toUpperCase(primaryCode);
 				try {
-					st.kv().setTempShift(true, false);
+					if (!st.has(st.kv().m_state, JbKbdView.STATE_CAPS_LOCK))
+						st.kv().setTempShift(true, false);
 				} catch (Exception e) {
 				}
 			}

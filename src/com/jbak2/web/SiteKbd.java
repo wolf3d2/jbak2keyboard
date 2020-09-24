@@ -34,8 +34,8 @@ public class SiteKbd {
 //	public static final long TOAST_NOT_UPDATE = 1000l*3600l*2l;//30000l;//30 сек
 	// для тестирования
 //	public static final long TOAST_NOT_UPDATE= 1000l*120l;
-    /** (3 месяца) последняя проверка была 3 месяца назад */
-	public static final long LAST_CHECK_CHECK_3_MONTHS_BACK = 1000l*3600l*24l*90l;
+    /** (2 месяца) последняя проверка была 3 месяца назад */
+	public static final long LAST_CHECK_CHECK_3_MONTHS_BACK = 1000l*3600l*24l*60l;
     /** (1 год) через сколько времени перестаём ныть */
 	public static final long LAST_UPDATE_NOT_SHOW_TOAST = 1000l*3600l*24l*365l;
 	// для тестирования

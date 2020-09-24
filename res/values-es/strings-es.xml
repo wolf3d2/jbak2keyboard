@@ -46,8 +46,13 @@
     <string name="upd_unknown_source_desc_">Antes de instalar el programa, no olvide permitir la instalación de aplicaciones de fuentes desconocidas</string>
 
     <!-- отзыв -->
-    <string name="review">Evaluar la aplicación</string>
-    <string name="review_desc">Deje un comentario en el sitio web del programa para que otras personas puedan tener una opinión inicial sobre el teclado.</string>
+	<string name="review">Dejar comentarios</string>
+	<string name="review_desc">Por favor, deje sus comentarios en el sitio del programa.</string>
+	<string name="rate_toast">Deje sus comentarios sobre la aplicación, asegúrese de seleccionar la opción \"Dejar comentarios\", y ese mensaje nunca más aparecerá.</string>
+    <string name="rate_not_toast">Usted dejó su reseña demasiado rápido...</string>
+<!-- 	ДЛЯ МАРКЕТА -->
+<!--     <string name="review">Evaluar la aplicación</string> -->
+<!--     <string name="review_desc">Deje un comentario en el sitio web del programa para que otras personas puedan tener una opinión inicial sobre el teclado.</string> -->
 
     <!-- Title for new version check site -->
     <string name="chk_new_version">Se ha lanzado una nueva versión del programa\nActualice el teclado desde la página web del programa.</string>
@@ -428,8 +433,8 @@
     <string name="rate_title">Evaluación de la aplicación</string>
     <string name="rate_about">Por favor, evalúa la aplicación</string>
     <string name="rate_query">Por favor, evalúa la aplicación presionando el botón Evaluar </string>
-    <string name="rate_toast">Por favor, califique la aplicación seleccionando el párrafo de configuración: Evaluar la aplicación y este mensaje no volverá a aparecer.</string>
-    <string name="rate_not_toast">Usted dejó su reseña demasiado rápido</string>
+<!--     <string name="rate_toast">Por favor, califique la aplicación seleccionando el párrafo de configuración: Evaluar la aplicación y este mensaje no volverá a aparecer.</string> -->
+<!--     <string name="rate_not_toast">Usted dejó su reseña demasiado rápido</string> -->
     <string name="rate_btn">Evaluar</string>
 
     <!-- активность help -->
@@ -852,7 +857,8 @@
         <item><b>$selToPos</b> - seleccionar hasta la posición especificada según los parámetros establecidos</item>
         <item><b>$program</b> - ejecución de la secuencia de plantillas</item>
         <item><b>$codes</b> - ejecuta los códigos especificados de forma secuencial </item>
-    </string-array>
+        <item><b>$selToUrl</b> - открывает браузер на указанном в скобках url и передаёт в строке адреса выделенный и/или скопированный текст (если они указаны и есть)</item>
+        </string-array>
 
     <!-- список символов разделения для специнструкции $insertsymbol -->
     <string name="insertsymbol_title">Símbolo o palabra</string>
