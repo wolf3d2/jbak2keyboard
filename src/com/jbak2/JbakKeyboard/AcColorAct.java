@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.jbak2.Dialog.DlgPopupWnd;
 import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.GlobDialog;
+import com.jbak2.ctrl.th;
 
 /** класс установок цветов кнопок для автодополнения */
 public class AcColorAct extends Activity
@@ -97,6 +98,7 @@ public class AcColorAct extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
+		setTheme(th.theme_interface);
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.accoloract);
 	    inst = this;

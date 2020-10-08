@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 
 import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.GlobDialog;
+import com.jbak2.ctrl.th;
 public class Runapp extends Activity
 {
 	boolean bsave = false;
@@ -40,6 +41,7 @@ public class Runapp extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
+		setTheme(th.theme_interface);
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.run_app);
         inst = this;

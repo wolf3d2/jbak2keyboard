@@ -18,6 +18,14 @@
     <string name="msg_avtocorrect_and_addspace">Las funciones de \"Autocorrector\" y \"Agregar espacio después de caracteres\" (en Entrada automática) han sido habilitadas.\n\nJuntas, ellas no funcionan de manera correcta!</string>
     <string name="in_developing">En desarrollo</string>
 
+<!-- тема интерфейса приложения -->
+    <string name="ime_theme">Тема интерфейса</string>
+    <string name="ime_theme_desc">Тема интерфейса ПРОГРАММЫ,не КЛАВИАТУРЫ!</string>
+    <string-array name="array_theme_app">
+        <item>Светлая</item>
+        <item>Тёмная</item>
+    </string-array>
+    
     <string name="kbd_scroll_not_select">Ничего не выделено</string>
     <string name="kbd_scroll_not_work">В данном месте, эта команда не работает</string>
     
@@ -804,6 +812,8 @@
     <string name="out_of_memory">¡Sin memoria!</string>
     <string name="by_def">Por defecto</string>
     <string name="open_with">para abrir con</string>
+    <string name="position">Позиция</string>
+    <string name="color">Color</string>
     <string name="sel_del">Borrar de forma selectiva</string>
     <string name="rewrite_question">Archivo ya existe.\n¿Desea reemplazarlo?</string>
     <string name="settings_saved">¡Configuraciones se han guardado!</string>

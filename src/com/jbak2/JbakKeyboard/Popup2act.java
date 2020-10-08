@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
@@ -27,6 +28,7 @@ import com.jbak2.Dialog.DlgFileExplorer;
 import com.jbak2.Dialog.DlgPopupWnd;
 import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.Font;
+import com.jbak2.ctrl.th;
 
 /** класс для вывода активности настроек маленькой клавиатуры второй версии */
 public class Popup2act extends Activity
@@ -86,6 +88,7 @@ public class Popup2act extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
+		setTheme(th.theme_interface);
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.popup2act);
 	    inst = this;
@@ -104,7 +107,9 @@ public class Popup2act extends Activity
         
         TextView tv = (TextView)findViewById(R.id.pc2act_help);
         tv.setOnClickListener(m_ClickListener);
-        
+        if (!th.isDarkThemeApp())
+        	((TextView)findViewById(R.id.pc2act_info)).setTextColor(Color.BLUE);
+
         cb2 = (CheckBox)findViewById(R.id.pc2act_cb2);
         cb2.setChecked(st.pc2_lr);
         cb2.setOnClickListener(m_ClickListener);

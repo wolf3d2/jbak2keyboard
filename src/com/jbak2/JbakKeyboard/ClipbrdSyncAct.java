@@ -1,6 +1,7 @@
 package com.jbak2.JbakKeyboard;
 
 import com.jbak2.ctrl.IntEditor;
+import com.jbak2.ctrl.th;
 import com.jbak2.perm.Perm;
 
 import android.app.Activity;
@@ -18,6 +19,7 @@ public class ClipbrdSyncAct extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clipbrd_sync_act);
         inst = this;

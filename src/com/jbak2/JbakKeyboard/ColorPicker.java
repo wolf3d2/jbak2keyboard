@@ -1,5 +1,10 @@
 package com.jbak2.JbakKeyboard;
 
+import com.jbak2.JbakKeyboard.R;
+import com.jbak2.JbakKeyboard.R.drawable;
+import com.jbak2.JbakKeyboard.R.string;
+import com.jbak2.ctrl.th;
+
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
@@ -202,6 +207,7 @@ public class ColorPicker extends View implements View.OnTouchListener
 	public boolean performClick() {
 		return super.performClick();
 	}
+	
 	@Override
 	public boolean onTouch(View v, MotionEvent event) 
 	{
@@ -234,7 +240,11 @@ public class ColorPicker extends View implements View.OnTouchListener
 			break;
 
 		}
-//		rgb = 0xff0000;
+		col_a = rgb;
+		if (sb_a!=null) {
+			col_a = sb_a.getProgress();
+		}
+		rgb = Color.argb(col_a, Color.red(rgb),Color.green(rgb), Color.blue(rgb));
 		decodeColor(rgb);
 		if (sb_a!=null) {
 			sb_a.setProgress(col_a);
@@ -435,7 +445,10 @@ public class ColorPicker extends View implements View.OnTouchListener
     public View createCircleLandscape(Context c)
     {
         RelativeLayout rl = new RelativeLayout(m_c);
-        rl.setBackgroundResource(android.R.drawable.dialog_frame);
+        if (th.isDarkThemeApp())
+        	rl.setBackgroundResource(android.R.drawable.dialog_frame);
+        else
+        	rl.setBackgroundColor(Color.WHITE);
 
         
 //		ll.setOrientation(LinearLayout.VERTICAL);
@@ -597,7 +610,10 @@ public class ColorPicker extends View implements View.OnTouchListener
     public View createCirclePortrait(Context c)
     {
         RelativeLayout rl = new RelativeLayout(m_c);
-        rl.setBackgroundResource(android.R.drawable.dialog_frame);
+        if (th.isDarkThemeApp())
+        	rl.setBackgroundResource(android.R.drawable.dialog_frame);
+        else
+        	rl.setBackgroundColor(Color.WHITE);
 
         
 //		ll.setOrientation(LinearLayout.VERTICAL);
@@ -775,7 +791,10 @@ public class ColorPicker extends View implements View.OnTouchListener
     {
         RelativeLayout.LayoutParams rlp = null;
         RelativeLayout rl = new RelativeLayout(m_c);
-        rl.setBackgroundResource(android.R.drawable.dialog_frame);
+        if (th.isDarkThemeApp())
+        	rl.setBackgroundResource(android.R.drawable.dialog_frame);
+        else
+        	rl.setBackgroundColor(Color.WHITE);
 //		ll.setOrientation(LinearLayout.VERTICAL);
         rl.setPadding(20, 20, 20, 20);
         

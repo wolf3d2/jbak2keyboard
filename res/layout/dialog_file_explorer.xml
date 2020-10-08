@@ -92,7 +92,7 @@
     android:layout_below="@+id/fe_hsv_nav"
     android:clickable="false"
     android:text="Текущий путь"
-    android:textColor="#fff" />
+    />
 
 <ListView
     android:id="@+id/fe_list"

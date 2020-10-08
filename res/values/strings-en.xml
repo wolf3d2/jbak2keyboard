@@ -19,6 +19,14 @@
 	<string name="msg_avtocorrect_and_addspace"> The \"Autocorrect\" and \"add a space after characters\" features have been enabled (in Autoinput).\n\nThey are not working properly together!</string>
     <string name="in_developing">In developing</string>
 
+<!-- тема интерфейса приложения -->
+    <string name="ime_theme">Тема интерфейса</string>
+    <string name="ime_theme_desc">Тема интерфейса ПРОГРАММЫ,не КЛАВИАТУРЫ!</string>
+    <string-array name="array_theme_app">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    
     <string name="kbd_scroll_not_select">Ничего не выделено</string>
     <string name="kbd_scroll_not_work">В данном месте, эта команда не работает</string>
     
@@ -840,6 +848,8 @@
     <string name="by_def">By default</string>
     <string name="out_of_memory">Out of memory!</string>
     <string name="open_with">To open with</string>
+    <string name="position">Position</string>
+    <string name="color">Color</string>
     
     <string name="sel_del">Delete selectively</string>
     <string name="rewrite_question">File already exists.\nDo you want to replace it?</string>

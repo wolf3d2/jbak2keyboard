@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.jbak2.JbakKeyboard.IKeyboard.Lang;
 import com.jbak2.JbakKeyboard.UpdateDownloader.VersionDiff;
+import com.jbak2.ctrl.th;
 
 public class UpdVocabActivity extends Activity
 {
@@ -26,6 +27,7 @@ public class UpdVocabActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         View v = getLayoutInflater().inflate(R.layout.pref_view, null);
         m_updDownloader = new UpdateDownloader();
         m_list = (ListView)v.findViewById(android.R.id.list);

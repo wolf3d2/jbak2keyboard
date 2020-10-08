@@ -38,6 +38,8 @@ import android.widget.TextView;
  * (enter, shift, space и т.д.)
  */
 public class Font {
+	/** цвет лайота - true = тёмный, иначе светлый */
+	public static boolean layout_dark_color = false;
 	public static Typeface tf = null;
 	public static final String TYPEFACE_ASSETS_FILENAME = "jbak2key.ttf";
 	static DlgPopupWnd dpw = null;
@@ -332,7 +334,10 @@ public class Font {
 				tv = (TextView) ll.getChildAt(1);
 				ll.removeAllViews();
 			}
-			tvs.setTextColor(Color.WHITE);
+			if (layout_dark_color)
+				tvs.setTextColor(Color.WHITE);
+			else
+				tvs.setTextColor(Color.BLACK);
 			tvs.setText(st.STR_NULL + ar_symbol[pos]+st.STR_POINT);
 			ll.addView(tvs);
 			tv.setId(pos);
@@ -340,7 +345,10 @@ public class Font {
 			tv.setOnLongClickListener(m_longListener);
 			tv.setTextSize(40);
 			tv.setTypeface(tf);
-			tv.setTextColor(Color.WHITE);
+			if (layout_dark_color)
+				tv.setTextColor(Color.WHITE);
+			else
+				tv.setTextColor(Color.BLACK);
 			tv.setText(st.STR_NULL + ar_symbol[pos]);
 			ll.addView(tv);
 			vv = ll;
@@ -422,9 +430,21 @@ public class Font {
 		return true;
 	}
 
+	public static void setViewColor(View vv)
+	{
+		if (th.isDarkThemeApp()) {
+			vv.setBackgroundResource(android.R.drawable.dialog_frame);
+			layout_dark_color = true;
+		} else {
+			vv.setBackgroundColor(Color.WHITE);
+			layout_dark_color = false;
+		}
+	}
 	/** диалог выбора символа из списка типа gridLayout */
 	public static void showDialogGridSelectSymbolOfFont(Context con, st.UniObserver obs) {
 		GridView grid = new GridView(con);
+		setViewColor(grid);
+		//grid.setBackgroundColor(Color.WHITE);
 		int wid = 600;
 		try {
 			wid = st.getDisplayWidth(con);
@@ -446,6 +466,7 @@ public class Font {
 	public static void showDialogOnKeyboardGridSelectSymbolOfFont(Context con, st.UniObserver obs) {
 		GridView grid = new GridView(con);
 		grid.setBackgroundResource(android.R.drawable.dialog_frame);
+		layout_dark_color = true;
 		int wid = 600;
 		try {
 			wid = st.getDisplayWidth(con);

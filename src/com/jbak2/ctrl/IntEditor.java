@@ -3,6 +3,7 @@ package com.jbak2.ctrl;
 import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;

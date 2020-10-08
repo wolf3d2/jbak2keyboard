@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.JbakKeyboard.IKeyboard.Lang;
 import com.jbak2.ctrl.GlobDialog;
+import com.jbak2.ctrl.th;
 
 public class LangSetActivity extends Activity
 {
@@ -54,6 +56,7 @@ public class LangSetActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         inst = this;
         st.setDefaultLang();
         CustomKeyboard.updateArrayKeyboards(false);
@@ -385,6 +388,12 @@ public class LangSetActivity extends Activity
             Lang l = getLangAtPosNew(position);
    			TextView tv = (TextView)convertView.findViewById(R.id.head);
    			tv.setVisibility(View.GONE);
+   			if (th.isDarkThemeApp()) {
+   				tv.setTextColor(Color.GREEN);
+   			} else {
+   				tv.setTextColor(Color.BLUE);
+   			}
+
         // старая строка, закоментил 08.06.19
         //if (!l.name.startsWith("hide")) {
        	if (!l.name.startsWith(IKeyboard.LANG_HIDE_LAYOUT+st.STR_UNDERSCORING)) {
@@ -397,7 +406,11 @@ public class LangSetActivity extends Activity
        				break;
        			case st.TYPE_LANG_SYMBOL2:
        				res = R.string.type_lang_symbol2;
-       				tv.setTextColor(0xffFFFF00);
+       	   			if (th.isDarkThemeApp()) {
+       	   				tv.setTextColor(0xffFFFF00);
+       	   			} else {
+       	   				tv.setTextColor(Color.RED);
+       	   			}
        				break;
        			case st.TYPE_LANG_OTHER:
        				res = R.string.type_lang_all;

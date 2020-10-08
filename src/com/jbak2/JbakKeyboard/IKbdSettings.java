@@ -3,6 +3,14 @@ package com.jbak2.JbakKeyboard;
 /** Константы для настроек клавиатуры */
 public interface IKbdSettings
 {
+	/** Ключ, позиция кнопки Выгрузить из памяти */
+	public static final String PREF_KEY_UNLOAD_BUTTON_POS = "unload_button_pos";
+	/** Ключ, прозрачность кнопки Выгрузить из памяти */
+	public static final String PREF_KEY_UNLOAD_BUTTON_ALPHA = "unload_button_alpha";
+	/** Ключ, цвет кнопки Выгрузить из памяти */
+	public static final String PREF_KEY_UNLOAD_BUTTON_COLOR = "unload_button_color";
+	/** Ключ, тема интерфейса программы*/
+	public static final String PREF_KEY_THEME_INTERFACE_APPLICATION = "theme_interface_application";
 	/** Ключ, (основная настройка) включить шрифт клавиатуры на клавишах*/
 	public static final String PREF_KEY_FONT_KBD_ON_KEY = "set_font_kbd";
 	/** Ключ что показывать в настройках, на настройке Шрифт клавиатуры*/
@@ -17,6 +25,8 @@ public interface IKbdSettings
 	public static final String PREF_KEY_CHECK_UPD_APP = "check_upd_app";
 	/** Под какую руку выводить кнопки тулбара в активности для вывода текстов */
 	public static final String STA_TOOLBAR_LEFTRIGHT_TOOLBAR = "lh_rh_showact_toolbar";
+	/** Цвета редактора в активности для вывода текстов */
+	public static final String STA_COLOR_EDITTEXT = "sta_color_edittext";
 	/** Пиктограмма на ентере */
 	public static final String PREF_ENTER_PICT = "enter_pict";
 	//

@@ -66,6 +66,7 @@ import com.jbak2.web.SearchGoogle;
 import com.jbak2.web.SiteKbd;
 import com.jbak2.words.WordsService;
 import com.jbak2.words.IWords.WordEntry;
+import com.jbak2.words.UserWords;
 import com.jbak2.words.UserWords.WordArray;
 
 /** Основной статический класс функций и переменных */
@@ -254,7 +255,7 @@ public class st extends IKeyboard implements IKbdSettings
 /** временное отключение словаря */
 	public static boolean fl_temp_stop_dict = false;
 // какое freq ставить при добавлении нового слова
-	public static int freq_dict = 500000;
+	public static int freq_dict = UserWords.FREQ_USER_WORD;
 /** интеллектуальный ввод - обучение словаря при нажатии слова из автодопа*/
 	public static boolean student_dict = false;
 /** сокращать словаа в автодопе */
@@ -352,13 +353,13 @@ public class st extends IKeyboard implements IKbdSettings
 	public static boolean fl_gest_double_click_shift = false;
 // массив своих жестов
 	public static ArrayList<GestureHisList> gc = new ArrayList<GestureHisList>();
-// длина жеста 
+/** длина жеста */ 
 	public static float gesture_length = 0;
-// минимальная длина жеста для настроек
+/** минимальная длина жеста для настроек */
 	public static int gesture_min_length = 100;
-// минимальная длина жеста 
+/** минимальная длина жеста */ 
 	public static int minGestSize = 100;
-// Скорость жеста	
+/** Скорость жеста */	
 	public static int gesture_velocity = 150;
 // строка для жеста "дополнительные символы"
 	public static String gesture_str = st.STR_NULL;
@@ -1724,7 +1725,7 @@ public class st extends IKeyboard implements IKbdSettings
     	}
         return out;
     }
-    static final boolean isLandscape(Context c)
+    public static final boolean isLandscape(Context c)
     {
         return c.getResources().getConfiguration().orientation != Configuration.ORIENTATION_PORTRAIT;
     }

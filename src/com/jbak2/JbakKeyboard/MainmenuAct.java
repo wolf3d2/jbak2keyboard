@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.ctrl.Mainmenu;
+import com.jbak2.ctrl.th;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,6 +26,7 @@ public class MainmenuAct extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainmenu);
         inst = this;
@@ -119,8 +121,11 @@ public class MainmenuAct extends Activity
         		mm = arList.get(i);
         		ar[i] = st.STR_NULL+mm.code+st.STR_SPACE+mm.name;
         	}
+			int lvl = R.layout.tpl_instr_list_dark;
+			if (!th.isDarkThemeApp())
+				lvl = R.layout.tpl_instr_list_light;
             final ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, 
-            		R.layout.tpl_instr_list,
+            		lvl,
                     ar);
                    
             Dlg.customMenu(this, adapt, this.getString(R.string.mainmenu_setting), new st.UniObserver()

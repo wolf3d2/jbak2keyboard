@@ -18,7 +18,14 @@
 */
 -->
 <resources>
-    <color name="candidate_normal">#FF000000</color>
+	<color name="color_orange">#FFA07A</color>
+	<color name="color_gray">#888888</color>
+	<color name="color_dark_green">#006400</color>
+	<color name="color_white">#FFFFFF</color>
+	<color name="color_black">#000000</color>
+		
+<!-- уже вроде нигде не используется -->
+	<color name="candidate_normal">#FF000000</color>
     <color name="candidate_recommended">#FFE35900</color>
     <color name="candidate_other">#ff808080</color>
     <color name="candidate_background">#bbffffff</color>

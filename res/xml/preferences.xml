@@ -137,6 +137,15 @@
         android:summary="@string/set_key_appearance_desc"
         android:title="@string/set_key_appearance" >
 
+        <!-- тема приложения -->
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/array_theme_app"
+            android:entryValues="@array/integer_vals"
+            android:key="theme_interface_application"
+            android:summary="@string/ime_theme_desc"
+            android:title="@string/ime_theme" />
+
         <!-- встроенные скины -->
         <Preference
             android:key="set_skins"

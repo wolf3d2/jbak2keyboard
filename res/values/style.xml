@@ -2,7 +2,20 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
-        Base application theme, dependent on API level. This theme is replaced
+        Base application light theme
+    -->
+    <style name="AppThemeLight" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    <item name="android:windowBackground">@color/color_white</item>
+    <item name="android:colorBackground">@color/color_white</item>
+     </style>
+
+    <!--
+        Base application Dark theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Black">
@@ -13,6 +26,10 @@
         -->
     </style>
 
+<!--     <style name="AlertDialogThemeLight" parent="@android:style/Theme.Dialog"> -->
+        
+<!--     </style> -->
+    
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->

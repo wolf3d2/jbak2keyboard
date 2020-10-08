@@ -1,5 +1,7 @@
 package com.jbak2.JbakKeyboard;
 
+import com.jbak2.ctrl.th;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -18,6 +20,7 @@ public class SetSound extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setsound);
         ll = (LinearLayout) findViewById(R.id.ss_ll);

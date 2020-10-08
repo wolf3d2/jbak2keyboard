@@ -6,6 +6,7 @@ import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.KeyboardGesture.GestureHisList;
 import com.jbak2.JbakKeyboard.st.KbdGesture;
 import com.jbak2.ctrl.GlobDialog;
+import com.jbak2.ctrl.th;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,6 +45,7 @@ public class GestureCreateAct extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
+		setTheme(th.theme_interface);
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.gesture_create);
 	    inst = this;

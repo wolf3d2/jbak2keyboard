@@ -129,6 +129,12 @@
 <!--     android:layout_gravity="right" -->
     
 <Button
+    android:id="@+id/desc_btn_set_editor_color"
+    style="@style/show_adit_activity_toolbar"
+    android:onClick="onClick"
+    android:text="set colort" />
+
+<Button
     android:id="@+id/desc_btn_sellang"
     style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"
@@ -188,7 +194,7 @@
 
 <ProgressBar
     android:id="@+id/desc_load_progress"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
@@ -215,6 +221,7 @@
         android:linksClickable="false"
         android:minLines="50"
 	    android:gravity="left|top"
+	    android:textCursorDrawable="@null"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical" >
 

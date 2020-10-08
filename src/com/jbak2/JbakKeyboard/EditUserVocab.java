@@ -9,6 +9,7 @@ import com.jbak2.JbakKeyboard.st.UniObserver;
 import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.ProgressOperation;
+import com.jbak2.ctrl.th;
 import com.jbak2.words.UserWords;
 import com.jbak2.words.WordsService;
 import com.jbak2.words.UserWords.WordArray;
@@ -71,6 +72,7 @@ public class EditUserVocab extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         inst = this;
         setContentView(R.layout.edit_user_vocab);
@@ -251,8 +253,11 @@ public class EditUserVocab extends Activity
             		btn_search.setVisibility(View.GONE);
         		return;
         	}
+			int lvl = R.layout.tpl_instr_list_dark;
+			if (!th.isDarkThemeApp())
+				lvl = R.layout.tpl_instr_list_light;
            	ArrayAdapter<String> ar = new ArrayAdapter<String>(this, 
-           			R.layout.tpl_instr_list,
+           			lvl,
                     ars
                     );
             
@@ -431,8 +436,11 @@ public class EditUserVocab extends Activity
 	            		btn_search.setVisibility(View.GONE);
 	        		return true;
 	        	}
+				int lvl = R.layout.tpl_instr_list_dark;
+				if (!th.isDarkThemeApp())
+					lvl = R.layout.tpl_instr_list_light;
 	           	ArrayAdapter<String> ar = new ArrayAdapter<String>(inst, 
-	           			R.layout.tpl_instr_list,
+	           			lvl,
 	                    ars
 	                    );
 	            

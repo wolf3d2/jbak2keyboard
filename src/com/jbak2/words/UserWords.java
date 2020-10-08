@@ -23,9 +23,9 @@ public class UserWords {
 	/** переменная хранения слова для addWord */
 	public static String m_word = st.STR_NULL;
 	/** лимит частоты слова, если больше, то устанавливается это */
-	public static int WORD_FREQ_LIMIT = 10000000;
+	public static int WORD_FREQ_LIMIT = 30000;
 	/** значение частоты по умолчанию для слов добавленных пользователем */
-	public static int FREQ_USER_WORD = 500000;
+	public static int FREQ_USER_WORD = 20000;
 	/** значение на сколько увеличивать частоту слова, <br>
 	 * если включено расширенное обучение словаря */
 	public static int FREQ_STUDENT_EXTENDED_VALUE = 5;
@@ -260,7 +260,7 @@ public class UserWords {
 			count = cv.getAsLong(C_FREQ);
 			// если у слова частота уже больше 2 и меньше (лимит частоты-10000),
 			// то увеливаем её с порогом на 5
-			if (count > 2&count < WORD_FREQ_LIMIT-1000)
+			if (count > 2&count < FREQ_USER_WORD-1000)
 				cv.put(C_FREQ, count+FREQ_STUDENT_EXTENDED_VALUE);
 			count = 0;
 			try {

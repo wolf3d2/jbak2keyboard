@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.Dialog.DlgFileExplorer;
+import com.jbak2.ctrl.th;
 
 import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -189,6 +190,7 @@ public class TplEditorActivity extends Activity
     };
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
     	inst = this;
     	temp_tpl_cur_dir = null;
     	temp_tpl_m_state = -1;
@@ -612,9 +614,11 @@ public class TplEditorActivity extends Activity
 // выводит отдельный список для указанной ниже инструкции */     
     void insertOrDeleteSymbol()
     {
-        int rlist = R.layout.tpl_instr_list;
+		int lvl = R.layout.tpl_instr_list_dark;
+		if (!th.isDarkThemeApp())
+			lvl = R.layout.tpl_instr_list_light;
         final ArrayAdapter<String> ar = new ArrayAdapter<String>(this, 
-                                                    rlist,
+                                                    lvl,
                                                     getResources().getStringArray(R.array.tpl_insertsymbol)
                                                     );
         Dlg.customMenu(this, ar, ServiceJbKbd.inst.getString(R.string.insertsymbol_title), new st.UniObserver()
@@ -644,9 +648,11 @@ public class TplEditorActivity extends Activity
     }
     void datetimeFormat()
     {
-        int rlist = R.layout.tpl_instr_list;
+		int lvl = R.layout.tpl_instr_list_dark;
+		if (!th.isDarkThemeApp())
+			lvl = R.layout.tpl_instr_list_light;
         final ArrayAdapter<String> ar1 = new ArrayAdapter<String>(this, 
-                                                    rlist,
+                                                    lvl,
                                                     getResources().getStringArray(R.array.datetime_format)
                                                     );
         Dlg.customMenu(this, ar1, ServiceJbKbd.inst.getString(R.string.datetime_format_title), new st.UniObserver()
@@ -710,9 +716,11 @@ public class TplEditorActivity extends Activity
     void onSpecOptions()
     {
     	ServiceJbKbd.inst.forceHide();
-        int rlist = R.layout.tpl_instr_list;
+		int lvl = R.layout.tpl_instr_list_dark;
+		if (!th.isDarkThemeApp())
+			lvl = R.layout.tpl_instr_list_light;
         final ArrayAdapter<String> ar = new ArrayAdapter<String>(this, 
-                                                    rlist,
+                                                    lvl,
                                                     getResources().getStringArray(R.array.tpl_spec_instructions)
                                                     );
         Dlg.customMenu(this, ar, ServiceJbKbd.inst.getString(R.string.tpl_spec_options), new st.UniObserver()

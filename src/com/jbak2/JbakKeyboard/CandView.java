@@ -1149,6 +1149,10 @@ public class CandView extends RelativeLayout
     }
     public void showPopupPanelInView(int yPos, int place)
     {
+    	// добавил 02.10.20 - не сработало...
+//    	if (st.kv()== null)
+//    		return;
+    	
 //      IBinder tok = st.kv().getWindowToken();
 //      if (tok==null) {
 ////    	  if (ServiceJbKbd.inst.mToken!=null)

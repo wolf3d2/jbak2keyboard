@@ -9,10 +9,13 @@ import java.util.Vector;
 import com.jbak2.JbakKeyboard.R;
 import com.jbak2.JbakKeyboard.st;
 import com.jbak2.ctrl.SameThreadTimer;
+import com.jbak2.ctrl.th;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.view.Gravity;
@@ -106,6 +109,9 @@ public abstract class DlgFileExplorer
 		init();
         
 	}
+    /**
+     * 
+     */
     @SuppressLint("NewApi")
 	public void init()
     {
@@ -116,6 +122,8 @@ public abstract class DlgFileExplorer
 			cur_max_hw = 300;
 		}
 		m_mainview = mact.getLayoutInflater().inflate(R.layout.dialog_file_explorer, null);
+//		if (!th.isDarkThemeApp())
+//			m_mainview.setBackgroundColor(Color.WHITE);
 		
 		tvcurpath = (TextView) m_mainview.findViewById(R.id.fe_lastpath);
 		tvcurpath.setVisibility(View.VISIBLE);
@@ -162,6 +170,11 @@ public abstract class DlgFileExplorer
 
 		
 		lv = (ListView) m_mainview.findViewById(R.id.fe_list);
+		if (th.isDarkThemeApp())
+			lv.setDivider(new ColorDrawable(Color.WHITE));
+		else
+			lv.setDivider(new ColorDrawable(Color.GRAY));
+		lv.setDividerHeight(2);
 //		lv.setOnScrollChangeListener(new OnScrollChangeListener() {
 //			
 //			@Override

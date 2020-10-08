@@ -17,6 +17,7 @@ import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.ctrl.IntEditor;
 import com.jbak2.ctrl.IntEditor.OnChangeValue;
+import com.jbak2.ctrl.th;
 import com.jbak2.perm.Perm;
 
 import android.app.Activity;
@@ -113,11 +114,11 @@ public class SetKbdActivity extends Activity {
 //	            		  );
 	            // жесты:
 	            // от левого края экрана к правому
-	            if (begX < ar_l&&mdy<150&&Math.abs(velX)>700) {//&&!page_boundary){
+	            if (dx > 0&&mdy<150&&Math.abs(velX)>100) {//&&!page_boundary){
 	            	setNextLayout(true);
 	            }
 	            // от правого к левому
-	            else if (begX > ar_r&&mdy<150&&Math.abs(velX)>700) {//&&!page_boundary){
+	            else if (dx < 0&&mdy<150&&Math.abs(velX)>100) {//&&!page_boundary){
 	            	setNextLayout(false);
 	            	
 	            }
@@ -165,6 +166,7 @@ public class SetKbdActivity extends Activity {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setTheme(th.theme_interface);
 		super.onCreate(savedInstanceState);
 		inst = this;
         if (!Perm.checkPermission(inst)) {
@@ -1034,8 +1036,10 @@ public class SetKbdActivity extends Activity {
 		}
 		if (arn==null)
 			return;
-		int rlist = R.layout.tpl_instr_list;
-		final ArrayAdapter<String> ad = new ArrayAdapter<String>(this, rlist, arn);
+		int lvl = R.layout.tpl_instr_list_dark;
+		if (!th.isDarkThemeApp())
+			lvl = R.layout.tpl_instr_list_light;
+		final ArrayAdapter<String> ad = new ArrayAdapter<String>(this, lvl, arn);
 		Dlg.customMenu(this, ad, tit, new st.UniObserver() {
 			@Override
 			public int OnObserver(Object param1, Object param2) {

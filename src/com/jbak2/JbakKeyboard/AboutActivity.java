@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jbak2.CustomGraphics.ColorsGradientBack;
 import com.jbak2.Dialog.Dlg;
+import com.jbak2.ctrl.th;
 import com.jbak2.web.Mail;
 import com.jbak2.web.SiteKbd;
 
@@ -27,6 +28,8 @@ public class AboutActivity extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		// тут светлая тема не нужна
+		//setTheme(ThemeApp.theme_interface);
         super.onCreate(savedInstanceState);
         inst = this;
         debug_on = 0;

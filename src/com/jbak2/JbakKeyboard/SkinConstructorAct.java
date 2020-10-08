@@ -29,6 +29,7 @@ import android.text.method.DigitsKeyListener;
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.st.IntEntry;
 import com.jbak2.ctrl.GlobDialog;
+import com.jbak2.ctrl.th;
 
 public class SkinConstructorAct extends Activity {
 	// сколько прибавлять к id поля et для кнопки пикера
@@ -64,6 +65,7 @@ public class SkinConstructorAct extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setTheme(th.theme_interface);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.skinconstructor);
 		inst = this;
@@ -399,7 +401,11 @@ public class SkinConstructorAct extends Activity {
 			for (int i = 0; i < arskinname.size(); i++) {
 				ars[i] = arskinname.get(i);
 			}
-			ArrayAdapter<String> ar = new ArrayAdapter<String>(this, R.layout.tpl_instr_list, ars);
+			int lvl = R.layout.tpl_instr_list_dark;
+			if (!th.isDarkThemeApp())
+				lvl = R.layout.tpl_instr_list_light;
+			//android.R.drawable.screen_background_light
+			ArrayAdapter<String> ar = new ArrayAdapter<String>(this, lvl, ars);
 
 			Dlg.customMenu(this, ar, inst.getString(R.string.selection), new st.UniObserver() {
 				@Override

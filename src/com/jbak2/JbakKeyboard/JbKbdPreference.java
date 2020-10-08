@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
@@ -25,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -35,12 +37,15 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +58,8 @@ import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
 import com.jbak2.ctrl.IntEditor;
+import com.jbak2.ctrl.Mainmenu;
+import com.jbak2.ctrl.th;
 import com.jbak2.perm.Perm;
 import com.jbak2.web.Mail;
 import com.jbak2.web.SiteKbd;
@@ -129,9 +136,176 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
             }
         }
     };
+    View.OnLongClickListener m_ClickLongListenerBtn = new View.OnLongClickListener() {
+		
+		@Override
+		public boolean onLongClick(View v) {
+            switch (v.getId())
+            {
+            case R.id.pref_btn_unload_kbd:
+            	String ar[] = new String[13];
+            	ar[0] = inst.getString(R.string.position)+": ≡₋";
+            	ar[1] = "≡- ";
+            	ar[2] = "≡⁻ ";
+            	ar[3] = "₋≡ ";
+            	ar[4] = "-≡ ";
+            	ar[5] = "⁻≡ ";
+            	
+            	ar[6] = inst.getString(R.string.color)+": "+inst.getString(R.string.pop_scr_fon_r);
+            	ar[7] = inst.getString(R.string.pop_scr_fon_g);
+            	ar[8] = inst.getString(R.string.pop_scr_fon_b);
+            	
+            	ar[9] = inst.getString(R.string.transparency)+ " 0%";
+            	ar[10] = "75%";
+            	ar[11] = "50%";
+            	ar[12] = "25%";
+            	
+            	
+    			int lvl = R.layout.tpl_instr_list_dark;
+    			if (!th.isDarkThemeApp())
+    				lvl = R.layout.tpl_instr_list_light;
+                final ArrayAdapter<String> adapt = new ArrayAdapter<String>(inst, 
+                		lvl,
+                        ar);
+                       
+
+            	Dlg.customMenu(inst, adapt, inst.getString(R.string.ime_settings), new st.UniObserver() {
+					
+					@Override
+					public int OnObserver(Object param1, Object param2) {
+		                int pos = ((Integer)param1).intValue();
+		                if (pos >= 0&&pos < 6) {
+		                	st.pref(inst).edit().putString(st.PREF_KEY_UNLOAD_BUTTON_POS, 
+		                			st.STR_ZERO+pos).commit();
+		                }
+		                else if (pos > 5&&pos < 9) {
+		                	st.pref(inst).edit().putString(st.PREF_KEY_UNLOAD_BUTTON_COLOR, 
+		                			st.STR_ZERO+pos).commit();
+		                }
+		                else if (pos > 8&&pos < 14) {
+		                	st.pref(inst).edit().putString(st.PREF_KEY_UNLOAD_BUTTON_ALPHA, 
+		                			st.STR_ZERO+pos).commit();
+		                }
+	                	setUnloadButtonSetting();
+						return 0;
+					}
+				});
+                return true;
+            }
+			return false;
+		}
+	};
+	
+	/** рисуем кнопку Выгрузить из памяти согласно настроек */
+	public void setUnloadButtonSetting()
+	{
+		if (mUnload==null)
+			return;
+		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)mUnload.getLayoutParams();
+//        tvexamlecolpar.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        tvexamlecolpar.addRule(RelativeLayout.BELOW, ID_COLOR_PICKER);
+		lp.removeRule(RelativeLayout.ALIGN_PARENT_TOP);
+		lp.removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		lp.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+		lp.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		lp.removeRule(RelativeLayout.CENTER_VERTICAL);
+		int pos = -1;
+		try {
+			pos = Integer.parseInt(st.pref(inst).getString(st.PREF_KEY_UNLOAD_BUTTON_POS, st.STR_ZERO));
+		} catch (Throwable e) {
+		}
+		switch (pos)
+		{
+		case 1:
+			lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			lp.addRule(RelativeLayout.CENTER_VERTICAL);
+			break;
+		case 2:
+			lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+			lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			break;
+		case 3:
+			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+			lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			break;
+		case 4:
+			lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			lp.addRule(RelativeLayout.CENTER_VERTICAL);
+			break;
+		case 5:
+			lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+			lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			break;
+		default:
+			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+			lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			break;
+		}
+//        LayoutInflater li = (LayoutInflater)inst.getSystemService(Service.LAYOUT_INFLATER_SERVICE);
+//        RelativeLayout ll = (RelativeLayout)li.inflate(R.layout.pref_view, null);
+//        ll.removeView(mUnload);
+//        
+//        mUnload = new Button(inst);
+//        mUnload.setText("bbb");
+		mUnload.setLayoutParams(lp);
+//		mUnload.
+//        ll.addView(mUnload);
+		
+		//inst.recreate();
+		int cb = 0;
+		int ct = 0;
+		pos = -1;
+		try {
+			pos = Integer.parseInt(st.pref(inst).getString(st.PREF_KEY_UNLOAD_BUTTON_COLOR, "6"));
+		} catch (Throwable e) {
+		}
+		switch (pos)
+		{
+		case 6:
+			cb = Color.RED;
+			ct = Color.WHITE;
+			break;
+		case 7:
+			cb = Color.GREEN;
+			ct = Color.BLACK;
+			break;
+		default:
+			cb = Color.BLUE;
+			ct = Color.WHITE;
+			break;
+		}
+		mUnload.setBackgroundColor(cb);
+		mUnload.setTextColor(ct);
+
+		pos = -1;
+		try {
+			pos = Integer.parseInt(st.pref(inst).getString(st.PREF_KEY_UNLOAD_BUTTON_ALPHA, "10"));
+		} catch (Throwable e) {
+		}
+		switch (pos)
+		{
+		case 10: // 75%
+			pos = 191;
+			break;
+		case 11: // 50%
+			pos = 127;
+			break;
+		case 12: // 25%
+			pos = 63;
+			break;
+		default: // 100% - непрозрачно
+			pos = 255;
+		}
+		cb = Color.argb(pos, Color.red(cb),Color.green(cb), Color.blue(cb));
+		ct = Color.argb(pos, Color.red(ct),Color.green(ct), Color.blue(ct));
+		mUnload.setBackgroundColor(cb);
+		mUnload.setTextColor(ct);
+	}
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setTheme(th.theme_interface);
 		if (ColorPicker.inst != null) {
 			ColorPicker.inst.finish();
 		}
@@ -279,12 +453,13 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		postOper();
 		mUnload = (Button)inst.findViewById(R.id.pref_btn_unload_kbd);
 		mUnload.setOnClickListener(m_ClickListenerBtn);
+		mUnload.setOnLongClickListener(m_ClickLongListenerBtn);
 		mUnload.setText(inst.getString(R.string.unload)+st.STR_LF+inst.getString(R.string.from_memory));
+		setUnloadButtonSetting();
 		//mUnload.setVisibility(View.VISIBLE);
 		Ads.count_failed_load = 0;
 		Ads.show(this, 1);
 	}
-
 	/**
 	 * Устанавливаем результат проверки на новую версию
 	 * 
@@ -961,7 +1136,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			}
 		} 
 		else if ("kbd_background_alpha".equals(k)) {
-			showAlpha();
+			showKbdAlpha();
 			return true;
 		} 
 		else if ("kbd_background_pict".equals(k)) {
@@ -1346,6 +1521,13 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				}
 			});
 		}
+		// устанавливаем тему приложения
+		else if (st.PREF_KEY_THEME_INTERFACE_APPLICATION.equals(key)) {
+			th.theme_interface = Integer.decode(sharedPreferences.getString(key, st.STR_NULL+th.DEF_THEME_APP_DARK));
+			th.setThemeApplication(th.theme_interface);
+			inst.recreate();
+		} 
+
 		if (st.PREF_KEY_DESC_LANG_KBD.equals(key))
 			showLastEditDeskKbdText();
 		else if (st.PREF_ENTER_PICT.equals(key))
@@ -1440,6 +1622,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	/** ��������� ���������� ������� */
 	void showIntervalsEditor() {
 		final View v = getLayoutInflater().inflate(R.layout.edit_intervals, null);
+		if (!th.isDarkThemeApp())
+			v.setBackgroundColor(Color.WHITE);
 		int max = 5000, min = 50;
 		// int steps[] = new int[]{50,100,100};
 		int steps[] = new int[] { 10, 10, 10 };
@@ -1772,7 +1956,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	// Dlg.CustomDialog(inst, v, inst.getString(R.string.ok),
 	// inst.getString(R.string.cancel), null, obs);
 	// }
-	void showAlpha() {
+	void showKbdAlpha() {
 		final View v = inst.getLayoutInflater().inflate(R.layout.edit_intervals, null);
 		int max = 10, min = 0;
 		int steps[] = new int[] { 1, 1, 1 };
@@ -1824,6 +2008,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 	void showAcCountWord() {
 		final View v = getLayoutInflater().inflate(R.layout.edit_intervals, null);
+		if (!th.isDarkThemeApp())
+			v.setBackgroundColor(Color.WHITE);
 		int max = 1000, min = 1;
 		int steps[] = new int[] { 1, 5, 20 };
 		final SharedPreferences p = st.pref(this);
@@ -1890,8 +2076,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 				case R.id.eadw_plus_tpl_button:
 					final String[] langs = Lang.getAlLocalelLang(2);
 					ServiceJbKbd.inst.forceHide();
-					int rlist = R.layout.tpl_instr_list;
-					final ArrayAdapter<String> ar = new ArrayAdapter<String>(inst, rlist, langs);
+					int lvl = R.layout.tpl_instr_list_dark;
+					if (!th.isDarkThemeApp())
+						lvl = R.layout.tpl_instr_list_light;
+					final ArrayAdapter<String> ar = new ArrayAdapter<String>(inst, lvl, langs);
 					Dlg.customMenu(inst, ar, inst.getString(R.string.dict_languages), new st.UniObserver() {
 						@Override
 						public int OnObserver(Object param1, Object param2) {
@@ -2073,6 +2261,8 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	void showACDefaultWord() {
 		final SharedPreferences p = st.pref(this);
 		final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+//		if (!th.isDarkThemeApp())
+//			((TextView) v.findViewById(R.id.eadw_title)).setTextColor(Color.WHITE);
 		final EditText et = (EditText) v.findViewById(R.id.eadw_edit);
 		View.OnClickListener clickListener = new View.OnClickListener() {
 			@Override
@@ -2177,7 +2367,12 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	void showAdditionalString() {
 		final SharedPreferences p = st.pref(this);
 		final View v = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+		if (!th.isDarkThemeApp())
+			v.setBackgroundColor(Color.WHITE);
 		((TextView) v.findViewById(R.id.eadw_title)).setText(R.string.gesture_popupchar_str1);
+//		if (!th.isDarkThemeApp())
+//			((TextView) v.findViewById(R.id.eadw_title)).setTextColor(th.getTexDefaultColor());
+
 		final EditText et = (EditText) v.findViewById(R.id.eadw_edit);
 		View.OnClickListener clickListener = new View.OnClickListener() {
 			@Override
@@ -2225,7 +2420,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		b = (Button) v.findViewById(R.id.eadw_plus_tpl_button);
 		b.setOnClickListener(clickListener);
 
-		String str = p.getString(st.PREF_AC_DEFKEY, st.AC_DEF_WORD);
+		String str = p.getString(st.SET_STR_GESTURE_DOPSYMB, st.AC_DEF_WORD);
 		et.setText(str);
 		st.showkbd(et, false);
 
@@ -2651,5 +2846,4 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			inst.recreate();
 		}
 	}
-
 }

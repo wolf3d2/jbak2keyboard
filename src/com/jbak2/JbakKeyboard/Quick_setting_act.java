@@ -7,6 +7,7 @@ import java.util.Locale;
 import com.jbak2.Dialog.Dlg;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.IniFile;
+import com.jbak2.ctrl.th;
 import com.jbak2.perm.Perm;
 import com.jbak2.web.SiteKbd;
 
@@ -40,6 +41,7 @@ public class Quick_setting_act extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quick_setting_act);
         inst = this;
@@ -151,8 +153,11 @@ public class Quick_setting_act extends Activity
            	ars1[3] = st.upFirstSymbol(new Locale("es").getDisplayName());
            	ars1[4] = st.upFirstSymbol(new Locale("uk").getDisplayName());
            	
-           	ArrayAdapter<String> ar1 = new ArrayAdapter<String>(this, 
-           			R.layout.tpl_instr_list,
+			int lvl = R.layout.tpl_instr_list_dark;
+			if (!th.isDarkThemeApp())
+				lvl = R.layout.tpl_instr_list_light;
+ArrayAdapter<String> ar1 = new ArrayAdapter<String>(this, 
+           			lvl,
                     ars1
                     );
             
@@ -225,8 +230,11 @@ public class Quick_setting_act extends Activity
         	ars[0] = inst.getString(R.string.set_key_ac_place_0);
         	ars[1] = inst.getString(R.string.set_key_ac_place_1);
         	ars[2] = inst.getString(R.string.set_key_ac_place_2);
+			int lvl1 = R.layout.tpl_instr_list_dark;
+			if (!th.isDarkThemeApp())
+				lvl1 = R.layout.tpl_instr_list_light;
            	ArrayAdapter<String> ar = new ArrayAdapter<String>(this, 
-           			R.layout.tpl_instr_list,
+           			lvl1,
                     ars
                     );
             

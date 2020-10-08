@@ -13,6 +13,7 @@ import com.jbak2.Dialog.Dlg;
 import com.jbak2.JbakKeyboard.JbKbd.LatinKey;
 import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.Font.FontArSymbol;
+import com.jbak2.ctrl.th;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -56,7 +57,8 @@ public class ShowTextAct extends Activity
 	public boolean changed = false;
 	
 	public boolean multilang = false;
-	
+	/** Цвета редактора - если true - белый фон, чёрные буквы. Иначе наоборот */
+	public boolean et_color= true;
 	// ключи для интента
 	/** ключ, перечисление флагов во входящем интенте */
 	public static final String FLAGS = "flags";
@@ -108,6 +110,7 @@ public class ShowTextAct extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_text_act);
         inst = this;
@@ -155,6 +158,8 @@ public class ShowTextAct extends Activity
         // настраиваем текст на кнопках
         Button btn = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            btn = (Button)llcont.findViewById(R.id.desc_btn_set_editor_color);
+            Font.setTextOnTypeface(btn, Font.FontArSymbol.PALETTE);
             btn = (Button)llcont.findViewById(R.id.desc_btn_sellang);
             Font.setTextOnTypeface(btn, Font.FontArSymbol.TRANSLATE);
             btn = (Button)llcont.findViewById(R.id.desc_btn_start);
@@ -195,7 +200,8 @@ public class ShowTextAct extends Activity
             btn = (Button)llcont.findViewById(R.id.desc_btn_sellang);
            	btn.setVisibility(View.GONE);
         }
-        
+        et_color = st.pref(inst).getBoolean(st.STA_COLOR_EDITTEXT, true);
+        setColorsEditor();
         hideSearchPanel();
         setButtonHeightAndSizeText();
         st.hidekbd();
@@ -240,6 +246,11 @@ public class ShowTextAct extends Activity
         case R.id.desc_btn_left_right:
         	setToolbarGravity(true);
             return;
+        case R.id.desc_btn_set_editor_color:
+        	et_color = !et_color;
+        	st.pref(inst).edit().putBoolean(st.STA_COLOR_EDITTEXT, et_color).commit();
+        	setColorsEditor();
+            return;
         case R.id.desc_btn_sellang:
         	final String[] lng = getArrayLangByPreFilename();
         	if (lng == null||lng.length == 0)
@@ -250,8 +261,11 @@ public class ShowTextAct extends Activity
             	ars[i] = new Locale(lng[i]).getDisplayName();
             	ars[i] = st.upFirstSymbol(ars[i]);
         	}
+			int lvl = R.layout.tpl_instr_list_dark;
+			if (!th.isDarkThemeApp())
+				lvl = R.layout.tpl_instr_list_light;
            	ArrayAdapter<String> ar = new ArrayAdapter<String>(this, 
-           			R.layout.tpl_instr_list,
+           			lvl,
                     ars
                     );
             Dlg.customMenu(inst, ar, 
@@ -606,7 +620,7 @@ public class ShowTextAct extends Activity
 	            	str = st.readAssetsTextFilename(inst, fname);
 	        	}
 	        	else if (fname.contains(st.STA_FILENAME_HELP_SPECINSTRUCTION)){
-	        		fname = st.STR_UNDERSCORING+getLangHelpSpecInstruction()+st.STA_FILENAME_HELP_SPECINSTRUCTION;
+	        		fname = st.STR_UNDERSCORING+getLangHelpDescFilename()+st.STA_FILENAME_HELP_SPECINSTRUCTION;
 	            	str = st.readAssetsTextFilename(inst, fname);
 	        	}
 	        	else if (fname.contains(st.STA_FILENAME_DIARY)){
@@ -637,7 +651,7 @@ public class ShowTextAct extends Activity
 	                }
 	    			st.help = null;
 	        	}
-	    		et.setBackgroundColor(Color.WHITE);
+	    		setColorsEditor();
 	        	if (str!=null) {
 	        		if (fname.contains(st.STA_FILENAME_DESC_KBD)) {
 	            		int ind = str.indexOf(LAST_EDITED_DESC_KBD);
@@ -737,7 +751,7 @@ public class ShowTextAct extends Activity
     	return in;
     }
 	/** возвращает язык выводимого desc_kbd.txt */    
-    public static String getLangHelpSpecInstruction()
+    public static String getLangHelpDescFilename()
     {
     	String out = Locale.getDefault().getLanguage();
     	if (st.lang_help_specinstruction.contains(st.STR_3TIRE)){
@@ -769,6 +783,18 @@ public class ShowTextAct extends Activity
     	} else
     		out = st.lang_help_specinstruction;
     	return out;
+    }
+    public void setColorsEditor()
+    {
+    	if (et_color) {
+    		et.setTextColor(Color.BLACK);
+    		et.setBackgroundColor(Color.WHITE);
+    		load_progress.setBackgroundColor(Color.WHITE);
+    	} else {
+    		et.setTextColor(Color.WHITE);
+    		et.setBackgroundColor(Color.BLACK);
+    		load_progress.setBackgroundColor(Color.BLACK);
+    	}
     }
 
 }

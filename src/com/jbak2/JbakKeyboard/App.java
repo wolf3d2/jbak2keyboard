@@ -2,6 +2,7 @@ package com.jbak2.JbakKeyboard;
 
 import java.util.Locale;
 
+import com.jbak2.ctrl.th;
 import com.jbak2.web.SiteKbd;
 
 import android.app.Application;
@@ -16,9 +17,12 @@ public class App extends Application {
 	private String lang;
 	public static String DEF = "default";
 	public static String PREF_SYSTEM_LANG = "system_lang";
+
 	@Override
 	public void onCreate() {
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		th.theme_interface = Integer.decode(preferences.getString(st.PREF_KEY_THEME_INTERFACE_APPLICATION, st.STR_NULL+th.DEF_THEME_APP_DARK));
+		th.setThemeApplication(th.theme_interface);
 		lang=getResources().getConfiguration().locale.getLanguage();//.getCountry();
 		preferences.edit().putString(PREF_SYSTEM_LANG, lang).commit();
 		lang = preferences.getString(st.PREF_KEY_LANG_APP, DEF);	
@@ -52,4 +56,5 @@ public class App extends Application {
 		config.locale = locale;
 		getBaseContext().getResources().updateConfiguration(config, null);     
     }
+		
 }

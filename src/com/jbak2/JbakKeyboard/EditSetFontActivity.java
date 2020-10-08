@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.jbak2.ctrl.Font;
 import com.jbak2.ctrl.IntEditor;
 import com.jbak2.ctrl.IntEditor.OnChangeValue;
+import com.jbak2.ctrl.th;
 
 public class EditSetFontActivity extends Activity
 {
@@ -79,6 +80,7 @@ public class EditSetFontActivity extends Activity
     @Override
     public void onCreate(android.os.Bundle savedInstanceState) 
     {
+		setTheme(th.theme_interface);
         super.onCreate(savedInstanceState);
         inst = this;
         m_prefKey = getIntent().getStringExtra(EXTRA_PREF_KEY);
