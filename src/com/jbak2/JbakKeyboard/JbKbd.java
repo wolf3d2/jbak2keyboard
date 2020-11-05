@@ -602,23 +602,24 @@ public class JbKbd extends Keyboard {
         	try{
                 if (st.has(st.kv().m_state, JbKbdView.STATE_SOUNDS))
                 	ServiceJbKbd.inst.m_audio.playSoundEffect(AudioManager.FX_KEY_CLICK, ServiceJbKbd.inst.m_soundVolume);
-	        	if(t.startsWith("$$"))
-	        	{
-	        		kb = new Keybrd(st.getKeybrdForLangName(t.substring(2)));
-	        		kb.lang = st.getLangByName(IKeyboard.LANG_SYMBOL_KBD);
-	        	}
-	        	else if(t.startsWith("$"))
-	        	{
-	        		kb = new Keybrd(t.substring(1), R.string.kbd_name_qwerty);
-//	        		kb.lang = st.getLangByName(st.getCurLang());
-	        	}
-	        	else
-	        	{
-	        		if(!t.startsWith(st.STR_SLASH))
-	        			t = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER+st.STR_SLASH+t;
-	        		kb = new Keybrd(IKeyboard.KBD_SYM, st.getLangByName(IKeyboard.LANG_SYMBOL_KBD), R.xml.kbd_empty, R.string.kbd_name_sym_edit);
-	        		kb.path = t;
-	        	}
+                kb = JbKbd.getKeybrdByName(t);
+//	        	if(t.startsWith("$$"))
+//	        	{
+//	        		kb = new Keybrd(st.getKeybrdForLangName(t.substring(2)));
+//	        		kb.lang = st.getLangByName(IKeyboard.LANG_SYMBOL_KBD);
+//	        	}
+//	        	else if(t.startsWith("$"))
+//	        	{
+//	        		kb = new Keybrd(t.substring(1), R.string.kbd_name_qwerty);
+////	        		kb.lang = st.getLangByName(st.getCurLang());
+//	        	}
+//	        	else
+//	        	{
+//	        		if(!t.startsWith(st.STR_SLASH))
+//	        			t = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER+st.STR_SLASH+t;
+//	        		kb = new Keybrd(IKeyboard.KBD_SYM, st.getLangByName(IKeyboard.LANG_SYMBOL_KBD), R.xml.kbd_empty, R.string.kbd_name_sym_edit);
+//	        		kb.path = t;
+//	        	}
 	        	st.kv().setKeyboard(st.loadKeyboard(kb));
 
 	        	return true;
@@ -666,4 +667,35 @@ public class JbKbd extends Keyboard {
             return false;
         }
     }
+    /**  возвращает Keybrd раскладки, по содержимому name */
+    public static Keybrd getKeybrdByName(String name)
+    {
+    	Keybrd kb = null;
+    	try{
+        	if(name.startsWith("$$"))
+        	{
+        		kb = new Keybrd(st.getKeybrdForLangName(name.substring(2)));
+        		kb.lang = st.getLangByName(IKeyboard.LANG_SYMBOL_KBD);
+        	}
+        	else if(name.startsWith("$"))
+        	{
+        		kb = new Keybrd(name.substring(1), R.string.kbd_name_qwerty);
+//        		kb.lang = st.getLangByName(st.getCurLang());
+        	}
+        	else
+        	{
+        		if(!name.startsWith(st.STR_SLASH))
+        			name = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER+st.STR_SLASH+name;
+        		kb = new Keybrd(IKeyboard.KBD_SYM, st.getLangByName(IKeyboard.LANG_SYMBOL_KBD), R.xml.kbd_empty, R.string.kbd_name_sym_edit);
+        		kb.path = name;
+        	}
+
+        	return kb;
+    	}
+    	catch(Throwable e)
+    	{
+    	}
+    	return kb;
+    }
+    
 }

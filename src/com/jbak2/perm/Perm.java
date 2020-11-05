@@ -58,7 +58,7 @@ public class Perm {
 		int res = -1;
 		for (int i=0;i<ss.length;i++) {
 			res = act.checkCallingOrSelfPermission(ss[i]); 
-			if (res!=PackageManager.PERMISSION_GRANTED)
+			if (res!=PackageManager.PERMISSION_GRANTED) {
 				if (ss[i].contains(PERM_SYSTEM_ALERT)) {
 					if (Settings.canDrawOverlays(act)) {
 						continue;
@@ -66,6 +66,7 @@ public class Perm {
 				return false;
 				} else
 					return false;
+			}
 		}
 		return true;
 	}

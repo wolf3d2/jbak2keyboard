@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import com.jbak2.JbakKeyboard.Translit;
+import com.jbak2.JbakKeyboard.IKeyboard.Keybrd;
 import com.jbak2.JbakKeyboard.R;
 import com.jbak2.ctrl.GlobDialog;
 import com.jbak2.ctrl.SearchRegex;
@@ -846,6 +847,20 @@ public class Templates {
 						}
 						instr = Instructions[16];
 						return;
+					case 17: // runKeyboard
+						if (mci.isInited())
+							mic.endBatchEdit();
+						instr = getTextInBrackets(instr);
+						Keybrd kb = JbKbd.getKeybrdByName(instr);
+						if (kb == null)
+							return;
+						if (st.kv() == null)
+							return;
+						try {
+				        	st.kv().setKeyboard(st.loadKeyboard(kb));
+						} catch (Throwable e) {
+						}
+						return;
 					} 
 					if (mrepl == null) {
 						pos = instr.length() - 1;
@@ -884,7 +899,22 @@ public class Templates {
 		mic = null;
 		mci = null;
 	}
-
+/** возвращает то, что в квадратных скобках, или пустую строку <br>
+ * Если закрывающей скобки нет, то возвращает строку до конца входной строки */
+	String getTextInBrackets(String text)
+	{
+		String in = text;
+		int is = in.indexOf("[");
+		if (is < 0)
+			return st.STR_NULL;
+		int es = in.indexOf("]", is);
+		if (es < 0)
+			return in.substring(is+1);
+		in = in.substring(is+1,es);
+//		else if (es > -1)
+//				in = in.substring(is+1, es);
+		return in;
+	}
 	/**
 	 * обрабатываем и возвращаем массив значений параметров для специнструкции
 	 * program:
@@ -1491,7 +1521,8 @@ public class Templates {
 			"selToPos", 
 			SPEC_INSTR_PROGRAM, 
 			"codes",
-			"selToUrl"
+			"selToUrl",
+			"runKeyboard"
 			};
 	/** константа для специнструкции selReplace */
 	public static final String STR_SEARCH = "@SEARCH:";

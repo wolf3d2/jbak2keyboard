@@ -165,6 +165,30 @@ public class Font {
 		public static final char LIST_NUMBER = 'ʬ';
 		public static final char VESI = 'ʭ';
 		public static final char URL = 'ʮ';
+//!!! --- PART2 ---
+		public static final char FONT_PART2 = 'ʯ';
+		
+		public static final char SEARCH_REPLACE = 'ᄀ';
+		public static final char BLACK_WHITE_CIRCLE = 'ᄁ';
+
+		public static final char SHARE_COMPUTERS = 'ᄂ';
+		public static final char SHARE_MESSAGE = 'ᄃ';
+		public static final char SPIDOMETER = 'ᄄ';
+		public static final char PAGE_EMPTY = 'ᄅ';
+		public static final char PAGE_PLUS = 'ᄆ';
+		public static final char PAGE_MINUS = 'ᄇ';
+		public static final char PAGE_CODE = 'ᄈ';
+		public static final char PAGE_FULL = 'ᄉ';
+
+		public static final char PAGE_FULL_LIST = 'ᄊ';
+		public static final char PAGE_EDIT = 'ᄋ';
+		public static final char PAGE_RECORD = 'ᄌ';
+		public static final char SMARTPHONE = 'ᄍ';
+		public static final char BOXS = 'ᄎ';
+		public static final char CHIP = 'ᄏ';
+		public static final char MSG_OVAL = 'ᄐ';
+		public static final char MSG_RECTANGLE = 'ᄑ';
+
 //		public static final char  = '';
 /** НЕ ЗАБЫВАТЬ ДОБАВЛЯТЬ новые символы в методе <br>
 		createArraySymbolOfFont() */
@@ -267,9 +291,27 @@ public class Font {
 		vch.add(st.STR_NULL+FontArSymbol.LIST_POINT);
 		vch.add(st.STR_NULL+FontArSymbol.LIST_NUMBER);
 		vch.add(st.STR_NULL+FontArSymbol.VESI);
-
 		vch.add(st.STR_NULL+FontArSymbol.URL);
+		vch.add(st.STR_NULL+FontArSymbol.SEARCH_REPLACE);
+		vch.add(st.STR_NULL+FontArSymbol.BLACK_WHITE_CIRCLE);
 
+		vch.add(st.STR_NULL+FontArSymbol.SHARE_COMPUTERS);
+		vch.add(st.STR_NULL+FontArSymbol.SHARE_MESSAGE);
+		vch.add(st.STR_NULL+FontArSymbol.SPIDOMETER);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_EMPTY);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_PLUS);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_MINUS);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_CODE);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_FULL);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_FULL_LIST);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_EDIT);
+		vch.add(st.STR_NULL+FontArSymbol.PAGE_RECORD);
+		vch.add(st.STR_NULL+FontArSymbol.SMARTPHONE);
+		vch.add(st.STR_NULL+FontArSymbol.BOXS);
+		vch.add(st.STR_NULL+FontArSymbol.CHIP);
+		vch.add(st.STR_NULL+FontArSymbol.MSG_OVAL);
+		vch.add(st.STR_NULL+FontArSymbol.MSG_RECTANGLE);
+		
 		char[] ar = new char[vch.size()];
 		for (int i = 0; i < vch.size(); i++) {
 			ar[i] = vch.get(i).charAt(0);
@@ -343,7 +385,7 @@ public class Font {
 			tv.setId(pos);
 			tv.setOnClickListener(m_listener);
 			tv.setOnLongClickListener(m_longListener);
-			tv.setTextSize(40);
+			tv.setTextSize(30);
 			tv.setTypeface(tf);
 			if (layout_dark_color)
 				tv.setTextColor(Color.WHITE);

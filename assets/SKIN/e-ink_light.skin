@@ -1,0 +1,21 @@
+// E-ink White & Black
+// made by Proctocrator
+KeyboardBackgroundStartColor=0xffffffff
+KeyBackStartColor=0xffffffff
+SpecKeyBackPressedStartColor=0xffffffff
+SpecKeyBackStartColor=0xff000000
+KeyBackPressedStartColor=0xff000000
+KeyTextColor=0xff000000
+KeySymbolColor=0xff000000
+SpecKeyTextPressedColor=0xff000000
+SpecKeySymbolPressedColor=0xff000000
+SpecKeyTextColor=0xffffffff
+SpecKeySymbolColor=0xffffffff
+KeyTextPressedColor=0xffffffff
+KeySymbolPressedColor=0xffffffff
+KeyStrokeStartColor=0xff000000
+SpecKeyStrokeStartColor=0xff000000
+KeyPressedStrokeStartColor=0xff000000
+KeyGapSize=4
+KeyBackCornerX=8
+KeyBackCornerY=8

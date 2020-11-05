@@ -429,7 +429,7 @@ public class SetKbdActivity extends Activity {
 		st.pref().edit().putInt(st.SET_KBD_BACK_COL, st.set_kbdact_backcol).commit();
 		m_kbd.setOnKeyboardActionListener(null);
 		if (ServiceJbKbd.inst != null)
-			ServiceJbKbd.inst.reinitKeyboardView();
+			ServiceJbKbd.inst.reinitKeyboardView(false);
 		BitmapCachedGradBack.clearAllCache();
 		show_kbd_land= false;
 		super.onBackPressed();
@@ -1197,7 +1197,7 @@ public class SetKbdActivity extends Activity {
 		case st.SET_SELECT_SKIN:
 			m_kbd.setOnKeyboardActionListener(null);
 			if (ServiceJbKbd.inst != null)
-				ServiceJbKbd.inst.reinitKeyboardView();
+				ServiceJbKbd.inst.reinitKeyboardView(false);
 			BitmapCachedGradBack.clearAllCache();
 			on_user_leave_hint = true;
 			break;

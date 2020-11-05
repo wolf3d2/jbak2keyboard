@@ -37,6 +37,7 @@ public class Runapp extends Activity
 	ProgressBar load_progress = null;
 	int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
 	static Runapp inst = null;
+	int text_color = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
@@ -50,6 +51,10 @@ public class Runapp extends Activity
         load_progress = (ProgressBar) findViewById(R.id.runapp_load_progress);
         load_progress.setVisibility(View.GONE);
 
+        if (th.isDarkThemeApp())
+        	text_color = Color.CYAN;
+        else
+        	text_color = Color.BLUE;
 	    st.hidekbd();
 	    createView();
         // показ рекламы
@@ -387,11 +392,11 @@ public class Runapp extends Activity
 		  llview_ll_all = (LinearLayout) findViewById(R.id.runapp_ll_all);
 	      @SuppressWarnings("deprecation")
 	      LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
-	    		  LayoutParams.FILL_PARENT , wrapContent);
+	    		  LayoutParams.MATCH_PARENT , wrapContent);
 	      lParams.gravity = Gravity.LEFT|Gravity.TOP;
 
 	      Spannable stext = new SpannableString(text);
-    	  stext.setSpan(new ForegroundColorSpan(Color.CYAN), 0, text.indexOf(st.STR_LF), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    	  stext.setSpan(new ForegroundColorSpan(text_color), 0, text.indexOf(st.STR_LF), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     	  stext.setSpan(new  ForegroundColorSpan(Color.GREEN), text.indexOf(st.STR_LF)+1,text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 	      TextView tv = new TextView(this);
@@ -450,16 +455,24 @@ public class Runapp extends Activity
 	    	    }
 	    	 }
 	      );
+// разделяющая линия	    	
 	      TextView tv_str = new TextView(this);
 	      tv_str.setGravity(Gravity.CENTER_HORIZONTAL);
-	      tv_str.setText("---");
+	        if (th.isDarkThemeApp())
+	  	      tv_str.setBackgroundColor(Color.WHITE);
+	        else
+	  	      tv_str.setBackgroundColor(Color.BLACK);
+	      tv_str.setLayoutParams(new LinearLayout.LayoutParams(
+  				LayoutParams.MATCH_PARENT, 2));
+//		tv_str.setPadding(30, 10, 30, 10);
+//	      tv_str.setText("---");
 	      if (rejim == 1){
 		  	  llview_ll_favorite.addView(tv, lParams);
-		  	  llview_ll_favorite.addView(tv_str, lParams);
+		  	  llview_ll_favorite.addView(tv_str);
 	      } 
 	      else if (rejim == 2){
 		  	  llview_ll_all.addView(tv, lParams);
-		  	  llview_ll_all.addView(tv_str, lParams);
+		  	  llview_ll_all.addView(tv_str);
 	      }
 	}
 

@@ -787,8 +787,13 @@
     <string name="notation_not_number">Texto en el portapapeles debe especificarse como un número, y el número debe ser entero, positivo y menos de 10 caracteres (decimal)</string>
 	<string name="notation_insert_num_on_char">Вставить как символ utf8</string>
     
-    <string name="search">Búsqueda</string>
-    <string name="ok">OK</string>
+<!-- Title for ShowTextAct activity -->
+	<string name="replace">Reemplazar</string>
+	<string name="all">Todos</string>
+	<string name="relace_all_toast">Сделано замен</string>
+	
+	<string name="search">Búsqueda</string>
+	<string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
@@ -814,6 +819,8 @@
     <string name="open_with">para abrir con</string>
     <string name="position">Позиция</string>
     <string name="color">Color</string>
+    <string name="not_found">Extraviado</string>
+    
     <string name="sel_del">Borrar de forma selectiva</string>
     <string name="rewrite_question">Archivo ya existe.\n¿Desea reemplazarlo?</string>
     <string name="settings_saved">¡Configuraciones se han guardado!</string>
@@ -868,6 +875,7 @@
         <item><b>$program</b> - ejecución de la secuencia de plantillas</item>
         <item><b>$codes</b> - ejecuta los códigos especificados de forma secuencial </item>
         <item><b>$selToUrl</b> - открывает браузер на указанном в скобках url и передаёт в строке адреса выделенный и/или скопированный текст (если они указаны и есть)</item>
+        <item><b>$runKeyboard</b> - запускает xml раскладку клавиатуры, с названием, указанным в скобках, по таким-же правилам, как и для тегов keyboard и longKeyboard для клавиши</item>
         </string-array>
 
     <!-- список символов разделения для специнструкции $insertsymbol -->

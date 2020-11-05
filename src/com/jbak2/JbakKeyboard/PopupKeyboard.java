@@ -643,7 +643,9 @@ public class PopupKeyboard
         int id =1;
         
         
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         for (int i=0;i<txt.length;i++) {
         	if (txt[i].trim().length() == 0){
         		TextView tv = new TextView(m_c);

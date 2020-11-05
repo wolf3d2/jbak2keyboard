@@ -1,7 +1,9 @@
 package com.jbak2.JbakKeyboard;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -1314,6 +1316,7 @@ public class st extends IKeyboard implements IKbdSettings
     		com_menu.showQuickSelectSkin(c);
     		return true;
     	case st.CMD_SHOW_USER_HIDE_LAYOUT: // показываем скрытые раскладки юзера
+    		com_menu.close();
     		com_menu.showUserHideLayout();
     		return true;
     	case st.CMD_SHOW_ADDITIONAL_HIDE_LAYOUT: // показываем дополнительные раскладки
@@ -2969,6 +2972,8 @@ public class st extends IKeyboard implements IKbdSettings
 	}
  	/** выход из приложения с выгрузкой из памяти */
 	public static void exitApp() {
+// в MWbrowser сделано так:		
+//		android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
 	}
 	/** возвращает высоту статус бара */
@@ -3115,7 +3120,7 @@ public class st extends IKeyboard implements IKbdSettings
    		File ff = new File(filename);
    		 return st.readFileString(ff);
    	 } catch(Throwable e){}
-   	 return null;
+   	 return st.STR_NULL;
    }
     /** Возвращает текст из файла f или null, если произошла ошибка<br>
     *@param f Файл для чтения, текст должен быть в кодировке UTF-8
@@ -3135,7 +3140,7 @@ public class st extends IKeyboard implements IKbdSettings
     		 fi.close();
     		 return new String(buf, start, buf.length-start);
     	 } catch(Throwable e){}
-    	 return null;
+    	 return st.STR_NULL;
     }
 //    /** читаем содержимое файла из assets
 //    * @param fname - полное имя файла с путём в asset */
@@ -3179,22 +3184,85 @@ public class st extends IKeyboard implements IKbdSettings
 //			info = new StringBuilder(String.format(Locale.ENGLISH,
 //				"\n\n%s", "О "+ getAppNameAndVersion(c)));
 		String delim = ": ";
-		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","Application",
+		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","APP",
 				delim, st.STR_NULL,
 				st.getAppNameAndVersion(c)));
-		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","Device locale",
+		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","LOCALE",
 				delim, st.STR_NULL,
 				Locale.getDefault().getLanguage()));
-		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","Os",
+		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","OS",
 				delim, "Android ",
 				Build.VERSION.RELEASE));
-		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","Manufacture",
+		info.append(String.format(Locale.ENGLISH, "%s%s%s%s\n","MANUFACTURE",
 				delim, st.STR_NULL,
 				Build.MANUFACTURER));
-		info.append(String.format(Locale.ENGLISH, "%s%s%s\n","Device",
+		info.append(String.format(Locale.ENGLISH, "%s%s%s\n","DEVICE",
 				delim, Build.MODEL));
-
+		// CPU info
+		
+		/** cpu name */
+		String cn = "Hardware";
 		String str = st.STR_NULL;
+		String procCpuInfo = "/proc/cpuinfo";
+		String temp;
+		int readBlockSize = 8192;
+		try {
+			FileReader fileReader = new FileReader(procCpuInfo);
+			BufferedReader bufferedReader = new BufferedReader(fileReader, readBlockSize);
+			while ((temp = bufferedReader.readLine()) != null) {
+				str +=temp+st.STR_LF;
+			}
+		} catch (IOException e) {
+		}
+
+		// пытаемся выяснить модель процессора
+		if (!str.isEmpty()) {
+			//str = str.toLowerCase();
+			int ss = str.indexOf(cn);
+			int se = 0;
+			if (ss > -1) {
+				se = str.indexOf(st.STR_LF, ss+1);
+				if (se > -1)
+					str = str.substring(ss+cn.length(), se);
+				else
+					str = str.substring(ss+cn.length());
+			} else {
+				cn = "model name";
+				ss = str.indexOf(cn);
+				if (ss > -1) {
+					se = str.indexOf(st.STR_LF, ss+1);
+					if (se > -1)
+						str = str.substring(ss+cn.length(), se);
+					else
+						str = str.substring(ss+cn.length());
+				} else {
+					str = st.STR_3TIRE;
+				}
+			}
+			info.append(String.format(Locale.ENGLISH, "%s%s%s\n","CPU",
+					delim, str));
+		}
+//		try {
+//			String procCpuInfo = "/proc/cpuinfo";
+//			String temp = st.STR_NULL;
+//			int readBlockSize = 8192;
+//			try {
+//				FileReader fileReader = new FileReader(procCpuInfo);
+//				BufferedReader bufferedReader = new BufferedReader(fileReader, readBlockSize);
+//				while ((temp = bufferedReader.readLine()) != null) {
+//					out += temp+st.STR_LF;
+//				}
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//
+//		} catch (NumberFormatException e) {
+//			// TODO: handle exception
+//		}
+//		info.append(String.format(Locale.ENGLISH, "%s%s%s\n","CPU",
+//				delim, out));
+
+		
 		// размер диспленя
 		try {
 			str = "(";
@@ -3216,7 +3284,7 @@ public class st extends IKeyboard implements IKbdSettings
 		}
 		if (str.length() > 0)
 			info.append(String.format(Locale.ENGLISH, "%s%s%s\n",
-				"Display", delim, str));
+				"DISPLAY", delim, str));
 
 		// размеры RAM
 		str = st.STR_NULL;
@@ -3313,5 +3381,21 @@ public class st extends IKeyboard implements IKbdSettings
     	System.out.println("test"); 
 
     }
-  
+    /** Вставляет text в et в текущую позицию курсора. <br> 
+     * Выделенный текст заменяется */
+    public static boolean insertTextOnCursorPosition(EditText et, String text) {
+    	if (et == null)
+    		return false;
+    	if (text!=null&&text.length()>0) {
+    		int ss = Math.max(et.getSelectionStart(), 0); 
+    		int se = Math.max(et.getSelectionEnd(), 0); 
+    		et.getText().replace(Math.min(ss, se), 
+    				Math.max(ss, se), text, 0, text.length());
+    		if (ss != se)
+    			et.setSelection(ss+text.length());
+    		return true;
+    	}
+    	return false;
+    }
+ 
 }

@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.view.Gravity;
@@ -915,6 +916,10 @@ public class com_menu
     	}
         String path = st.getSettingsPath()+CustomKeyboard.KEYBOARD_FOLDER;
         final Vector<File> arf = st.getFilesByStartText(IKeyboard.LANG_HIDE_LAYOUT+st.STR_UNDERSCORING, path, st.EXT_XML);
+    	if (arf==null||arf.size()<1) {
+    		st.toast(R.string.not_found);
+    		return;
+    	}
 
     	st.help = st.STR_NULL;
     	final com_menu menu = new com_menu();
@@ -1256,21 +1261,22 @@ public class com_menu
 //    				com_menu.close();
 //                    return 0;
 //                }
-                int rez = ar.get(pos).code;
+               final  int rez = ar.get(pos).code;
         		if (ServiceJbKbd.inst!=null){
         			try {
             			InputConnection ic = ServiceJbKbd.inst.getCurrentInputConnection();
-            			String buf = ic.getSelectedText(0).toString();
-            			if (buf!=null&&buf.length()>0) {
+            			CharSequence cs = ic.getSelectedText(0);
+            			//String kbuf = ic.getSelectedText(0).toString();
+            			if (cs!=null&&cs.length()>0) {
             				String str = st.STR_NULL;
-            				for (int i=0;i<buf.length();i++) {
-            					str += st.STR_NULL+buf.charAt(i)+ (char) rez;
+            				for (int i=0;i<cs.length();i++) {
+            					str += st.STR_NULL+cs.charAt(i)+ (char) rez;
             				}
             				ServiceJbKbd.inst.onText(str);
             			} else
             				ServiceJbKbd.inst.onKey(rez, new int[]{});
                 		ServiceJbKbd.inst.processCaseAndCandidates();
-						
+                		setKeycodeHandler(rez);
 					} catch (Throwable e) {
 					}
         		}
@@ -1279,6 +1285,16 @@ public class com_menu
 				return 0;
 			}
 		}, false);
+    }
+    /** Пишем число в индикатор keyCode в фоне */
+    public static void setKeycodeHandler(final int num) {
+		if (ServiceJbKbd.inst!=null) {
+		    new Handler().postDelayed(new Runnable() {
+		    	public void run() {
+					ServiceJbKbd.inst.m_candView.setKeycode(num);
+		        }
+		    }, 150);
+		}
     }
     /** Функция создаёт меню для мультибуфера обмена */    
     public static boolean showClipboard(boolean fl_closemenu)
@@ -1360,9 +1376,10 @@ public class com_menu
                 Cursor c = st.stor().getClipboardCursor();
                 if(c==null)
                     return 0;
+                String cp = null;
                 try{
                     c.move(0-id);
-                    String cp = c.getString(0);
+                    cp = c.getString(0);
                     ServiceJbKbd.inst.onText(cp);
                     if (st.fl_enter_key)
                         ServiceJbKbd.inst.sendKeyChar(st.STR_LF.charAt(0));
@@ -1373,15 +1390,17 @@ public class com_menu
 //                      	ClipbrdService.inst.checkString(cp);
                 }
                 catch (Throwable e) {
-                	st.logEx(e);
                 }
                 if (close_menu) {
                 	if (me!=null){
                     	delete(me.date);
                     	menu.showClipboard(true);                    
                 	}
-                } else
+                } else {
                 	menu.close();
+                	if (cp!=null&cp.length() == 1)
+                		setKeycodeHandler(cp.charAt(0));
+                }
                 return 0;
             }
         };

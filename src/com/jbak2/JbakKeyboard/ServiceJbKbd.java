@@ -344,7 +344,24 @@ public class ServiceJbKbd extends InputMethodService
 		super.onDestroy();
 		st.exitApp();
 	}
-
+	boolean cur_keyboard = false;
+	public void reinitKeyboardView(boolean curKbd) {
+		if (curKbd) {
+	        Keybrd cur = st.getCurQwertyKeybrd();
+	        JbKbd kb = st.curKbd();
+	        if(kb!=null&&JbKbdView.inst!=null&&!(kb==null||kb.kbd==null))
+	        {
+	            JbKbdView.inst.setKeyboard(kb);
+	            return;
+	        }
+	        if(cur!=null&&JbKbdView.inst!=null) {
+		        JbKbdView.inst.setKeyboard(st.loadKeyboard(cur));
+				return;
+	        	
+	        }
+		}
+		setInputView(onCreateInputView());
+	}
 	/** Стартует ввод */
 	@Override
 	public View onCreateInputView() {
@@ -352,6 +369,15 @@ public class ServiceJbKbd extends InputMethodService
 		JbKbdView.inst.setOnKeyboardActionListener(this);
 		st.setQwertyKeyboard();
 		return JbKbdView.inst;
+	}
+
+	@Override
+	public void setInputView(View view) {
+		if (view instanceof JbKbdView) {
+		} else {
+			removeCandView();
+		}
+		super.setInputView(view);
 	}
 
 	/** Должен вернуть просмотр кандидатов или null */
@@ -435,7 +461,7 @@ public class ServiceJbKbd extends InputMethodService
 		m_textAfterCursor = null;
 		m_textBeforeCursor = null;
 		if (JbKbdView.inst == null)
-			reinitKeyboardView();
+			reinitKeyboardView(false);
 		int var = attribute.inputType & EditorInfo.TYPE_MASK_VARIATION;
 		checkSuggestType(attribute);
 // старое положение		
@@ -614,6 +640,8 @@ public class ServiceJbKbd extends InputMethodService
 //	}
 	/** флаг, что диалог оценки на экране */
 	boolean rate_dialog = false;
+	
+	/** (УЖЕ НЕ ИСПОЛЬЗУЕТСЯ) Отзыв на маркете */
 	public void rateDialog(final IniFile inifile) {
 		rate_dialog = true;
 		DlgPopupWnd dpw = new DlgPopupWnd(inst);
@@ -1072,7 +1100,7 @@ public class ServiceJbKbd extends InputMethodService
 				}
 				fl_newvers = false;
 				if (JbKbdView.inst != null)
-					reinitKeyboardView();
+					reinitKeyboardView(false);
 				processCaseAndCandidates();
 				return true;
 			} 
@@ -1089,14 +1117,12 @@ public class ServiceJbKbd extends InputMethodService
 		} 
 		else if (DlgPopupWnd.inst != null) {
 			DlgPopupWnd.inst.dismiss();
-			if (rate_dialog) {
-				rate_dialog = false;
-				if (ini!=null) {
-//					long ln = ini.RATE_NEGATIVE_TIME;
-//					ln += curtime;
-					ini.setParam(ini.START_TIME, st.STR_NULL + (curtime+ini.RATE_NEGATIVE_TIME));
-				}
-			}
+//			if (rate_dialog) {
+//				rate_dialog = false;
+//				if (ini!=null) {
+//					ini.setParam(ini.START_TIME, st.STR_NULL + (curtime+ini.RATE_NEGATIVE_TIME));
+//				}
+//			}
 
 			return true;
 		}
@@ -1137,11 +1163,13 @@ public class ServiceJbKbd extends InputMethodService
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (JbKbdView.inst != null && JbKbdView.inst.m_pk.fl_popupcharacter_window) {
 				JbKbdView.inst.m_pk.close();
+				//st.toast("onKeyUp: JbKbdView.inst");
 				return true;
 			}
 			if (GlobDialog.gbshow) {
 				GlobDialog.inst.finish();
 				st.showkbd();
+				//st.toast("onKeyUp: GlobDialog.inst");
 				// m_bBackProcessed = false;
 				return true;
 			} else {
@@ -1150,6 +1178,8 @@ public class ServiceJbKbd extends InputMethodService
 			}
 			boolean ret = m_bBackProcessed;
 			m_bBackProcessed = false;
+			//st.toast("onKeyUp: all");
+
 			return ret;
 		}
 		if ((isInputViewShown() || m_volumeKeyTimer != null) && m_volumeKeys > 0
@@ -1549,6 +1579,8 @@ public class ServiceJbKbd extends InputMethodService
 //			ic.deleteSurroundingText(len, 0);
 //			ic.endBatchEdit();
 //			processCaseAndCandidates();
+		} else if (primaryCode == st.GESTURE_ADDITIONAL_SYMBOL1) {
+			st.kbdCommand(primaryCode);
 		} else if (primaryCode <= -500 && primaryCode >= -519) {
 			st.kbdCommand(primaryCode);
 		} else if (primaryCode <= -603 && primaryCode >= -700) {
@@ -2601,7 +2633,7 @@ public class ServiceJbKbd extends InputMethodService
 			break;
 		}
 		if (start_value_font_keyboard != st.font_keyboard) {
-			inst.reinitKeyboardView();
+			inst.reinitKeyboardView(false);
 //			st.toast(""+st.font_keyboard);
 		}
 		// ---
@@ -2723,7 +2755,7 @@ public class ServiceJbKbd extends InputMethodService
 			bbb = true;
 		}
 		if (bbb) {
-			reinitKeyboardView();
+			reinitKeyboardView(false);
 			processCaseAndCandidates();
 		}
 
@@ -3280,15 +3312,6 @@ public class ServiceJbKbd extends InputMethodService
 	}
 
 	@Override
-	public void setInputView(View view) {
-		if (view instanceof JbKbdView) {
-		} else {
-			removeCandView();
-		}
-		super.setInputView(view);
-	}
-
-	@Override
 	public void onUpdateCursor(Rect newCursor) {
 		m_cursorRect = newCursor;
 		// закоментил 3.04.18
@@ -3452,9 +3475,6 @@ public class ServiceJbKbd extends InputMethodService
 		m_textAfterCursor = new StringBuffer(seq);
 	}
 
-	public void reinitKeyboardView() {
-		setInputView(onCreateInputView());
-	}
 
 	// public void setParSleepValue(int v)
 	// {

@@ -2664,7 +2664,7 @@ if(st.calc_fl_ind == true)
     }
     public void setKeycode(int num)
     {
-   		m_keycode.setText(String.valueOf(num));
+   		m_keycode.setText(st.STR_NULL+num);//String.valueOf(num));
     }
     public void setInd(boolean ind)
     {

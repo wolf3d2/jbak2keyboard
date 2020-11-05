@@ -109,11 +109,13 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 	long cur_time = 0;
 	/** оценивалось приложение или нет */
 	long rate_app = 0;
-	/** выводить тост "что-то вы быстро вернулись, если юзер нажал на "Написать отзыв" <br>
-	 * БЕЗ" предварительного вывода тоста/диалога с просьбой оставить отзыв */
+	/** флаг, что что чекается проверка отзыва на сайте клавы */
+	public static boolean rate_check = false;
+	/** выводить тост "что-то вы быстро вернулись", если юзер нажал на "Написать отзыв" <br>
+	 * БЕЗ предварительного вывода тоста/диалога с просьбой оставить отзыв */
 	static boolean rate_toast_after_show_rate_dialog = false;
 	
-	// первая установленная версия
+	/** первая установленная версия */
 	String rate_start_version = st.STR_ZERO;
 	// String rate_start_time="1";
 	// выводить ли историю версий
@@ -156,9 +158,9 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
             	ar[8] = inst.getString(R.string.pop_scr_fon_b);
             	
             	ar[9] = inst.getString(R.string.transparency)+ " 0%";
-            	ar[10] = "75%";
+            	ar[10] = "25%";
             	ar[11] = "50%";
-            	ar[12] = "25%";
+            	ar[12] = "75%";
             	
             	
     			int lvl = R.layout.tpl_instr_list_dark;
@@ -323,13 +325,6 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		});
 		// просто вызываем ошибку, чтобы сработал фидбек
 		// int bbb = Integer.valueOf("huk");
-		// для инфы мне
-		// String sss = "brand:"+Build.DISPLAY.BRAND
-		// +"\nCODENAME: " + Build.VERSION.CODENAME
-		// +"\nINCREMENTAL: " + Build.VERSION.INCREMENTAL
-		// +"\nRELEASE: " + Build.VERSION.RELEASE
-		// +"\nSDK_INT: " + Build.VERSION.SDK_INT;
-		// st.help(sss);
 
 		if (Font.tf == null)
 			new Font(inst);
@@ -337,6 +332,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		// проверяем был ли послан текст для записи в буфер
 		checkStartIntent();
 		cur_time = new Date().getTime();
+		rate_check = false;
 		rate_toast_after_show_rate_dialog = false;
 		ini = null;
 		// старое место
@@ -667,9 +663,11 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			return true;
 		// создаётся в onCreate
 		//cur_time = new Date().getTime();
+		rate_check = true;
 		String param = ini.getParamValue(ini.RATE_APP);
 		if (param == null) {
 			ini.setParam(ini.RATE_APP, st.STR_ZERO);
+			rate_check = false;
 			return true;
 		}
 
@@ -726,6 +724,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 
 			}
 		}
+		rate_check = false;
 		return rate_app == 1;
 	}
 
@@ -2628,7 +2627,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 		showHelper();
 	}
 
-	/** диалог оценить приложение */
+	/** диалог оценить приложение для маркета */
 	public void rateDialog() {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 

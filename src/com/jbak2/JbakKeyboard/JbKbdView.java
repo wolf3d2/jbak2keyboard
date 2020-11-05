@@ -355,8 +355,22 @@ public class JbKbdView extends KeyboardView
 //        key.pressed=false;
         if(key.longCode!=0)
         {
-            if(isUserInput())
+            if(isUserInput()) {
                 ServiceJbKbd.inst.processKey(key.longCode);
+                // дёргаем фон нажатой клавиши, чтобы не оставалась нажатой.
+                //
+                // ДЕЛАТЬ ОСТОРОЖНО, иначе после перерисовки перестают работать
+                // некоторые функции, например вызываться калькулятор, если его 
+                // вызов расположен на клавише
+                switch (key.longCode)
+                {
+                case st.CMD_SHOW_FONT_KEYBOARD_DIALOG:
+                case st.CMD_SHOW_USER_HIDE_LAYOUT:
+                case st.CMD_TEMP_STOP_DICT:
+                    ServiceJbKbd.inst.reinitKeyboardView(true);
+                    break;
+                }
+            }
             return false;
         }
 // вызывает клавиатуру смайликов

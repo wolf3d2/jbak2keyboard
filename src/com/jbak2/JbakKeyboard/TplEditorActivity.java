@@ -746,6 +746,7 @@ public class TplEditorActivity extends Activity
                     	txt += "[0,0,0,.]";
                     	break;
                     case 16: // вставляем текст инструкции codes
+                    case 18: // вставляем текст инструкции runKeyboard
                     	txt += "[]";
                     	break;
                     case 17: // вставляем текст инструкции selToUrl
@@ -775,6 +776,7 @@ public class TplEditorActivity extends Activity
                     case 14:
                     case 16:
                     case 17:
+                    case 18:
 						// устанавливаем курсор за [
 						pos = m_edText.getText().toString().indexOf("[");
 						if (pos>-1)

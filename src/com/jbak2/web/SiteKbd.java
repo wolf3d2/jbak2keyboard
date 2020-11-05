@@ -98,6 +98,9 @@ public class SiteKbd {
 //		}
 		if (ini==null)
 			return true;
+		if (JbKbdPreference.rate_check)
+			return true;
+
 		long curtime = new Date().getTime();
 		long lastcheck = 0;
 		// читаем и обрабатываем параметр - время последней проверки

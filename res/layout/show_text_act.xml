@@ -33,6 +33,7 @@
     android:layout_height="wrap_content"
     android:layout_above="@+id/desc_hscroll"
     android:background="#000"
+    android:paddingTop="3dp"
     android:paddingBottom="5dp"
     android:paddingLeft="2dp"
     android:paddingRight="5dp" >
@@ -56,7 +57,7 @@
     android:layout_alignParentLeft="true"
     android:layout_below="@+id/desc_search_result"
     android:layout_marginLeft="2dp"
-    android:layout_toLeftOf="@+id/desc_search_up"
+    android:layout_toLeftOf="@+id/desc_btn_show_search_replace"
     android:background="@drawable/edittext_back_focus_style"
     android:clickable="true"
     android:ems="10"
@@ -65,10 +66,26 @@
     android:singleLine="true"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
+ 	android:hint="@string/search"
     android:textSize="20dp" 
     >
 </EditText>
     
+<Button
+    android:id="@+id/desc_btn_show_search_replace"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:layout_below="@+id/desc_search_result"
+    android:layout_toLeftOf="@+id/desc_search_up"
+    android:layout_marginLeft="2dp"
+    android:background="#aaa"
+    android:clickable="true"
+    android:onClick="onClick"
+    android:text="repl"
+    android:textColor="#000"
+    android:textSize="16dp" 
+    />
+
 <Button
     android:id="@+id/desc_search_up"
     android:layout_width="35dp"
@@ -110,6 +127,73 @@
     android:onClick="onClick" 
     />
 
+<RelativeLayout
+    android:id="@+id/desc_rlsearch_replace_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/desc_search_edit"
+    android:background="#000"
+    android:paddingTop="3dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="5dp" 
+    android:visibility="gone"
+    >
+
+<EditText
+    android:id="@+id/desc_replace_edit"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="2dp"
+    android:layout_toLeftOf="@+id/desc_btn_replace"
+    android:background="@drawable/edittext_back_notfocus_style"
+    android:clickable="true"
+    android:ems="10"
+    android:gravity="left"
+    android:imeOptions="actionSearch"
+    android:singleLine="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+ 	android:hint="@string/replace"
+    android:textSize="20dp" 
+    >
+</EditText>
+    
+<Button
+    android:id="@+id/desc_btn_replace"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:layout_toLeftOf="@+id/desc_replace_all"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_marginLeft="2dp"
+    android:background="#aaa"
+    android:clickable="true"
+    android:onClick="onClick"
+	android:text="@string/replace" 
+    android:textColor="#000"
+    android:textSize="16dp" 
+    />
+
+<Button
+    android:id="@+id/desc_replace_all"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:layout_alignParentRight="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_marginLeft="10dp"
+    android:background="#aaa"
+    android:clickable="true"
+    android:onClick="onClick"
+	android:text="@string/all" 
+    android:textColor="#000"
+    android:textSize="16dp" 
+    />
+
+    
+</RelativeLayout>
 </RelativeLayout>
 
 <HorizontalScrollView

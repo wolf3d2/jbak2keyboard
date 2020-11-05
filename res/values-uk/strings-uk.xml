@@ -805,8 +805,13 @@
 	<string name="notation_not_number">Текст в буфері повинен бути числом, воно повинно бути цілим, додатним і менше 10 знаків (десяткових.)</string>
 	<string name="notation_insert_num_on_char">Вставить как символ utf8</string>
 		
+<!-- Title for ShowTextAct activity -->
+	<string name="replace">Замінити</string>
+	<string name="all">Усе</string>
+	<string name="relace_all_toast">Сделано замен</string>
+	
 	<string name="search">Пошук</string>
-  <string name="ok">Добре</string>
+	<string name="ok">Добре</string>
   <string name="cancel">Скасувати</string>
   <string name="yes">Так</string>
   <string name="no">Ні</string>
@@ -832,6 +837,7 @@
     <string name="open_with">Відкрити з допомогою</string>
     <string name="position">Позиция</string>
     <string name="color">Цвет</string>
+    <string name="not_found">Не найдено</string>
     	
   	<string name="sel_del">Видалити вибірково</string>
   <string name="rewrite_question">Файл вже існує.\nПерезаписати?</string>
@@ -891,6 +897,7 @@
         <item><b>$program</b> - виконання послідовності шаблонів</item>
         <item><b>$codes</b> - виконує послідовно вказані коди</item>
         <item><b>$selToUrl</b> - открывает браузер на указанном в скобках url и передаёт в строке адреса выделенный и/или скопированный текст (если они указаны и есть)</item>
+        <item><b>$runKeyboard</b> - запускает xml раскладку клавиатуры, с названием, указанным в скобках, по таким-же правилам, как и для тегов keyboard и longKeyboard для клавиши</item>
         </string-array>
 
     

@@ -815,6 +815,8 @@ public class IKeyboard {
 				new KbdDesign(R.string.design_nad2, "Brown&pink&yellow.skin"),
 				new KbdDesign(R.string.design_BOGDANPRIME1, "Gray_Soft_Keys_by_BOGDANPRIME.skin"), 
 				new KbdDesign(R.string.design_Proctocrator1, "PaleOrangeAndTwilightGreen_v2.skin"), 
+				new KbdDesign(R.string.design_Proctocrator2, "e-ink_light.skin"), 
+				new KbdDesign(R.string.design_Proctocrator3, "e-ink_dark.skin"), 
 				new KbdDesign(R.string.design_unknown1, "cherry2.skin"), 
 			};
 	}

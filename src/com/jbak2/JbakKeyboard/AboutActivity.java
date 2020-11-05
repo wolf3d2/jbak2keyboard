@@ -117,7 +117,7 @@ public class AboutActivity extends Activity
     		break;
     	case R.id.about_btn_diary:
             st.runActShowText(inst, R.string.diary, st.STA_FILENAME_DIARY, 
-            		ShowTextAct.FLAG_HIDE_BTN_LANG|ShowTextAct.FLAG_HIDE_BTN_SEARCH);
+            		ShowTextAct.FLAG_HIDE_BTN_LANG);//|ShowTextAct.FLAG_HIDE_BTN_SEARCH);
 //        	st.desc_act_ini(2);
 //        	st.runAct(ShowTextAct.class,inst);
     		break;

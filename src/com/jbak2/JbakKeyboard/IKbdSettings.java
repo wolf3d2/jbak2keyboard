@@ -27,6 +27,8 @@ public interface IKbdSettings
 	public static final String STA_TOOLBAR_LEFTRIGHT_TOOLBAR = "lh_rh_showact_toolbar";
 	/** Цвета редактора в активности для вывода текстов */
 	public static final String STA_COLOR_EDITTEXT = "sta_color_edittext";
+	/** Увеличенный текст редактора в активности для вывода текстов */
+	public static final String STA_BIG_TEXT = "sta_big_text";
 	/** Пиктограмма на ентере */
 	public static final String PREF_ENTER_PICT = "enter_pict";
 	//

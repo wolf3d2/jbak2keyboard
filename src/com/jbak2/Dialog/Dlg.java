@@ -49,7 +49,7 @@ public class Dlg {
 		UniObserver callback;
 	}
 
-	public static AlertDialog.Builder getDefaultAlertDialogBuilder(Context c)
+	public static AlertDialog.Builder getDefaultAlertDialogBuilderTheme(Context c)
 	{
 		AlertDialog.Builder bd = null;
 		if (th.isDarkThemeApp())
@@ -80,7 +80,7 @@ public class Dlg {
 	 */
 	public static AlertDialog customDialog(Context c, View customView, String but1, String but2, String but3,
 			UniObserver obs) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		dlg = bd.create();
 		OnButtonListener cl = new OnButtonListener(obs);
 		dlg.setView(customView);
@@ -109,7 +109,7 @@ public class Dlg {
 
 	public static AlertDialog showImageWindow(Context c, View customView, String but1, String but2, String but3,
 			UniObserver obs) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		dlg = bd.create();
 		OnButtonListener cl = new OnButtonListener(obs);
 		dlg.setView(customView);
@@ -126,7 +126,7 @@ public class Dlg {
 	////
 	public static AlertDialog customViewAndMenu(Context c, View customView, ListAdapter adapter, String title,
 			UniObserver callback) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		final UniObserver obs = callback;
 		bd.setAdapter(adapter, new OnClickListener() {
 			@Override
@@ -144,7 +144,7 @@ public class Dlg {
 	}
 
 	public static AlertDialog customMenu(Context c, ListAdapter adapter, String title, UniObserver callback) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		final UniObserver obs = callback;
 		bd.setAdapter(adapter, new OnClickListener() {
 			@Override
@@ -165,7 +165,7 @@ public class Dlg {
 		if (ServiceJbKbd.inst != null && ServiceJbKbd.inst.isInputViewShown())
 			ServiceJbKbd.inst.acGone();
 
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		OnButtonListener cl = new OnButtonListener(callback);
 		bd.setPositiveButton(R.string.yes, cl);
 		bd.setNegativeButton(R.string.no, cl);
@@ -179,7 +179,7 @@ public class Dlg {
 			int id_text_cancel, UniObserver callback) {
 		if (ServiceJbKbd.inst != null && ServiceJbKbd.inst.isInputViewShown())
 			ServiceJbKbd.inst.acGone();
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		OnButtonListener cl = new OnButtonListener(callback);
 		bd.setPositiveButton(id_text_yes, cl);
 		bd.setNegativeButton(id_text_cancel, cl);
@@ -194,7 +194,7 @@ public class Dlg {
 			UniObserver callback) {
 		if (ServiceJbKbd.inst != null && ServiceJbKbd.inst.isInputViewShown())
 			ServiceJbKbd.inst.acGone();
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		OnButtonListener cl = new OnButtonListener(callback);
 		bd.setPositiveButton(id_text_yes, cl);
 		bd.setNegativeButton(id_text_no, cl);
@@ -227,7 +227,7 @@ public class Dlg {
 	}
 
 	public static AlertDialog helpDialog(Context c, String text, int ResIdTextButtonOrZero, UniObserver callback) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		OnButtonListener cl = new OnButtonListener(callback);
 		if (ResIdTextButtonOrZero == 0)
 			bd.setPositiveButton(R.string.ok, cl);
@@ -240,7 +240,7 @@ public class Dlg {
 	}
 
 	public static AlertDialog helpDialog(Context c, String text, UniObserver callback) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 		OnButtonListener cl = new OnButtonListener(callback);
 		bd.setPositiveButton(R.string.ok, cl);
 		bd.setMessage(text);
@@ -254,7 +254,7 @@ public class Dlg {
 	}
 
 	public static AlertDialog helpDialog(Context c, String text) {
-		AlertDialog.Builder bd = getDefaultAlertDialogBuilder(c);
+		AlertDialog.Builder bd = getDefaultAlertDialogBuilderTheme(c);
 
 		OnButtonListener cl = new OnButtonListener(new st.UniObserver() {
 			@Override
