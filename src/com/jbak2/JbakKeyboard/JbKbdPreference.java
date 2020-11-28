@@ -133,7 +133,28 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
             switch (v.getId())
             {
             case R.id.pref_btn_unload_kbd:
-            	st.exitApp();
+        		if (ShowTextAct.inst!=null
+        		  &&(st.has(ShowTextAct.inst.flags, ShowTextAct.FLAG_EDIT_TEXT) 
+        				  | st.has(ShowTextAct.inst.flags, ShowTextAct.FLAG_EXTERNAL_FILE_EDIT))
+        		  &&ShowTextAct.inst.changed
+        		  ) {
+        			Dlg.yesNoDialog(inst, inst.getString(R.string.not_save_text), 
+        					new st.UniObserver() {
+						
+						@Override
+						public int OnObserver(Object param1, Object param2) {
+							if (((Integer) param1).intValue() == AlertDialog.BUTTON_POSITIVE) {
+			        			st.exitApp();
+							}
+							else if (((Integer) param1).intValue() == AlertDialog.BUTTON_NEGATIVE) {
+								inst.startActivity(new Intent(inst,ShowTextAct.inst.getClass())
+										.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));							
+								}
+							return 0;
+						}
+					});
+        		} else
+        			st.exitApp();
                 return;
             }
         }
@@ -1088,7 +1109,10 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 			}
 		} 
 		else if ("check_upd_app".equals(k)) {
-			if (!SiteKbd.bcheck_backgraund) {
+			if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+				Dlg.helpDialog(inst, R.string.honeycomb);
+			}
+			else if (!SiteKbd.bcheck_backgraund) {
 				Dlg.helpDialog(inst, inst.getString(R.string.upd_checking_before_dlg), new st.UniObserver() {
 
 					@Override
@@ -2073,7 +2097,7 @@ public class JbKbdPreference extends PreferenceActivity implements OnSharedPrefe
 					Dlg.helpDialog(inst, txt);
 					return;
 				case R.id.eadw_plus_tpl_button:
-					final String[] langs = Lang.getAlLocalelLang(2);
+					final String[] langs = Lang.getAllLocalelLang(2);
 					ServiceJbKbd.inst.forceHide();
 					int lvl = R.layout.tpl_instr_list_dark;
 					if (!th.isDarkThemeApp())

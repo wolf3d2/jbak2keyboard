@@ -819,8 +819,11 @@
 	<string name="empty">Пусто</string>
 	<string name="unload">Выгрузить</string>
 	<string name="from_memory">из памяти</string>
+	<string name="not_save_text">Есть несохранённый текст.\n\nВсё равно выгрузить?</string>
 	<string name="create">Создано</string>
 	<string name="save">Сохранить</string>
+	<string name="saved">Сохранено</string>
+	<string name="not_save">Не могу сохранить</string>
 	<string name="decompil_skin">Декомпилировать скин</string>
 	<string name="delete">Удалить</string>
     <string name="delete_q">Удалить?</string>

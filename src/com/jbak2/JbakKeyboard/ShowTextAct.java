@@ -176,9 +176,13 @@ public class ShowTextAct extends Activity {
 		def_btn.setVisibility(View.VISIBLE);
 		def_btn = (Button) llcont.findViewById(R.id.desc_btn_sellang);
 		def_btn.setVisibility(View.VISIBLE);
+		def_btn = (Button) llcont.findViewById(R.id.desc_btn_save);
+		def_btn.setVisibility(View.GONE);
 
 		// настраиваем активность
 		if (st.has(flags, FLAG_EXTERNAL_FILE_EDIT)) {
+			def_btn = (Button) llcont.findViewById(R.id.desc_btn_save);
+			def_btn.setVisibility(View.VISIBLE);
 			setTitle(fn);
 		} else if (title != 0)
 			setTitle(getString(title));
@@ -240,6 +244,16 @@ public class ShowTextAct extends Activity {
 
 	public void onClick(View view) {
 		switch (view.getId()) {
+		case R.id.desc_btn_save:
+			if (st.has(flags, FLAG_EXTERNAL_FILE_EDIT)) {
+				String str = et.getText().toString();
+				if (st.savefile(fn, str)) {
+					st.toast(R.string.saved);
+					changed = false;
+				} else
+					st.toast(R.string.not_save);
+			}
+			return;
 		case R.id.desc_btn_show_search_replace:
 			if (searchpanel_replace.getVisibility() == View.GONE) {
 				searchpanel_replace.setVisibility(View.VISIBLE);
@@ -253,7 +267,6 @@ public class ShowTextAct extends Activity {
 		case R.id.desc_btn_replace:
 			if (setTextOnEditor())
 				search(1);
-
 			return;
 		case R.id.desc_replace_all:
 			int count = 0;
@@ -282,7 +295,7 @@ public class ShowTextAct extends Activity {
 			String[] ars = new String[lng.length];
 			for (int i = 0; i < lng.length; i++) {
 				ars[i] = new Locale(lng[i]).getDisplayName();
-				ars[i] = st.upFirstSymbol(ars[i]);
+				ars[i] = st.getUpFirstSymbol(ars[i]);
 			}
 			int lvl = R.layout.tpl_instr_list_dark;
 			if (!th.isDarkThemeApp())
@@ -948,6 +961,8 @@ public class ShowTextAct extends Activity {
 			Font.setTextOnTypeface(def_btn, Font.FontArSymbol.PGDN);
 			def_btn = (Button) llcont.findViewById(R.id.desc_btn_size);
 			Font.setTextOnTypeface(def_btn, Font.FontArSymbol.BIG_TEXT);
+			def_btn = (Button) llcont.findViewById(R.id.desc_btn_save);
+			Font.setTextOnTypeface(def_btn, Font.FontArSymbol.SAVE);
 			def_btn = (Button) llcont.findViewById(R.id.desc_btn_left_right);
 			Font.setTextOnTypeface(def_btn, Font.FontArSymbol.LEFT_RIGHT);
 		}

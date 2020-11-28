@@ -802,8 +802,11 @@
     <string name="empty">Vacío</string>
     <string name="unload">Detener</string>
 	<string name="from_memory">de memoria</string>
-    <string name="create">Creado</string>
+	<string name="not_save_text">Есть несохранённый текст.\n\nВсё равно выгрузить?</string>
+	<string name="create">Creado</string>
     <string name="save">Guardar</string>
+	<string name="saved">Salvado</string>
+	<string name="not_save">No puedo salvar</string>
     <string name="decompil_skin">Descompilar el archivo del tema</string>
     <string name="delete">Borrar</string>
     <string name="delete_q">Borrar?</string>

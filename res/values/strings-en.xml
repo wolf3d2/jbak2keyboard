@@ -838,8 +838,11 @@
 	<string name="empty">Empty</string>
 	<string name="unload">Unload</string>
 	<string name="from_memory">from memory</string>
+	<string name="not_save_text">Есть несохранённый текст.\n\nВсё равно выгрузить?</string>
 	<string name="create">Created</string>
 	<string name="save">Save</string>
+	<string name="saved">Saved</string>
+	<string name="not_save">Can\'t save</string>
 	<string name="decompil_skin">Decompile skin</string>
 	<string name="delete">Delete</string>
     <string name="delete_q">Delete?</string>

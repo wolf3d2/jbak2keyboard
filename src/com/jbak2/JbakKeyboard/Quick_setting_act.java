@@ -148,10 +148,10 @@ public class Quick_setting_act extends Activity
         	// языки должны быть строго в таком порядке!
         	String[] ars1 = new String[5];
            	ars1[0] = inst.getString(R.string.qs_sel_lang_def);
-           	ars1[1] = st.upFirstSymbol(new Locale("ru").getDisplayName());
-           	ars1[2] = st.upFirstSymbol(new Locale("en").getDisplayName());
-           	ars1[3] = st.upFirstSymbol(new Locale("es").getDisplayName());
-           	ars1[4] = st.upFirstSymbol(new Locale("uk").getDisplayName());
+           	ars1[1] = st.getUpFirstSymbol(new Locale("ru").getDisplayName());
+           	ars1[2] = st.getUpFirstSymbol(new Locale("en").getDisplayName());
+           	ars1[3] = st.getUpFirstSymbol(new Locale("es").getDisplayName());
+           	ars1[4] = st.getUpFirstSymbol(new Locale("uk").getDisplayName());
            	
 			int lvl = R.layout.tpl_instr_list_dark;
 			if (!th.isDarkThemeApp())

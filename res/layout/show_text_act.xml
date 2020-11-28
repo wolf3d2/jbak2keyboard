@@ -267,6 +267,13 @@
     />
 
 <Button
+    android:id="@+id/desc_btn_save"
+    style="@style/show_adit_activity_toolbar"
+    android:onClick="onClick"
+    android:text="@string/save" 
+    />
+
+<Button
     android:id="@+id/desc_btn_left_right"
     style="@style/show_adit_activity_toolbar"
     android:onClick="onClick"

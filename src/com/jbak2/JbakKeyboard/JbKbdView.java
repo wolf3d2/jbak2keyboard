@@ -862,7 +862,10 @@ public class JbKbdView extends KeyboardView
                 case st.CMD_INPUT_LONG_GESTURE:
                 	// работу жеста не менять - юзеры уже привыкли и реализуют 
                 	// с его помощью третье действие на кнопке
-                	ServiceJbKbd.inst.onText(gest.downKey.m_kd.txtSmall);
+                	if (gest.downKey.m_kd.txtSmall.length() == 1)
+                    	ServiceJbKbd.inst.onKey(gest.downKey.m_kd.txtSmall.charAt(0));
+                	else
+                		ServiceJbKbd.inst.onText(gest.downKey.m_kd.txtSmall);
                 	ServiceJbKbd.inst.processCaseAndCandidates();
                 	return;
                 case st.TXT_ED_SELECT:
@@ -1178,11 +1181,11 @@ public class JbKbdView extends KeyboardView
         mtv.setTextSize(tsize);
         mtv.setHeight(m_KeyHeight);
         mtv.setTextColor(des.textColor);
-        if (des.m_keyBackground!=null)
-        	mtv.setBackground(des.m_keyBackground.getDrawable());
-        else
+        if (des.m_keyBackground!=null) {
+        	mtv.setBackground(des.m_keyBackground.getStateDrawable());
+        } else {
         	mtv.setBackground(inst.m_defDrawable);
-    	
+        }
 		if (view instanceof Button) {
 			view = (Button) mtv;
 		} 

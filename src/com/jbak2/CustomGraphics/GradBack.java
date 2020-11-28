@@ -57,7 +57,7 @@ public class GradBack extends RectShape
 /** Толщина обводки*/    
     int m_strokeSize=1;
     boolean m_bUseCache = true;
-    boolean m_bCheckable = false;
+    public boolean m_bCheckable = false;
     boolean m_bPressed = false;
     boolean m_bChecked = false;
     public static ColorFilter m_pressFilter = new PorterDuffColorFilter(0xff888888, PorterDuff.Mode.MULTIPLY);
@@ -179,7 +179,8 @@ public class GradBack extends RectShape
 	{
 		return new ShapeDrawable(this);
 	}
-/** Возвращает объект {@link CustomButtonDrawable}, который содержит текущий объект*/   
+/** Возвращает объект {@link CustomButtonDrawable}, <br>
+ * который содержит текущий объект без точки sticky */   
 	public CustomButtonDrawable getStateDrawable()
 	{
 		return new CustomButtonDrawable(this);

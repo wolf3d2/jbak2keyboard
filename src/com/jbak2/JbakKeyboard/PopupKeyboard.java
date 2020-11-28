@@ -71,7 +71,7 @@ public class PopupKeyboard
 		if (key == null)
 			return false;
 		if (key.popupCharacters.toString().startsWith(V2)
-			||key.popupCharacters.toString().startsWith(V2))
+			||key.popupCharacters.toString().startsWith(V2.toUpperCase()))
 			return createFullPopupWindow(key.popupCharacters.toString(),0,false,false);
 		else 
 			return createMiniPopupKbd(key);
@@ -80,7 +80,7 @@ public class PopupKeyboard
 	public boolean showPopupKeyboard(String str)
 	{
 		if (str.startsWith(V2)
-		  ||str.startsWith(V2))
+		  ||str.startsWith(V2.toUpperCase()))
 			return createFullPopupWindow(str,0,false,false);
 		return false;
 	}
@@ -151,7 +151,9 @@ public class PopupKeyboard
         ll.setOrientation(LinearLayout.HORIZONTAL);
     	int llw = 0;
     	
+// *****************************    	
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
+// *****************************    	
 		for (int i=0;i<key.popupCharacters.length();i++){
 			// TextView
 //			Button btn = new Button(m_c);
@@ -470,16 +472,26 @@ public class PopupKeyboard
 	 * @param height - если больше 0, то выставляем высоту окна height, иначе высчитываем из пп
 	 * @param zamok - имеет смысл только когда true - замок принудительно закрыт
 	 * и в настройки не записывается
-	 * @param noedit - если true, то все правые кнопки скрываются */
+	 * @param noedit - если true, то все правые кнопки, кроме Закрыть, 
+	 * скрываются */
     boolean createFullPopupWindow(String popupstr,int height, boolean zamok, boolean noedit)
     {
     	kvh = -1;
     	if (st.ar_asg.size()>0)
     		st.ar_asg.clear();
-    	popupstr = popupstr.substring(3, popupstr.length()).trim();
-//    	String[] txt = popupstr.split(st.STR_SPACE);
-    	
-    	String[] txt = ArrayFuncAddSymbolsGest.getSplitArrayElements(popupstr);
+    	String[] txt = null;
+    	if (popupstr!=null&&popupstr.length()>=3
+    			&&popupstr.toLowerCase().startsWith(V2+st.STR_SPACE)) {
+        	popupstr = popupstr.substring(3, popupstr.length()).trim();
+        	txt = ArrayFuncAddSymbolsGest.getSplitArrayElements(popupstr);
+    		
+    	}
+    	else if (popupstr!=null&&popupstr.length()>=2
+    			&&popupstr.toLowerCase().startsWith(V2)) {
+        	popupstr = popupstr.substring(2, popupstr.length()).trim();
+        	txt = ArrayFuncAddSymbolsGest.getSplitArrayElements(popupstr);
+    		
+    	}
     	View v = null;
     	if (!st.pc2_lr)
     		v = ServiceJbKbd.inst.getLayoutInflater().inflate(R.layout.popup_kbd_full_right, null);
@@ -646,6 +658,7 @@ public class PopupKeyboard
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ОСНОВНОЙ ЦИКЛ СОЗДАНИЯ КНОПОК
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (txt!=null) {
         for (int i=0;i<txt.length;i++) {
         	if (txt[i].trim().length() == 0){
         		TextView tv = new TextView(m_c);
@@ -811,6 +824,7 @@ public class PopupKeyboard
                 ll.setOrientation(LinearLayout.HORIZONTAL);
         	}
         	ll.addView(tv, llpar);
+        }
         }
         if (ll.getChildCount() > 0)
     		llrow.addView(ll, llrowpar);

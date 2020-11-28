@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.jbak2.JbakKeyboard"
         
-        android:versionName="2.35.06"
-        android:versionCode="290"
+        android:versionName="2.35.07"
+        android:versionCode="291"
         >
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE"/>
@@ -175,6 +175,7 @@
 <!-- ============================================================================== -->
 		<activity android:name="ShowTextAct" 
 					android:configChanges="orientation|locale"
+					android:launchMode="singleInstance"
 					android:windowSoftInputMode="stateHidden"
 					/>
 <!-- ============================================================================== -->

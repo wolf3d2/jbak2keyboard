@@ -291,7 +291,7 @@ public class EditUserVocab extends Activity
     public static String getLangName(String lng)
     {
     	String out = st.STR_NULL;
-    	out = st.upFirstSymbol(new Locale(lng).getDisplayName());
+    	out = st.getUpFirstSymbol(new Locale(lng).getDisplayName());
     	
     	if (out.compareToIgnoreCase(EXCLUDE_SQL_PREFIX)==0)
     		return null;

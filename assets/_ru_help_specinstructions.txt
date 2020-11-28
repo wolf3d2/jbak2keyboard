@@ -122,3 +122,4 @@ $selToUrl[https://translate.yandex.by/?ui=ru&lang=en-ru&text=$st#]
 Замечание.
 Для поиска именно в google, можно использовать сокращённую форму специнструкции - поисковая система google, используется по умолчанию:
 $selToUrl[$ct#]
+

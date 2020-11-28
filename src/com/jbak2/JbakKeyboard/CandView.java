@@ -47,7 +47,7 @@ public class CandView extends RelativeLayout
 	// для ускорения вывода стрелки вниз
 	int display_width = 0;
 	/** строка автодополнения рисуемая через PopupWindow */
-	PopupWindow pw = null;
+	public static PopupWindow pw = null;
 	ArrayList<ArrayFuncAddSymbolsGest> arFuncKey = new ArrayList<ArrayFuncAddSymbolsGest>();
 	/** длина начала слова, после которого сокращаем показ предлагаемых слов, 
 	 * если сокращение включено */
@@ -887,7 +887,7 @@ public class CandView extends RelativeLayout
 //      m_rightView.setImageResource(R.drawable.cand_arrow_up_icon);
     	setTextArrowRightButtonView(true);
         final View v = m_inflater.inflate(R.layout.candidates_full_popup, null);
-        final LinearLayout ll = (LinearLayout)v.findViewById(R.id.cand_view);
+        final LinearLayout ll = (LinearLayout)v.findViewById(R.id.cand_list);
         ll.setPadding(0, 0, 0, 5);
 
         /** рисуется так (автодоп над клавиатурой) - определяем y-координату окна. 
@@ -1147,18 +1147,19 @@ public class CandView extends RelativeLayout
 //        } else
         	showPopupPanelInView(ypos, place);
     }
+	JbKbdView kv = null;
     public void showPopupPanelInView(int yPos, int place)
     {
-    	// добавил 02.10.20 - не сработало...
-//    	if (st.kv()== null)
-//    		return;
-    	
 //      IBinder tok = st.kv().getWindowToken();
 //      if (tok==null) {
 ////    	  if (ServiceJbKbd.inst.mToken!=null)
 ////    		  tok = ServiceJbKbd.inst.mToken;
 //      }
-        int hei = st.kv().getHeight();
+    	kv = st.kv();
+    	if (kv == null)
+    		return;
+    	boolean isShow = kv.isShown();
+        int hei = kv.getHeight();
         if (hei == 0)
         	return;
         View vv = m_inflater.inflate(R.layout.cand2, null);
@@ -1166,8 +1167,11 @@ public class CandView extends RelativeLayout
         	return;
         // переназначает кнопки из cand2
         setInflatePopupPanelButton(vv);
-        // Будет вылетать на некоторых устройствах (сяоми та точно)
+        // Будет вылетать на некоторых устройствах (сяоми так точно)
         // потому как вызывается из ServiceJbKbd.onCreate
+        if (pw!=null) {
+        	pw.dismiss();
+        }
         pw = new PopupWindow(vv,
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         pw.setAnimationStyle(0);
@@ -1188,7 +1192,7 @@ public class CandView extends RelativeLayout
         switch (place)
         {
         case AC_PLACE_KEYBOARD:
-        	yPos = 0-st.kv().getHeight();
+        	yPos = 0-kv.getHeight();
         	break;
         case AC_PLACE_BOTTOM_KEYBOARD:
         	//yPos = 0-500;
@@ -1210,9 +1214,11 @@ public class CandView extends RelativeLayout
 //      	}
         	break;
         }
+        if (!isShow)
+        	return;
         try {
         	// основной
-        	pw.showAsDropDown(st.kv(), 0, yPos);
+        	pw.showAsDropDown(kv, 0, yPos);
         	// для Стелса
         	//pw.showAsDropDown(st.kv(), 0, 0-yPos, Gravity.TOP);
         	// НЕ ЮЗАТЬ!Зависит от статус бара (а может и навбара)

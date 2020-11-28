@@ -987,10 +987,12 @@ public class ServiceJbKbd extends InputMethodService
 		InputConnection ic = getCurrentInputConnection();
 		if (ic == null)
 			return false;
-		ic.beginBatchEdit();
+		// закоментил 21_11_20
+		//ic.beginBatchEdit();
 		ic.deleteSurroundingText(r.from.length(), 0);
 		ic.commitText(r.to, 1);
-		ic.endBatchEdit();
+		// закоментил 21_11_20
+		//ic.endBatchEdit();
 		getTextBeforeCursor();
 		return true;
 	}
@@ -1715,6 +1717,9 @@ public class ServiceJbKbd extends InputMethodService
 		return false;
 	}
 
+	public void onKey(int primaryCode) {
+		onKey(primaryCode, new int[] {});
+	}
 	public void onKey(int primaryCode, int[] keyCodes) {
 		// кейэвенты неподдерживаемые ниже андроид 3
 		if (st.isHoneycomb()) {

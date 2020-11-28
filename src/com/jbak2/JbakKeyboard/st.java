@@ -2216,6 +2216,9 @@ public class st extends IKeyboard implements IKbdSettings
 //                if (out.length()>0)
                 	lk.popupCharacters=out;
         		lk.popupResId = R.xml.kbd_empty;
+        		if (JbKbdView.inst!=null&&PopupKeyboard.fl_popupcharacter_window) {
+        			JbKbdView.inst.m_pk.close();
+        		}
         		OwnKeyboardHandler.inst.m_kv.onLongPress(lk);
         		st.sleep(100);
         		OwnKeyboardHandler.inst.m_kv.longpress=false;
@@ -2713,7 +2716,7 @@ public class st extends IKeyboard implements IKbdSettings
     	return false;
     }
     /** преобразует строку - первый сивол заглавный */
-    public static String upFirstSymbol(String in)
+    public static String getUpFirstSymbol(String in)
     {
     	if (in.length()>0)
     		in = Character.toUpperCase(in.charAt(0))+in.substring(1);
@@ -2974,6 +2977,8 @@ public class st extends IKeyboard implements IKbdSettings
 	public static void exitApp() {
 // в MWbrowser сделано так:		
 //		android.os.Process.killProcess(android.os.Process.myPid());
+		if (ShowTextAct.inst!=null)
+			ShowTextAct.inst.finish();
         System.exit(0);
 	}
 	/** возвращает высоту статус бара */
@@ -3096,19 +3101,19 @@ public class st extends IKeyboard implements IKbdSettings
     	return out;
     }
     /** сохраняем в файл fname текст text*/
-	public static void savefile(String fname, String text) 
+	public static boolean savefile(String fname, String text) 
 	{
 		if (fname == null)
-			return;
+			return false;
 		FileWriter wr;
 		try {
 			wr = new FileWriter(fname, false);
 			wr.write(text);
 			wr.close();
 		} catch (IOException e) {
+			return false;
 		}
-
-		// st.toast("сохранено");
+		return true;
 	}
 	
     /** Возвращает текст из файла с именем filename или null, если произошла ошибка<br>

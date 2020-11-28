@@ -1,15 +1,14 @@
 package com.jbak2.web;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-import com.jbak2.JbakKeyboard.App;
 import com.jbak2.JbakKeyboard.CustomKbdScroll;
 import com.jbak2.JbakKeyboard.JbKbdPreference;
 import com.jbak2.JbakKeyboard.R;
@@ -136,9 +135,8 @@ public class SiteKbd {
 			checkVersion(ini);
 			return true;
 		}
-		if (JbKbdPreference.inst!=null) {
-			JbKbdPreference.inst.setCheckEntry(JbKbdPreference.inst, 2, ini);
-		}
+		updateCheckPreferenceData(2, ini);
+
 		// чекаем файлы параметров скролящихся раскладок
 		CustomKbdScroll.checkFileSettingLayout();
 		
@@ -236,7 +234,7 @@ public class SiteKbd {
 //					str += KEY_UPD_CHECK_KEYS+(st.STR_EQALLY+!autocheck).toUpperCase();
 //					str += "&"+KEY_UPD_CHECK_VER+st.STR_EQALLY+st.getAppVersionCode(m_c);
 //					str += "&"+KEY_UPD_CHECK_SUBMIT+st.STR_EQALLY+"Send";
-//					sc =  new Scanner(new URL(str).openStream(), "UTF-8");
+//					sc =  new Scanner(new URL(str).openStream(), st.STR_UTF8);
 //				}
 				Scanner sc =  null;
 				info = null;
@@ -244,15 +242,15 @@ public class SiteKbd {
 					//URL url = null
 					String param = null;
 					for (int i=1;i<AR_PAGE_UPDATE.length;i++) {
+						param = null;
 						try {
 							if (AR_PAGE_UPDATE[i].compareTo(AR_PAGE_UPDATE[1]) == 0) {
-								//param = "act=1";
 								AR_PAGE_UPDATE[i] = AR_PAGE_UPDATE[i]+"/index.php?act=1&v="+st.getAppVersionCode(m_c)
-									+"&s="+st.STR_NULL+android.os.Build.VERSION.SDK_INT;
+								+"&s="+st.STR_NULL+android.os.Build.VERSION.SDK_INT;
 							}
 							info = readUrl(AR_PAGE_UPDATE[i], param);
 //							} else {
-//								sc =  new Scanner(new URL(AR_PAGE_UPDATE[i]).openStream(), "UTF-8");
+//								sc =  new Scanner(new URL(AR_PAGE_UPDATE[i]).openStream(), st.STR_UTF8);
 //								sc.useDelimiter("\\A");
 //								info = sc.next();
 //								sc.close();
@@ -270,11 +268,15 @@ public class SiteKbd {
 				if (info == null) {
 					try {
 						// прямая ссылка
-						sc =  new Scanner(new URL(AR_PAGE_UPDATE[0]).openStream(), "UTF-8");
+						sc =  new Scanner(new URL(AR_PAGE_UPDATE[0]).openStream(), st.STR_UTF8);
 						sc.useDelimiter("\\A");
 						info = sc.next();
 						sc.close();
 					} catch (Throwable e) {
+						st.log("kkk");
+						st.logEx(e);
+						bcheck_backgraund = false;
+						updateCheckPreferenceData(1, ini);
 					}
 				}
 				// если до сих пор info = null, то причин 3:
@@ -329,14 +331,25 @@ public class SiteKbd {
 // не откоменчивать, иначе тост не показывается					
 //					ini.setParam(ini.LAST_TIME_TOAST_NOT_UPDATE, st.STR_NULL+(curtime-TOAST_NOT_UPDATE-1000));
 				}
-				if (JbKbdPreference.inst!=null)
-					JbKbdPreference.inst.setCheckEntry(JbKbdPreference.inst, 1, ini);
+				updateCheckPreferenceData(1, ini);
 				bcheck_backgraund = false;
 				m_c = null;
 			}
 		}).start();
 		return false;
 	}
+	/** Устанавливаем значение у настройки "Проверить обновления", 
+	 * если это возможно 
+	 * @param type : <br>
+	 * 0 - пустую строку <br> 
+	 * 1 - есть/нет новая версия + дата последней проверки <br>
+	 * 2 - строка Проверяю...*/
+	public void updateCheckPreferenceData(int type, IniFile ini)
+	{
+		if (JbKbdPreference.inst!=null)
+			JbKbdPreference.inst.setCheckEntry(JbKbdPreference.inst, type, ini);
+	}
+
 	/** чекаем на новую версию с выведением тоста если новая версия есть <br>
 	 * ЗАПУСКАТЬ МЕТОД ТОЛЬКО В ГЛАВНОМ ПОТОКЕ! <br>
 	 * Предварительно, перед этой функцией, должна отработать фукция checkUpdate, <br>
@@ -429,50 +442,67 @@ public class SiteKbd {
 //			st.toastLong(m_c, R.string.chk_new_version);
 //			return 1;
 //		}
-		if (JbKbdPreference.inst!=null)
-			JbKbdPreference.inst.setCheckEntry(JbKbdPreference.inst, 1, ini);
+		updateCheckPreferenceData(1, ini);
 
 		return 0;
 	}
 	
 	public String readUrl(String url, String param) {
 		String str = null;
-		// local url variable
-		URL lurl = null;
-		HttpURLConnection urlConnection = null;
+//		URL lurl = null;
+		InputStream is = null;
 		try {
-			lurl = new URL(url);
-			urlConnection = (HttpURLConnection) lurl.openConnection();
-			urlConnection.setRequestMethod("POST");
-			urlConnection.setDoOutput(true);
-			urlConnection.setRequestProperty("act", "1");
-
-		    //Send request
-//			if (param!=null) {
-//			    DataOutputStream wr = new DataOutputStream (
-//			    		urlConnection.getOutputStream());
-//			    wr.writeBytes(param);
-//			    wr.close();
-//			}
-		    OutputStreamWriter request = new OutputStreamWriter(urlConnection.getOutputStream());
-		    request.write("act=1");
-		    request.flush();
-		    request.close();
-		    
-//		    urlConnection.setConnectTimeout(10000);
-//			urlConnection.setReadTimeout(10000);
+			is = new URL(url).openStream();
 			BufferedReader in = new BufferedReader(
-					new InputStreamReader(urlConnection.getInputStream()));
-	   		char buf[] = new char[200];
-	   		in.read(buf);
+			new InputStreamReader(is));
+			char buf[] = new char[200];
+			in.read(buf);
 			in.close();
 			str = new String(buf).trim();
-			if (str.length() == 0)
+			if (str!=null&&str.length() == 0)
 				str = null;
+			
 		} catch (Throwable e) {
 		} finally {
-			urlConnection.disconnect();
+			if (is!=null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+				}
+			}
 		}
+// старый код
+//		char buf[] = new char[200];
+//		in.read(buf);
+//	in.close();
+//	str = new String(buf).trim();
+//	if (str!=null&&str.length() == 0)
+//		str = null;
+//		} finally {
+//		}
+//		HttpURLConnection urlConnection = null;
+//		try {
+//			lurl = new URL(url);
+//			urlConnection = (HttpURLConnection) lurl.openConnection();
+//			urlConnection.setRequestMethod("GET");
+//			urlConnection.setRequestProperty("Content-Type", "text/plain"); 
+//			urlConnection.setRequestProperty("Accept-Charset", st.STR_UTF8);
+//
+//			BufferedReader in = new BufferedReader(
+//					new InputStreamReader(urlConnection.getInputStream()));
+//	   		char buf[] = new char[200];
+//	   		in.read(buf);
+//			in.close();
+//			str = new String(buf).trim();
+//			if (str!=null&&str.length() == 0)
+//				str = null;
+//
+//		} catch (Throwable e) {
+//			st.log("kkk");
+//			st.logEx(e);
+//		} finally {
+//			urlConnection.disconnect();
+//		}
 		return str;
 	}
 	

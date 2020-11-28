@@ -38,7 +38,6 @@ public class WebUtils
 			return false;
 		if(hasSchemeHTTP(text))
 			return  true;
-		boolean bbb = text.indexOf(' ')<0&&text.indexOf('.')>-1;
 		return text.indexOf(' ')<0&&text.indexOf('.')>-1;
 	}
 	/** Проверяет url  */    
@@ -49,9 +48,10 @@ public class WebUtils
 		{
 			String s = url.substring(0,index);
 			boolean isEng = true;
+			char c = 0;
 			for(int i=0;i<s.length();i++)
 			{
-				char c = s.charAt(i);
+				c = s.charAt(i);
 				if(!('a'<=c&&c<='z'||'A'<=c&&c<='Z'))
 				{
 					isEng = false;

@@ -203,3 +203,4 @@ $selToUrl[https://translate.yandex.by/?ui=ru&lang=en-ru&text=$st#]
 NOTA
 Para buscar en Google, puede utilizar la forma abreviada de la instrucción especial (Google se utiliza como el motor de búsqueda predeterminado):
 $selToUrl[$ct#]
+

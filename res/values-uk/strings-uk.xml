@@ -820,8 +820,11 @@
   <string name="empty">Порожньо</string>
 	<string name="unload">Вивантажити</string>
 	<string name="from_memory">пам\'яті</string>
-		<string name="create">Створено</string>
+	<string name="not_save_text">Есть несохранённый текст.\n\nВсё равно выгрузить?</string>
+	<string name="create">Створено</string>
   <string name="save">Зберегти</string>
+	<string name="saved">Збережено</string>
+	<string name="not_save">Не можу зберегти</string>
   <string name="decompil_skin">Декомпліювати скін</string>
   <string name="delete">Видалити</string>
   <string name="delete_q">Видалити?</string>

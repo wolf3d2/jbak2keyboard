@@ -506,7 +506,7 @@ public class IKeyboard {
 			try {
 				String ln = new Locale(lang).getDisplayName();
 				if (ln.length() > 1) {
-					return st.upFirstSymbol(ln);
+					return st.getUpFirstSymbol(ln);
 				}
 			} catch (Throwable e) {
 			}
@@ -549,7 +549,7 @@ public class IKeyboard {
 	     * 1 - "Русский" <br>
 	     * 2 - "Русский - ru" <br>
 	     * 3 - "ru" */
-	    public static String[] getAlLocalelLang(int type) {
+	    public static String[] getAllLocalelLang(int type) {
 	    	String[] locales = Locale.getISOLanguages();
 	    	Vector<String> o1 = new Vector<String>();
 	    	Lang ln = null;
